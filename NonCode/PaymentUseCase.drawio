@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" modified="2023-04-24T19:06:58.799Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="0SZ_NNuCRLn7zeblDnh3" version="21.2.1" type="device">
+  <diagram name="Page-1" id="zZSdgTXrnjZIJ1r0tGA3">
+    <mxGraphModel dx="1407" dy="734" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e_jk6waJH4AeAOf97kMj-2" value="" style="rounded=0;whiteSpace=wrap;html=1;rotation=90;" parent="1" vertex="1">
+          <mxGeometry x="281.45" y="118" width="376.55" height="494.65" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-4" value="Payment Method" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="240" y="185" width="105" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-5" value="Customer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="110" y="340" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-6" value="order bill" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="230" y="320" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-8" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="e_jk6waJH4AeAOf97kMj-5" target="e_jk6waJH4AeAOf97kMj-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="460" as="sourcePoint" />
+            <mxPoint x="490" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-13" value="Pay bill" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="377" y="329" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-14" value="Enter discount code" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="375" y="421" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-17" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/font&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="e_jk6waJH4AeAOf97kMj-6" target="e_jk6waJH4AeAOf97kMj-13" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="390" y="430" as="sourcePoint" />
+            <mxPoint x="550" y="430" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-19" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="e_jk6waJH4AeAOf97kMj-14" target="e_jk6waJH4AeAOf97kMj-6" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="380" y="382" as="sourcePoint" />
+            <mxPoint x="443" y="385" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-21" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="e_jk6waJH4AeAOf97kMj-24" target="RPhuABUe63ch3klv9fjq-4" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="440" y="270" as="sourcePoint" />
+            <mxPoint x="510" y="290" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-23" value="Pay Cash" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="610" y="420" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-24" value="Pay with Card" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="225" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-25" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="RPhuABUe63ch3klv9fjq-4" edge="1" source="e_jk6waJH4AeAOf97kMj-23">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="540" y="350" as="sourcePoint" />
+            <mxPoint x="502" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-26" value="Bank" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="740" y="225" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-27" value="Waiter" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="740" y="421" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-28" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" target="e_jk6waJH4AeAOf97kMj-27" edge="1" source="e_jk6waJH4AeAOf97kMj-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="357" as="sourcePoint" />
+            <mxPoint x="755" y="358" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jk6waJH4AeAOf97kMj-29" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="e_jk6waJH4AeAOf97kMj-26" edge="1" source="e_jk6waJH4AeAOf97kMj-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="244" as="sourcePoint" />
+            <mxPoint x="760" y="246" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RPhuABUe63ch3klv9fjq-2" value="&lt;table style=&quot;border-collapse: collapse; border: none;&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; class=&quot;MsoTableGrid&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border: 1pt solid windowtext; background: rgb(217, 226, 243); padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;i&gt;Use Case&lt;/i&gt;&lt;/b&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; background: rgb(217, 226, 243); padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;Order bill&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;span lang=&quot;EN-US&quot;&gt;&amp;nbsp;Customer is known as Primary&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;span lang=&quot;EN-US&quot;&gt;Actor, Bank and Waiter are known as Secondary Actor&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; background: rgb(217, 226, 243); padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;Postconditions&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-size: 11pt; background-color: initial;&quot;&gt;Customer orders the bill,Customer pays the bill&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; background: rgb(217, 226, 243); padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;Step-by-step&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b&gt;&lt;i&gt;&lt;span lang=&quot;EN-US&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;width: 453.1pt; border-right: 1pt solid windowtext; border-bottom: 1pt solid windowtext; border-left: 1pt solid windowtext; border-image: initial; border-top: none; padding: 0cm 5.4pt;&quot; valign=&quot;top&quot; width=&quot;604&quot;&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpFirst&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot; lang=&quot;EN-US&quot;&gt;1.&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp; &amp;nbsp;Customer&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&lt;font style=&quot;&quot;&gt;Orders the bill&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot; lang=&quot;EN-US&quot;&gt;.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpMiddle&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot; lang=&quot;EN-US&quot;&gt;2.&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp; &amp;nbsp;Enter a discount code if the Customer has&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot; lang=&quot;EN-US&quot;&gt;.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpMiddle&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span lang=&quot;EN-US&quot;&gt;3.&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;Choose method&lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot;&gt;.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpMiddle&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span lang=&quot;EN-US&quot;&gt;4.&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp; &amp;nbsp; if the Customer chose the card so the transfer made throw the bank&lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot;&gt;.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpMiddle&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span lang=&quot;EN-US&quot;&gt;5.&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;if the Customer chose the Cash the waiter will do this method&lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot;&gt;.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0cm 0cm 0cm 36pt; line-height: normal; font-size: 11pt; font-family: Calibri, sans-serif; text-indent: -18pt;&quot; class=&quot;MsoListParagraphCxSpLast&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="42.5" y="600" width="545" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="RPhuABUe63ch3klv9fjq-4" value="Choose Method" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="324" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RPhuABUe63ch3klv9fjq-5" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/font&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="e_jk6waJH4AeAOf97kMj-13" target="RPhuABUe63ch3klv9fjq-4">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="332" y="354" as="sourcePoint" />
+            <mxPoint x="386" y="329" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
