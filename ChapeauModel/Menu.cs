@@ -10,8 +10,10 @@ namespace ChapeauModel
 { 
     public class Menu
     {
-        public uint MenuItemID { get; set; }
+        public int MenuItemID { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public float Price { get; set; }
+        public int Contains { get; set; }
+        public bool VAT_Category { get; set; }
     }
 }
