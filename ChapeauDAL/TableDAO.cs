@@ -12,18 +12,18 @@ namespace ChapeauDAL
 {
     public class TableDAO : BaseDao
     {
-        public List<Table> GetAllTables()//Get all the tables available
+        public List<Table> GetAllTables() //Get all the tables available
         {
             conn.Open();
-            string query = "SELECT tableID,occuppided,FROM Tables";
+            string query = "SELECT tableID,Occupied,FROM Tables";
             SqlParameter[] parameter = new SqlParameter[0];
             conn.Close();
             return ReadTables(ExecuteSelectQuery(query, parameter));
         }
 
-        public Table GeTable(int tableID)//get one specific table by tableid
+        public Table GeTableById(int tableID) //get one specific table by tableid
         {
-            String query = "SELECT tableID,occuppided FROM Tables WHERE tableID=@tableID";
+            String query = "SELECT tableID,Occupied FROM Tables WHERE tableID=@tableID";
             SqlParameter[] sqlParameters =
             {
                 new SqlParameter("@tableID", tableID)
@@ -32,12 +32,12 @@ namespace ChapeauDAL
             return ReadTable(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        public void UpdateStatus(int tableID, TableStatus status)//update table status
+        public void UpdateTableStatus(int tableID, TableStatus status) //update table status
         {
-            string query = "UPDATE Tables set occuppided=@occuppided WHERE tableID=@tableID";
+            string query = "UPDATE Tables Set Occupied=@Occupied WHERE tableID=@tableID";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("@occuppided", status.ToString()),
+                new SqlParameter("@Occupied", status.ToString()),
                 new SqlParameter("@tableID", tableID),
             };
             ExecuteEditQuery(query, sqlParameters);
@@ -45,19 +45,20 @@ namespace ChapeauDAL
 
         private Table ReadTable(DataTable dataTable)
         {
-            Table table = null;
-            foreach (DataRow dr in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                table = new Table()
+                DataRow row = dataTable.Rows[0];
+
+                Table table = new Table()
                 {
-                    TableId = (int)dr["tableID"],
-                    TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus),
-                    dr["occuppided"].ToString()),
+                    TableId = (int)row["tableID"],
+                    TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus), row["occuppided"].ToString())
                 };
 
+                return table;
             }
 
-            return table;
+            return null;
         }
 
         private List<Table> ReadTables(DataTable dataTable)
@@ -69,18 +70,14 @@ namespace ChapeauDAL
                 {
                     TableId = (int)dr["tableID"],
                     TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus),
-                        dr["occuppided"].ToString()),
+                        dr["Occupied"].ToString()),
                 };
                 tables.Add(table);
             }
 
             return tables;
+
+
         }
-
-
-
-
-
-
     }
 }
