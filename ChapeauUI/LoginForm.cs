@@ -1,26 +1,29 @@
 
 using ChapeauModel;
 using ChapeauService;
+using System.CodeDom;
+using System.Runtime.CompilerServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ChapeauUI
 {
     public partial class LoginScreen : Form
     {
+        public Employee employeeLogged = new Employee(); // used in log out method 
+        
         private EmployeeService employeeService;
 
         public LoginScreen()
         {
             employeeService = new EmployeeService();
             InitializeComponent();
-
+            this.CenterToScreen();
         }
 
         private void ValidateForm(string UserName)
         {
-            Employee employee = new Employee();
-            employee = employeeService.GetEmployeeByUserName(UserName);
-
-            switch (employee.EmployeeType)
+            employeeLogged = employeeService.GetEmployeeByUserName(UserName);
+            switch (employeeLogged.EmployeeType)
             {
                 case EmployeeType.Waiter:
                     {
@@ -42,7 +45,7 @@ namespace ChapeauUI
                 case EmployeeType.Manager:
                     {
                         this.Hide();
-                        ManagerMainView managerMainView = new ManagerMainView();
+                        ManagerMainView managerMainView = new ManagerMainView(employeeLogged);
                         managerMainView.ShowDialog();
                         this.Close();
                         break;
@@ -78,6 +81,11 @@ namespace ChapeauUI
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+        }
+
+        private void LoginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

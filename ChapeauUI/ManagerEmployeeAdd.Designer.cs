@@ -41,6 +41,7 @@
             btAddEmployee = new Button();
             label6 = new Label();
             txtAddEmployeeUserName = new TextBox();
+            btCancel = new Button();
             SuspendLayout();
             // 
             // cbAddEmployeeRole
@@ -137,9 +138,9 @@
             // btAddEmployee
             // 
             btAddEmployee.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btAddEmployee.Location = new Point(125, 330);
+            btAddEmployee.Location = new Point(82, 330);
             btAddEmployee.Name = "btAddEmployee";
-            btAddEmployee.Size = new Size(260, 29);
+            btAddEmployee.Size = new Size(166, 29);
             btAddEmployee.TabIndex = 10;
             btAddEmployee.Text = "Add Employee";
             btAddEmployee.UseVisualStyleBackColor = true;
@@ -163,11 +164,23 @@
             txtAddEmployeeUserName.Size = new Size(212, 29);
             txtAddEmployeeUserName.TabIndex = 12;
             // 
+            // btCancel
+            // 
+            btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btCancel.Location = new Point(279, 330);
+            btCancel.Name = "btCancel";
+            btCancel.Size = new Size(166, 29);
+            btCancel.TabIndex = 13;
+            btCancel.Text = "Cancel";
+            btCancel.UseVisualStyleBackColor = true;
+            btCancel.Click += btCancel_Click;
+            // 
             // ManagerEmployeeAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 393);
+            Controls.Add(btCancel);
             Controls.Add(txtAddEmployeeUserName);
             Controls.Add(label6);
             Controls.Add(btAddEmployee);
@@ -183,6 +196,7 @@
             Controls.Add(cbAddEmployeeRole);
             Name = "ManagerEmployeeAdd";
             Text = "ManagerEmployeeAdd";
+            Load += ManagerEmployeeAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,5 +216,6 @@
         private Button btAddEmployee;
         private Label label6;
         private TextBox txtAddEmployeeUserName;
+        private Button btCancel;
     }
 }
