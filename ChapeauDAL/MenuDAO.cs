@@ -29,9 +29,9 @@ namespace ChapeauDAL
             {
                 Menu menuItem = new Menu()
                 {
-                    MenuItemID = (uint)dr["menuItemID"],
+                    MenuItemID = (int)dr["menuItemID"],
                     Description = (string)dr["description"],
-                    Price = (double)dr["price"]
+                    Price = (float)dr["price"]
                 };
 
                 menu.Add(menuItem);

@@ -23,6 +23,19 @@ namespace ChapeauService
             return orders;
         }
 
+        public void AddOrder(Order order)
+        {
+            orderdb.AddOrder(order);
+        }
+
+        public void RemoveOrder(Order order)
+        {
+            orderdb.DeleteOrder(order);
+        }
+        public void UpdateOrder(Order order)
+        {
+            orderdb.UpdateOrder(order);
+        }
 
     }
 }
