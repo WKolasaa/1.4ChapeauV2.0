@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerEmployees
+    partial class ManagerStock
     {
         /// <summary>
         /// Required designer variable.
@@ -28,63 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lvEmployees = new ListView();
-            btEmployeesAdd = new Button();
-            btEmployeesRemove = new Button();
-            btEmployeesUpdate = new Button();
             menuStrip1 = new MenuStrip();
             mainMenuToolStripMenuItem = new ToolStripMenuItem();
             employeesToolStripMenuItem = new ToolStripMenuItem();
             stockToolStripMenuItem = new ToolStripMenuItem();
             menuToolStripMenuItem = new ToolStripMenuItem();
+            btStockUpdate = new Button();
+            btStockRemove = new Button();
+            btStockAdd = new Button();
+            lvStock = new ListView();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // lvEmployees
-            // 
-            lvEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lvEmployees.FullRowSelect = true;
-            lvEmployees.GridLines = true;
-            lvEmployees.Location = new Point(49, 33);
-            lvEmployees.MultiSelect = false;
-            lvEmployees.Name = "lvEmployees";
-            lvEmployees.Size = new Size(706, 239);
-            lvEmployees.TabIndex = 0;
-            lvEmployees.UseCompatibleStateImageBehavior = false;
-            lvEmployees.SelectedIndexChanged += lvEmployees_SelectedIndexChanged;
-            // 
-            // btEmployeesAdd
-            // 
-            btEmployeesAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesAdd.Location = new Point(49, 332);
-            btEmployeesAdd.Name = "btEmployeesAdd";
-            btEmployeesAdd.Size = new Size(134, 52);
-            btEmployeesAdd.TabIndex = 1;
-            btEmployeesAdd.Text = "Add";
-            btEmployeesAdd.UseVisualStyleBackColor = true;
-            btEmployeesAdd.Click += btEmployeesAdd_Click;
-            // 
-            // btEmployeesRemove
-            // 
-            btEmployeesRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesRemove.Location = new Point(621, 332);
-            btEmployeesRemove.Name = "btEmployeesRemove";
-            btEmployeesRemove.Size = new Size(134, 52);
-            btEmployeesRemove.TabIndex = 2;
-            btEmployeesRemove.Text = "Remove";
-            btEmployeesRemove.UseVisualStyleBackColor = true;
-            btEmployeesRemove.Click += btEmployeesRemove_Click;
-            // 
-            // btEmployeesUpdate
-            // 
-            btEmployeesUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesUpdate.Location = new Point(324, 332);
-            btEmployeesUpdate.Name = "btEmployeesUpdate";
-            btEmployeesUpdate.Size = new Size(134, 52);
-            btEmployeesUpdate.TabIndex = 3;
-            btEmployeesUpdate.Text = "Update";
-            btEmployeesUpdate.UseVisualStyleBackColor = true;
-            btEmployeesUpdate.Click += btEmployeesUpdate_Click;
             // 
             // menuStrip1
             // 
@@ -93,7 +47,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 29);
-            menuStrip1.TabIndex = 4;
+            menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
             // mainMenuToolStripMenuItem
@@ -128,19 +82,65 @@
             menuToolStripMenuItem.Text = "Menu";
             menuToolStripMenuItem.Click += menuToolStripMenuItem_Click;
             // 
-            // ManagerEmployees
+            // btStockUpdate
+            // 
+            btStockUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btStockUpdate.Location = new Point(324, 365);
+            btStockUpdate.Name = "btStockUpdate";
+            btStockUpdate.Size = new Size(134, 52);
+            btStockUpdate.TabIndex = 8;
+            btStockUpdate.Text = "Update";
+            btStockUpdate.UseVisualStyleBackColor = true;
+            btStockUpdate.Click += btStockUpdate_Click;
+            // 
+            // btStockRemove
+            // 
+            btStockRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btStockRemove.Location = new Point(621, 365);
+            btStockRemove.Name = "btStockRemove";
+            btStockRemove.Size = new Size(134, 52);
+            btStockRemove.TabIndex = 7;
+            btStockRemove.Text = "Remove";
+            btStockRemove.UseVisualStyleBackColor = true;
+            btStockRemove.Click += btStockRemove_Click;
+            // 
+            // btStockAdd
+            // 
+            btStockAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btStockAdd.Location = new Point(49, 365);
+            btStockAdd.Name = "btStockAdd";
+            btStockAdd.Size = new Size(134, 52);
+            btStockAdd.TabIndex = 6;
+            btStockAdd.Text = "Add";
+            btStockAdd.UseVisualStyleBackColor = true;
+            btStockAdd.Click += btStockAdd_Click;
+            // 
+            // lvStock
+            // 
+            lvStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lvStock.FullRowSelect = true;
+            lvStock.GridLines = true;
+            lvStock.Location = new Point(49, 66);
+            lvStock.MultiSelect = false;
+            lvStock.Name = "lvStock";
+            lvStock.Size = new Size(706, 239);
+            lvStock.TabIndex = 5;
+            lvStock.UseCompatibleStateImageBehavior = false;
+            lvStock.SelectedIndexChanged += lvStock_SelectedIndexChanged;
+            // 
+            // ManagerStock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
-            Controls.Add(btEmployeesUpdate);
-            Controls.Add(btEmployeesRemove);
-            Controls.Add(btEmployeesAdd);
-            Controls.Add(lvEmployees);
-            Name = "ManagerEmployees";
-            Text = "ManagerEmployees";
-            Load += ManagerEmployees_Load;
+            Controls.Add(btStockUpdate);
+            Controls.Add(btStockRemove);
+            Controls.Add(btStockAdd);
+            Controls.Add(lvStock);
+            Name = "ManagerStock";
+            Text = "ManagerStock";
+            Load += ManagerStock_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -149,14 +149,14 @@
 
         #endregion
 
-        private ListView lvEmployees;
-        private Button btEmployeesAdd;
-        private Button btEmployeesRemove;
-        private Button btEmployeesUpdate;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem mainMenuToolStripMenuItem;
         private ToolStripMenuItem employeesToolStripMenuItem;
         private ToolStripMenuItem stockToolStripMenuItem;
         private ToolStripMenuItem menuToolStripMenuItem;
+        private Button btStockUpdate;
+        private Button btStockRemove;
+        private Button btStockAdd;
+        private ListView lvStock;
     }
 }

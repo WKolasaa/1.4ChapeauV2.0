@@ -60,6 +60,7 @@
             LoginPanel.Name = "LoginPanel";
             LoginPanel.Size = new Size(702, 338);
             LoginPanel.TabIndex = 0;
+            LoginPanel.Paint += LoginPanel_Paint;
             // 
             // pictureBox1
             // 

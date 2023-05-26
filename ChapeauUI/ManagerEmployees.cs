@@ -15,20 +15,15 @@ namespace ChapeauUI
 {
     public partial class ManagerEmployees : Form
     {
+        ManagerMenuStip strip = new ManagerMenuStip();  
         public ManagerEmployees()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
         private void ManagerEmployees_Load(object sender, EventArgs e)
         {
-            UpdateList();
-
-        }
-
-        private void UpdateList()
-        {
-            List<Employee> list = GetEmployees();
-            DisplayEmployees(list);
+            DisplayEmployees(GetEmployees());
         }
 
         private List<Employee> GetEmployees()
@@ -61,12 +56,6 @@ namespace ChapeauUI
                 lvEmployees.Items.Add(li);
             }
 
-            lvEmployees.Columns[0].Width = 50;
-            lvEmployees.Columns[1].Width = 150;
-            lvEmployees.Columns[2].Width = 150;
-            lvEmployees.Columns[3].Width = 100;
-            lvEmployees.Columns[4].Width = 250;
-
             lvEmployees.View = View.Details;
         }
 
@@ -74,18 +63,23 @@ namespace ChapeauUI
         {
             ManagerEmployeeAdd sistema = new ManagerEmployeeAdd();
             sistema.ShowDialog();
-            UpdateList();
+            DisplayEmployees(GetEmployees());
         }
+
         Employee tempEmployee = new Employee();
+
         private void btEmployeesUpdate_Click(object sender, EventArgs e)
         {
             if (lvEmployees.SelectedIndices.Count == 0)
             {
                 MessageBox.Show("Select Employee!!");
             }
-            ManagerEmployeeUpdate managerEmployeeUpdate = new ManagerEmployeeUpdate(tempEmployee);
-            managerEmployeeUpdate.ShowDialog();
-            UpdateList();
+            else
+            {
+                ManagerEmployeeUpdate managerEmployeeUpdate = new ManagerEmployeeUpdate(tempEmployee);
+                managerEmployeeUpdate.ShowDialog();
+                DisplayEmployees(GetEmployees());
+            }
         }
 
         private void lvEmployees_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,11 +88,6 @@ namespace ChapeauUI
             {
                 ListViewItem listViewItem = lvEmployees.SelectedItems[0];
                 Employee selectedEmployee = (Employee)listViewItem.Tag;
-                tempEmployee.EmployeeId = selectedEmployee.EmployeeId;
-                tempEmployee.FirstName = selectedEmployee.FirstName;
-                tempEmployee.LastName = selectedEmployee.LastName;
-                tempEmployee.UserName = selectedEmployee.UserName;
-                tempEmployee.EmployeeType = selectedEmployee.EmployeeType;
             }
         }
 
@@ -108,16 +97,40 @@ namespace ChapeauUI
             {
                 MessageBox.Show("Select Employee!!");
             }
-            EmployeeService employeeService = new EmployeeService();
-
-            DialogResult result = MessageBox.Show("Are you sure you want to remove this Employee?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            else
             {
-                employeeService.DeleteEmployee(tempEmployee);
+                EmployeeService employeeService = new EmployeeService();
+
+                DialogResult result = MessageBox.Show("Are you sure you want to remove this Employee?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    employeeService.DeleteEmployee(tempEmployee);
+                }
+
+                DisplayEmployees(GetEmployees());
             }
 
-            UpdateList();
+        }
+
+        private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenMainView(this);
+        }
+
+        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenEmployeesView(this);
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenStockView(this);
+        }
+
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenMenuView(this);
         }
     }
 }

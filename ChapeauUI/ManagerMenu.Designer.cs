@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerEmployees
+    partial class ManagerMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lvEmployees = new ListView();
-            btEmployeesAdd = new Button();
-            btEmployeesRemove = new Button();
-            btEmployeesUpdate = new Button();
+            btMenuUpdate = new Button();
+            btMenuRemove = new Button();
+            btMenuAdd = new Button();
+            lvMenu = new ListView();
             menuStrip1 = new MenuStrip();
             mainMenuToolStripMenuItem = new ToolStripMenuItem();
             employeesToolStripMenuItem = new ToolStripMenuItem();
@@ -40,51 +40,51 @@
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // lvEmployees
+            // btMenuUpdate
             // 
-            lvEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lvEmployees.FullRowSelect = true;
-            lvEmployees.GridLines = true;
-            lvEmployees.Location = new Point(49, 33);
-            lvEmployees.MultiSelect = false;
-            lvEmployees.Name = "lvEmployees";
-            lvEmployees.Size = new Size(706, 239);
-            lvEmployees.TabIndex = 0;
-            lvEmployees.UseCompatibleStateImageBehavior = false;
-            lvEmployees.SelectedIndexChanged += lvEmployees_SelectedIndexChanged;
+            btMenuUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btMenuUpdate.Location = new Point(322, 349);
+            btMenuUpdate.Name = "btMenuUpdate";
+            btMenuUpdate.Size = new Size(134, 52);
+            btMenuUpdate.TabIndex = 7;
+            btMenuUpdate.Text = "Update";
+            btMenuUpdate.UseVisualStyleBackColor = true;
+            btMenuUpdate.Click += btMenuUpdate_Click;
             // 
-            // btEmployeesAdd
+            // btMenuRemove
             // 
-            btEmployeesAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesAdd.Location = new Point(49, 332);
-            btEmployeesAdd.Name = "btEmployeesAdd";
-            btEmployeesAdd.Size = new Size(134, 52);
-            btEmployeesAdd.TabIndex = 1;
-            btEmployeesAdd.Text = "Add";
-            btEmployeesAdd.UseVisualStyleBackColor = true;
-            btEmployeesAdd.Click += btEmployeesAdd_Click;
+            btMenuRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btMenuRemove.Location = new Point(619, 349);
+            btMenuRemove.Name = "btMenuRemove";
+            btMenuRemove.Size = new Size(134, 52);
+            btMenuRemove.TabIndex = 6;
+            btMenuRemove.Text = "Remove";
+            btMenuRemove.UseVisualStyleBackColor = true;
+            btMenuRemove.Click += btMenuRemove_Click;
             // 
-            // btEmployeesRemove
+            // btMenuAdd
             // 
-            btEmployeesRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesRemove.Location = new Point(621, 332);
-            btEmployeesRemove.Name = "btEmployeesRemove";
-            btEmployeesRemove.Size = new Size(134, 52);
-            btEmployeesRemove.TabIndex = 2;
-            btEmployeesRemove.Text = "Remove";
-            btEmployeesRemove.UseVisualStyleBackColor = true;
-            btEmployeesRemove.Click += btEmployeesRemove_Click;
+            btMenuAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btMenuAdd.Location = new Point(47, 349);
+            btMenuAdd.Name = "btMenuAdd";
+            btMenuAdd.Size = new Size(134, 52);
+            btMenuAdd.TabIndex = 5;
+            btMenuAdd.Text = "Add";
+            btMenuAdd.UseVisualStyleBackColor = true;
+            btMenuAdd.Click += btMenuAdd_Click;
             // 
-            // btEmployeesUpdate
+            // lvMenu
             // 
-            btEmployeesUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btEmployeesUpdate.Location = new Point(324, 332);
-            btEmployeesUpdate.Name = "btEmployeesUpdate";
-            btEmployeesUpdate.Size = new Size(134, 52);
-            btEmployeesUpdate.TabIndex = 3;
-            btEmployeesUpdate.Text = "Update";
-            btEmployeesUpdate.UseVisualStyleBackColor = true;
-            btEmployeesUpdate.Click += btEmployeesUpdate_Click;
+            lvMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lvMenu.FullRowSelect = true;
+            lvMenu.GridLines = true;
+            lvMenu.Location = new Point(47, 50);
+            lvMenu.MultiSelect = false;
+            lvMenu.Name = "lvMenu";
+            lvMenu.Size = new Size(706, 239);
+            lvMenu.TabIndex = 4;
+            lvMenu.UseCompatibleStateImageBehavior = false;
+            lvMenu.SelectedIndexChanged += lvMenu_SelectedIndexChanged;
             // 
             // menuStrip1
             // 
@@ -93,7 +93,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 29);
-            menuStrip1.TabIndex = 4;
+            menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
             // mainMenuToolStripMenuItem
@@ -128,19 +128,19 @@
             menuToolStripMenuItem.Text = "Menu";
             menuToolStripMenuItem.Click += menuToolStripMenuItem_Click;
             // 
-            // ManagerEmployees
+            // ManagerMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
-            Controls.Add(btEmployeesUpdate);
-            Controls.Add(btEmployeesRemove);
-            Controls.Add(btEmployeesAdd);
-            Controls.Add(lvEmployees);
-            Name = "ManagerEmployees";
-            Text = "ManagerEmployees";
-            Load += ManagerEmployees_Load;
+            Controls.Add(btMenuUpdate);
+            Controls.Add(btMenuRemove);
+            Controls.Add(btMenuAdd);
+            Controls.Add(lvMenu);
+            Name = "ManagerMenu";
+            Text = "ManagerMenu";
+            Load += ManagerMenu_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -149,10 +149,10 @@
 
         #endregion
 
-        private ListView lvEmployees;
-        private Button btEmployeesAdd;
-        private Button btEmployeesRemove;
-        private Button btEmployeesUpdate;
+        private Button btMenuUpdate;
+        private Button btMenuRemove;
+        private Button btMenuAdd;
+        private ListView lvMenu;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem mainMenuToolStripMenuItem;
         private ToolStripMenuItem employeesToolStripMenuItem;

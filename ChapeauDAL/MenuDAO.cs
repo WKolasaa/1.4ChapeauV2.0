@@ -15,7 +15,7 @@ namespace ChapeauDAL
         public List<Menu> GetMenu()
         {
             conn.Open();
-            string query = "SELECT menuItemID, description, price, contains FROM MenuItem";
+            string query = "SELECT menuItemID, description, price FROM MenuItem";
             SqlParameter[] parameter = new SqlParameter[0];
             conn.Close();
             return ReadMenu(ExecuteSelectQuery(query, parameter));
@@ -31,7 +31,7 @@ namespace ChapeauDAL
                 {
                     MenuItemID = (int)dr["menuItemID"],
                     Description = (string)dr["description"],
-                    Price = (float)dr["price"]
+                    Price = (double)dr["price"]
                 };
 
                 menu.Add(menuItem);

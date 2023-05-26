@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChapeauModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,61 @@ namespace ChapeauUI
 {
     public partial class ManagerMainView : Form
     {
-        public ManagerMainView()
+        ManagerMenuStip strip = new ManagerMenuStip();
+        Employee employee;
+        public ManagerMainView(Employee employee)
         {
             InitializeComponent();
+            this.CenterToScreen();
+            this.employee = employee;
         }
 
         private void btManagerEmployees_Click(object sender, EventArgs e)
         {
+            strip.OpenEmployeesView(this);
+        }
+
+        private void btMenuEmployees_Click(object sender, EventArgs e)
+        {
+            strip.OpenMenuView(this);
+        }
+
+        private void btStockEmployees_Click(object sender, EventArgs e)
+        {
+            strip.OpenStockView(this);
+        }
+
+        private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenMainView(this);
+        }
+
+        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenEmployeesView(this);
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenStockView(this);
+        }
+
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            strip.OpenMenuView(this);
+        }
+
+        private void ManagerMainView_Load(object sender, EventArgs e)
+        {
+            lbUser.Text = $"Welcome {employee.Name}!";
+        }
+
+        private void btLogout_Click(object sender, EventArgs e)
+        {
             this.Hide();
-            ManagerEmployees sistema = new ManagerEmployees();
-            sistema.ShowDialog();
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.employeeLogged = null;
+            loginScreen.ShowDialog();
             this.Close();
         }
     }
