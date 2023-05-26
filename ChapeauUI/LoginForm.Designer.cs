@@ -56,17 +56,19 @@
             LoginPanel.Controls.Add(label1);
             LoginPanel.Controls.Add(lblLogin);
             LoginPanel.Location = new Point(0, 0);
+            LoginPanel.Margin = new Padding(3, 2, 3, 2);
             LoginPanel.Name = "LoginPanel";
-            LoginPanel.Size = new Size(802, 450);
+            LoginPanel.Size = new Size(702, 338);
             LoginPanel.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ActiveCaption;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(117, 24);
+            pictureBox1.Location = new Point(102, 18);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(540, 97);
+            pictureBox1.Size = new Size(472, 73);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
@@ -74,50 +76,56 @@
             // loginbtn
             // 
             loginbtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            loginbtn.Location = new Point(310, 357);
+            loginbtn.Location = new Point(271, 268);
+            loginbtn.Margin = new Padding(3, 2, 3, 2);
             loginbtn.Name = "loginbtn";
-            loginbtn.Size = new Size(152, 60);
+            loginbtn.Size = new Size(133, 45);
             loginbtn.TabIndex = 6;
             loginbtn.Text = "Login";
             loginbtn.UseVisualStyleBackColor = true;
+            loginbtn.Click += loginbtn_Click;
             // 
             // passwordPanel
             // 
             passwordPanel.Controls.Add(passwordTextBox);
-            passwordPanel.Location = new Point(269, 273);
+            passwordPanel.Location = new Point(235, 205);
+            passwordPanel.Margin = new Padding(3, 2, 3, 2);
             passwordPanel.Name = "passwordPanel";
-            passwordPanel.Size = new Size(250, 48);
+            passwordPanel.Size = new Size(219, 36);
             passwordPanel.TabIndex = 5;
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(19, 9);
+            passwordTextBox.Location = new Point(17, 7);
+            passwordTextBox.Margin = new Padding(3, 2, 3, 2);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.Size = new Size(212, 27);
+            passwordTextBox.Size = new Size(186, 23);
             passwordTextBox.TabIndex = 0;
             // 
             // UsernamePanel
             // 
             UsernamePanel.Controls.Add(usernameTextBox);
-            UsernamePanel.Location = new Point(269, 200);
+            UsernamePanel.Location = new Point(235, 150);
+            UsernamePanel.Margin = new Padding(3, 2, 3, 2);
             UsernamePanel.Name = "UsernamePanel";
-            UsernamePanel.Size = new Size(250, 48);
+            UsernamePanel.Size = new Size(219, 36);
             UsernamePanel.TabIndex = 4;
             // 
             // usernameTextBox
             // 
-            usernameTextBox.Location = new Point(18, 9);
+            usernameTextBox.Location = new Point(16, 7);
+            usernameTextBox.Margin = new Padding(3, 2, 3, 2);
             usernameTextBox.Name = "usernameTextBox";
-            usernameTextBox.Size = new Size(213, 27);
+            usernameTextBox.Size = new Size(187, 23);
             usernameTextBox.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(117, 209);
+            label2.Location = new Point(102, 157);
             label2.Name = "label2";
-            label2.Size = new Size(130, 29);
+            label2.Size = new Size(102, 25);
             label2.TabIndex = 3;
             label2.Text = "Username";
             // 
@@ -125,9 +133,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(117, 280);
+            label1.Location = new Point(102, 210);
             label1.Name = "label1";
-            label1.Size = new Size(124, 29);
+            label1.Size = new Size(98, 25);
             label1.TabIndex = 2;
             label1.Text = "Password";
             // 
@@ -135,19 +143,20 @@
             // 
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblLogin.Location = new Point(310, 124);
+            lblLogin.Location = new Point(271, 93);
             lblLogin.Margin = new Padding(4, 0, 4, 0);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(142, 54);
+            lblLogin.Size = new Size(117, 44);
             lblLogin.TabIndex = 1;
             lblLogin.Text = "Login";
             // 
             // LoginScreen
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(LoginPanel);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginScreen";
             Text = "Chapeau";
             LoginPanel.ResumeLayout(false);

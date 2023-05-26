@@ -14,13 +14,12 @@ namespace ChapeauUI
 
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void loginbtn_Click(object sender, EventArgs e)
         {
             try
             {
-                string username = usernametxt.Text;
-                string password = passwordtext.Text;
+                string username = usernameTextBox.Text;
+                string password = passwordTextBox.Text;
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
