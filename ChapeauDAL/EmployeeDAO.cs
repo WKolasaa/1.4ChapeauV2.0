@@ -9,6 +9,7 @@ using SomerenDAL;
 using System.Data.SqlClient;
 using System.Reflection.Metadata.Ecma335;
 using Org.BouncyCastle.Crypto.Generators;
+using System.Collections;
 
 namespace ChapeauDAL
 {
@@ -48,8 +49,6 @@ namespace ChapeauDAL
         public void AddEmployee(Employee employee)
         {
             conn.Open();
-            /*            string salt = BCrypt.Net.BCrypt.GenerateSalt();
-                        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(employee.Password);*/
             string query = "INSERT INTO Employee (employeeID, EmployeeType, FirstName, LastName, Password, dateOfBirth, Username) VALUES (@employeeID, @employeeType, @firstName, @lastName, @password, @dateOfBirth, @UserName)";
 
             SqlParameter[] parameter = new SqlParameter[]
@@ -111,14 +110,37 @@ namespace ChapeauDAL
             DataTable dataTable = ExecuteSelectQuery(query, parameters);
             conn.Close();
             return dataTable.Rows[0]["password"].ToString();
-
-            /*if (dataTable.Rows.Count == 1)
+        }
+        public Employee GetEmployeeByUserName(string UserName)
+        {
+            conn.Open();
+            string command = "SELECT employeeID,employeeType,firstName,lastName,password,Username FROM Employee WHERE Username = @UserName";
+            SqlParameter[] parameter = new SqlParameter[]
             {
-                string hashedPasswordFromDB = dataTable.Rows[0]["password"].ToString();
-                return BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDB);
-            }*/
+                new SqlParameter("@UserName", UserName)
+            };
+            DataTable reader = ExecuteSelectQuery(command, parameter);
 
+            Employee emp = ReadEmployee(reader);
 
+            conn.Close();
+
+            return emp;
+        }
+
+        private Employee ReadEmployee(DataTable reader)
+        {
+            DataRow dr = reader.Rows[0];
+            Employee employee = new Employee();
+
+            employee.EmployeeId = (int)dr["employeeID"];
+            employee.EmployeeType = (EmployeeType)Enum.Parse(typeof(EmployeeType), dr["employeeType"].ToString());
+            employee.FirstName = dr["firstName"].ToString();
+            employee.LastName = dr["lastName"].ToString();
+            employee.Password = dr["password"].ToString();
+            employee.UserName = dr["Username"].ToString();
+
+            return employee;
         }
 
 
