@@ -50,8 +50,7 @@ namespace ChapeauUI
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void loginbtn_Click(object sender, EventArgs e)
         {
             try
             {
