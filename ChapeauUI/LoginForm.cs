@@ -1,4 +1,5 @@
 
+using ChapeauModel;
 using ChapeauService;
 
 namespace ChapeauUI
@@ -14,7 +15,43 @@ namespace ChapeauUI
 
         }
 
-        private void loginbtn_Click(object sender, EventArgs e)
+        private void ValidateForm(string UserName)
+        {
+            Employee employee = new Employee();
+            employee = employeeService.GetEmployeeByUserName(UserName);
+
+            switch (employee.EmployeeType)
+            {
+                case EmployeeType.Waiter:
+                    {
+                        //
+                        break;
+                    }
+
+                case EmployeeType.Bartender:
+                    {
+                        // 
+                        break;
+                    }
+
+                case EmployeeType.Chef:
+                    {
+                        //
+                        break;
+                    }
+                case EmployeeType.Manager:
+                    {
+                        this.Hide();
+                        ManagerMainView managerMainView = new ManagerMainView();
+                        managerMainView.ShowDialog();
+                        this.Close();
+                        break;
+                    }
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -31,6 +68,7 @@ namespace ChapeauUI
                 if (isValidLogin)
                 {
                     MessageBox.Show("Successful login");
+                    ValidateForm(username);
                 }
                 else
                 {
