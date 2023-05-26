@@ -9,8 +9,8 @@ namespace ChapeauModel
 {
     public class Stock
     {
-        public uint StockID { get; set; }
+        public int StockID { get; set; }
         public string StockName { get; set;}
-        public uint Quantity { get; set;} 
+        public int Quantity { get; set;} 
     }
 }

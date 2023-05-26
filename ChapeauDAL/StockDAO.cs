@@ -30,9 +30,9 @@ namespace ChapeauDAL
             {
                 Stock stock = new Stock()
                 {
-                    StockID = (uint)dr["itemID"],
+                    StockID = (int)dr["itemID"],
                     StockName = (string)dr["itemName"],
-                    Quantity = (uint)dr["quantity"]
+                    Quantity = (int)dr["quantity"]
                 };
 
                 stocks.Add(stock);

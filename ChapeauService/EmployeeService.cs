@@ -8,9 +8,9 @@ namespace ChapeauService
     {
         private EmployeeDAO employeeDAO = new EmployeeDAO();
 
-        public List<Employee> GetEmployee()
+        public List<Employee> GetAllEmployees()
         {
-            return employeeDAO.GetEmployee();
+            return employeeDAO.GetAllEmployees();
         }
 
         public void AddEmployee(Employee employee)
@@ -35,7 +35,7 @@ namespace ChapeauService
 
         public bool VerifyLogin(string username, string password)
         {
-            string hashedPasswordFromDB = employeeDAO.HashedPassword(username);
+            string hashedPasswordFromDB = employeeDAO.GetHashedPassword(username);
             return BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDB);
 
         }
