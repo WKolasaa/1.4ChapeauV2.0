@@ -4,11 +4,11 @@ using ChapeauService;
 
 namespace ChapeauUI
 {
-    public partial class LoginForm : Form
+    public partial class LoginScreen : Form
     {
         private EmployeeService employeeService;
 
-        public LoginForm()
+        public LoginScreen()
         {
             employeeService = new EmployeeService();
             InitializeComponent();
@@ -55,13 +55,13 @@ namespace ChapeauUI
         {
             try
             {
-                string username = usernametxt.Text;
-                string password = passwordtext.Text;
+                string username = usernameTextBox.Text;
+                string password = passwordTextBox.Text;
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("Required fields need to be filled");
-                    return; 
+                    return;
                 }
 
                 bool isValidLogin = employeeService.VerifyLogin(username, password);
