@@ -10,10 +10,12 @@ namespace OrderTable
             InitializeComponent();
         }
 
+
+        //SHOWING AND HIDING PANELS
         private void ShowOrderPanel()
         {
-            pnlDashboard.Hide(); //okokokokoko
-            pnlOrder.Show();
+            pnlDashboard.Hide();
+            pnlOrderView.Show();
 
             try
             {
@@ -27,6 +29,8 @@ namespace OrderTable
             }
         }
 
+
+        //LISTS FOR PANNELS
         private List<Order> GetOrders()
         {
             OrderService orderService = new OrderService();
@@ -34,9 +38,15 @@ namespace OrderTable
             return orders;
         }
 
+
+
+        //DISPLAYING THE LISTS IN PANNELS
         private void DisplayOrders(List<Order> orders)
         {
 
         }
+
+
+        //BUTTONS FOR ORDERS TABLE
     }
 }

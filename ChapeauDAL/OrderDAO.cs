@@ -21,12 +21,12 @@ namespace ChapeauDAL
             return ReadOrdersTable(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        public void GetOrder()
-        {
-            string query = "SELECT orderID, tableNumber, totalPrice, paymentID, contains FROM Order ";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            // return ReadOrdersTable(ExecuteSelectQuery(query, sqlParameters));
-        }
+        /* public void GetOrder()
+         {
+             string query = "SELECT orderID, tableNumber, totalPrice, paymentID, contains FROM Order ";
+             SqlParameter[] sqlParameters = new SqlParameter[0];
+             // return ReadOrdersTable(ExecuteSelectQuery(query, sqlParameters));
+         } */
 
         private List<Order> ReadOrdersTable(DataTable dataTable)
         {
@@ -46,27 +46,39 @@ namespace ChapeauDAL
             return orders;
         }
 
-        public void AddOrder(Order order, Menu item)
+        public void AddOrder(Order order)
         {
-            string query = "INSERT INTO OrderTable () + VALUES (@description)";
+            string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("@description", item.Description),
+                new SqlParameter("@tableNumber", order.TableNumber),
+               new SqlParameter("@totalPrice", order.TotalPrice),
             };
 
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        public void EditOrder(Order order)
+        public void UpdateOrder(Order order)
         {
+            conn.Open();
+            string query = "UPDATE OrderTable SET tableNumber = @tableNumber, totalPrice = @totalPrice WHERE tableNumber = @tableNumber, totalPrice = @totalPrice";
+            SqlParameter[] parameter = new SqlParameter[]
+            {
+                new SqlParameter("@tableNumber", order.TableNumber),
+                new SqlParameter("@totalPrice", order.TotalPrice),
+
+            };
+
+            ExecuteEditQuery(query, parameter);
+            conn.Close();
         }
 
-        public void DeleteOrder(Order order, Menu item)
+        public void DeleteOrder(Order order)
         {
-            string query = "DELETE FROM [Order] WHERE orderID = @orderID";
+            string query = "DELETE FROM [OrderTable] WHERE tableNumber = @tableNumber";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("@description", item.Description),
+                new SqlParameter("@tableNumber", order.TableNumber),
             };
             ExecuteEditQuery(query, sqlParameters);
         }
