@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChapeauModel", "ChapeauMode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChapeauService", "ChapeauService\ChapeauService.csproj", "{2B997EE1-EA17-4165-8DBF-2CDC32239A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChapeauUI", "ChapeauUI\ChapeauUI.csproj", "{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChapeauUI", "ChapeauUI\ChapeauUI.csproj", "{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTable", "OrderTable\OrderTable.csproj", "{F45C7043-6689-4837-BB6C-59ECE474FBC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45C7043-6689-4837-BB6C-59ECE474FBC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45C7043-6689-4837-BB6C-59ECE474FBC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45C7043-6689-4837-BB6C-59ECE474FBC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45C7043-6689-4837-BB6C-59ECE474FBC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
