@@ -12,33 +12,33 @@ namespace ChapeauDAL
 {
     public class TableDAO : BaseDao
     {
-        public List<Table> GetAllTables() //Get all the tables available
+        public List<Table> GetAllTables()
         {
-            conn.Open();
-            string query = "SELECT tableID,Occupied,FROM Tables";
-            SqlParameter[] parameter = new SqlParameter[0];
-            conn.Close();
-            return ReadTables(ExecuteSelectQuery(query, parameter));
+            string query = "SELECT tableID, Occupied, tableNumber FROM [Tables]";
+            SqlParameter[] sqlParameter = new SqlParameter[0];
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameter);
+            return ReadTables(dataTable);
         }
 
-        public Table GeTableById(int tableID) //get one specific table by tableid
+        public Table GetTable(int tableID)
         {
-            String query = "SELECT tableID,Occupied FROM Tables WHERE tableID=@tableID";
+            string query = "SELECT tableID, Occupied, tableNumber FROM [Tables] WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("@tableID", tableID)
-
+              new SqlParameter("@tableID", tableID)
             };
-            return ReadTable(ExecuteSelectQuery(query, sqlParameters));
+
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            return ReadTable(dataTable);
         }
 
-        public void UpdateTableStatus(int tableID, TableStatus status) //update table status
+        public void UpdateTableStatus(Table table)
         {
-            string query = "UPDATE Tables Set Occupied=@Occupied WHERE tableID=@tableID";
+            string query = "UPDATE [Tables] SET Occupied = @Occupied WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("@Occupied", status.ToString()),
-                new SqlParameter("@tableID", tableID),
+           new SqlParameter("@Occupied", (int)table.TableStatus),
+           new SqlParameter("@tableID", table.TableId)
             };
             ExecuteEditQuery(query, sqlParameters);
         }
@@ -52,7 +52,8 @@ namespace ChapeauDAL
                 Table table = new Table()
                 {
                     TableId = (int)row["tableID"],
-                    TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus), row["occuppided"].ToString())
+                    TableStatus = (TableStatus)(int)row["Occupied"],
+                    TableNumber = (int)row["tableNumber"]
                 };
 
                 return table;
@@ -69,15 +70,13 @@ namespace ChapeauDAL
                 Table table = new Table()
                 {
                     TableId = (int)dr["tableID"],
-                    TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus),
-                        dr["Occupied"].ToString()),
+                    TableStatus = (TableStatus)(int)dr["Occupied"],
+                    TableNumber = (int)dr["tableNumber"],
                 };
                 tables.Add(table);
             }
 
             return tables;
-
-
         }
     }
 }
