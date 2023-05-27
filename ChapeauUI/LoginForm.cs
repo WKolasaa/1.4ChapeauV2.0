@@ -10,7 +10,7 @@ namespace ChapeauUI
     public partial class LoginScreen : Form
     {
         public Employee employeeLogged = new Employee(); // used in log out method 
-        
+
         private EmployeeService employeeService;
 
         public LoginScreen()
@@ -27,13 +27,16 @@ namespace ChapeauUI
             {
                 case EmployeeType.Waiter:
                     {
-                        //
+                        this.Hide();
+                        TableOverview tableOverview = new TableOverview(employeeLogged);
+                        tableOverview.ShowDialog();
+                        this.Close();
                         break;
                     }
 
                 case EmployeeType.Bartender:
                     {
-                        // 
+                      
                         break;
                     }
 
@@ -60,6 +63,10 @@ namespace ChapeauUI
                 string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
+                loginbtn.Enabled = false;
+                usernameTextBox.Enabled = false;
+                passwordTextBox.Enabled = false;
+
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("Required fields need to be filled");
@@ -81,11 +88,12 @@ namespace ChapeauUI
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+
+            loginbtn.Enabled = true;
+            usernameTextBox.Enabled = true;
+            passwordTextBox.Enabled = true;
         }
 
-        private void LoginPanel_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }
