@@ -89,7 +89,7 @@ namespace ChapeauUI
 
                 if (result == DialogResult.Yes)
                 {
-                    menuService.RemoveMenu(temp);
+                    //menuService.RemoveMenu(temp);
                 }
 
                 DisplayMenu(GetMenu());

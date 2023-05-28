@@ -45,7 +45,7 @@ namespace ChapeauUI
                 menu.Price = double.Parse(txtAddMenuPrice.Text);
 
                 MenuService menuService = new MenuService();
-                menuService.UpdateMenu(menu);
+                //menuService.UpdateMenu(menu);
 
                 this.Close();
 
