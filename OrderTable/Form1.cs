@@ -6,13 +6,13 @@ namespace OrderTable
 {
     public partial class Form1 : Form
     {
-       public MenuDAO MenuDAO;
+        public MenuDAO MenuDAO;
 
         public Form1()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             MenuDAO = new MenuDAO();
-    }
+        }
 
 
         //LISTS
@@ -31,9 +31,9 @@ namespace OrderTable
             listViewStartersLunch.Columns.Add("Description", 150);
             listViewStartersLunch.Columns.Add("Price", 150);
 
-           foreach(Menu menuItem in menuLunch)
+            foreach (Menu menuItem in menuLunch)
             {
-                if(menuItem.ItemType == "Starter")
+                if (menuItem.ItemType == "Starter")
                 {
                     ListViewItem li = new ListViewItem(menuItem.Description);
                     li.SubItems.Add(menuItem.Price.ToString());
@@ -103,7 +103,7 @@ namespace OrderTable
 
         private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

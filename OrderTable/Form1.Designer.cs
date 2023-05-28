@@ -34,6 +34,10 @@
             label1 = new Label();
             label2 = new Label();
             listViewStartersLunch = new ListView();
+            Main = new Label();
+            listViewMain = new ListView();
+            label4 = new Label();
+            listViewDessert = new ListView();
             SuspendLayout();
             // 
             // btnLunch
@@ -76,7 +80,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(263, 171);
+            label2.Location = new Point(258, 171);
             label2.Name = "label2";
             label2.Size = new Size(59, 20);
             label2.TabIndex = 3;
@@ -84,7 +88,7 @@
             // 
             // listViewStartersLunch
             // 
-            listViewStartersLunch.Location = new Point(12, 205);
+            listViewStartersLunch.Location = new Point(12, 194);
             listViewStartersLunch.Name = "listViewStartersLunch";
             listViewStartersLunch.Size = new Size(563, 134);
             listViewStartersLunch.TabIndex = 4;
@@ -92,11 +96,51 @@
             listViewStartersLunch.View = View.Details;
             listViewStartersLunch.SelectedIndexChanged += listViewStartersLunch_SelectedIndexChanged;
             // 
+            // Main
+            // 
+            Main.AutoSize = true;
+            Main.Location = new Point(269, 363);
+            Main.Name = "Main";
+            Main.Size = new Size(42, 20);
+            Main.TabIndex = 5;
+            Main.Text = "Main";
+            // 
+            // listViewMain
+            // 
+            listViewMain.Location = new Point(12, 386);
+            listViewMain.Name = "listViewMain";
+            listViewMain.Size = new Size(563, 134);
+            listViewMain.TabIndex = 6;
+            listViewMain.UseCompatibleStateImageBehavior = false;
+            listViewMain.View = View.Details;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(263, 547);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 20);
+            label4.TabIndex = 7;
+            label4.Text = "Dessert";
+            // 
+            // listViewDessert
+            // 
+            listViewDessert.Location = new Point(12, 570);
+            listViewDessert.Name = "listViewDessert";
+            listViewDessert.Size = new Size(563, 134);
+            listViewDessert.TabIndex = 8;
+            listViewDessert.UseCompatibleStateImageBehavior = false;
+            listViewDessert.View = View.Details;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(587, 713);
+            Controls.Add(listViewDessert);
+            Controls.Add(label4);
+            Controls.Add(listViewMain);
+            Controls.Add(Main);
             Controls.Add(listViewStartersLunch);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -117,5 +161,9 @@
         private Label label1;
         private Label label2;
         private ListView listViewStartersLunch;
+        private Label Main;
+        private ListView listViewMain;
+        private Label label4;
+        private ListView listViewDessert;
     }
 }
