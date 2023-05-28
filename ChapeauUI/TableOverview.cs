@@ -22,13 +22,18 @@ namespace ChapeauUI
         public TableOverview(Employee employee)
         {
             this.employee = employee;
+
             tableService = new TableService();
             orderService = new OrderService();
+
             InitializeComponent();
             AssigneTableButtonHandler();
+
             GetTableStatus();
+
             this.CenterToScreen();
-            UserNamelbl.Text = $"User:{employee.UserName}";
+
+            UserNamelbl.Text = $"{employee.Name}";
         }
 
         private void GetTableStatus()

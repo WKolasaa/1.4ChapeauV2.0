@@ -38,7 +38,7 @@
             listViewOrders = new ListView();
             BillBtn = new Button();
             AddOrderbtn = new Button();
-            OccupyTableBtn = new Button();
+            ReserveTableBtn = new Button();
             FreeTableBtn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -121,6 +121,7 @@
             BillBtn.TabIndex = 2;
             BillBtn.Text = "Bill";
             BillBtn.UseVisualStyleBackColor = true;
+            BillBtn.Click += BillBtn_Click;
             // 
             // AddOrderbtn
             // 
@@ -133,16 +134,16 @@
             AddOrderbtn.UseVisualStyleBackColor = true;
             AddOrderbtn.Click += AddOrderbtn_Click;
             // 
-            // OccupyTableBtn
+            // ReserveTableBtn
             // 
-            OccupyTableBtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            OccupyTableBtn.Location = new Point(629, 262);
-            OccupyTableBtn.Name = "OccupyTableBtn";
-            OccupyTableBtn.Size = new Size(115, 65);
-            OccupyTableBtn.TabIndex = 4;
-            OccupyTableBtn.Text = "Occupy Table";
-            OccupyTableBtn.UseVisualStyleBackColor = true;
-            OccupyTableBtn.Click += OccupyTableBtn_Click;
+            ReserveTableBtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            ReserveTableBtn.Location = new Point(629, 262);
+            ReserveTableBtn.Name = "ReserveTableBtn";
+            ReserveTableBtn.Size = new Size(115, 65);
+            ReserveTableBtn.TabIndex = 4;
+            ReserveTableBtn.Text = "Reserve Table";
+            ReserveTableBtn.UseVisualStyleBackColor = true;
+            ReserveTableBtn.Click += OccupyTableBtn_Click;
             // 
             // FreeTableBtn
             // 
@@ -161,7 +162,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 508);
             Controls.Add(FreeTableBtn);
-            Controls.Add(OccupyTableBtn);
+            Controls.Add(ReserveTableBtn);
             Controls.Add(AddOrderbtn);
             Controls.Add(BillBtn);
             Controls.Add(listViewOrders);
@@ -185,7 +186,7 @@
         private ListView listViewOrders;
         private Button BillBtn;
         private Button AddOrderbtn;
-        private Button OccupyTableBtn;
+        private Button ReserveTableBtn;
         private Button FreeTableBtn;
     }
 }
