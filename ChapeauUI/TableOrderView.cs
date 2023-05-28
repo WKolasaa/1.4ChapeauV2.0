@@ -32,23 +32,28 @@ namespace ChapeauUI
             CheckTableAvailability();
 
         }
-       
+
         private void CheckTableAvailability()
         {
             if (table.TableStatus == TableStatus.Occupied)
             {
-                BillBtn.Enabled = true;
                 AddOrderbtn.Enabled = true;
+                FreeTableBtn.Enabled = false;
+                ReserveTableBtn.Enabled = false;
+
             }
             else if (table.TableStatus == TableStatus.Reserved)
             {
-                OccupyTableBtn.Enabled = false;
+                ReserveTableBtn.Enabled = false;
+                BillBtn.Enabled = false;
+                AddOrderbtn.Enabled = false;
 
             }
             else
             {
                 BillBtn.Enabled = false;
-                AddOrderbtn.Enabled = false;
+                AddOrderbtn.Enabled = true;
+                FreeTableBtn.Enabled = false;
             }
         }
         private void DisplayOrders(List<OrderItem> orderItems)//Waiting on getOrder
@@ -58,9 +63,13 @@ namespace ChapeauUI
 
         }
 
+
         private void AddOrderbtn_Click(object sender, EventArgs e)//waiting for Orders
         {
-            this.Hide();
+
+            table.TableStatus = TableStatus.Occupied;
+            tableService.UpdateTableStatus(table);
+
 
         }
 
@@ -94,9 +103,19 @@ namespace ChapeauUI
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {
-          
+            table.TableStatus = TableStatus.Free;
+            tableService.UpdateTableStatus(table);
 
-           
+
+        }
+
+        private void BillBtn_Click(object sender, EventArgs e)
+        {
+            table.TableStatus = TableStatus.Free;
+            tableService.UpdateTableStatus(table);
+
+
+
         }
     }
 
