@@ -1,3 +1,4 @@
+using ChapeauDAL;
 using ChapeauModel;
 using ChapeauService;
 
@@ -5,48 +6,104 @@ namespace OrderTable
 {
     public partial class Form1 : Form
     {
+       public MenuDAO MenuDAO;
+
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            MenuDAO = new MenuDAO();
+    }
+
+
+        //LISTS
+        private List<Menu> GetMenu()
+        {
+            MenuService menuService = new MenuService();
+            List<Menu> menuList = menuService.GetMenu();
+            return menuList;
         }
 
+        //DISPLAYING THE LISTS
 
-        //SHOWING AND HIDING PANELS
-        private void ShowOrderPanel()
+        private void DisplayMenuItemsLunchStarter(List<Menu> menuLunch)
         {
-            pnlDashboard.Hide();
-            pnlOrderView.Show();
+            listViewStartersLunch.Clear();
+            listViewStartersLunch.Columns.Add("Description", 150);
+            listViewStartersLunch.Columns.Add("Price", 150);
 
-            try
+           foreach(Menu menuItem in menuLunch)
             {
-                // get and display all orders
-                List<Order> orders = GetOrders();
-                DisplayOrders(orders);
+                if(menuItem.ItemType == "Starter")
+                {
+                    ListViewItem li = new ListViewItem(menuItem.Description);
+                    li.SubItems.Add(menuItem.Price.ToString());
+                    li.Tag = menuItem;
+
+
+                    listViewStartersLunch.Items.Add(li);
+                }
+
             }
-            catch (Exception e)
+        }
+
+
+        private void DisplayMenuItemsLunchMain(List<Menu> menuLunch)
+        {
+            listViewStartersLunch.Clear();
+            listViewStartersLunch.Columns.Add("Description", 150);
+            listViewStartersLunch.Columns.Add("Price", 150);
+
+            foreach (Menu menuItem in menuLunch)
             {
-                MessageBox.Show("Something went wrong while loading the orders: " + e.Message);
+                if (menuItem.ItemType == "Main")
+                {
+                    ListViewItem li = new ListViewItem(menuItem.Description);
+                    li.SubItems.Add(menuItem.Price.ToString());
+                    li.Tag = menuItem;
+
+
+                    listViewStartersLunch.Items.Add(li);
+                }
+
+            }
+        }
+
+        private void DisplayMenuItemsLunchDessert(List<Menu> menuLunch)
+        {
+            listViewStartersLunch.Clear();
+            listViewStartersLunch.Columns.Add("Description", 150);
+            listViewStartersLunch.Columns.Add("Price", 150);
+
+            foreach (Menu menuItem in menuLunch)
+            {
+                if (menuItem.ItemType == "Desserts")
+                {
+                    ListViewItem li = new ListViewItem(menuItem.Description);
+                    li.SubItems.Add(menuItem.Price.ToString());
+                    li.Tag = menuItem;
+
+
+                    listViewStartersLunch.Items.Add(li);
+                }
+
             }
         }
 
 
-        //LISTS FOR PANNELS
-        private List<Order> GetOrders()
+        //BUTTONS 
+
+        private void btnLunch_Click(object sender, EventArgs e)
         {
-            OrderService orderService = new OrderService();
-            List<Order> orders = new List<Order>();
-            return orders;
+            string category = "Lunch";
+            List<Menu> lunchItems = MenuDAO.GetMenuItemByCategory(category);
+            DisplayMenuItemsLunchStarter(lunchItems);
+            DisplayMenuItemsLunchMain(lunchItems);
+            DisplayMenuItemsLunchDessert(lunchItems);
         }
 
-
-
-        //DISPLAYING THE LISTS IN PANNELS
-        private void DisplayOrders(List<Order> orders)
+        private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
-
-
-        //BUTTONS FOR ORDERS TABLE
     }
 }

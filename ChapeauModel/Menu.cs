@@ -15,5 +15,9 @@ namespace ChapeauModel
         public double Price { get; set; }
         public int Contains { get; set; }
         public bool VAT_Category { get; set; }
+
+        public string Category { get; set; }    
+
+        public string ItemType { get; set; }   
     }
 }

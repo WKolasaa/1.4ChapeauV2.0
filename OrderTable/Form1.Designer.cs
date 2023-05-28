@@ -28,74 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem("");
-            ListViewItem listViewItem2 = new ListViewItem("");
-            ListViewItem listViewItem3 = new ListViewItem("");
-            ListViewItem listViewItem4 = new ListViewItem("");
-            pnlDashboard = new Panel();
-            pnlOrderView = new Panel();
-            menuStrip1 = new MenuStrip();
-            listViewMenuItems = new ListView();
-            pnlDashboard.SuspendLayout();
-            pnlOrderView.SuspendLayout();
+            btnLunch = new Button();
+            btnDinner = new Button();
+            btnDrinks = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            listViewStartersLunch = new ListView();
             SuspendLayout();
             // 
-            // pnlDashboard
+            // btnLunch
             // 
-            pnlDashboard.Controls.Add(pnlOrderView);
-            pnlDashboard.Location = new Point(12, 53);
-            pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.Size = new Size(575, 648);
-            pnlDashboard.TabIndex = 0;
+            btnLunch.BackColor = Color.Transparent;
+            btnLunch.ForeColor = SystemColors.ActiveCaptionText;
+            btnLunch.Location = new Point(12, 88);
+            btnLunch.Name = "btnLunch";
+            btnLunch.Size = new Size(147, 46);
+            btnLunch.TabIndex = 0;
+            btnLunch.Text = "Lunch";
+            btnLunch.UseVisualStyleBackColor = false;
+            btnLunch.Click += btnLunch_Click;
             // 
-            // pnlOrderView
+            // btnDinner
             // 
-            pnlOrderView.Controls.Add(listViewMenuItems);
-            pnlOrderView.Location = new Point(0, 3);
-            pnlOrderView.Name = "pnlOrderView";
-            pnlOrderView.Size = new Size(563, 645);
-            pnlOrderView.TabIndex = 0;
+            btnDinner.Location = new Point(222, 88);
+            btnDinner.Name = "btnDinner";
+            btnDinner.Size = new Size(147, 46);
+            btnDinner.TabIndex = 1;
+            btnDinner.Text = "Dinner";
+            btnDinner.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // btnDrinks
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(587, 24);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
+            btnDrinks.Location = new Point(428, 88);
+            btnDrinks.Name = "btnDrinks";
+            btnDrinks.Size = new Size(147, 46);
+            btnDrinks.TabIndex = 2;
+            btnDrinks.Text = "Drinks";
+            btnDrinks.UseVisualStyleBackColor = true;
             // 
-            // listViewMenuItems
+            // label1
             // 
-            listViewMenuItems.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4 });
-            listViewMenuItems.Location = new Point(16, 14);
-            listViewMenuItems.Name = "listViewMenuItems";
-            listViewMenuItems.Size = new Size(533, 610);
-            listViewMenuItems.TabIndex = 0;
-            listViewMenuItems.UseCompatibleStateImageBehavior = false;
-            listViewMenuItems.View = View.Details;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(263, 171);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Starters";
+            // 
+            // listViewStartersLunch
+            // 
+            listViewStartersLunch.Location = new Point(12, 205);
+            listViewStartersLunch.Name = "listViewStartersLunch";
+            listViewStartersLunch.Size = new Size(563, 134);
+            listViewStartersLunch.TabIndex = 4;
+            listViewStartersLunch.UseCompatibleStateImageBehavior = false;
+            listViewStartersLunch.View = View.Details;
+            listViewStartersLunch.SelectedIndexChanged += listViewStartersLunch_SelectedIndexChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(587, 713);
-            Controls.Add(pnlDashboard);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(listViewStartersLunch);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(btnDrinks);
+            Controls.Add(btnDinner);
+            Controls.Add(btnLunch);
             Name = "Form1";
             Text = "Form1";
-            pnlDashboard.ResumeLayout(false);
-            pnlOrderView.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Panel pnlDashboard;
-        private MenuStrip menuStrip1;
-        private Panel pnlOrderView;
-        private ListView listViewMenuItems;
+        private Button btnLunch;
+        private Button btnDinner;
+        private Button btnDrinks;
+        private Label label1;
+        private Label label2;
+        private ListView listViewStartersLunch;
     }
 }
