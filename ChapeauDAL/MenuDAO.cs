@@ -72,7 +72,7 @@ namespace ChapeauDAL
             return menuItem;
         }
 
-        /*public void AddMenuItem(Menu menu)
+        public void AddMenuItem(Menu menu)
         {
             conn.Open();
             string query = "INSERT INTO MenuItem (menuItemID, description, price) VALUES (@menuItemID, @description, @price)";
@@ -118,6 +118,6 @@ namespace ChapeauDAL
             };
             ExecuteEditQuery(query, parameter);
             conn.Close();
-        } */
+        } 
     }
 }

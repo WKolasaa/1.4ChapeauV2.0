@@ -55,8 +55,6 @@ namespace ChapeauDAL
             DateTime DateTime = (DateTime)reader["OrderDateTime"];
             OrderItem Comment = (OrderItem)reader["comment"];
 
-         
-
            return new Order(OrderID, TableNumber, orderStatus, TotalPrice,DateTime, Comment);
         } 
 
@@ -64,7 +62,7 @@ namespace ChapeauDAL
 
         //add / edit / delete orders
         public void AddOrder(Order order)
-        {
+        { 
             string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";
             SqlParameter[] sqlParameters =
             {
