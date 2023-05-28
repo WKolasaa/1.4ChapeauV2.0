@@ -8,15 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChapeauModel;
+using static ChapeauModel.Order;
 
 namespace ChapeauDAL
 {
     public class OrderDAO : BaseDao
     {
 
-        TableDAO tabledao = new TableDAO(); 
-        MenuDAO menudao = new MenuDAO();
-        OrderItem orderitemdao = new OrderItem();
+      
+
+       
 
 
         //read order and orders
@@ -44,26 +45,20 @@ namespace ChapeauDAL
             return orders;
         }
 
-       /* private Order ReadOrder(SqlDataReader reader)
+        private Order ReadOrder(SqlDataReader reader)
         {
-            TableDAO tableDAO = new TableDAO(); 
-            EmployeeDAO employeeDAO = new EmployeeDAO();
-            OrderItemDAO orderItemDAO = new OrderItemDAO(); 
-            Order order = new Order();
-
+         
             int OrderID = (int)reader["orderID"];
             int TableNumber = (int)reader["tableNumber"];
-            //Employee EmployeeName = (Employee)reader["firstName"];
-            //Employee employeeName = (Employee)Enum.Parse(typeof(Employee),["firstName"].ToString())
-            
+            OrderStatus orderStatus = (OrderStatus)reader["OrderStatus"];
             float TotalPrice = (float)reader["totalPrice"];
             DateTime DateTime = (DateTime)reader["OrderDateTime"];
             OrderItem Comment = (OrderItem)reader["comment"];
 
-          //  TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus), row["occuppided"].ToString())
+         
 
-           return new Order(OrderID, TableNumber, OrderStatus, TotalPrice,DateTime, Comment);
-        } */
+           return new Order(OrderID, TableNumber, orderStatus, TotalPrice,DateTime, Comment);
+        } 
 
 
 
