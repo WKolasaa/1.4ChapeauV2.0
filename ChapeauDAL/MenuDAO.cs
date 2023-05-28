@@ -15,7 +15,7 @@ namespace ChapeauDAL
         public List<Menu> GetMenu()
         {
             conn.Open();
-            string query = "SELECT description, price, contains, category FROM MenuItem";
+            string query = "SELECT description, price, contains, category, sequence FROM MenuItem";
             SqlParameter[] parameter = new SqlParameter[0];
             conn.Close();
             return ReadMenuItems(ExecuteSelectQuery(query, parameter));
@@ -53,23 +53,53 @@ namespace ChapeauDAL
                     Contains = (int)row["contains"],
                     Category = (string)row["category"],
                 };
-                return menuItem;    
+                return menuItem;
             }
 
             return null;
         }
 
-        public Menu GetMenuItemByCategory(string category)
+        public List<Menu> GetMenuItemByCategory(string category)
         {
+            List<Menu> menuItems = new List<Menu>();
             string query = "SELECT description, price, category FROM MenuItem WHERE category = @category";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("category", category)
+
             };
 
             DataTable reader = ExecuteSelectQuery(query, sqlParameters);
-            Menu menuItem = ReadMenuItem(reader);
-            return menuItem;
+
+            foreach (DataRow row in reader.Rows)
+            {
+                Menu menuItem = new Menu
+                {
+                    Description = row["description"].ToString(),
+                    Price = Convert.ToSingle(row["price"]),
+                    Category = row["category"].ToString(),
+                    ItemType = ItemSequence(Convert.ToInt32(row["sequence"])),
+                };
+
+                menuItems.Add(menuItem);
+            }
+
+            return menuItems;
+        }
+
+        private string ItemSequence(int sequence)
+        {
+            switch (sequence)
+            {
+                case 1:
+                    return "Starter";
+                case 2:
+                    return "Main";
+                case 3:
+                    return "Dessert";
+                default:
+                    return "Unknown";
+            }
         }
 
         public void AddMenuItem(Menu menu)
@@ -118,6 +148,6 @@ namespace ChapeauDAL
             };
             ExecuteEditQuery(query, parameter);
             conn.Close();
-        } 
+        }
     }
 }
