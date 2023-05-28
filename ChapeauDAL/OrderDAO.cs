@@ -13,39 +13,61 @@ namespace ChapeauDAL
 {
     public class OrderDAO : BaseDao
     {
+
+        TableDAO tabledao = new TableDAO(); 
+        MenuDAO menudao = new MenuDAO();
+        OrderItem orderitemdao = new OrderItem();
+
+
+        //read order and orders
         public List<Order> GetAllOrders()
         {
             List<Order> orders = new List<Order>();
-            string query = "SELECT orderID, tableNumber, totalPrice, paymentID, contains FROM Order ";
+            string query = "SELECT tableNumber, totalPrice, orderID FROM OrderTable ";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadOrdersTable(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        /* public void GetOrder()
-         {
-             string query = "SELECT orderID, tableNumber, totalPrice, paymentID, contains FROM Order ";
-             SqlParameter[] sqlParameters = new SqlParameter[0];
-             // return ReadOrdersTable(ExecuteSelectQuery(query, sqlParameters));
-         } */
-
-        private List<Order> ReadOrdersTable(DataTable dataTable)
+        public List<Order> ReadOrdersTable(DataTable dataTable)
         {
             List<Order> orders = new List<Order>();
             foreach (DataRow dr in dataTable.Rows)
             {
                 Order order = new Order()
                 {
-                    // OrderID = (int)dr["orderID"],
+                    OrderID = (int)dr["orderID"],
                     TableNumber = (int)dr["tableNumber"],
                     TotalPrice = (int)dr["totalPrice"],
-                    // PaymentID = (int)dr[""],
-                    // Contains = (int)dr["contains"],
                 };
                 orders.Add(order);
             }
             return orders;
         }
 
+       /* private Order ReadOrder(SqlDataReader reader)
+        {
+            TableDAO tableDAO = new TableDAO(); 
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            OrderItemDAO orderItemDAO = new OrderItemDAO(); 
+            Order order = new Order();
+
+            int OrderID = (int)reader["orderID"];
+            int TableNumber = (int)reader["tableNumber"];
+            //Employee EmployeeName = (Employee)reader["firstName"];
+            //Employee employeeName = (Employee)Enum.Parse(typeof(Employee),["firstName"].ToString())
+            
+            float TotalPrice = (float)reader["totalPrice"];
+            DateTime DateTime = (DateTime)reader["OrderDateTime"];
+            OrderItem Comment = (OrderItem)reader["comment"];
+
+          //  TableStatus = (TableStatus)Enum.Parse(typeof(TableStatus), row["occuppided"].ToString())
+
+           return new Order(OrderID, TableNumber, OrderStatus, TotalPrice,DateTime, Comment);
+        } */
+
+
+
+        //add / edit / delete orders
         public void AddOrder(Order order)
         {
             string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";

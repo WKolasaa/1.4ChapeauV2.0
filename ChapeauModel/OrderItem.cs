@@ -17,6 +17,8 @@ namespace ChapeauModel
 
         public bool VatCategory { get; set; }
 
+        public string Comment { get; set; } 
+
 
     }
 

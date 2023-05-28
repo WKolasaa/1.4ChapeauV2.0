@@ -15,13 +15,13 @@ namespace ChapeauDAL
         public List<Menu> GetMenu()
         {
             conn.Open();
-            string query = "SELECT menuItemID, description, price FROM MenuItem";
+            string query = "SELECT description, price, contains, category FROM MenuItem";
             SqlParameter[] parameter = new SqlParameter[0];
             conn.Close();
-            return ReadMenu(ExecuteSelectQuery(query, parameter));
+            return ReadMenuItems(ExecuteSelectQuery(query, parameter));
         }
 
-        private List<Menu> ReadMenu(DataTable dataTable)
+        private List<Menu> ReadMenuItems(DataTable dataTable)
         {
             List<Menu> menu = new List<Menu>();
 
@@ -29,9 +29,10 @@ namespace ChapeauDAL
             {
                 Menu menuItem = new Menu()
                 {
-                    MenuItemID = (int)dr["menuItemID"],
                     Description = (string)dr["description"],
-                    Price = (double)dr["price"]
+                    Price = (double)dr["price"],
+                    Contains = (int)dr["contains"],
+                    Category = (string)dr["category"],
                 };
 
                 menu.Add(menuItem);
@@ -40,7 +41,38 @@ namespace ChapeauDAL
             return menu;
         }
 
-        public void AddMenuItem(Menu menu)
+        private Menu ReadMenuItem(DataTable dataTable)
+        {
+            if (dataTable != null)
+            {
+                DataRow row = dataTable.Rows[0];
+                Menu menuItem = new Menu()
+                {
+                    Description = (string)row["description"],
+                    Price = (double)row["price"],
+                    Contains = (int)row["contains"],
+                    Category = (string)row["category"],
+                };
+                return menuItem;    
+            }
+
+            return null;
+        }
+
+        public Menu GetMenuItemByCategory(string category)
+        {
+            string query = "SELECT description, price, category FROM MenuItem WHERE category = @category";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("category", category)
+            };
+
+            DataTable reader = ExecuteSelectQuery(query, sqlParameters);
+            Menu menuItem = ReadMenuItem(reader);
+            return menuItem;
+        }
+
+        /*public void AddMenuItem(Menu menu)
         {
             conn.Open();
             string query = "INSERT INTO MenuItem (menuItemID, description, price) VALUES (@menuItemID, @description, @price)";
@@ -86,6 +118,6 @@ namespace ChapeauDAL
             };
             ExecuteEditQuery(query, parameter);
             conn.Close();
-        }
+        } */
     }
 }
