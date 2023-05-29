@@ -33,7 +33,7 @@
             btnDrinks = new Button();
             label1 = new Label();
             label2 = new Label();
-            listViewStartersLunch = new ListView();
+            listViewStarters = new ListView();
             Main = new Label();
             listViewMain = new ListView();
             label4 = new Label();
@@ -60,6 +60,7 @@
             btnDinner.TabIndex = 1;
             btnDinner.Text = "Dinner";
             btnDinner.UseVisualStyleBackColor = true;
+            btnDinner.Click += btnDinner_Click;
             // 
             // btnDrinks
             // 
@@ -86,15 +87,14 @@
             label2.TabIndex = 3;
             label2.Text = "Starters";
             // 
-            // listViewStartersLunch
+            // listViewStarters
             // 
-            listViewStartersLunch.Location = new Point(12, 194);
-            listViewStartersLunch.Name = "listViewStartersLunch";
-            listViewStartersLunch.Size = new Size(563, 134);
-            listViewStartersLunch.TabIndex = 4;
-            listViewStartersLunch.UseCompatibleStateImageBehavior = false;
-            listViewStartersLunch.View = View.Details;
-            listViewStartersLunch.SelectedIndexChanged += listViewStartersLunch_SelectedIndexChanged;
+            listViewStarters.Location = new Point(12, 194);
+            listViewStarters.Name = "listViewStarters";
+            listViewStarters.Size = new Size(563, 134);
+            listViewStarters.TabIndex = 4;
+            listViewStarters.UseCompatibleStateImageBehavior = false;
+            listViewStarters.View = View.Details;
             // 
             // Main
             // 
@@ -141,7 +141,7 @@
             Controls.Add(label4);
             Controls.Add(listViewMain);
             Controls.Add(Main);
-            Controls.Add(listViewStartersLunch);
+            Controls.Add(listViewStarters);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnDrinks);
@@ -160,7 +160,7 @@
         private Button btnDrinks;
         private Label label1;
         private Label label2;
-        private ListView listViewStartersLunch;
+        private ListView listViewStarters;
         private Label Main;
         private ListView listViewMain;
         private Label label4;
