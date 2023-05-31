@@ -83,7 +83,7 @@
             loginbtn.TabIndex = 6;
             loginbtn.Text = "Login";
             loginbtn.UseVisualStyleBackColor = true;
-            loginbtn.Click += loginbtn_Click;
+           // loginbtn.Click += loginbtn_Click;
             // 
             // passwordPanel
             // 

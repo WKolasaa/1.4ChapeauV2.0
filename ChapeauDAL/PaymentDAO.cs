@@ -21,7 +21,7 @@ namespace ChapeauDAL
 
             // Preventing SQL injections
             command.Parameters.AddWithValue("@PaymentMethod", payment.PaymentMethod);
-            command.Parameters.AddWithValue("@TotalAmount", payment.TotalPriceMoney);
+            command.Parameters.AddWithValue("@TotalAmount", payment.TotalMoney);
             command.Parameters.AddWithValue("@Tip", payment.Tips);
             command.Parameters.AddWithValue("@Feedback", payment.FeedBack);
             command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
@@ -76,7 +76,7 @@ namespace ChapeauDAL
             conn.Open();
 
             SqlCommand command = new SqlCommand(
-        "SELECT PricePerItem, itemName, Quantity, Comments FROM OrderItems WHERE tableNumber = @tableNumber", conn);
+        "SELECT tableNumber, PricePerItem, itemName, Quantity, Comments FROM OrderItems WHERE tableNumber = @tableNumber", conn);
             command.Parameters.AddWithValue("@tableNumber", tableNumber);
 
             using (SqlDataReader reader = command.ExecuteReader())
@@ -85,13 +85,14 @@ namespace ChapeauDAL
                 {
                     Payment payment = new Payment()
                     {
-                        ItemPrice = reader.GetDecimal(0),
-                        itemName = reader.GetString(1),
-                        Quantity = reader.GetInt32(2),
-                        Comment = reader.IsDBNull(3) ? null : reader.GetString(3)// if the comment Null
+                        tableNumber=reader.GetInt32(0),// after check remove the table number.
+                        ItemPrice = reader.GetDecimal(1),
+                        itemName = reader.GetString(2),
+                        Quantity = reader.GetInt32(3),
+                        Comment = reader.IsDBNull(4) ? null : reader.GetString(4)// if the comment is Null
                     };
                     items.Add(payment);
-                 }  
+                }  
             }
             conn.Close();
             return items;
@@ -106,7 +107,7 @@ namespace ChapeauDAL
                 Payment payment = new Payment()
                 {
                     PaymentMethod = (PaymentMethod)dr["PaymentMethod"],
-                    TotalPriceMoney = (decimal)dr["TotalAmount"],
+                    TotalMoney = (decimal)dr["TotalAmount"],
                     Tips = (decimal)dr["Tip"],
                     FeedBack = dr["Feedback"].ToString(),
                     tableNumber = (int)dr["TableNumber"],
