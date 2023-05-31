@@ -32,7 +32,7 @@ namespace ChapeauDAL
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
                     Contains = (int)dr["contains"],
-                    Category = (string)dr["category"],
+                    //Category = (string)dr["category"],
                 };
 
                 menu.Add(menuItem);
@@ -51,7 +51,7 @@ namespace ChapeauDAL
                     Description = (string)row["description"],
                     Price = (double)row["price"],
                     Contains = (int)row["contains"],
-                    Category = (string)row["category"],
+                    //Category = (string)row["category"],
                 };
                 return menuItem;
             }
