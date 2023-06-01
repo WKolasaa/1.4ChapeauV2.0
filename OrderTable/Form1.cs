@@ -7,31 +7,31 @@ namespace OrderTable
     public partial class Form1 : Form
     {
         public MenuDAO MenuDAO;
+        public MenuService MenuService;
 
         public Form1()
         {
             InitializeComponent();
             MenuDAO = new MenuDAO();
+            MenuService = new MenuService();
         }
-
 
         //LISTS
         private List<Menu> GetMenu()
         {
-            MenuService menuService = new MenuService();
-            List<Menu> menuList = menuService.GetMenu();
+            List<Menu> menuList = MenuService.GetMenu();
             return menuList;
         }
 
         //DISPLAYING THE LISTS
 
-        private void DisplayMenuItemsLunchStarter(List<Menu> menuLunch)
+        private void DisplayMenuItemsStarter(List<Menu> menu)
         {
-            listViewStartersLunch.Clear();
-            listViewStartersLunch.Columns.Add("Description", 150);
-            listViewStartersLunch.Columns.Add("Price", 150);
+            listViewStarters.Clear();
+            listViewStarters.Columns.Add("Description", 150);
+            listViewStarters.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menuLunch)
+            foreach (Menu menuItem in menu)
             {
                 if (menuItem.ItemType == "Starter")
                 {
@@ -39,21 +39,19 @@ namespace OrderTable
                     li.SubItems.Add(menuItem.Price.ToString());
                     li.Tag = menuItem;
 
-
-                    listViewStartersLunch.Items.Add(li);
+                    listViewStarters.Items.Add(li);
                 }
-
             }
+
+            listViewStarters.View = View.Details;
         }
-
-
-        private void DisplayMenuItemsLunchMain(List<Menu> menuLunch)
+        private void DisplayMenuItemsMain(List<Menu> menu)
         {
-            listViewStartersLunch.Clear();
-            listViewStartersLunch.Columns.Add("Description", 150);
-            listViewStartersLunch.Columns.Add("Price", 150);
+            listViewMain.Clear();
+            listViewMain.Columns.Add("Description", 150);
+            listViewMain.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menuLunch)
+            foreach (Menu menuItem in menu)
             {
                 if (menuItem.ItemType == "Main")
                 {
@@ -61,20 +59,20 @@ namespace OrderTable
                     li.SubItems.Add(menuItem.Price.ToString());
                     li.Tag = menuItem;
 
-
-                    listViewStartersLunch.Items.Add(li);
+                    listViewMain.Items.Add(li);
                 }
-
             }
+
+            listViewMain.View = View.Details;
         }
 
-        private void DisplayMenuItemsLunchDessert(List<Menu> menuLunch)
+        private void DisplayMenuItemsDessert(List<Menu> menu)
         {
-            listViewStartersLunch.Clear();
-            listViewStartersLunch.Columns.Add("Description", 150);
-            listViewStartersLunch.Columns.Add("Price", 150);
+            listViewDessert.Clear();
+            listViewDessert.Columns.Add("Description", 150);
+            listViewDessert.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menuLunch)
+            foreach (Menu menuItem in menu)
             {
                 if (menuItem.ItemType == "Desserts")
                 {
@@ -82,12 +80,13 @@ namespace OrderTable
                     li.SubItems.Add(menuItem.Price.ToString());
                     li.Tag = menuItem;
 
-
-                    listViewStartersLunch.Items.Add(li);
+                    listViewDessert.Items.Add(li);
                 }
-
             }
+
+            listViewDessert.View = View.Details;
         }
+
 
 
         //BUTTONS 
@@ -95,15 +94,24 @@ namespace OrderTable
         private void btnLunch_Click(object sender, EventArgs e)
         {
             string category = "Lunch";
-            List<Menu> lunchItems = MenuDAO.GetMenuItemByCategory(category);
-            DisplayMenuItemsLunchStarter(lunchItems);
-            DisplayMenuItemsLunchMain(lunchItems);
-            DisplayMenuItemsLunchDessert(lunchItems);
+            List<Menu> lunchItems = MenuService.GetMenuByCategory(category);
+            DisplayMenuItemsStarter(lunchItems);
+            DisplayMenuItemsMain(lunchItems);
+            DisplayMenuItemsDessert(lunchItems);
         }
 
-        private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnDinner_Click(object sender, EventArgs e)
         {
-
+            string category = "Diner";
+            List<Menu> dinnerItems = MenuService.GetMenuByCategory(category);
+            DisplayMenuItemsStarter(dinnerItems);
+            DisplayMenuItemsMain(dinnerItems);
+            DisplayMenuItemsDessert(dinnerItems);
         }
+
+        /*   private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
+           {
+
+           } */
     }
 }
