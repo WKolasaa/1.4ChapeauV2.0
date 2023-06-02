@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnLunch = new Button();
             btnDinner = new Button();
             btnDrinks = new Button();
@@ -38,15 +41,28 @@
             listViewMain = new ListView();
             label4 = new Label();
             listViewDessert = new ListView();
+            guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
+            guna2ResizeForm1 = new Guna.UI2.WinForms.Guna2ResizeForm(components);
+            guna2ResizeForm2 = new Guna.UI2.WinForms.Guna2ResizeForm(components);
+            guna2AnimateWindow3 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
+            guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            guna2Elipse3 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            label3 = new Label();
+            guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            orderListView = new ListView();
+            guna2Elipse4 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            AddOrderBtn = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
             // 
             // btnLunch
             // 
-            btnLunch.BackColor = Color.Transparent;
-            btnLunch.ForeColor = SystemColors.ActiveCaptionText;
-            btnLunch.Location = new Point(12, 88);
+            btnLunch.BackColor = Color.DarkSeaGreen;
+            btnLunch.ForeColor = Color.Black;
+            btnLunch.Location = new Point(31, 88);
+            btnLunch.Margin = new Padding(0);
             btnLunch.Name = "btnLunch";
-            btnLunch.Size = new Size(147, 46);
+            btnLunch.Size = new Size(147, 59);
             btnLunch.TabIndex = 0;
             btnLunch.Text = "Lunch";
             btnLunch.UseVisualStyleBackColor = false;
@@ -54,22 +70,26 @@
             // 
             // btnDinner
             // 
-            btnDinner.Location = new Point(222, 88);
+            btnDinner.BackColor = Color.DarkSeaGreen;
+            btnDinner.Location = new Point(224, 88);
             btnDinner.Name = "btnDinner";
-            btnDinner.Size = new Size(147, 46);
+            btnDinner.Size = new Size(147, 59);
             btnDinner.TabIndex = 1;
             btnDinner.Text = "Dinner";
-            btnDinner.UseVisualStyleBackColor = true;
+            btnDinner.UseVisualStyleBackColor = false;
             btnDinner.Click += btnDinner_Click;
             // 
             // btnDrinks
             // 
-            btnDrinks.Location = new Point(428, 88);
+            btnDrinks.BackColor = Color.DarkSeaGreen;
+            btnDrinks.FlatAppearance.BorderColor = Color.DarkSeaGreen;
+            btnDrinks.FlatAppearance.BorderSize = 0;
+            btnDrinks.Location = new Point(415, 88);
             btnDrinks.Name = "btnDrinks";
-            btnDrinks.Size = new Size(147, 46);
+            btnDrinks.Size = new Size(147, 59);
             btnDrinks.TabIndex = 2;
             btnDrinks.Text = "Drinks";
-            btnDrinks.UseVisualStyleBackColor = true;
+            btnDrinks.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -81,9 +101,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(258, 171);
+            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(242, 160);
             label2.Name = "label2";
-            label2.Size = new Size(59, 20);
+            label2.Size = new Size(97, 31);
             label2.TabIndex = 3;
             label2.Text = "Starters";
             // 
@@ -99,9 +120,10 @@
             // Main
             // 
             Main.AutoSize = true;
-            Main.Location = new Point(269, 363);
+            Main.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            Main.Location = new Point(255, 352);
             Main.Name = "Main";
-            Main.Size = new Size(42, 20);
+            Main.Size = new Size(69, 31);
             Main.TabIndex = 5;
             Main.Text = "Main";
             // 
@@ -117,9 +139,10 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(263, 547);
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(242, 536);
             label4.Name = "label4";
-            label4.Size = new Size(58, 20);
+            label4.Size = new Size(94, 31);
             label4.TabIndex = 7;
             label4.Text = "Dessert";
             // 
@@ -132,11 +155,78 @@
             listViewDessert.UseCompatibleStateImageBehavior = false;
             listViewDessert.View = View.Details;
             // 
+            // guna2Elipse1
+            // 
+            guna2Elipse1.BorderRadius = 10;
+            guna2Elipse1.TargetControl = btnLunch;
+            // 
+            // guna2Elipse2
+            // 
+            guna2Elipse2.BorderRadius = 10;
+            guna2Elipse2.TargetControl = btnDinner;
+            // 
+            // guna2Elipse3
+            // 
+            guna2Elipse3.BorderRadius = 10;
+            guna2Elipse3.TargetControl = btnDrinks;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(12, 735);
+            label3.Name = "label3";
+            label3.Size = new Size(66, 28);
+            label3.TabIndex = 9;
+            label3.Text = "Order";
+            // 
+            // guna2Separator1
+            // 
+            guna2Separator1.Location = new Point(0, 727);
+            guna2Separator1.Name = "guna2Separator1";
+            guna2Separator1.Size = new Size(595, 12);
+            guna2Separator1.TabIndex = 10;
+            // 
+            // orderListView
+            // 
+            orderListView.Location = new Point(12, 766);
+            orderListView.Name = "orderListView";
+            orderListView.Size = new Size(563, 170);
+            orderListView.TabIndex = 11;
+            orderListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // guna2Elipse4
+            // 
+            guna2Elipse4.BorderRadius = 10;
+            guna2Elipse4.TargetControl = orderListView;
+            // 
+            // AddOrderBtn
+            // 
+            AddOrderBtn.CustomizableEdges = customizableEdges3;
+            AddOrderBtn.DisabledState.BorderColor = Color.DarkGray;
+            AddOrderBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            AddOrderBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            AddOrderBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            AddOrderBtn.FillColor = Color.DarkOrange;
+            AddOrderBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            AddOrderBtn.ForeColor = Color.Black;
+            AddOrderBtn.Location = new Point(379, 945);
+            AddOrderBtn.Name = "AddOrderBtn";
+            AddOrderBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            AddOrderBtn.Size = new Size(196, 41);
+            AddOrderBtn.TabIndex = 12;
+            AddOrderBtn.Text = "Add";
+            AddOrderBtn.Click += AddOrderBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(587, 713);
+            ClientSize = new Size(590, 998);
+            Controls.Add(AddOrderBtn);
+            Controls.Add(orderListView);
+            Controls.Add(guna2Separator1);
+            Controls.Add(label3);
             Controls.Add(listViewDessert);
             Controls.Add(label4);
             Controls.Add(listViewMain);
@@ -148,6 +238,7 @@
             Controls.Add(btnDinner);
             Controls.Add(btnLunch);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
@@ -165,5 +256,17 @@
         private ListView listViewMain;
         private Label label4;
         private ListView listViewDessert;
+        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
+        private Guna.UI2.WinForms.Guna2ResizeForm guna2ResizeForm1;
+        private Guna.UI2.WinForms.Guna2ResizeForm guna2ResizeForm2;
+        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow3;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse3;
+        private Label label3;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private ListView orderListView;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse4;
+        private Guna.UI2.WinForms.Guna2Button AddOrderBtn;
     }
 }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChapeauService", "ChapeauSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChapeauUI", "ChapeauUI\ChapeauUI.csproj", "{6280D5E0-9352-4513-87FF-1B9F8CA70DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTable", "OrderTable\OrderTable.csproj", "{F45C7043-6689-4837-BB6C-59ECE474FBC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderTable", "OrderTable\OrderTable.csproj", "{F45C7043-6689-4837-BB6C-59ECE474FBC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
