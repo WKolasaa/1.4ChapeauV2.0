@@ -61,7 +61,7 @@ namespace ChapeauDAL
 
 
         //add / edit / delete orders
-       /* public void AddOrder(Order order)
+        public void AddOrder(Order order)
         { 
             string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";
             SqlParameter[] sqlParameters =
@@ -98,7 +98,7 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        */
+        
     }
 
 }
