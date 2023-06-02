@@ -59,7 +59,7 @@ namespace ChapeauUI
             }
         }
 
-        private void loginbtn_Click(object sender, EventArgs e)
+        private void loginbtn_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -99,7 +99,5 @@ namespace ChapeauUI
             usernameTextBox.Enabled = true;
             passwordTextBox.Enabled = true;
         }
-
-
     }
 }
