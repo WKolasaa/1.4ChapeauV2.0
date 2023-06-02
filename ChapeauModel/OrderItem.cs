@@ -21,6 +21,7 @@ namespace ChapeauModel
 
         public Menu MenuItem { get; set; }
 
+        public OrderItem() { }  
 
     }
 
