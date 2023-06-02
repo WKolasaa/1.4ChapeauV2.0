@@ -61,6 +61,22 @@ namespace ChapeauDAL
 
             return null;
         }
+
+        public void AddOrder()
+        {
+            string query = "INSERT INTO OrderItem ([PricePerItem], [tableNumber], [itemName], [Quantity], [vat_category], [Comments]) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments)";
+            SqlParameter[] sql = new SqlParameter[0];
+            ExecuteEditQuery(query, sql);
+        }
+
+        public void EditOrder()
+        {
+
+        }
+
+        public void DeleteOrder()
+        {
+        }
     }
 
 

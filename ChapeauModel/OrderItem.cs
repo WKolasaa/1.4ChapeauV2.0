@@ -19,6 +19,9 @@ namespace ChapeauModel
 
         public string Comment { get; set; } 
 
+        public Menu MenuItem { get; set; }
+
+        public OrderItem() { }  
 
     }
 

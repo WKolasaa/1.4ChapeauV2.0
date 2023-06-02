@@ -109,6 +109,31 @@ namespace OrderTable
             DisplayMenuItemsDessert(dinnerItems);
         }
 
+        private void AddOrderBtn_Click(object sender, EventArgs e)
+        {
+            Order order = new Order();
+
+            if (listViewMain.SelectedItems.Count > 0 || listViewStarters.SelectedItems.Count > 0 || listViewDessert.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewMain.SelectedItems[0];
+                selectedItem = listViewDessert.SelectedItems[0];
+                selectedItem = listViewStarters.SelectedItems[0];
+
+                Menu selectedMenuItem = new Menu()
+                {
+                    Description = selectedItem.SubItems[0].Text,
+                    Price = float.Parse(selectedItem.SubItems[1].Text),
+                };
+
+                OrderItem orderItem = new OrderItem()
+                {
+                    MenuItem = selectedMenuItem
+                };
+
+                
+            }
+        }
+
         /*   private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
            {
 
