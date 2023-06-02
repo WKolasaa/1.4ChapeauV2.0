@@ -40,13 +40,12 @@ namespace ChapeauDAL
                 {
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
-<<<<<<< HEAD
+
                     Category = (string)dr["category"],
                     ItemType = ItemSequence(Convert.ToInt32(dr["sequence"])),
-=======
+
                     Contains = (int)dr["contains"],
                     //Category = (string)dr["category"],
->>>>>>> main
                 };
 
                 menu.Add(menuItem);
@@ -54,9 +53,6 @@ namespace ChapeauDAL
 
             return menu;
         }
-<<<<<<< HEAD
-=======
-
         private Menu ReadMenuItem(DataTable dataTable)
         {
             if (dataTable != null)
@@ -75,7 +71,6 @@ namespace ChapeauDAL
             return null;
         }
 
->>>>>>> main
         public List<Menu> GetMenuItemByCategory(string category)
         {
             List<Menu> menuItems = new List<Menu>();

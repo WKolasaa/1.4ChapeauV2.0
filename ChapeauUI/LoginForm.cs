@@ -68,7 +68,6 @@ namespace ChapeauUI
                 string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
-                loginbtn.Enabled = false;
                 usernameTextBox.Enabled = false;
                 passwordTextBox.Enabled = false;
 
