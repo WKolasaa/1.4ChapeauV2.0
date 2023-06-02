@@ -9,7 +9,7 @@ namespace ChapeauUI
 {
     public partial class LoginScreen : Form
     {
-        public Employee employeeLogged = new Employee(); // used in log out method 
+        public Employee employeeLogged = new Employee(); // instead of creating an employee object try to get the whole employee if it exist 
 
         private EmployeeService employeeService;
 
@@ -18,6 +18,9 @@ namespace ChapeauUI
             employeeService = new EmployeeService();
             InitializeComponent();
             this.CenterToScreen();
+            passwordTextBox.UseSystemPasswordChar = true;
+
+
         }
 
         private void ValidateForm(string UserName)
@@ -36,7 +39,7 @@ namespace ChapeauUI
 
                 case EmployeeType.Bartender:
                     {
-                      
+
                         break;
                     }
 
@@ -60,12 +63,16 @@ namespace ChapeauUI
         {
             try
             {
+
+
                 string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
                 loginbtn.Enabled = false;
                 usernameTextBox.Enabled = false;
                 passwordTextBox.Enabled = false;
+
+
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
