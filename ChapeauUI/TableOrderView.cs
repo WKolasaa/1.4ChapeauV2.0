@@ -111,6 +111,10 @@ namespace ChapeauUI
 
         private void BillBtn_Click(object sender, EventArgs e)
         {
+            DisplayBill display = new DisplayBill();
+            this.Hide();
+            display.ShowDialog();
+            this.Close();
             table.TableStatus = TableStatus.Free;
             tableService.UpdateTableStatus(table);
 
