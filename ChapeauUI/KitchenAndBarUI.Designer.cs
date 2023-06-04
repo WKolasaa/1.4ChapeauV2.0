@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KitchenAndBarUI));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.orderesListView = new System.Windows.Forms.ListView();
             this.listViewSelectedItem = new System.Windows.Forms.ListView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -48,13 +48,13 @@
             this.panelHeader3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listView1
+            // orderesListView
             // 
-            this.listView1.Location = new System.Drawing.Point(39, 204);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(562, 336);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.orderesListView.Location = new System.Drawing.Point(39, 204);
+            this.orderesListView.Name = "orderesListView";
+            this.orderesListView.Size = new System.Drawing.Size(562, 336);
+            this.orderesListView.TabIndex = 1;
+            this.orderesListView.UseCompatibleStateImageBehavior = false;
             // 
             // listViewSelectedItem
             // 
@@ -189,7 +189,7 @@
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listViewSelectedItem);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.orderesListView);
             this.Name = "KitchenAndBarUI";
             this.Text = "Kitchen ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -205,7 +205,7 @@
 
         #endregion
 
-        private ListView listView1;
+        private ListView orderesListView;
         private ListView listViewSelectedItem;
         private PictureBox pictureBox1;
         private Panel panelHeader;

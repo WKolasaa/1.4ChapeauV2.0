@@ -14,7 +14,7 @@ namespace ChapeauDAL
     {
         public List<OrderItem> GetAllItems()
         {
-            string query = "SELECT PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments FROM OrderItems";
+            string query = "SELECT PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category FROM OrderItems";
             SqlParameter[] sp = new SqlParameter[0];
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
@@ -33,6 +33,7 @@ namespace ChapeauDAL
                     Quantity = (int)dr["Quantity"],
                     VatCategory = (bool)dr["vat_category"],
                     Comment = (string)dr["Comments"],
+                    ItemCategroy = (ItemCategory)dr["Category"]
                 };
 
                 items.Add(item);
@@ -41,7 +42,7 @@ namespace ChapeauDAL
             return items;
         }
 
-        private OrderItem ReadOrderItem(DataTable dataTable)
+        /*private OrderItem ReadOrderItem(DataTable dataTable)
         {
             if (dataTable.Rows.Count > 0)
             {
@@ -60,6 +61,21 @@ namespace ChapeauDAL
             }
 
             return null;
+        }
+        */
+
+        public List<OrderItem> GetAllFood()
+        {
+            string query = "SELECT PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category FROM OrderItems WHERE Category = 0";
+            SqlParameter[] sp = new SqlParameter[0];
+            return ReadOrderItems(ExecuteSelectQuery(query, sp));
+        }
+
+        public List<OrderItem> GetAllDrinks()
+        {
+            string query = "SELECT PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category FROM OrderItems WHERE Category = 1";
+            SqlParameter[] sp = new SqlParameter[0];
+            return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
 
         public void AddOrder()

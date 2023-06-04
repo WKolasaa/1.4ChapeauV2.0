@@ -20,9 +20,6 @@ namespace ChapeauUI
 
         List<OrderItem> orderedItems;
 
-
-
-
         public KitchenAndBarUI(Employee employee)
         {
             this.employee = employee;
@@ -34,23 +31,42 @@ namespace ChapeauUI
             List<OrderItem> orderedItems = new List<OrderItem>();
             try
             {
-
-
                 if (employee.EmployeeType == EmployeeType.Chef)
                 {
-                    //orderedItems = OrderItemsService.GetFood();
+                    //orderedItems = OrderItemsService.GetFood(); try and add a column for the databse of ordered item where it specifies the type of item ex food or drink
+                    labelMenuBar.Text = "Kitchen Orders";
                 }
                 else if (employee.EmployeeType == EmployeeType.Bartender)
                 {
                     //orderedItems = OrderItemsService.GetDrinks();
+                    labelMenuBar.Text = "Bar Orders";
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 MessageBox.Show("Error getting the ordered items!", "Error", MessageBoxButtons.OK);
             }
 
             return orderedItems;
+        }
+
+
+        private void LoadOrders()
+        {
+            orderesListView.Items.Clear();
+
+            orderedItems = GetAllItems();
+
+            foreach (OrderItem orderItem in orderedItems)
+            {
+                ListViewItem item = new ListViewItem($"{orderItem.TableNumber}");
+
+                string nameOfMenuItem = orderItem.MenuItem.Description;
+
+                item.Tag = orderItem;
+                item.SubItems.Add(nameOfMenuItem);
+                item.SubItems.Add($"{orderItem.Quantity}");
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

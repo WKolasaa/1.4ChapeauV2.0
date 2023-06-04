@@ -20,6 +20,12 @@ namespace ChapeauService
         {
             return orderitemdao.GetAllItems();
         }
+        
+        public List<OrderItem> GetAllFood()
+        {
+            List<OrderItem> orderItems= new List<OrderItem>();
+
+        }
 
       /*  public void AddMenu(Menu menu)
         {

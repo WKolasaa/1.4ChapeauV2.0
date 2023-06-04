@@ -17,6 +17,8 @@ namespace ChapeauModel
 
         public bool VatCategory { get; set; }
 
+        public ItemCategory ItemCategroy { get; set; }
+
         public string Comment { get; set; } 
 
         public Menu MenuItem { get; set; }
@@ -25,4 +27,9 @@ namespace ChapeauModel
 
     }
 
+    public enum ItemCategory
+    {
+        Food = 0,
+        Drink = 1
+    }
 }
