@@ -14,9 +14,11 @@ namespace ChapeauUI
 {
     public partial class ManagerEmployeeUpdate : Form
     {
+        Employee employee;
         public ManagerEmployeeUpdate(Employee employee)
         {
             InitializeComponent();
+            this.employee = employee;   
             cbUpdateEmployeeRole.DataSource = Enum.GetValues(typeof(EmployeeType));
             this.CenterToScreen();
             DisplayData(employee);
@@ -66,7 +68,7 @@ namespace ChapeauUI
 
         private void ManagerEmployeeUpdate_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
