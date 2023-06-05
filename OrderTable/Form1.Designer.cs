@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnLunch = new Button();
             btnDinner = new Button();
             btnDrinks = new Button();
@@ -202,7 +202,7 @@
             // 
             // AddOrderBtn
             // 
-            AddOrderBtn.CustomizableEdges = customizableEdges3;
+            AddOrderBtn.CustomizableEdges = customizableEdges1;
             AddOrderBtn.DisabledState.BorderColor = Color.DarkGray;
             AddOrderBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             AddOrderBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -212,7 +212,7 @@
             AddOrderBtn.ForeColor = Color.Black;
             AddOrderBtn.Location = new Point(379, 945);
             AddOrderBtn.Name = "AddOrderBtn";
-            AddOrderBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            AddOrderBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             AddOrderBtn.Size = new Size(196, 41);
             AddOrderBtn.TabIndex = 12;
             AddOrderBtn.Text = "Add";

@@ -1,4 +1,5 @@
 ﻿using ChapeauModel;
+using Org.BouncyCastle.Asn1.X509;
 using SomerenDAL;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace ChapeauDAL
 
         public List<OrderItem> ReadOrderItems(DataTable dataTable)
         {
+            string query = "SELECT * FROM [OrderItems]";
             List<OrderItem> items = new List<OrderItem>();
 
             foreach (DataRow dr in dataTable.Rows)
@@ -28,7 +30,7 @@ namespace ChapeauDAL
                 OrderItem item = new OrderItem()
                 {
                     PricePerItem = (double)dr["PricePerItem"],
-                    TableNumber = (int)dr["tableNumber"],
+                    TableNumber = (Table)dr["tableNumber"],
                     ItemName = (string)dr["itemName"],
                     Quantity = (int)dr["Quantity"],
                     VatCategory = (bool)dr["vat_category"],
@@ -38,40 +40,55 @@ namespace ChapeauDAL
                 items.Add(item);
             }
 
+
             return items;
         }
 
-        private OrderItem ReadOrderItem(DataTable dataTable)
+        private OrderItem ReadOrderItem(SqlDataReader reader)
         {
-            if (dataTable.Rows.Count > 0)
+            MenuDAO menuDAO = new MenuDAO();
+            TableDAO tableDAO = new TableDAO();
+
+            double PricePerItem = (double)reader["PricePerItem"];
+            Table TableNumber = (Table)reader["tableNumber"];
+            string ItemName = (string)reader["itemName"];
+            int Quantity = (int)reader["Quantity"];
+            //OrderStatus Status = (OrderStatus)reader["status"];
+            bool VatCategory = (bool)reader["vat_category"];
+            string Comment = (string)reader["Comments"];
+            int Category = (int)reader["Cateogry"];
+            Menu MenuItem = (Menu)reader["menu_item_id"];
+
+            return new OrderItem(PricePerItem, TableNumber, ItemName, Quantity, VatCategory, Comment, Category, MenuItem);
+
+        }
+
+        public void AddOrderItem(OrderItem orderItem)
+        {
+            Table tableNumber = orderItem.TableNumber;
+
+            string query = "INSERT INTO [OrderItems] (PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, menu_item_id) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments, @Category, @menu_item_id); ";
+            SqlParameter[] sqlParameters =
             {
-                DataRow row = dataTable.Rows[0];
-                OrderItem item = new OrderItem()
-                {
-                    PricePerItem = (double)row["PricePerItem"],
-                    TableNumber = (int)row["tableNumber"],
-                    ItemName = (string)row["itemName"],
-                    Quantity = (int)row["Quantity"],
-                    VatCategory = (bool)row["vat_category"],
-                    Comment = (string)row["Comments"],
-                };
+                new SqlParameter("@PricePerItem", orderItem.PricePerItem),
+                new SqlParameter("@tableNumber", orderItem.TableNumber),
+                new SqlParameter("@itemName", orderItem.ItemName),
+                new SqlParameter("@Quantity", orderItem.Quantity),
+                new SqlParameter("@vat_category", orderItem.VatCategory),
+                new SqlParameter("@Comments", orderItem.Comment),
+                new SqlParameter("@Category", orderItem.Category),
+                new SqlParameter("@menu_item_id", orderItem.MenuItem),
 
-                return item;
-            }
+            };
 
-            return null;
+            ExecuteEditQuery(query, sqlParameters);
         }
 
-        public void AddOrder()
+        public void UpdateOrder(OrderItem orderItem, int newQuantity)
         {
-            string query = "INSERT INTO OrderItem ([PricePerItem], [tableNumber], [itemName], [Quantity], [vat_category], [Comments]) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments)";
-            SqlParameter[] sql = new SqlParameter[0];
-            ExecuteEditQuery(query, sql);
-        }
-
-        public void EditOrder()
-        {
-
+            string query = $"UPDATE [OrderItems] SET Quantity ={newQuantity} WHERE Quantity ={orderItem.Quantity}";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
         }
 
         public void DeleteOrder()
