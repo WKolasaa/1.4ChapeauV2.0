@@ -111,32 +111,48 @@ namespace OrderTable
 
         private void AddOrderBtn_Click(object sender, EventArgs e)
         {
-            Order order = new Order();
-
+            OrderItemService orderItemService = new OrderItemService();
             if (listViewMain.SelectedItems.Count > 0 || listViewStarters.SelectedItems.Count > 0 || listViewDessert.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listViewMain.SelectedItems[0];
-                selectedItem = listViewDessert.SelectedItems[0];
-                selectedItem = listViewStarters.SelectedItems[0];
+                /* ListViewItem selectedItem = listViewMain.SelectedItems[0];
+                 //selectedItem = listViewDessert.SelectedItems[0];
+                 //selectedItem = listViewStarters.SelectedItems[0];
 
-                Menu selectedMenuItem = new Menu()
-                {
-                    Description = selectedItem.SubItems[0].Text,
-                    Price = float.Parse(selectedItem.SubItems[1].Text),
-                };
 
-                OrderItem orderItem = new OrderItem()
-                {
-                    MenuItem = selectedMenuItem
-                };
+                 Menu selectedMenuItem = new Menu()
+                 {
+                     Description = selectedItem.SubItems[0].Text,
+                     Price = float.Parse(selectedItem.SubItems[1].Text),
+                 };
 
-                
+                 OrderItem orderItem = new OrderItem()
+                 {
+                     MenuItem = selectedMenuItem
+                 }; */
+
+                AddSelectedItem(listViewMain.SelectedItems[0]);
+
             }
         }
+
+        private void AddSelectedItem(ListViewItem selectedItem)
+        {
+            string itemName = selectedItem.SubItems[0].Text;
+            string price = selectedItem.SubItems[1].Text;
+
+            ListViewItem orderItem = new ListViewItem(itemName);
+            orderItem.SubItems.Add(price);
+
+            orderListView.Items.Add(orderItem);
+
+
+        }
+
 
         /*   private void listViewStartersLunch_SelectedIndexChanged(object sender, EventArgs e)
            {
 
            } */
     }
+
 }

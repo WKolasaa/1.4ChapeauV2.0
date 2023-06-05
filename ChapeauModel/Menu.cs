@@ -16,8 +16,21 @@ namespace ChapeauModel
         public int Contains { get; set; }
         public bool VAT_Category { get; set; }
 
-        public string Category { get; set; }    
+        public string Category { get; set; }
 
-        public string ItemType { get; set; }   
+        public string ItemType { get; set; }
+
+        public Menu(int menuItemID, string description, double price, int contains, bool vAT_Category, string category, string itemType)
+        {
+            MenuItemID = menuItemID;
+            Description = description;
+            Price = price;
+            Contains = contains;
+            VAT_Category = vAT_Category;
+            Category = category;
+            ItemType = itemType;
+        }
+
+        public Menu() { }
     }
 }

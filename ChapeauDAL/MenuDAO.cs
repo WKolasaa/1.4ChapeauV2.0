@@ -19,7 +19,7 @@ namespace ChapeauDAL
             List<Menu> menuItems = new List<Menu>();
 
             conn.Open();
-            string query = "SELECT menuItemID, description, price, category, sequence FROM MenuItem";
+            string query = "SELECT description, price, category, sequence FROM MenuItem";
             SqlParameter[] parameter = new SqlParameter[0];
 
             DataTable dataTable = ExecuteSelectQuery(query, parameter);
@@ -40,10 +40,12 @@ namespace ChapeauDAL
                 {
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
-                    MenuItemID = (int)dr["menuItemID"],
+
                     Category = (string)dr["category"],
                     ItemType = ItemSequence(Convert.ToInt32(dr["sequence"])),
 
+                    Contains = (int)dr["contains"],
+                    //Category = (string)dr["category"],
                 };
 
                 menu.Add(menuItem);
@@ -157,4 +159,8 @@ namespace ChapeauDAL
             conn.Close();
         }
     }
+
+
+
+
 }
