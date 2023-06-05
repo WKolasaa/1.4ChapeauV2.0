@@ -15,11 +15,6 @@ namespace ChapeauDAL
     public class OrderDAO : BaseDao
     {
 
-      
-
-       
-
-
         //read order and orders
         public List<Order> GetAllOrders()
         {
@@ -37,7 +32,7 @@ namespace ChapeauDAL
                 Order order = new Order()
                 {
                     OrderID = (int)dr["orderID"],
-                    TableNumber = (int)dr["tableNumber"],
+                    TableNumber = (Table)dr["tableNumber"],
                     TotalPrice = (int)dr["totalPrice"],
                 };
                 orders.Add(order);
@@ -47,22 +42,23 @@ namespace ChapeauDAL
 
         private Order ReadOrder(SqlDataReader reader)
         {
-         
+
             int OrderID = (int)reader["orderID"];
-            int TableNumber = (int)reader["tableNumber"];
+            Table TableNumber = (Table)reader["tableNumber"];
+            Employee employee = (Employee)reader["employee"];
             OrderStatus orderStatus = (OrderStatus)reader["OrderStatus"];
             float TotalPrice = (float)reader["totalPrice"];
             DateTime DateTime = (DateTime)reader["OrderDateTime"];
             OrderItem Comment = (OrderItem)reader["comment"];
 
-           return new Order(OrderID, TableNumber, orderStatus, TotalPrice,DateTime, Comment);
-        } 
+            return new Order(OrderID, TableNumber, employee, orderStatus, TotalPrice, DateTime, Comment);
+        }
 
 
 
         //add / edit / delete orders
         public void AddOrder(Order order)
-        { 
+        {
             string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";
             SqlParameter[] sqlParameters =
             {
@@ -98,7 +94,39 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        
+
+        //update status of Order
+
+        public void UpdateStatusToOrdered(Order order, OrderStatus Ordered)
+        {
+            string query = "UPDATE [OrderTable] SET OrderStatus = 0 WHERE orderID = [order.OrderID]";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateOrderStatusToPreparing(Order order, OrderStatus Preparing)
+        {
+            string query = "UPDATE [OrderTable] SET OrderStatus = 1 WHERE orderID = [order.OrderID]";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateOrderStatusToReady(Order order, OrderStatus Ready)
+        {
+            string query = "UPDATE [OrderTable] SET OrderStatus = 2 WHERE orderID = [order.OrderID]";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateOrderStatusToDelivered(Order order, OrderStatus Delivered)
+        {
+            string query = "UPDATE [OrderTable] SET OrderStatus = 3 WHERE orderID = [order.OrderID]";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+
+
     }
 
 }
