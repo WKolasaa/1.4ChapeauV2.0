@@ -130,8 +130,6 @@ namespace OrderTable
                      MenuItem = selectedMenuItem
                  }; */
 
-                ///
-
                 AddSelectedItem(listViewMain.SelectedItems[0]);
 
             }
@@ -144,10 +142,7 @@ namespace OrderTable
 
             ListViewItem orderItem = new ListViewItem(itemName);
             orderItem.SubItems.Add(price);
-
-            orderListView.Items.Add(orderItem);
-
-
+            orderListView.Items.Add(orderItem); 
         }
 
 

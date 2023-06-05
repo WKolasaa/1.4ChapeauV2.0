@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChapeauModel;
 using static ChapeauModel.Order;
+using System.Web;
 
 namespace ChapeauDAL
 {
@@ -50,7 +51,6 @@ namespace ChapeauDAL
             float TotalPrice = (float)reader["totalPrice"];
             DateTime DateTime = (DateTime)reader["OrderDateTime"];
             OrderItem Comment = (OrderItem)reader["comment"];
-
             return new Order(OrderID, TableNumber, employee, orderStatus, TotalPrice, DateTime, Comment);
         }
 
@@ -124,9 +124,5 @@ namespace ChapeauDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(query, sqlParameters);
         }
-
-
-
     }
-
 }
