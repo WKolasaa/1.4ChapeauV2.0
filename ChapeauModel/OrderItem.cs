@@ -8,7 +8,7 @@ namespace ChapeauModel
 {
     public class OrderItem
     {
-        public double PricePerItem { get; set; }
+        public decimal PricePerItem { get; set; }
         public int TableNumber { get; set; }
 
         public string ItemName { get; set; }
@@ -23,13 +23,8 @@ namespace ChapeauModel
 
         public Menu MenuItem { get; set; }
 
+        public Order OrderStatus { get; set; }  
+
         public OrderItem() { }  
-
-    }
-
-    public enum ItemCategory
-    {
-        Food = 0,
-        Drink = 1
     }
 }

@@ -27,13 +27,13 @@ namespace ChapeauDAL
             {
                 OrderItem item = new OrderItem()
                 {
-                    PricePerItem = (double)dr["PricePerItem"],
+                    PricePerItem = (decimal)dr["PricePerItem"],
                     TableNumber = (int)dr["tableNumber"],
                     ItemName = (string)dr["itemName"],
                     Quantity = (int)dr["Quantity"],
                     VatCategory = (bool)dr["vat_category"],
                     Comment = (string)dr["Comments"],
-                    ItemCategroy = (ItemCategory)dr["Category"]
+                    ItemCategroy = (ItemCategory)(int)dr["Category"]
                 };
 
                 items.Add(item);

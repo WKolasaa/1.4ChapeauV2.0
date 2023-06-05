@@ -25,20 +25,43 @@ namespace ChapeauService
         {
             List<OrderItem> orderItems= new List<OrderItem>();
 
+            foreach (OrderItem orderItem in GetOrderItems())
+            {
+                if (orderItem.ItemCategroy == ItemCategory.Food)
+                {
+                    orderItems.Add(orderItem);
+                }
+            }
+            return orderItems;
         }
 
-      /*  public void AddMenu(Menu menu)
+        public List<OrderItem> GetAllDrinks()
         {
-            orderitemdao.(menu);
+            List<OrderItem> allDrinks = orderitemdao.GetAllDrinks();
+
+            //orderItems = GetAllDrinks();
+            /*foreach (OrderItem orderItem in GetAllDrinks())
+            {
+                if (orderItem.ItemCategroy == ItemCategory.Drink)
+                {
+                    orderItems.Add(orderItem);
+                }
+            }*/
+            return allDrinks;
         }
 
-        public void RemoveMenu(Menu menu)
-        {
-            menudb.DeleteMenuItem(menu);
-        }
-        public void UpdateMenu(Menu menu)
-        {
-            menudb.UpdateMenu(menu);
-        } */
+        /*  public void AddMenu(Menu menu)
+          {
+              orderitemdao.(menu);
+          }
+
+          public void RemoveMenu(Menu menu)
+          {
+              menudb.DeleteMenuItem(menu);
+          }
+          public void UpdateMenu(Menu menu)
+          {
+              menudb.UpdateMenu(menu);
+          } */
     }
 }
