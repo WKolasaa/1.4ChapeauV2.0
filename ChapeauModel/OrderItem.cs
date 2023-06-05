@@ -9,6 +9,7 @@ namespace ChapeauModel
 {
     public class OrderItem
     {
+
         public double PricePerItem { get; set; }
         public Table TableNumber { get; set; }
 
@@ -20,26 +21,24 @@ namespace ChapeauModel
 
         public bool VatCategory { get; set; }
 
-        public string Comment { get; set; } 
+        public string Comment { get; set; }
 
-        public int Category { get; set; }    
+        public int Category { get; set; }
         public Menu MenuItem { get; set; }
 
-        public OrderItem() { }  
+        public OrderItem() { }
 
-        public OrderItem(double price, Table table, string name, int quantity,  bool vatCategory, string comment, int category, Menu menuItem)
+        public OrderItem(double price, Table table, string name, int quantity, bool vatCategory, string comment, int category, Menu menuItem)
         {
             PricePerItem = price;
             TableNumber = table;
             ItemName = name;
             Quantity = quantity;
-           // Status = status;
+            // Status = status;
             VatCategory = vatCategory;
             Comment = comment;
             Category = category;
             MenuItem = menuItem;
         }
-
     }
-
 }

@@ -23,17 +23,17 @@ namespace ChapeauService
         }
 
         public void AddMenu(Menu menu)
-        {
-         //   menudb.AddMenuItem(menu);
+        { 
+            menudb.AddMenuItem(menu);
         }
 
         public void RemoveMenu(Menu menu)
         {
-         //   menudb.DeleteMenuItem(menu);
+            menudb.DeleteMenuItem(menu);
         }
         public void UpdateMenu(Menu menu)
         {
-         //   menudb.UpdateMenu(menu);
+            menudb.UpdateMenu(menu);
         }
         public List<Menu> GetMenuByCategory(string category)
         {

@@ -142,10 +142,7 @@ namespace OrderTable
 
             ListViewItem orderItem = new ListViewItem(itemName);
             orderItem.SubItems.Add(price);
-
             orderListView.Items.Add(orderItem); 
-            
-
         }
 
 
@@ -154,4 +151,5 @@ namespace OrderTable
 
            } */
     }
+
 }

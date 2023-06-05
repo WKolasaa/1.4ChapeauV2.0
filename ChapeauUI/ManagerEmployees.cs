@@ -87,7 +87,7 @@ namespace ChapeauUI
             if (lvEmployees.SelectedIndices.Count > 0)
             {
                 ListViewItem listViewItem = lvEmployees.SelectedItems[0];
-                Employee selectedEmployee = (Employee)listViewItem.Tag;
+                tempEmployee = (Employee)listViewItem.Tag;
             }
         }
 

@@ -13,7 +13,6 @@ namespace ChapeauModel
         public Table TableNumber { get; set; } 
         public float TotalPrice { get; set; }
         public Employee Employee { get; set; }
-        
         public OrderStatus Status { get; set; }
         public DateTime OrderTime { get; set; }
 
@@ -27,14 +26,12 @@ namespace ChapeauModel
             Status = order_Status;
             TotalPrice = totalPrice;
             OrderTime = dateTime;
-            Comment = comment;  
+            Comment = comment;
         }
 
         public Order()
         {
             OrderedItems = new List<OrderItem>();   
         }
-
     }
-
 }

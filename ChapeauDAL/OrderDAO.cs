@@ -43,7 +43,7 @@ namespace ChapeauDAL
 
         private Order ReadOrder(SqlDataReader reader)
         {
-         
+
             int OrderID = (int)reader["orderID"];
             Table TableNumber = (Table)reader["tableNumber"];
             Employee employee = (Employee)reader["employee"];
@@ -51,15 +51,14 @@ namespace ChapeauDAL
             float TotalPrice = (float)reader["totalPrice"];
             DateTime DateTime = (DateTime)reader["OrderDateTime"];
             OrderItem Comment = (OrderItem)reader["comment"];
-
-           return new Order(OrderID, TableNumber,employee, orderStatus, TotalPrice,DateTime, Comment);
-        } 
+            return new Order(OrderID, TableNumber, employee, orderStatus, TotalPrice, DateTime, Comment);
+        }
 
 
 
         //add / edit / delete orders
         public void AddOrder(Order order)
-        { 
+        {
             string query = "INSERT INTO OrderTable (tableNumber, totalPrice) + VALUES (@tableNumber, @totalPrice)";
             SqlParameter[] sqlParameters =
             {
@@ -125,9 +124,5 @@ namespace ChapeauDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(query, sqlParameters);
         }
-       
-
-
     }
-
 }
