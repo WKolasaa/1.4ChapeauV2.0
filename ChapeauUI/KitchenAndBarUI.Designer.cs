@@ -46,8 +46,7 @@
             panelHeader3 = new Panel();
             labelInfo2 = new Label();
             btnInPreparation = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            btnPrepared = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHeader.SuspendLayout();
             panelHeader2.SuspendLayout();
@@ -64,7 +63,6 @@
             orderesListView.TabIndex = 1;
             orderesListView.UseCompatibleStateImageBehavior = false;
             orderesListView.View = View.Details;
-            orderesListView.ItemSelectionChanged += orderesListView_ItemSelectionChanged;
             orderesListView.SelectedIndexChanged += orderesListView_SelectedIndexChanged;
             // 
             // TableNumber
@@ -196,33 +194,23 @@
             btnInPreparation.Enabled = false;
             btnInPreparation.Location = new Point(607, 272);
             btnInPreparation.Name = "btnInPreparation";
-            btnInPreparation.Size = new Size(140, 29);
+            btnInPreparation.Size = new Size(220, 29);
             btnInPreparation.TabIndex = 8;
             btnInPreparation.Text = "In Preparation";
             btnInPreparation.UseVisualStyleBackColor = true;
             btnInPreparation.Click += btnInPreparation_Click;
             // 
-            // button1
+            // btnPrepared
             // 
-            button1.BackColor = Color.FromArgb(255, 192, 128);
-            button1.Enabled = false;
-            button1.Location = new Point(779, 272);
-            button1.Name = "button1";
-            button1.Size = new Size(140, 29);
-            button1.TabIndex = 9;
-            button1.Text = "Preapared";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.LightGreen;
-            button2.Enabled = false;
-            button2.Location = new Point(944, 272);
-            button2.Name = "button2";
-            button2.Size = new Size(140, 29);
-            button2.TabIndex = 10;
-            button2.Text = "Served";
-            button2.UseVisualStyleBackColor = false;
+            btnPrepared.BackColor = Color.FromArgb(128, 255, 128);
+            btnPrepared.Enabled = false;
+            btnPrepared.Location = new Point(861, 272);
+            btnPrepared.Name = "btnPrepared";
+            btnPrepared.Size = new Size(220, 29);
+            btnPrepared.TabIndex = 9;
+            btnPrepared.Text = "Ready";
+            btnPrepared.UseVisualStyleBackColor = false;
+            btnPrepared.Click += btnPrepared_Click;
             // 
             // KitchenAndBarUI
             // 
@@ -230,8 +218,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1117, 592);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnPrepared);
             Controls.Add(btnInPreparation);
             Controls.Add(panelHeader3);
             Controls.Add(panelHeader2);
@@ -265,8 +252,7 @@
         private Panel panelHeader3;
         private Label labelInfo2;
         private Button btnInPreparation;
-        private Button button1;
-        private Button button2;
+        private Button btnPrepared;
         private ColumnHeader TableNumber;
         private ColumnHeader ItemName;
         private ColumnHeader Quantity;

@@ -15,26 +15,43 @@ namespace ChapeauDAL
     {
         public List<OrderItem> GetAllItems()
         {
-            string query = "SELECT PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments FROM OrderItems";
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category FROM OrderItems";
             SqlParameter[] sp = new SqlParameter[0];
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
 
+        public List<OrderItem> GetAllFood()
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus FROM OrderItems WHERE Category = 0";
+            SqlParameter[] sp = new SqlParameter[0];
+            return ReadOrderItems(ExecuteSelectQuery(query, sp));
+        }
+
+        public List<OrderItem> GetAllDrinks()
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus FROM OrderItems WHERE Category = 1";
+            SqlParameter[] sp = new SqlParameter[0];
+            return ReadOrderItems(ExecuteSelectQuery(query, sp));
+        }
         public List<OrderItem> ReadOrderItems(DataTable dataTable)
         {
-            string query = "SELECT * FROM [OrderItems]";
+            //string query = "SELECT * FROM [OrderItems]";
             List<OrderItem> items = new List<OrderItem>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
                 OrderItem item = new OrderItem()
                 {
-                    PricePerItem = (double)dr["PricePerItem"],
-                    TableNumber = (Table)dr["tableNumber"],
+                    OrderItemID = (int)dr["OrderItemID"],
+                    PricePerItem = (decimal)dr["PricePerItem"],
+                    TableNumber = (int)dr["tableNumber"],
                     ItemName = (string)dr["itemName"],
                     Quantity = (int)dr["Quantity"],
                     VatCategory = (bool)dr["vat_category"],
                     Comment = (string)dr["Comments"],
+                    Category = (int)dr["Category"],
+                    //MenuItem = (Menu)dr["menu_item_id"], 
+                    Status = (dr["OrderStatus"] != DBNull.Value) ? (OrderStatus)dr["OrderStatus"] : OrderStatus.Ordered
                 };
 
                 items.Add(item);
@@ -44,28 +61,29 @@ namespace ChapeauDAL
             return items;
         }
 
-        private OrderItem ReadOrderItem(SqlDataReader reader)
+        /*private OrderItem ReadOrderItem(SqlDataReader reader)
         {
             MenuDAO menuDAO = new MenuDAO();
             TableDAO tableDAO = new TableDAO();
 
-            double PricePerItem = (double)reader["PricePerItem"];
-            Table TableNumber = (Table)reader["tableNumber"];
+            decimal PricePerItem = (decimal)reader["PricePerItem"];
+            int TableNumber = (int)reader["tableNumber"];
             string ItemName = (string)reader["itemName"];
             int Quantity = (int)reader["Quantity"];
-            //OrderStatus Status = (OrderStatus)reader["status"];
+            OrderStatus Status = (OrderStatus)reader["OrderStatus"];
             bool VatCategory = (bool)reader["vat_category"];
             string Comment = (string)reader["Comments"];
-            int Category = (int)reader["Cateogry"];
+            int Category = (int)reader["Category"];
             Menu MenuItem = (Menu)reader["menu_item_id"];
 
             return new OrderItem(PricePerItem, TableNumber, ItemName, Quantity, VatCategory, Comment, Category, MenuItem);
 
         }
-
+        */
+   
         public void AddOrderItem(OrderItem orderItem)
         {
-            Table tableNumber = orderItem.TableNumber;
+            int tableNumber = orderItem.TableNumber;
 
             string query = "INSERT INTO [OrderItems] (PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, menu_item_id) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments, @Category, @menu_item_id); ";
             SqlParameter[] sqlParameters =
@@ -89,6 +107,20 @@ namespace ChapeauDAL
             string query = $"UPDATE [OrderItems] SET Quantity ={newQuantity} WHERE Quantity ={orderItem.Quantity}";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateOrderItemStatus(OrderItem orderItem, int orderStatus)
+        {
+
+            string query = "UPDATE OrderItems SET OrderStatus = @orderStatus WHERE OrderItemID = @orderItemID";
+            SqlParameter[] parameter = new SqlParameter[]
+            {
+                new SqlParameter("@orderStatus", orderStatus),
+                new SqlParameter("@orderItemID", orderItem.OrderItemID)
+                
+            };
+
+            ExecuteEditQuery(query, parameter);
         }
 
         public void DeleteOrder()

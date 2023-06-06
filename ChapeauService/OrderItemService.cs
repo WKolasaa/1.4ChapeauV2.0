@@ -26,13 +26,28 @@ namespace ChapeauService
             
         }
 
-      /*  public void RemoveMenu(Menu menu)
+        public void UpdateOrderItemStatus(OrderItem orderitem, int orderStatus)
         {
-            orderitemdao.DeleteMenuItem(menu);
+            orderitemdao.UpdateOrderItemStatus(orderitem, orderStatus);
         }
-        public void UpdateMenu(Menu menu)
+
+        public List<OrderItem> GetAllDrinks()
         {
-            orderitemdao.UpdateMenu(menu);
-        } */
+            return orderitemdao.GetAllDrinks();
+        }
+
+        public List<OrderItem> GetAllFood()
+        {
+            return orderitemdao.GetAllFood();
+        }
+
+        /*  public void RemoveMenu(Menu menu)
+          {
+              orderitemdao.DeleteMenuItem(menu);
+          }
+          public void UpdateMenu(Menu menu)
+          {
+              orderitemdao.UpdateMenu(menu);
+          } */
     }
 }

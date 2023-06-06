@@ -76,59 +76,57 @@ namespace ChapeauUI
         {
             if (orderesListView.SelectedItems.Count > 0)
             {
+                btnInPreparation.Enabled = true;
+                btnPrepared.Enabled = true;
+
                 ListViewItem item = orderesListView.SelectedItems[0];
                 OrderItem orderItem = (OrderItem)item.Tag;
 
                 listViewSelectedItem.Items.Clear();
 
-                ListViewItem item2 = new ListViewItem($"{orderItem.ItemName}");//change with orderItem.OrderId
-                item2.SubItems.Add($"{orderItem.OrderStatus}");
+                ListViewItem item2 = new ListViewItem($"{orderItem.OrderItemID}");
+                item2.SubItems.Add($"{orderItem.Status}");
 
                 listViewSelectedItem.Items.Add(item2);
                 listViewSelectedItem.View = View.Details;
             }
         }
 
-        private void TransferSelectedItem()
+        private void btnInPreparation_Click(object sender, EventArgs e)
         {
-            if (orderesListView.SelectedItems.Count > 0)
+            buttonClick(1);
+        }
+
+        public void buttonClick(int changedStatus)
+        {
+            if (orderesListView.Items.Count > 0)
             {
-                ListViewItem selectedOrderItem = orderesListView.SelectedItems[0];
-                OrderItem orderItem = (OrderItem)selectedOrderItem.Tag;
+                ListViewItem selectedItem = orderesListView.SelectedItems[0];
+                OrderItem orderItem = (OrderItem)selectedItem.Tag;
+                orderItemService.UpdateOrderItemStatus(orderItem, changedStatus);
 
                 listViewSelectedItem.Items.Clear();
 
-                ListViewItem selectedItem = new ListViewItem(orderItem.ItemName);
-                selectedItem.SubItems.Add(orderItem.ItemName);
-                selectedItem.SubItems.Add(orderItem.Quantity.ToString());
+                orderItem.Status = (OrderStatus)changedStatus;
+                ListViewItem item2 = new ListViewItem($"{orderItem.OrderItemID}");
+                item2.SubItems.Add($"{orderItem.Status}");
 
-                listViewSelectedItem.Items.Add(selectedItem);
+                listViewSelectedItem.Items.Add(item2);
                 listViewSelectedItem.View = View.Details;
             }
         }
 
-        private void orderesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            //TransferSelectedItem();
-        }
-
-        private void btnInPreparation_Click(object sender, EventArgs e)
-        {
-            if (listViewSelectedItem.Items.Count > 0)
-            {
-                ListViewItem selectedItem = listViewSelectedItem.Items[0];
-                OrderItem orderItem = (OrderItem)selectedItem.Tag;
-                //orderItem.OrderStatus = OrderStatus.;
-                //orderItemService.UpdateOrderItem(orderItem);
-                LoadOrders();
-            }
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)//ask for help
         {
             Form form = new LoginScreen();
             this.Hide();
-            form.Show();
+            form.ShowDialog(); // Use ShowDialog instead of Show
+            this.Show();
+        }
+
+        private void btnPrepared_Click(object sender, EventArgs e)
+        {
+            buttonClick(2);
         }
     }
 
