@@ -13,7 +13,7 @@ namespace ChapeauService
         private OrderItemDAO orderitemdao;
         public OrderItemService()
         {
-           orderitemdao = new OrderItemDAO();
+            orderitemdao = new OrderItemDAO();
         }
 
         public List<OrderItem> GetOrderItems()
@@ -21,18 +21,33 @@ namespace ChapeauService
             return orderitemdao.GetAllItems();
         }
 
-      /*  public void AddMenu(Menu menu)
+        public void AddOrderItem(Menu menu)
         {
-            orderitemdao.(menu);
+            
         }
 
-        public void RemoveMenu(Menu menu)
+        public void UpdateOrderItemStatus(OrderItem orderitem, int orderStatus)
         {
-            menudb.DeleteMenuItem(menu);
+            orderitemdao.UpdateOrderItemStatus(orderitem, orderStatus);
         }
-        public void UpdateMenu(Menu menu)
+
+        public List<OrderItem> GetAllDrinks()
         {
-            menudb.UpdateMenu(menu);
-        } */
+            return orderitemdao.GetAllDrinks();
+        }
+
+        public List<OrderItem> GetAllFood()
+        {
+            return orderitemdao.GetAllFood();
+        }
+
+        /*  public void RemoveMenu(Menu menu)
+          {
+              orderitemdao.DeleteMenuItem(menu);
+          }
+          public void UpdateMenu(Menu menu)
+          {
+              orderitemdao.UpdateMenu(menu);
+          } */
     }
 }

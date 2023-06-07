@@ -8,32 +8,30 @@ namespace ChapeauModel
 {
     public partial class Order
     {
-        public int OrderID { get; set; }
-        public int TableNumber { get; set; }
+        public List<OrderItem> OrderedItems { get; set; }   
+        public int OrderID { get; set; } // refer to order
+        public Table TableNumber { get; set; } 
         public float TotalPrice { get; set; }
-
-        Employee Employee { get; set; }
-        
+        public Employee Employee { get; set; }
         public OrderStatus Status { get; set; }
-        DateTime OrderTime { get; set; }
+        public DateTime OrderTime { get; set; }
 
-        OrderItem Comment { get; set; }
+        public OrderItem Comment { get; set; }
 
-        public Order(int orderID, int tableNumber, OrderStatus order_Status, float totalPrice, DateTime dateTime, OrderItem comment)
+        public Order(int orderID, Table tableNumber, Employee employee, OrderStatus order_Status, float totalPrice, DateTime dateTime, OrderItem comment)
         {
             OrderID = orderID;
             TableNumber = tableNumber;
+            Employee = employee;
             Status = order_Status;
             TotalPrice = totalPrice;
             OrderTime = dateTime;
-            Comment = comment;  
+            Comment = comment;
         }
 
         public Order()
         {
-
+            OrderedItems = new List<OrderItem>();   
         }
-
     }
-
 }

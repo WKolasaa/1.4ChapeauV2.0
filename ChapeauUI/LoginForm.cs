@@ -39,13 +39,19 @@ namespace ChapeauUI
 
                 case EmployeeType.Bartender:
                     {
-
+                        this.Hide();
+                        KitchenAndBarUI kitchenUI= new KitchenAndBarUI(employeeLogged);
+                        kitchenUI.ShowDialog();
+                        this.Close();
                         break;
                     }
 
                 case EmployeeType.Chef:
                     {
-                        //
+                        this.Hide();
+                        KitchenAndBarUI barUI = new KitchenAndBarUI(employeeLogged);
+                        barUI.ShowDialog();
+                        this.Close();
                         break;
                     }
                 case EmployeeType.Manager:

@@ -36,6 +36,5 @@ namespace ChapeauService
         {
             orderdb.UpdateOrder(order);
         }
-
     }
 }
