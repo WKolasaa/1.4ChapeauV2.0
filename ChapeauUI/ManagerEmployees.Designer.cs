@@ -55,35 +55,38 @@
             // 
             // btEmployeesAdd
             // 
+            btEmployeesAdd.BackColor = Color.FromArgb(138, 210, 176);
             btEmployeesAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btEmployeesAdd.Location = new Point(49, 332);
             btEmployeesAdd.Name = "btEmployeesAdd";
             btEmployeesAdd.Size = new Size(134, 52);
             btEmployeesAdd.TabIndex = 1;
             btEmployeesAdd.Text = "Add";
-            btEmployeesAdd.UseVisualStyleBackColor = true;
+            btEmployeesAdd.UseVisualStyleBackColor = false;
             btEmployeesAdd.Click += btEmployeesAdd_Click;
             // 
             // btEmployeesRemove
             // 
+            btEmployeesRemove.BackColor = Color.FromArgb(245, 108, 117);
             btEmployeesRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btEmployeesRemove.Location = new Point(621, 332);
             btEmployeesRemove.Name = "btEmployeesRemove";
             btEmployeesRemove.Size = new Size(134, 52);
             btEmployeesRemove.TabIndex = 2;
             btEmployeesRemove.Text = "Remove";
-            btEmployeesRemove.UseVisualStyleBackColor = true;
+            btEmployeesRemove.UseVisualStyleBackColor = false;
             btEmployeesRemove.Click += btEmployeesRemove_Click;
             // 
             // btEmployeesUpdate
             // 
+            btEmployeesUpdate.BackColor = Color.FromArgb(255, 179, 71);
             btEmployeesUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btEmployeesUpdate.Location = new Point(324, 332);
             btEmployeesUpdate.Name = "btEmployeesUpdate";
             btEmployeesUpdate.Size = new Size(134, 52);
             btEmployeesUpdate.TabIndex = 3;
             btEmployeesUpdate.Text = "Update";
-            btEmployeesUpdate.UseVisualStyleBackColor = true;
+            btEmployeesUpdate.UseVisualStyleBackColor = false;
             btEmployeesUpdate.Click += btEmployeesUpdate_Click;
             // 
             // menuStrip1

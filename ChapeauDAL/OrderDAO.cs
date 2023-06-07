@@ -92,8 +92,7 @@ namespace ChapeauDAL
                 new SqlParameter("@tableNumber", order.TableNumber),
             };
             ExecuteEditQuery(query, sqlParameters);
-        }   
-    }
+        }
 
         //update status of Order
 

@@ -64,13 +64,14 @@
             // 
             // btUpdateEmployee
             // 
+            btUpdateEmployee.BackColor = Color.FromArgb(138, 210, 176);
             btUpdateEmployee.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btUpdateEmployee.Location = new Point(109, 336);
             btUpdateEmployee.Name = "btUpdateEmployee";
             btUpdateEmployee.Size = new Size(159, 29);
             btUpdateEmployee.TabIndex = 23;
             btUpdateEmployee.Text = "Update Employee";
-            btUpdateEmployee.UseVisualStyleBackColor = true;
+            btUpdateEmployee.UseVisualStyleBackColor = false;
             btUpdateEmployee.Click += btUpdateEmployee_Click;
             // 
             // txtUpdateEmployeePassword
@@ -166,13 +167,14 @@
             // 
             // btCancel
             // 
+            btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btCancel.Location = new Point(306, 336);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 26;
             btCancel.Text = "Cancel";
-            btCancel.UseVisualStyleBackColor = true;
+            btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
             // ManagerEmployeeUpdate

@@ -77,9 +77,9 @@ namespace ChapeauUI
 
         private void btStockRemove_Click(object sender, EventArgs e)
         {
-            if(lvStock.SelectedItems.Count == 0)
+            if (lvStock.SelectedItems.Count == 0)
                 MessageBox.Show("Stock item wasn't selected");
-            else 
+            else
             {
                 StockService stockService = new StockService();
 
@@ -96,8 +96,11 @@ namespace ChapeauUI
 
         private void lvStock_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem li = lvStock.SelectedItems[0];
-            temp = (Stock)li.Tag;
+            if (lvStock.SelectedItems.Count > 0)
+            {
+                ListViewItem li = lvStock.SelectedItems[0];
+                temp = (Stock)li.Tag;
+            }
         }
 
         private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
