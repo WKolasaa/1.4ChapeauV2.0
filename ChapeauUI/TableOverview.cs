@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ChapeauModel.Order;
 
 namespace ChapeauUI
 {
@@ -65,6 +66,13 @@ namespace ChapeauUI
             }
         }
 
+        private void GetOrderStatus()
+        {
+            tables = tableService.GetAllTables();
+            Button[] buttons = { orderstatus1, orderstatus2, orderstatus3, orderstatus4, orderstatus5, orderstatus6, orderstatus7, orderstatus8, orderstatus9, orderstatus10 };
+            
+        }
+
         private void Logoutbtn_Click(object sender, EventArgs e)
         {
             var message = MessageBox.Show("Are you sure you would like to logout?", "Confirmation", MessageBoxButtons.YesNo);
@@ -82,7 +90,9 @@ namespace ChapeauUI
             this.Hide();
             TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
             tableOrderView.ShowDialog();
-            this.Close();
+            this.Show();
+            GetTableStatus();
+
         }
         private void TableButtonClick(Object sender, EventArgs e)
         {
@@ -116,6 +126,9 @@ namespace ChapeauUI
 
         }
 
-
+        private void Refreshbtn_Click(object sender, EventArgs e)
+        {
+            GetTableStatus();
+        }
     }
 }
