@@ -34,6 +34,7 @@
             label1 = new Label();
             UserNamelbl = new Label();
             panel1 = new Panel();
+            Refreshbtn = new Button();
             label2 = new Label();
             pictureBox2 = new PictureBox();
             table1btn = new Button();
@@ -46,6 +47,16 @@
             table8btn = new Button();
             table9btn = new Button();
             table10btn = new Button();
+            orderstatus1 = new Button();
+            orderstatus5 = new Button();
+            orderstatus9 = new Button();
+            orderstatus2 = new Button();
+            orderstatus6 = new Button();
+            orderstatus10 = new Button();
+            orderstatus3 = new Button();
+            orderstatus7 = new Button();
+            orderstatus4 = new Button();
+            orderstatus8 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -54,7 +65,7 @@
             // Logoutbtn
             // 
             Logoutbtn.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Logoutbtn.Location = new Point(13, 33);
+            Logoutbtn.Location = new Point(13, 12);
             Logoutbtn.Name = "Logoutbtn";
             Logoutbtn.Size = new Size(84, 34);
             Logoutbtn.TabIndex = 0;
@@ -95,6 +106,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.GradientActiveCaption;
+            panel1.Controls.Add(Refreshbtn);
             panel1.Controls.Add(UserNamelbl);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
@@ -103,6 +115,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 102);
             panel1.TabIndex = 0;
+            // 
+            // Refreshbtn
+            // 
+            Refreshbtn.Location = new Point(13, 52);
+            Refreshbtn.Name = "Refreshbtn";
+            Refreshbtn.Size = new Size(84, 34);
+            Refreshbtn.TabIndex = 4;
+            Refreshbtn.Text = "Refresh";
+            Refreshbtn.UseVisualStyleBackColor = true;
+            Refreshbtn.Click += Refreshbtn_Click;
             // 
             // label2
             // 
@@ -116,17 +138,18 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = SystemColors.ButtonHighlight;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(-1, 104);
+            pictureBox2.Location = new Point(556, 104);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(241, 68);
+            pictureBox2.Size = new Size(241, 42);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
             // table1btn
             // 
-            table1btn.Location = new Point(23, 195);
+            table1btn.Location = new Point(25, 195);
             table1btn.Name = "table1btn";
             table1btn.Size = new Size(102, 89);
             table1btn.TabIndex = 3;
@@ -144,7 +167,7 @@
             // 
             // table3btn
             // 
-            table3btn.Location = new Point(453, 195);
+            table3btn.Location = new Point(444, 195);
             table3btn.Name = "table3btn";
             table3btn.Size = new Size(102, 89);
             table3btn.TabIndex = 5;
@@ -153,7 +176,7 @@
             // 
             // table4btn
             // 
-            table4btn.Location = new Point(654, 195);
+            table4btn.Location = new Point(640, 195);
             table4btn.Name = "table4btn";
             table4btn.Size = new Size(102, 89);
             table4btn.TabIndex = 6;
@@ -162,7 +185,7 @@
             // 
             // table5btn
             // 
-            table5btn.Location = new Point(23, 330);
+            table5btn.Location = new Point(24, 330);
             table5btn.Name = "table5btn";
             table5btn.Size = new Size(102, 89);
             table5btn.TabIndex = 7;
@@ -180,7 +203,7 @@
             // 
             // table7btn
             // 
-            table7btn.Location = new Point(453, 330);
+            table7btn.Location = new Point(444, 339);
             table7btn.Name = "table7btn";
             table7btn.Size = new Size(102, 89);
             table7btn.TabIndex = 9;
@@ -189,7 +212,7 @@
             // 
             // table8btn
             // 
-            table8btn.Location = new Point(654, 330);
+            table8btn.Location = new Point(640, 339);
             table8btn.Name = "table8btn";
             table8btn.Size = new Size(102, 89);
             table8btn.TabIndex = 10;
@@ -198,7 +221,7 @@
             // 
             // table9btn
             // 
-            table9btn.Location = new Point(23, 462);
+            table9btn.Location = new Point(24, 462);
             table9btn.Name = "table9btn";
             table9btn.Size = new Size(102, 89);
             table9btn.TabIndex = 11;
@@ -214,11 +237,102 @@
             table10btn.Text = "Table10";
             table10btn.UseVisualStyleBackColor = true;
             // 
+            // orderstatus1
+            // 
+            orderstatus1.Location = new Point(133, 195);
+            orderstatus1.Name = "orderstatus1";
+            orderstatus1.Size = new Size(25, 23);
+            orderstatus1.TabIndex = 13;
+            orderstatus1.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus5
+            // 
+            orderstatus5.Location = new Point(133, 330);
+            orderstatus5.Name = "orderstatus5";
+            orderstatus5.Size = new Size(25, 23);
+            orderstatus5.TabIndex = 14;
+            orderstatus5.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus9
+            // 
+            orderstatus9.Location = new Point(133, 462);
+            orderstatus9.Name = "orderstatus9";
+            orderstatus9.Size = new Size(25, 23);
+            orderstatus9.TabIndex = 15;
+            orderstatus9.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus2
+            // 
+            orderstatus2.Location = new Point(358, 195);
+            orderstatus2.Name = "orderstatus2";
+            orderstatus2.Size = new Size(25, 23);
+            orderstatus2.TabIndex = 16;
+            orderstatus2.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus6
+            // 
+            orderstatus6.Location = new Point(358, 330);
+            orderstatus6.Name = "orderstatus6";
+            orderstatus6.Size = new Size(25, 23);
+            orderstatus6.TabIndex = 17;
+            orderstatus6.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus10
+            // 
+            orderstatus10.Location = new Point(358, 462);
+            orderstatus10.Name = "orderstatus10";
+            orderstatus10.Size = new Size(25, 23);
+            orderstatus10.TabIndex = 18;
+            orderstatus10.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus3
+            // 
+            orderstatus3.Location = new Point(552, 195);
+            orderstatus3.Name = "orderstatus3";
+            orderstatus3.Size = new Size(25, 23);
+            orderstatus3.TabIndex = 19;
+            orderstatus3.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus7
+            // 
+            orderstatus7.Location = new Point(552, 339);
+            orderstatus7.Name = "orderstatus7";
+            orderstatus7.Size = new Size(25, 23);
+            orderstatus7.TabIndex = 20;
+            orderstatus7.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus4
+            // 
+            orderstatus4.Location = new Point(748, 195);
+            orderstatus4.Name = "orderstatus4";
+            orderstatus4.Size = new Size(25, 23);
+            orderstatus4.TabIndex = 21;
+            orderstatus4.UseVisualStyleBackColor = true;
+            // 
+            // orderstatus8
+            // 
+            orderstatus8.Location = new Point(748, 339);
+            orderstatus8.Name = "orderstatus8";
+            orderstatus8.Size = new Size(25, 23);
+            orderstatus8.TabIndex = 22;
+            orderstatus8.UseVisualStyleBackColor = true;
+            // 
             // TableOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 583);
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(795, 583);
+            Controls.Add(orderstatus8);
+            Controls.Add(orderstatus4);
+            Controls.Add(orderstatus7);
+            Controls.Add(orderstatus3);
+            Controls.Add(orderstatus10);
+            Controls.Add(orderstatus6);
+            Controls.Add(orderstatus2);
+            Controls.Add(orderstatus9);
+            Controls.Add(orderstatus5);
+            Controls.Add(orderstatus1);
             Controls.Add(table10btn);
             Controls.Add(table9btn);
             Controls.Add(table8btn);
@@ -261,5 +375,16 @@
         private Button table8btn;
         private Button table9btn;
         private Button table10btn;
+        private Button Refreshbtn;
+        private Button orderstatus1;
+        private Button orderstatus5;
+        private Button orderstatus9;
+        private Button orderstatus2;
+        private Button orderstatus6;
+        private Button orderstatus10;
+        private Button orderstatus3;
+        private Button orderstatus7;
+        private Button orderstatus4;
+        private Button orderstatus8;
     }
 }

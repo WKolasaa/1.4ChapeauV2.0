@@ -98,7 +98,7 @@ namespace ChapeauUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("This username does not exist! " + ex.Message);
             }
 
             loginbtn.Enabled = true;

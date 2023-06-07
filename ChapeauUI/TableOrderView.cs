@@ -27,10 +27,8 @@ namespace ChapeauUI
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
-
             Userlbl.Text = $"{employee.Name}";
             CheckTableAvailability();
-
         }
 
         private void CheckTableAvailability()
@@ -56,21 +54,25 @@ namespace ChapeauUI
                 FreeTableBtn.Enabled = false;
             }
         }
-        private void DisplayOrders(List<OrderItem> orderItems)//Waiting on getOrder
+        private void DisplayOrders()
         {
+            listViewOrders.Clear();
+            listViewOrders.Columns.Add("Items");
+            listViewOrders.Columns.Add("Quantity");
+            listViewOrders.Columns.Add("Price");
+            listViewOrders.Columns.Add("Order Item State");
 
-
+            
 
         }
 
+      
 
-        private void AddOrderbtn_Click(object sender, EventArgs e)//waiting for Orders
+
+        private void AddOrderbtn_Click(object sender, EventArgs e)
         {
-
             table.TableStatus = TableStatus.Occupied;
             tableService.UpdateTableStatus(table);
-
-
         }
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)
@@ -83,9 +85,6 @@ namespace ChapeauUI
 
         private void GoBackBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            TableOverview displayTables = new TableOverview(employee);
-            displayTables.ShowDialog();
             this.Close();
         }
 

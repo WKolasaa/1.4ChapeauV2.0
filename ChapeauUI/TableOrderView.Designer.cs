@@ -115,7 +115,7 @@
             // BillBtn
             // 
             BillBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            BillBtn.Location = new Point(629, 201);
+            BillBtn.Location = new Point(629, 203);
             BillBtn.Name = "BillBtn";
             BillBtn.Size = new Size(115, 40);
             BillBtn.TabIndex = 2;
@@ -139,7 +139,7 @@
             ReserveTableBtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             ReserveTableBtn.Location = new Point(629, 262);
             ReserveTableBtn.Name = "ReserveTableBtn";
-            ReserveTableBtn.Size = new Size(115, 65);
+            ReserveTableBtn.Size = new Size(123, 65);
             ReserveTableBtn.TabIndex = 4;
             ReserveTableBtn.Text = "Reserve Table";
             ReserveTableBtn.UseVisualStyleBackColor = true;
