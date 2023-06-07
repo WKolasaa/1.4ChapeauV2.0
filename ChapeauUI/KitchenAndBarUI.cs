@@ -128,9 +128,64 @@ namespace ChapeauUI
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Form form = new LoginScreen();
-            this.Hide();
-            form.ShowDialog();
+            var message = MessageBox.Show("Are you sure you would like to logout?", "Confirmation", MessageBoxButtons.YesNo);
+            if (message == DialogResult.Yes)
+            {
+                this.Hide();
+                LoginScreen loginScreen = new LoginScreen();
+                loginScreen.ShowDialog();
+                this.Close();
+            }
+        }
+
+      /*  private void KitchenAndBarUI_Load(object sender, EventArgs e)
+        {
+            timer.Interval = 10000;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+      */
+
+
+
+        private void btnViewAllOrders_Click(object sender, EventArgs e)
+        {
+            LoadOrders();
+        }
+
+        private void btnViewOngoingOrders_Click(object sender, EventArgs e)
+        {
+            List<OrderItem> ongoingOrders = orderedItems.Where(item => item.Status != ChapeauModel.OrderStatus.Ready).ToList();
+            UpdateOrderListView(ongoingOrders);
+        }
+
+        private void btnViewPastOrders_Click(object sender, EventArgs e)
+        {
+            List<OrderItem> pastOrders = orderedItems.Where(item => item.Status == ChapeauModel.OrderStatus.Ready).ToList();
+            UpdateOrderListView(pastOrders);
+        }
+
+        private void UpdateOrderListView(List<OrderItem> orders)
+        {
+            orderesListView.Items.Clear();
+
+            foreach (OrderItem orderItem in orders)
+            {
+                ListViewItem item = new ListViewItem($"{orderItem.TableNumber}");
+
+                TimeSpan timeSpan = DateTime.Now - orderItem.TimePlaced;
+
+                item.Tag = orderItem;
+                item.SubItems.Add($"{orderItem.ItemName}");
+                item.SubItems.Add($"{orderItem.Quantity}");
+                item.SubItems.Add($"{orderItem.Comment}");
+                item.SubItems.Add(timeSpan.ToString("%m'm'%s's'"));
+                item.SubItems.Add($"{orderItem.OrderItemID}");
+
+                orderesListView.Items.Add(item);
+            }
+
+            orderesListView.View = View.Details;
         }
     }
 }
