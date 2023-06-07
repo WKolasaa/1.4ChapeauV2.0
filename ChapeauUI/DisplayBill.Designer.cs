@@ -41,7 +41,7 @@
             // 
             // ListViewBill
             // 
-            this.ListViewBill.Location = new System.Drawing.Point(94, 81);
+            this.ListViewBill.Location = new System.Drawing.Point(50, 67);
             this.ListViewBill.Name = "ListViewBill";
             this.ListViewBill.Size = new System.Drawing.Size(782, 520);
             this.ListViewBill.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(91, 634);
+            this.label1.Location = new System.Drawing.Point(36, 614);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 59);
             this.label1.TabIndex = 1;
@@ -60,7 +60,7 @@
             // txtTotalPriceWithoutVat
             // 
             this.txtTotalPriceWithoutVat.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalPriceWithoutVat.Location = new System.Drawing.Point(675, 634);
+            this.txtTotalPriceWithoutVat.Location = new System.Drawing.Point(631, 616);
             this.txtTotalPriceWithoutVat.Name = "txtTotalPriceWithoutVat";
             this.txtTotalPriceWithoutVat.Size = new System.Drawing.Size(201, 57);
             this.txtTotalPriceWithoutVat.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(105, 5);
+            this.label2.Location = new System.Drawing.Point(36, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 59);
             this.label2.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(91, 735);
+            this.label5.Location = new System.Drawing.Point(36, 722);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 50);
             this.label5.TabIndex = 9;
@@ -89,7 +89,7 @@
             // 
             this.lblTotalVAT.AutoSize = true;
             this.lblTotalVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalVAT.Location = new System.Drawing.Point(827, 735);
+            this.lblTotalVAT.Location = new System.Drawing.Point(797, 733);
             this.lblTotalVAT.Name = "lblTotalVAT";
             this.lblTotalVAT.Size = new System.Drawing.Size(35, 37);
             this.lblTotalVAT.TabIndex = 13;
@@ -111,7 +111,7 @@
             // 
             this.lblPriceWithVAT.AutoSize = true;
             this.lblPriceWithVAT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPriceWithVAT.Location = new System.Drawing.Point(91, 842);
+            this.lblPriceWithVAT.Location = new System.Drawing.Point(36, 842);
             this.lblPriceWithVAT.Name = "lblPriceWithVAT";
             this.lblPriceWithVAT.Size = new System.Drawing.Size(303, 40);
             this.lblPriceWithVAT.TabIndex = 15;
@@ -121,7 +121,7 @@
             // 
             this.lblResultPriceWithVAT.AutoSize = true;
             this.lblResultPriceWithVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblResultPriceWithVAT.Location = new System.Drawing.Point(827, 845);
+            this.lblResultPriceWithVAT.Location = new System.Drawing.Point(797, 845);
             this.lblResultPriceWithVAT.Name = "lblResultPriceWithVAT";
             this.lblResultPriceWithVAT.Size = new System.Drawing.Size(35, 37);
             this.lblResultPriceWithVAT.TabIndex = 16;
@@ -131,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 1094);
+            this.ClientSize = new System.Drawing.Size(893, 1094);
             this.Controls.Add(this.lblResultPriceWithVAT);
             this.Controls.Add(this.lblPriceWithVAT);
             this.Controls.Add(this.btnProceedToPayment);

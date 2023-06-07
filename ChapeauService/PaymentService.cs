@@ -16,9 +16,15 @@ namespace ChapeauService
         {
             PaymentDao = new PaymentDao();
         }
-        public void PaymentHistory(Payment payment)
+        /*public void PaymentHistory(Payment payment)
         {
             PaymentDao.PaymentHistory(payment);
+        }*/
+
+        public int CreatePayment(Payment payment)
+        {
+            int paymentHistoryID = PaymentDao.PaymentHistory(payment); 
+            return paymentHistoryID; 
         }
         public List<Payment> GetPaymentHistory()
         {
