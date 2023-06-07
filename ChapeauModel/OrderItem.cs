@@ -7,17 +7,18 @@ using static ChapeauModel.Order;
 
 namespace ChapeauModel
 {
-    public class OrderItem
+    public class OrderItem 
     {
+        public int OrderItemID { get; set; }
 
-        public double PricePerItem { get; set; }
-        public Table TableNumber { get; set; }
+        public decimal PricePerItem { get; set; }
+        public int TableNumber { get; set; }
 
         public string ItemName { get; set; }
 
         public int Quantity { get; set; }
 
-        //public OrderStatus Status { get; set; }
+        public OrderStatus Status { get; set; }
 
         public bool VatCategory { get; set; }
 
@@ -26,9 +27,11 @@ namespace ChapeauModel
         public int Category { get; set; }
         public Menu MenuItem { get; set; }
 
+        public DateTime TimePlaced { get; set; }
+
         public OrderItem() { }
 
-        public OrderItem(double price, Table table, string name, int quantity, bool vatCategory, string comment, int category, Menu menuItem)
+        public OrderItem(decimal price, int table, string name, int quantity, bool vatCategory, string comment, int category, Menu menuItem)
         {
             PricePerItem = price;
             TableNumber = table;
