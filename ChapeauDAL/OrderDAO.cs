@@ -96,7 +96,6 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, sqlParameters);
         }
 
-
         //update status of Order
 
         public void UpdateStatusToOrdered(Order order, OrderStatus Ordered)

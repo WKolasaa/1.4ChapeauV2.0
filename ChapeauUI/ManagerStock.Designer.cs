@@ -84,35 +84,38 @@
             // 
             // btStockUpdate
             // 
+            btStockUpdate.BackColor = Color.FromArgb(255, 179, 71);
             btStockUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btStockUpdate.Location = new Point(324, 365);
             btStockUpdate.Name = "btStockUpdate";
             btStockUpdate.Size = new Size(134, 52);
             btStockUpdate.TabIndex = 8;
             btStockUpdate.Text = "Update";
-            btStockUpdate.UseVisualStyleBackColor = true;
+            btStockUpdate.UseVisualStyleBackColor = false;
             btStockUpdate.Click += btStockUpdate_Click;
             // 
             // btStockRemove
             // 
+            btStockRemove.BackColor = Color.FromArgb(245, 108, 117);
             btStockRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btStockRemove.Location = new Point(621, 365);
             btStockRemove.Name = "btStockRemove";
             btStockRemove.Size = new Size(134, 52);
             btStockRemove.TabIndex = 7;
             btStockRemove.Text = "Remove";
-            btStockRemove.UseVisualStyleBackColor = true;
+            btStockRemove.UseVisualStyleBackColor = false;
             btStockRemove.Click += btStockRemove_Click;
             // 
             // btStockAdd
             // 
+            btStockAdd.BackColor = Color.FromArgb(138, 210, 176);
             btStockAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btStockAdd.Location = new Point(49, 365);
             btStockAdd.Name = "btStockAdd";
             btStockAdd.Size = new Size(134, 52);
             btStockAdd.TabIndex = 6;
             btStockAdd.Text = "Add";
-            btStockAdd.UseVisualStyleBackColor = true;
+            btStockAdd.UseVisualStyleBackColor = false;
             btStockAdd.Click += btStockAdd_Click;
             // 
             // lvStock

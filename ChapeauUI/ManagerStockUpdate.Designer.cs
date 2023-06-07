@@ -40,13 +40,14 @@
             // 
             // btAddStock
             // 
+            btAddStock.BackColor = Color.FromArgb(138, 210, 176);
             btAddStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btAddStock.Location = new Point(79, 296);
             btAddStock.Name = "btAddStock";
             btAddStock.Size = new Size(181, 29);
             btAddStock.TabIndex = 27;
             btAddStock.Text = "Update Stock Item";
-            btAddStock.UseVisualStyleBackColor = true;
+            btAddStock.UseVisualStyleBackColor = false;
             btAddStock.Click += btAddStock_Click;
             // 
             // txtUpdateStockQuantity
@@ -105,13 +106,14 @@
             // 
             // btCancel
             // 
+            btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btCancel.Location = new Point(325, 296);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 28;
             btCancel.Text = "Cancel";
-            btCancel.UseVisualStyleBackColor = true;
+            btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
             // ManagerStockUpdate
