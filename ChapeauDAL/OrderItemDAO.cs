@@ -19,6 +19,52 @@ namespace ChapeauDAL
             SqlParameter[] sp = new SqlParameter[0];
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
+        public List<OrderItem> GetOrderStatusByTableId(int tableId)
+        {
+            string query = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE TableNumber = @tableNumber";
+            SqlParameter[] sp = new SqlParameter[] { new SqlParameter("@tableNumber", tableId) };
+            return ReadOrderStatus(ExecuteSelectQuery(query, sp));
+        }
+
+        public List<OrderItem> GetOrderItemsByTableId(int tableId)
+        {
+            string query = "SELECT OrderItemID, OrderStatus ,PricePerItem, TableNumber, itemName, Quantity, vat_category, Comments FROM OrderItems WHERE TableNumber = @tableNumber";
+            SqlParameter[] sp = new SqlParameter[] { new SqlParameter("@tableNumber", tableId) };
+            return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
+
+        }
+
+        private List<OrderItem> ReadOrderStatus(DataTable dataTable)
+        {
+            List<OrderItem> orderItemList = new List<OrderItem>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                OrderItem orderItem = new OrderItem();
+                orderItem.OrderItemID = Convert.ToInt32(row["OrderItemID"]);
+                orderItem.Status = (OrderStatus)(int)row["OrderStatus"];
+                orderItemList.Add(orderItem);
+            }
+
+            return orderItemList;
+        }
+        private List<OrderItem> ReadOrderItemsbyId(DataTable dataTable)
+        {
+            List<OrderItem> orderItemList = new List<OrderItem>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                OrderItem orderItem = new OrderItem();
+                orderItem.ItemName = (string)row["itemName"];
+                orderItem.Quantity = (int)row["Quantity"];
+                orderItem.PricePerItem = (decimal)row["PricePerItem"];
+                orderItem.Status = (OrderStatus)(int)row["OrderStatus"];
+                orderItemList.Add(orderItem);
+            }
+
+            return orderItemList;
+        }
+
 
         public List<OrderItem> GetAllFood()
         {

@@ -20,18 +20,21 @@ namespace ChapeauUI
         TableService tableService;
         OrderService orderService;
         List<Table> tables = new List<Table>();
+        OrderItemService orderItemService;
+        List<OrderItem>orderItems=new List<OrderItem>();
         public TableOverview(Employee employee)
         {
             this.employee = employee;
 
             tableService = new TableService();
             orderService = new OrderService();
+            orderItemService=new OrderItemService();
 
             InitializeComponent();
             AssigneTableButtonHandler();
 
             GetTableStatus();
-
+            GetOrderStatus();
             this.CenterToScreen();
 
             UserNamelbl.Text = $"{employee.Name}";
@@ -68,9 +71,37 @@ namespace ChapeauUI
 
         private void GetOrderStatus()
         {
-            tables = tableService.GetAllTables();
-            Button[] buttons = { orderstatus1, orderstatus2, orderstatus3, orderstatus4, orderstatus5, orderstatus6, orderstatus7, orderstatus8, orderstatus9, orderstatus10 };
-            
+            Button[] orderStatusButtons = { orderstatus1, orderstatus2, orderstatus3, orderstatus4, orderstatus5, orderstatus6, orderstatus7, orderstatus8, orderstatus9, orderstatus10 };
+
+            for (int i = 0; i < tables.Count && i < orderStatusButtons.Length; i++)
+            {
+                int tableNumber = tables[i].TableNumber;
+                Color buttonColor = GetButtonColorForTable(tableNumber);
+                orderStatusButtons[i].BackColor = buttonColor;
+            }
+        }
+
+        private Color GetButtonColorForTable(int tableNumber)
+        {
+            List<OrderItem> orderItems = orderItemService.GetOrderStatusByTable(tableNumber);
+
+            if (orderItems.Count > 0)
+            {
+                OrderStatus maxOrderStatus = orderItems.Max(item => item.Status);
+
+                switch (maxOrderStatus)
+                {
+                    case OrderStatus.Ordered:
+                        return Color.Aqua;
+                    case OrderStatus.Preparing:
+                        return Color.Orange;
+                    case OrderStatus.Ready:
+                        return Color.Green;
+                   
+                }
+            }
+
+            return Color.Gray;
         }
 
         private void Logoutbtn_Click(object sender, EventArgs e)
@@ -84,6 +115,7 @@ namespace ChapeauUI
                 this.Close();
             }
         }
+      
 
         private void SelectedTable(int tableNumber)
         {
@@ -129,6 +161,7 @@ namespace ChapeauUI
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
             GetTableStatus();
+            GetOrderStatus();
         }
     }
 }
