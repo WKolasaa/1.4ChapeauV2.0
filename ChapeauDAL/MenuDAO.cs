@@ -44,8 +44,8 @@ namespace ChapeauDAL
                     Category = (string)dr["category"],
                     ItemType = ItemSequence(Convert.ToInt32(dr["sequence"])),
 
-                    Contains = (int)dr["contains"],
-                    //Category = (string)dr["category"],
+                    // Contains = (int)dr["contains"],
+                    // Category = (string)dr["category"],
                 };
 
                 menu.Add(menuItem);

@@ -40,13 +40,14 @@
             // 
             // btUpdateMenu
             // 
+            btUpdateMenu.BackColor = Color.FromArgb(138, 210, 176);
             btUpdateMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btUpdateMenu.Location = new Point(71, 289);
             btUpdateMenu.Name = "btUpdateMenu";
             btUpdateMenu.Size = new Size(185, 29);
             btUpdateMenu.TabIndex = 20;
             btUpdateMenu.Text = "Update Menu Item";
-            btUpdateMenu.UseVisualStyleBackColor = true;
+            btUpdateMenu.UseVisualStyleBackColor = false;
             btUpdateMenu.Click += btUpdateMenu_Click_1;
             // 
             // txtAddMenuPrice
@@ -105,13 +106,14 @@
             // 
             // btCancel
             // 
+            btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btCancel.Location = new Point(317, 289);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 21;
             btCancel.Text = "Cancel";
-            btCancel.UseVisualStyleBackColor = true;
+            btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
             // ManagerMenuUpdate
