@@ -27,6 +27,8 @@ namespace ChapeauModel
         public int Category { get; set; }
         public Menu MenuItem { get; set; }
 
+        public DateTime TimePlaced { get; set; }
+
         public OrderItem() { }
 
         public OrderItem(decimal price, int table, string name, int quantity, bool vatCategory, string comment, int category, Menu menuItem)

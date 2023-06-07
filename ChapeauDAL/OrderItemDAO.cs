@@ -22,14 +22,14 @@ namespace ChapeauDAL
 
         public List<OrderItem> GetAllFood()
         {
-            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus FROM OrderItems WHERE Category = 0";
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = 0";
             SqlParameter[] sp = new SqlParameter[0];
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
 
         public List<OrderItem> GetAllDrinks()
         {
-            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus FROM OrderItems WHERE Category = 1";
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = 1";
             SqlParameter[] sp = new SqlParameter[0];
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
@@ -51,7 +51,8 @@ namespace ChapeauDAL
                     Comment = (string)dr["Comments"],
                     Category = (int)dr["Category"],
                     //MenuItem = (Menu)dr["menu_item_id"], 
-                    Status = (dr["OrderStatus"] != DBNull.Value) ? (OrderStatus)dr["OrderStatus"] : OrderStatus.Ordered
+                    Status = (dr["OrderStatus"] != DBNull.Value) ? (OrderStatus)dr["OrderStatus"] : OrderStatus.Ordered,
+                    TimePlaced = (dr["TimePlaced"] != DBNull.Value) ? (DateTime)dr["TimePlaced"] : DateTime.Now
                 };
 
                 items.Add(item);

@@ -34,6 +34,7 @@
             ItemName = new ColumnHeader();
             Quantity = new ColumnHeader();
             Comments = new ColumnHeader();
+            TimeSpan = new ColumnHeader();
             listViewSelectedItem = new ListView();
             ItemID = new ColumnHeader();
             OrderStatus = new ColumnHeader();
@@ -47,6 +48,7 @@
             labelInfo2 = new Label();
             btnInPreparation = new Button();
             btnPrepared = new Button();
+            OrderID = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHeader.SuspendLayout();
             panelHeader2.SuspendLayout();
@@ -55,7 +57,7 @@
             // 
             // orderesListView
             // 
-            orderesListView.Columns.AddRange(new ColumnHeader[] { TableNumber, ItemName, Quantity, Comments });
+            orderesListView.Columns.AddRange(new ColumnHeader[] { TableNumber, ItemName, Quantity, Comments, TimeSpan, OrderID });
             orderesListView.FullRowSelect = true;
             orderesListView.Location = new Point(39, 204);
             orderesListView.Name = "orderesListView";
@@ -68,22 +70,26 @@
             // TableNumber
             // 
             TableNumber.Text = "TableNumber";
-            TableNumber.Width = 140;
+            TableNumber.Width = 90;
             // 
             // ItemName
             // 
             ItemName.Text = "Name";
-            ItemName.Width = 140;
+            ItemName.Width = 112;
             // 
             // Quantity
             // 
             Quantity.Text = "Quantity";
-            Quantity.Width = 140;
             // 
             // Comments
             // 
             Comments.Text = "Comments";
             Comments.Width = 140;
+            // 
+            // TimeSpan
+            // 
+            TimeSpan.Text = "Time ";
+            TimeSpan.Width = 90;
             // 
             // listViewSelectedItem
             // 
@@ -106,7 +112,6 @@
             // 
             OrderStatus.DisplayIndex = 0;
             OrderStatus.Text = "Order Status";
-            OrderStatus.TextAlign = HorizontalAlignment.Center;
             OrderStatus.Width = 242;
             // 
             // pictureBox1
@@ -212,6 +217,10 @@
             btnPrepared.UseVisualStyleBackColor = false;
             btnPrepared.Click += btnPrepared_Click;
             // 
+            // OrderID
+            // 
+            OrderID.Text = "Order ID";
+            // 
             // KitchenAndBarUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -259,5 +268,7 @@
         private ColumnHeader Comments;
         private ColumnHeader ItemID;
         private ColumnHeader OrderStatus;
+        private ColumnHeader TimeSpan;
+        private ColumnHeader OrderID;
     }
 }
