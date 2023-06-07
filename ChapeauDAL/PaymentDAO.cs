@@ -12,28 +12,30 @@ namespace ChapeauDAL
 {
     public class PaymentDao : BaseDao
     {
-        public void PaymentHistory(Payment payment)
-        {
-            conn.Open();
-            SqlCommand command = new SqlCommand
-                (
-             "INSERT INTO PaymentHistory (PaymentMethod,TotalAmount,Tip,Feedback,TableNumber) VALUES (@PaymentMethod, @TotalAmount, @Tip, @Feedback, @TableNumber);SELECT SCOPE_IDENTITY(); ", conn);
+         public int PaymentHistory(Payment payment)
+         {
+             conn.Open();
+             SqlCommand command = new SqlCommand
+                 (
+              "INSERT INTO PaymentHistory (TotalAmount,Tip,Feedback,TableNumber) VALUES (@PaymentMethod, @TotalAmount, @Tip, @Feedback, @TableNumber);SELECT SCOPE_IDENTITY(); ", conn);
 
-            // Preventing SQL injections
-            command.Parameters.AddWithValue("@PaymentMethod", payment.PaymentMethod);
-            command.Parameters.AddWithValue("@TotalAmount", payment.TotalMoney);
-            command.Parameters.AddWithValue("@Tip", payment.Tips);
-            command.Parameters.AddWithValue("@Feedback", payment.FeedBack);
-            command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
-
-
+             // Preventing SQL injections
+             command.Parameters.AddWithValue("@TotalAmount", payment.TotalMoney);
+             command.Parameters.AddWithValue("@Tip", payment.Tips);
+             command.Parameters.AddWithValue("@Feedback", payment.FeedBack);
+             command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
+            int paymentHistoryID = Convert.ToInt32(command.ExecuteScalar());//give a unique ID assigned to the inserted payment record.
             int nrOfRowsAffected = command.ExecuteNonQuery(); // checking if anything was added
-            // Convert the enum to an integer and set the parameter value
-            if (nrOfRowsAffected == 0)
-                throw new Exception("Payment was not completed!");
-            command.ExecuteNonQuery();
+             // Convert the enum to an integer and set the parameter value
+             if (nrOfRowsAffected == 0)
+                 throw new Exception("Payment was not completed!");
+             command.ExecuteNonQuery();
             conn.Close();
-        }
+            return paymentHistoryID;
+
+         }
+
+
 
         public List<Payment> GetPaymentHistory()  // getting data from database 
         {
