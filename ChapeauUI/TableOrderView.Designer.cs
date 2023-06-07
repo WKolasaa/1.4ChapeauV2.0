@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ColumnHeader columnHeader1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableOrderView));
             panel1 = new Panel();
             Userlbl = new Label();
@@ -36,13 +37,25 @@
             GoBackBtn = new Button();
             LogoutBtn = new Button();
             listViewOrders = new ListView();
+            listcolumnName = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
             BillBtn = new Button();
             AddOrderbtn = new Button();
             ReserveTableBtn = new Button();
             FreeTableBtn = new Button();
+            tableNumberlbl = new Label();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Quantity";
+            columnHeader1.Width = 100;
             // 
             // panel1
             // 
@@ -106,11 +119,28 @@
             // 
             // listViewOrders
             // 
+            listViewOrders.Columns.AddRange(new ColumnHeader[] { listcolumnName, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             listViewOrders.Location = new Point(12, 130);
             listViewOrders.Name = "listViewOrders";
             listViewOrders.Size = new Size(597, 335);
             listViewOrders.TabIndex = 1;
             listViewOrders.UseCompatibleStateImageBehavior = false;
+            listViewOrders.View = View.Details;
+            // 
+            // listcolumnName
+            // 
+            listcolumnName.Text = "Name";
+            listcolumnName.Width = 100;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Price";
+            columnHeader2.Width = 100;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Status";
+            columnHeader3.Width = 100;
             // 
             // BillBtn
             // 
@@ -156,11 +186,32 @@
             FreeTableBtn.UseVisualStyleBackColor = true;
             FreeTableBtn.Click += FreeTableBtn_Click;
             // 
+            // tableNumberlbl
+            // 
+            tableNumberlbl.AutoSize = true;
+            tableNumberlbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            tableNumberlbl.Location = new Point(279, 106);
+            tableNumberlbl.Name = "tableNumberlbl";
+            tableNumberlbl.Size = new Size(22, 21);
+            tableNumberlbl.TabIndex = 6;
+            tableNumberlbl.Text = "...";
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Comment";
+            columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "OrderTime";
+            columnHeader5.Width = 100;
+            // 
             // TableOrderView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 508);
+            Controls.Add(tableNumberlbl);
             Controls.Add(FreeTableBtn);
             Controls.Add(ReserveTableBtn);
             Controls.Add(AddOrderbtn);
@@ -173,6 +224,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -188,5 +240,11 @@
         private Button AddOrderbtn;
         private Button ReserveTableBtn;
         private Button FreeTableBtn;
+        private ColumnHeader listcolumnName;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private Label tableNumberlbl;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
     }
 }

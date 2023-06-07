@@ -18,17 +18,21 @@ namespace ChapeauUI
         Table table;
         TableService tableService;
         OrderService orderService;
+        OrderItemService orderItemService;
 
         public TableOrderView(Employee employee, Table table)
         {
             this.employee = employee;
             tableService = new TableService();
             orderService = new OrderService();
+            orderItemService = new OrderItemService();
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
             Userlbl.Text = $"{employee.Name}";
+            tableNumberlbl.Text = $"Table{table.TableNumber}";
             CheckTableAvailability();
+            DisplayOrders();
         }
 
         private void CheckTableAvailability()
@@ -49,24 +53,35 @@ namespace ChapeauUI
             }
             else
             {
-                BillBtn.Enabled = false;
                 AddOrderbtn.Enabled = true;
                 FreeTableBtn.Enabled = false;
             }
         }
         private void DisplayOrders()
         {
-            listViewOrders.Clear();
-            listViewOrders.Columns.Add("Items");
-            listViewOrders.Columns.Add("Quantity");
-            listViewOrders.Columns.Add("Price");
-            listViewOrders.Columns.Add("Order Item State");
+            List<OrderItem> itemsList = orderItemService.GetOrderItemsByTable(table.TableNumber);
 
-            
+
+            foreach (OrderItem item in itemsList)
+            {
+                ListViewItem listItem = new ListViewItem(item.ItemName);
+                listItem.SubItems.Add(item.Quantity.ToString());
+                listItem.SubItems.Add(item.PricePerItem.ToString());
+                listItem.SubItems.Add(item.Status.ToString());
+                listItem.SubItems.Add($"{item.Comment}");
+                listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
+
+                listViewOrders.Items.Add(listItem);
+            }
+
+            listViewOrders.View = View.Details;
+
+
+
 
         }
 
-      
+
 
 
         private void AddOrderbtn_Click(object sender, EventArgs e)

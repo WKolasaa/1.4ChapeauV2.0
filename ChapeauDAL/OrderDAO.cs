@@ -38,6 +38,7 @@ namespace ChapeauDAL
                 };
                 orders.Add(order);
             }
+
             return orders;
         }
 
@@ -63,7 +64,7 @@ namespace ChapeauDAL
             SqlParameter[] sqlParameters =
             {
                 new SqlParameter("@tableNumber", order.TableNumber),
-               new SqlParameter("@totalPrice", order.TotalPrice),
+                new SqlParameter("@totalPrice", order.TotalPrice),
             };
 
             ExecuteEditQuery(query, sqlParameters);
@@ -72,7 +73,8 @@ namespace ChapeauDAL
         public void UpdateOrder(Order order)
         {
             conn.Open();
-            string query = "UPDATE OrderTable SET tableNumber = @tableNumber, totalPrice = @totalPrice WHERE tableNumber = @tableNumber, totalPrice = @totalPrice";
+            string query =
+                "UPDATE OrderTable SET tableNumber = @tableNumber, totalPrice = @totalPrice WHERE tableNumber = @tableNumber, totalPrice = @totalPrice";
             SqlParameter[] parameter = new SqlParameter[]
             {
                 new SqlParameter("@tableNumber", order.TableNumber),
@@ -92,8 +94,8 @@ namespace ChapeauDAL
                 new SqlParameter("@tableNumber", order.TableNumber),
             };
             ExecuteEditQuery(query, sqlParameters);
-        }   
-    }
+        }
+
 
         //update status of Order
 
@@ -125,4 +127,5 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, sqlParameters);
         }
     }
+
 }

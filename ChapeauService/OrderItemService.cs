@@ -11,6 +11,7 @@ namespace ChapeauService
     public class OrderItemService
     {
         private OrderItemDAO orderitemdao;
+
         public OrderItemService()
         {
             orderitemdao = new OrderItemDAO();
@@ -23,7 +24,7 @@ namespace ChapeauService
 
         public void AddOrderItem(Menu menu)
         {
-            
+
         }
 
         public void UpdateOrderItemStatus(OrderItem orderitem, int orderStatus)
@@ -35,6 +36,18 @@ namespace ChapeauService
         {
             return orderitemdao.GetAllDrinks();
         }
+
+        public List<OrderItem> GetOrderStatusByTable(int taleId)
+        {
+            return orderitemdao.GetOrderStatusByTableId(taleId);
+        }
+
+        public List<OrderItem> GetOrderItemsByTable(int taleId)
+        {
+            return orderitemdao.GetOrderItemsByTableId(taleId);
+        }
+
+
 
         public List<OrderItem> GetAllFood()
         {
