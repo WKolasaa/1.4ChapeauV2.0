@@ -1,4 +1,5 @@
 ﻿using ChapeauModel;
+using ChapeauService;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,67 +15,69 @@ namespace ChapeauUI
     public partial class DisplayPayment : Form
     {
         private Payment payment;
+
         public DisplayPayment(Payment payment)
         {
             this.payment = payment;
             InitializeComponent();
             this.CenterToScreen();
         }
+      
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            //decimal tipAmount;
-          /*  if (decimal.TryParse(txtTipAmount.Text, out tipAmount))
+      
+            private List<Payment> GetPaymentHistory()
             {
-                DisplayPaymentMethod displayPayment = new DisplayPaymentMethod();
-                decimal change = displayPayment.ChangeResult();
-                if (tipAmount <= change)
-                {
-                    string message = GetThankfulMessage(tipAmount);
-                    lblThankfulMessage.Text = message;
-                }
-                else
-                {
-                    lblThankfulMessage.Text = "Tip amount cannot exceed the change.";
-                }
+                PaymentService paymentService = new PaymentService();
+                List<Payment> paymentHistory = paymentService.GetPaymentHistory();
+                return paymentHistory;
             }
-            else
+
+        
+          private void DisplayPaymentHistory(List<Payment> payments)
+          {
+            listViewPaymentHistory.Clear();
+            listViewPaymentHistory.Columns.Add("TotalAmount", 200);
+            listViewPaymentHistory.Columns.Add("Tip", 100);
+            listViewPaymentHistory.Columns.Add("Feedback", 200);
+            listViewPaymentHistory.Columns.Add("TableNumber", 100);
+            listViewPaymentHistory.Columns.Add("PaymentMethod", 150); // Add the PaymentMethod column
+
+            foreach (Payment payment in payments)
             {
-                lblThankfulMessage.Text = "We appreciate your visit!";
-            }*/
+                ListViewItem listView = new ListViewItem(payment.TotalAmount.ToString());
+                listView.SubItems.Add(payment.Tips.ToString());
+                listView.SubItems.Add(payment.FeedBack);
+                listView.SubItems.Add(payment.tableNumber.ToString());
+
+                PaymentService service = new PaymentService();
+                string paymentMethod =service.GetPaymentMethod(payment.PaymentHistoryID);
+                listView.SubItems.Add(paymentMethod);
+
+                listView.Tag = payment;
+                listViewPaymentHistory.Items.Add(listView);
+            }
+            listViewPaymentHistory.Columns[0].Width = 200;
+            listViewPaymentHistory.Columns[1].Width = 100;
+            listViewPaymentHistory.Columns[2].Width = 200;
+            listViewPaymentHistory.Columns[3].Width = 100;
+
+
+            listViewPaymentHistory.View = View.Details;
+          }
+         
+         
+        private void btnTableView_Click(object sender, EventArgs e)
+        {
 
         }
-        private string GetThankfulMessage(decimal tipAmount)
+
+        private void btnPaymentHistory_Click(object sender, EventArgs e)
         {
-            if (tipAmount > 0)
-            {
-                return "Thank you for the generous tip!";
-            }
-            else
-            {
-                return "We appreciate your visit!";
-            }
-        }
+            // Call the method to retrieve the payment history from the database
+            List<Payment> paymentHistory = GetPaymentHistory();
 
-        private void btnSubmitFeedback_Click(object sender, EventArgs e)
-        {
-            string feedback = txtFeedback.Text;
-
-            if (!string.IsNullOrEmpty(feedback))
-            {
-
-                MessageBox.Show("Thank you for your feedback!", "Feedback Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            txtFeedback.Text = string.Empty;
-            payment.FeedBack = feedback;
-        }
-
-        private void btnSetTip_Click(object sender, EventArgs e)
-        {
-            decimal tipAmount = decimal.Parse(txtTipAmount.Text);
-            string message = GetThankfulMessage(tipAmount);
-            lblThankfulMessage.Text = message;
-            payment.Tips = tipAmount;
+            // Display the payment history in the ListView
+            DisplayPaymentHistory(paymentHistory);
         }
     }
 }

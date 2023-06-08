@@ -14,35 +14,73 @@ namespace ChapeauDAL
     {
          public int PaymentHistory(Payment payment)
          {
-             conn.Open();
-             SqlCommand command = new SqlCommand
-                 (
-              "INSERT INTO PaymentHistory (TotalAmount,Tip,Feedback,TableNumber) VALUES (@PaymentMethod, @TotalAmount, @Tip, @Feedback, @TableNumber);SELECT SCOPE_IDENTITY(); ", conn);
+            conn.Open();
+            int paymentHistoryID;
 
-             // Preventing SQL injections
-             command.Parameters.AddWithValue("@TotalAmount", payment.TotalMoney);
-             command.Parameters.AddWithValue("@Tip", payment.Tips);
-             command.Parameters.AddWithValue("@Feedback", payment.FeedBack);
-             command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
-            int paymentHistoryID = Convert.ToInt32(command.ExecuteScalar());//give a unique ID assigned to the inserted payment record.
-            int nrOfRowsAffected = command.ExecuteNonQuery(); // checking if anything was added
-             // Convert the enum to an integer and set the parameter value
-             if (nrOfRowsAffected == 0)
-                 throw new Exception("Payment was not completed!");
-             command.ExecuteNonQuery();
+            // Insert into PaymentHistory table
+            using (SqlCommand command = new SqlCommand(
+                "INSERT INTO PaymentHistory (TotalAmount, Tip, Feedback, TableNumber) " +
+                "VALUES (@TotalAmount, @Tip, @Feedback, @TableNumber); SELECT SCOPE_IDENTITY();",
+                conn))
+            {
+                // Preventing SQL injections
+                command.Parameters.AddWithValue("@TotalAmount", payment.TotalAmount);
+                command.Parameters.AddWithValue("@Tip", payment.Tips);
+                command.Parameters.AddWithValue("@Feedback", payment.FeedBack);
+                command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
+
+                paymentHistoryID = Convert.ToInt32(command.ExecuteScalar());
+            }
+
+            // Insert into PaymentHistoryPaymentMethod table
+            using (SqlCommand paymentMethodCommand = new SqlCommand(
+                "INSERT INTO PaymentHistoryPaymentMethod (PaymentHistoryID, PaymentMethodID) " +
+                "VALUES (@PaymentHistoryID, @PaymentMethodID)",
+                conn))
+            {
+                paymentMethodCommand.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryID);
+                paymentMethodCommand.Parameters.AddWithValue("@PaymentMethodID", payment.PaymentMethodID);
+                paymentMethodCommand.ExecuteNonQuery();
+            }
+
             conn.Close();
             return paymentHistoryID;
 
          }
 
+        public string GetPaymentMethod(int paymentHistoryId)
+        {
+            string paymentMethod = string.Empty;
+
+            using (SqlCommand command = new SqlCommand(
+                "SELECT PaymentMethod.PaymentMethodName " +
+                "FROM PaymentHistoryPaymentMethod " +
+                "INNER JOIN PaymentMethod ON PaymentHistoryPaymentMethod.PaymentMethodID = PaymentMethod.PaymentMethodID " +
+                "WHERE PaymentHistoryPaymentMethod.PaymentHistoryID = @PaymentHistoryID", conn))
+            {
+                conn.Open();
+                command.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        paymentMethod = reader.GetString(0);
+                    }
+                }
+            }
+            conn.Close();
+            return paymentMethod;
+        }
+
 
 
         public List<Payment> GetPaymentHistory()  // getting data from database 
-        {
-            string query = "Select PaymentMethod,TotalAmount,Tip,Feedback,TableNumber FROM [PaymentHistory]";
+       {
+            string query = "Select paymentHistoryID, TotalAmount,Tip,Feedback,TableNumber FROM [PaymentHistory]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
-        }
+       }
 
         public bool GetVATStatus(Payment item)
         {
@@ -108,8 +146,8 @@ namespace ChapeauDAL
             {
                 Payment payment = new Payment()
                 {
-                    PaymentMethod = (PaymentMethod)dr["PaymentMethod"],
-                    TotalMoney = (decimal)dr["TotalAmount"],
+                    PaymentHistoryID = (int)dr["paymentHistoryID"],
+                    TotalAmount = (decimal)dr["TotalAmount"],
                     Tips = (decimal)dr["Tip"],
                     FeedBack = dr["Feedback"].ToString(),
                     tableNumber = (int)dr["TableNumber"],
@@ -119,7 +157,37 @@ namespace ChapeauDAL
             return payments;
         }
 
-        private List<Payment> ReadOrderItems(DataTable dataTable)
+
+        private SqlCommand CreatePaymentMethodCommand(int paymentHistoryID)
+            {
+                SqlCommand paymentMethodCommand = new SqlCommand(
+                    "SELECT PaymentMethod.PaymentMethodName FROM PaymentHistoryPaymentMethod " +
+                    "INNER JOIN PaymentMethod ON PaymentHistoryPaymentMethod.PaymentMethodID = PaymentMethod.PaymentMethodID " +
+                    "WHERE PaymentHistoryPaymentMethod.PaymentHistoryID = @PaymentHistoryID", conn);
+
+                paymentMethodCommand.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryID);
+
+                return paymentMethodCommand;
+            }
+
+            private PaymentMethod ExecutePaymentMethodCommand(SqlCommand command)
+            {
+                string paymentMethodString = string.Empty;
+
+                conn.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        paymentMethodString = reader.GetString(0);
+                    }
+                }
+                conn.Close();
+
+                return (PaymentMethod)Enum.Parse(typeof(PaymentMethod), paymentMethodString);
+            }
+
+            private List<Payment> ReadOrderItems(DataTable dataTable)
         {
             List<Payment> payments = new List<Payment>();
 

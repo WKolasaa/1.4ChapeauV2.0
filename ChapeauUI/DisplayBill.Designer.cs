@@ -99,7 +99,7 @@
             // btnProceedToPayment
             // 
             this.btnProceedToPayment.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnProceedToPayment.Location = new System.Drawing.Point(239, 936);
+            this.btnProceedToPayment.Location = new System.Drawing.Point(185, 978);
             this.btnProceedToPayment.Name = "btnProceedToPayment";
             this.btnProceedToPayment.Size = new System.Drawing.Size(508, 87);
             this.btnProceedToPayment.TabIndex = 14;
