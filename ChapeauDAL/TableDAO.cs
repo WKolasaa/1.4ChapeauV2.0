@@ -15,8 +15,7 @@ namespace ChapeauDAL
         public List<Table> GetAllTables()
         {
             string query = "SELECT tableID, Occupied, tableNumber FROM [Tables]";
-            SqlParameter[] sqlParameter = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameter);
+            DataTable dataTable = ExecuteSelectQuery(query);
             return ReadTables(dataTable);
         }
 

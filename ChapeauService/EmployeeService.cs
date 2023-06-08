@@ -33,6 +33,15 @@ namespace ChapeauService
             employeeDAO.DeleteEmployee(employee);
         }
 
+        public Employee LoginEmployee(string username, string password)
+        {
+            if (VerifyLogin(username, password))
+            {
+                return employeeDAO.GetEmployeeByUserName(username);
+            }
+            else throw new Exception("invalid credentials");
+        }
+
         public bool VerifyLogin(string username, string password)
         {
             string hashedPasswordFromDB = employeeDAO.GetHashedPassword(username);

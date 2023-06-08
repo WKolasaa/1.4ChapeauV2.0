@@ -113,7 +113,7 @@ namespace ChapeauUI
                 loginScreen.ShowDialog();
                 this.Close();
             }
-        }
+        } 
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {

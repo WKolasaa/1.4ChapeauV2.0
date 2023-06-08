@@ -21,87 +21,26 @@ namespace ChapeauUI
         OrderService orderService;
         List<Table> tables = new List<Table>();
         OrderItemService orderItemService;
-        List<OrderItem>orderItems=new List<OrderItem>();
+        List<OrderItem> orderItems = new List<OrderItem>();
+        Dictionary<Button, Table> buttonDictionary = new Dictionary<Button, Table>();
         public TableOverview(Employee employee)
         {
             this.employee = employee;
+           
 
             tableService = new TableService();
             orderService = new OrderService();
-            orderItemService=new OrderItemService();
+            orderItemService = new OrderItemService();
+            tables = tableService.GetAllTables();
 
             InitializeComponent();
+            
             AssigneTableButtonHandler();
 
-            GetTableStatus();
-            GetOrderStatus();
             this.CenterToScreen();
 
             UserNamelbl.Text = $"{employee.Name}";
-        }
-
-        private void GetTableStatus()
-        {
-            tables = tableService.GetAllTables();
-            Button[] buttons = { table1btn, table2btn, table3btn, table4btn, table5btn, table6btn, table7btn, table8btn, table9btn, table10btn };
-
-            Color buttonColor = Color.Green;
-
-            for (int i = 0; i < tables.Count && i < buttons.Length; i++)
-            {
-                if (tables[i].TableStatus == TableStatus.Occupied)
-                {
-                    buttonColor = Color.Yellow;
-                }
-                else if (tables[i].TableStatus == TableStatus.Reserved)
-                {
-                    buttonColor = Color.Red;
-                }
-                else
-                {
-                    buttonColor = Color.Green;
-                }
-
-                buttons[i].BackColor = buttonColor;
-
-
-
-            }
-        }
-
-        private void GetOrderStatus()
-        {
-            Button[] orderStatusButtons = { orderstatus1, orderstatus2, orderstatus3, orderstatus4, orderstatus5, orderstatus6, orderstatus7, orderstatus8, orderstatus9, orderstatus10 };
-
-            for (int i = 0; i < tables.Count && i < orderStatusButtons.Length; i++)
-            {
-                int tableNumber = tables[i].TableNumber;
-                Color buttonColor = GetButtonColorForTable(tableNumber);
-                orderStatusButtons[i].BackColor = buttonColor;
-            }
-        }
-
-        private Color GetButtonColorForTable(int tableNumber)
-        {
-            List<OrderItem> orderItems = orderItemService.GetOrderStatusByTable(tableNumber);
-
-            if (orderItems.Count > 0)
-            {
-                OrderStatus maxOrderStatus = orderItems.Max(item => item.Status);
-
-                switch (maxOrderStatus)
-                {
-                    case OrderStatus.Ordered:
-                        return Color.Aqua;
-                    case OrderStatus.Preparing:
-                        return Color.Orange;
-                    case OrderStatus.Ready:
-                        return Color.Green;
-                   
-                }
-            }
-
-            return Color.Gray;
+           
         }
 
         private void Logoutbtn_Click(object sender, EventArgs e)
@@ -115,7 +54,7 @@ namespace ChapeauUI
                 this.Close();
             }
         }
-      
+
 
         private void SelectedTable(int tableNumber)
         {
@@ -123,45 +62,59 @@ namespace ChapeauUI
             TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
             tableOrderView.ShowDialog();
             this.Show();
-            GetTableStatus();
+            AssigneTableButtonHandler();
+          
 
         }
-        private void TableButtonClick(Object sender, EventArgs e)
+        private void TableButtonClick(object sender, EventArgs e)
         {
-            Button tabbleButton = (Button)sender;
-            int tableNumber = int.Parse(tabbleButton.Tag.ToString());
+            Button tableButton = (Button)sender;
+            int tableNumber = int.Parse(tableButton.Tag.ToString());
             SelectedTable(tableNumber);
         }
+
         private void AssigneTableButtonHandler()
         {
-            table1btn.Tag = 0;
-            table2btn.Tag = 1;
-            table3btn.Tag = 2;
-            table4btn.Tag = 3;
-            table5btn.Tag = 4;
-            table6btn.Tag = 5;
-            table7btn.Tag = 6;
-            table8btn.Tag = 7;
-            table9btn.Tag = 8;
-            table10btn.Tag = 9;
+            // TODO: improve
+            /* List<Table> tables = tableService.GetAllTables();
 
-            table1btn.Click += TableButtonClick;
-            table2btn.Click += TableButtonClick;
-            table3btn.Click += TableButtonClick;
-            table4btn.Click += TableButtonClick;
-            table5btn.Click += TableButtonClick;
-            table6btn.Click += TableButtonClick;
-            table7btn.Click += TableButtonClick;
-            table8btn.Click += TableButtonClick;
-            table9btn.Click += TableButtonClick;
-            table10btn.Click += TableButtonClick;
+             foreach (Table table in tables)
+             {
+                 // create button, hint dictionary
+                 // create eventhandler
+             }*/
+            tables = tableService.GetAllTables();
+            Dictionary<Button, Table> tableButtonDictionary = new Dictionary<Button, Table>();
 
+            for (int i = 0; i < tables.Count; i++)
+            {
+                Button tableButton = new Button();
+                tableButton.Text = "Table " + (i + 1);
+                tableButton.Location = new Point(10, 10 + i * 30);
+                tableButton.Tag = i;
+                tableButton.Click += TableButtonClick;
+                tableButtonDictionary.Add(tableButton, tables[i]);
+
+                // Add the button to a container
+                tablepanel.Controls.Add(tableButton);
+                switch (tables[i].TableStatus)
+                {
+                    case TableStatus.Occupied:
+                        tableButton.BackColor = Color.Yellow;
+                        break;
+                    case TableStatus.Free:
+                        tableButton.BackColor = Color.Green;
+                        break;
+                    case TableStatus.Reserved:
+                        tableButton.BackColor = Color.Red;
+                        break;
+                }
+            }
         }
 
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
-            GetTableStatus();
-            GetOrderStatus();
+            AssigneTableButtonHandler();
         }
     }
 }

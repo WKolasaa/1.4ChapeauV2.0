@@ -23,10 +23,9 @@ namespace ChapeauUI
 
         }
 
-        private void ValidateForm(string UserName)
+        private void ValidateForm(Employee employee)
         {
-            employeeLogged = employeeService.GetEmployeeByUserName(UserName);
-            switch (employeeLogged.EmployeeType)
+            switch (employee.EmployeeType)
             {
                 case EmployeeType.Waiter:
                     {
@@ -85,20 +84,11 @@ namespace ChapeauUI
                     return;
                 }
 
-                bool isValidLogin = employeeService.VerifyLogin(username, password);
-                if (isValidLogin)
-                {
-                    MessageBox.Show("Successful login");
-                    ValidateForm(username);
-                }
-                else
-                {
-                    MessageBox.Show("Failed to login");
-                }
+                ValidateForm(employeeService.LoginEmployee(username, password));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("This username does not exist! " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
             loginbtn.Enabled = true;
