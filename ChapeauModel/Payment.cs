@@ -21,9 +21,10 @@ namespace ChapeauModel
 
         public bool IsAlcoholic;
         public decimal PaidAmount { get; set; }
-
+        public int PaymentMethodID { get; set; }
+        public int PaymentHistoryID { get; set; }
         public decimal Tips { get; set; }
-        public decimal TotalMoney { get; set; }
+        public decimal TotalAmount { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
     }
     public enum PaymentMethod

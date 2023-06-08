@@ -142,5 +142,7 @@ namespace ChapeauUI
         { 
          return TotalVat() + TotalPriceWithoutVAT(2);
         }
+
+       
     }
 }

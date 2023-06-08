@@ -71,17 +71,6 @@ namespace ChapeauUI
             return rbtnYes.Checked;
         }
 
-
-        /*private decimal AmountPerPerson(int numberOfPeople)
-        {
-            DisplayBill bill = new DisplayBill();
-             decimal totalAmount = bill.TotalAmountIncVAT();
-            decimal amountPerPerson = totalAmount / numberOfPeople;
-            return amountPerPerson;
-        }*/
-
-
-
         private void button1_Click(object sender, EventArgs e)//btnPAY
         {
             DisplayPayment displayPayment = new DisplayPayment(payment);
@@ -146,6 +135,7 @@ namespace ChapeauUI
         private void btnAddTip_Click(object sender, EventArgs e)
         {
             tip = decimal.Parse(txtTipAmount.Text);
+            payment.Tips = tip;
             if (GiveTip(tip))
             {
                 lblThankfulMessage.Text = "Thank you for the tip!";
@@ -157,6 +147,7 @@ namespace ChapeauUI
             return tip > 0;
         }
 
+        private PaymentMethod paymentMethod;
         private void ShowPersonControls(int index)
         {
 
@@ -181,12 +172,13 @@ namespace ChapeauUI
                 // Display the ComboBox for the payment method selection
                 ComboBox comboBox = new ComboBox();
                 comboBox.Location = new Point(controlX + 100, 0);
-                comboBox.Items.Add("Cash");
-                comboBox.Items.Add("Visa");
-                comboBox.Items.Add("Debit");
+                comboBox.Items.Add(PaymentMethod.Cash);
+                comboBox.Items.Add(PaymentMethod.Visa);
+                comboBox.Items.Add(PaymentMethod.Debit);
                 pnlPersonControls.Controls.Add(comboBox);
                 paymentMethodList.Add(comboBox);
-
+                // Attach the event handler to the SelectedIndexChanged event
+                comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
                 // Display the TextBox for the amount each person will pay
                 TextBox textBox = new TextBox();
                 textBox.Location = new Point(controlX + comboBox.Width + 240, 0);
@@ -206,13 +198,15 @@ namespace ChapeauUI
                 // Display the ComboBox for the payment method selection
                 ComboBox comboBox = new ComboBox();
                 comboBox.Location = new Point(controlX + 100, 0);
-                comboBox.Items.Add("Cash");
-                comboBox.Items.Add("Visa");
-                comboBox.Items.Add("Debit");
+                comboBox.Items.Add(PaymentMethod.Cash);
+                comboBox.Items.Add(PaymentMethod.Visa);
+                comboBox.Items.Add(PaymentMethod.Debit);
                 pnlPersonControls.Controls.Add(comboBox);
 
                 // Add the ComboBox to the paymentMethodList
                 paymentMethodList = new List<ComboBox> { comboBox };
+                comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+
 
                 // Display the TextBox for the amount to pay
                 TextBox textBox = new TextBox();
@@ -222,67 +216,20 @@ namespace ChapeauUI
                 // Add the TextBox to the amountTextBoxList
                 amountTextBoxList = new List<TextBox> { textBox };
             }
-
+               // comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
         }
 
-    private void btnSumbitAll(object sender, EventArgs e)
-    {
-
-        
-
-        // Calculate the total amount paid
-        decimal totalAmountPaid = 0;
-        List<decimal> parsedAmounts = new List<decimal>();
-
-        if (numberOfPeople == 1)
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TextBox textBox = amountTextBoxList[0];
-            if (decimal.TryParse(textBox.Text, out decimal amount))
+            ComboBox comboBox = (ComboBox)sender;
+
+            // Update the payment method when a different option is selected
+            if (comboBox.SelectedIndex >= 0)
             {
-                totalAmountPaid = amount;
-                parsedAmounts.Add(amount);
-            }
-        }
-        else
-        {
-            foreach (TextBox textBox in amountTextBoxList)
-            {
-                if (decimal.TryParse(textBox.Text, out decimal amount))
-                {
-                    totalAmountPaid += amount;
-                    parsedAmounts.Add(amount);
-                }
+                paymentMethod = (PaymentMethod)comboBox.SelectedItem;
             }
         }
 
-        // Add tip if applicable
-        if (GiveTip(tip))
-        {
-            totalAmountPaid += tip;
-            payment.Tips = tip; // Store the tip
-        }
-
-        // Perform UI updates
-        lblTotalAmountPaid.Text = totalAmountPaid.ToString("0.00");
-
-        DisplayBill bill = new DisplayBill();
-        decimal totalCheck = bill.TotalAmountIncVAT();
-
-        decimal change = totalAmountPaid - totalCheck;
-        if (change >= 0)
-        {
-            lblTotalChange.Text = change.ToString("0.00");
-        }
-        else
-        {
-            lblTotalChange.Hide();
-            lblChange.Hide();
-            lblInsufficientPaymnt.Text = "The total amount is not enough for the bill!";
-        }
-
-        // Re-enable UI updates
-        pnlPersonControls.ResumeLayout();
-    }
 
         private void btnNextPerson_Click_1(object sender, EventArgs e)
         {
@@ -307,13 +254,14 @@ namespace ChapeauUI
                 {
                     btnNextPerson.Text = "Done";
                     btnNextPerson.BackColor = Color.Orange;
+                btnNextPerson.Enabled = false;
                 }
             
         }
 
         private void btnSubmitAll_Click(object sender, EventArgs e)
         {
-
+            //uuiyui
             // Calculate the total amount paid
             decimal totalAmountPaid = 0;
             List<decimal> parsedAmounts = new List<decimal>();

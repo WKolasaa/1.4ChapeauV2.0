@@ -141,7 +141,7 @@
             // btnPAY
             // 
             this.btnPAY.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPAY.Location = new System.Drawing.Point(309, 1016);
+            this.btnPAY.Location = new System.Drawing.Point(284, 1032);
             this.btnPAY.Name = "btnPAY";
             this.btnPAY.Size = new System.Drawing.Size(258, 52);
             this.btnPAY.TabIndex = 20;
