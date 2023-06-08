@@ -345,9 +345,9 @@
             // 
             // tablepanel
             // 
-            tablepanel.Location = new Point(29, 184);
+            tablepanel.Location = new Point(-1, 121);
             tablepanel.Name = "tablepanel";
-            tablepanel.Size = new Size(763, 338);
+            tablepanel.Size = new Size(911, 587);
             tablepanel.TabIndex = 23;
             // 
             // TableOverview

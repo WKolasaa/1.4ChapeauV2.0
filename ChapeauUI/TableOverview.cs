@@ -26,21 +26,17 @@ namespace ChapeauUI
         public TableOverview(Employee employee)
         {
             this.employee = employee;
-           
-
             tableService = new TableService();
-            orderService = new OrderService();
-            orderItemService = new OrderItemService();
             tables = tableService.GetAllTables();
 
             InitializeComponent();
-            
+
             AssigneTableButtonHandler();
 
             this.CenterToScreen();
 
-            UserNamelbl.Text = $"{employee.Name}";
-           
+            UserNamelbl.Text = employee.Name;
+
         }
 
         private void Logoutbtn_Click(object sender, EventArgs e)
@@ -63,7 +59,7 @@ namespace ChapeauUI
             tableOrderView.ShowDialog();
             this.Show();
             AssigneTableButtonHandler();
-          
+
 
         }
         private void TableButtonClick(object sender, EventArgs e)
@@ -89,11 +85,14 @@ namespace ChapeauUI
             for (int i = 0; i < tables.Count; i++)
             {
                 Button tableButton = new Button();
+                tableButton.Size = new Size(40, 10);  // Set the size of the table button;  // Set the background image of the button to a table image
+                tableButton.BackgroundImageLayout = ImageLayout.Zoom;  // Stretch the image to fit the button size
                 tableButton.Text = "Table " + (i + 1);
-                tableButton.Location = new Point(10, 10 + i * 30);
+                tableButton.TextAlign = ContentAlignment.BottomCenter;  // Align the table number at the bottom center of the button
+                tableButton.Font = new Font(tableButton.Font.FontFamily, 12);  // Customize the font of the table number
+                tableButton.ForeColor = Color.White;  // Set the text color
                 tableButton.Tag = i;
                 tableButton.Click += TableButtonClick;
-                tableButtonDictionary.Add(tableButton, tables[i]);
 
                 // Add the button to a container
                 tablepanel.Controls.Add(tableButton);
@@ -114,6 +113,7 @@ namespace ChapeauUI
 
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
+            tables = tableService.GetAllTables();
             AssigneTableButtonHandler();
         }
     }

@@ -48,6 +48,7 @@ namespace ChapeauService
             return BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDB);
 
         }
+        
 
         public string HashPassword(string plainTextPassword)
         {
