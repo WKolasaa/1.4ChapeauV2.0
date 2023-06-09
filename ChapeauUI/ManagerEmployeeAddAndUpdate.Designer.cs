@@ -198,7 +198,6 @@
             Controls.Add(cbAddEmployeeRole);
             Name = "ManagerEmployeeAdd";
             Text = "ManagerEmployeeAdd";
-            Load += ManagerEmployeeAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }

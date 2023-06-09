@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerStockAdd
+    partial class ManagerStockAddAndUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -131,7 +131,6 @@
             Controls.Add(label1);
             Name = "ManagerStockAdd";
             Text = "ManagerStockAdd";
-            Load += ManagerStockAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }

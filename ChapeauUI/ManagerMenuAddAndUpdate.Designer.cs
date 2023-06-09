@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerMenuAdd
+    partial class ManagerMenuAddAndUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -131,7 +131,6 @@
             Controls.Add(label1);
             Name = "ManagerMenuAdd";
             Text = "ManagerMenuAdd";
-            Load += ManagerMenuAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }
