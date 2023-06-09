@@ -38,7 +38,7 @@ namespace ChapeauUI
             lvMenu.Clear();
 
             lvMenu.Columns.Add("Item ID", 50);
-            lvMenu.Columns.Add("Name", 550);
+            lvMenu.Columns.Add("Name", 560);
             lvMenu.Columns.Add("Price", 100);
 
             foreach (Menu m in Menu)
@@ -56,7 +56,7 @@ namespace ChapeauUI
 
         private void btMenuAdd_Click(object sender, EventArgs e)
         {
-            ManagerMenuAdd managerMenuAdd = new ManagerMenuAdd();
+            ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate(true, temp);
             managerMenuAdd.ShowDialog();
             DisplayMenu(GetMenu());
         }
@@ -69,8 +69,8 @@ namespace ChapeauUI
             }
             else
             {
-                ManagerMenuUpdate managerMenuUpdate = new ManagerMenuUpdate(temp);
-                managerMenuUpdate.ShowDialog();
+                ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate(false, temp);
+                managerMenuAdd.ShowDialog();
                 DisplayMenu(GetMenu());
             }
         }
