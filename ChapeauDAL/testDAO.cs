@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ChapeauDAL
 {
-    public class testDAO : BaseDao
+    public class testDAO : BaseDao  // TODO: DELETE THIS PART!!!
     {
         public List<int> Rooms()
         {

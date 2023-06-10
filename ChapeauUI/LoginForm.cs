@@ -28,7 +28,7 @@ namespace ChapeauUI
             employeeLogged = employeeService.GetEmployeeByUserName(UserName);
             switch (employeeLogged.EmployeeType)
             {
-                case EmployeeType.Waiter:
+                case EmployeeType.Waiter: 
                     {
                         this.Hide();
                         TableOverview tableOverview = new TableOverview(employeeLogged);
