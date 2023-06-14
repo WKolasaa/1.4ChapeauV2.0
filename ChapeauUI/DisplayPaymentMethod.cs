@@ -14,17 +14,19 @@ namespace ChapeauUI
 {
     public partial class DisplayPaymentMethod : Form
     {
-        private Payment payment;
+        private OrderItem item;
+      private Payment payment;
 
-        public DisplayPaymentMethod(Payment payment)
+        public DisplayPaymentMethod(OrderItem item)
         {
-            this.payment = payment;
+            this.item = item;
+             payment = new Payment();
+
             InitializeComponent();
             this.CenterToScreen();
 
             rbtnNo.Checked = false;
             rbtnYes.Checked = false;
-
 
             lblSplitQuestion.Hide();
             btnSubmitAll.Hide();
@@ -73,13 +75,11 @@ namespace ChapeauUI
 
         private void button1_Click(object sender, EventArgs e)//btnPAY
         {
-            DisplayPayment displayPayment = new DisplayPayment(payment);
+            DisplayPayment displayPayment = new DisplayPayment();
             displayPayment.Show();
+            //btnPAY.Enabled = false;
         }
 
-        private void btnSetAmountWithSplit_Click(object sender, EventArgs e)
-        {
-        }
 
         private List<ComboBox> paymentMethodList; // List to store the selected payment methods
         private List<TextBox> amountTextBoxList; // List to store the entered amounts
@@ -87,14 +87,14 @@ namespace ChapeauUI
         private void btnSetNumber_Click(object sender, EventArgs e)
         {
             numberOfPeople = (int)numericUpDownNumberOfPeople.Value;
-            if (numberOfPeople > 1)//numberOfPeople > 1
+            if (numberOfPeople > 1)
             {
                 btnNextPerson.Show();
             }
 
             pnlPersonControls.Controls.Clear();
             paymentMethodList = new List<ComboBox>();
-            amountTextBoxList = new List<TextBox>();// for calculating the total amount
+            amountTextBoxList = new List<TextBox>();// for calculating the total price
 
             int labelX = 10; // Represents the X coordinate for the labels
             int controlX = labelX + 100; // Represents the X coordinate for the combo boxes and text boxes
@@ -115,7 +115,7 @@ namespace ChapeauUI
                 pnlPersonControls.Controls.Add(comboBox);
 
                 // Add the ComboBox to the paymentMethodList
-                paymentMethodList.Add(comboBox);
+                paymentMethodList.Add(comboBox);// !!!!!!!!!!!!!!!!!!!!
 
                 // Create a TextBox for entering the payment amount
                 TextBox textBox = new TextBox();
@@ -124,8 +124,6 @@ namespace ChapeauUI
                 textBox.Size = new Size(100, 50);
                 pnlPersonControls.Controls.Add(textBox);
 
-                // Add the TextBox to the amountTextBoxList
-                amountTextBoxList.Add(textBox);
             }
             // Display the first person's controls
             ShowPersonControls(0);
@@ -134,20 +132,27 @@ namespace ChapeauUI
         decimal tip = 0;
         private void btnAddTip_Click(object sender, EventArgs e)
         {
-            tip = decimal.Parse(txtTipAmount.Text);
-            payment.Tips = tip;
+              tip = decimal.Parse(txtTipAmount.Text);
+
             if (GiveTip(tip))
             {
-                lblThankfulMessage.Text = "Thank you for the tip!";
+                payment.Tips = tip;
+
+                lblThankfulMessage.Text = "TIP HAS BEEN ADDED!";
                 lblThankfulMessage.ForeColor = Color.Green;
+            }
+            else
+            {
+                payment.Tips = 0;
+
+                btnAddTip.Enabled = false;
             }
         }
         private bool GiveTip(decimal tip)
-        {
+        {  
             return tip > 0;
         }
 
-        private PaymentMethod paymentMethod;
         private void ShowPersonControls(int index)
         {
 
@@ -216,9 +221,9 @@ namespace ChapeauUI
                 // Add the TextBox to the amountTextBoxList
                 amountTextBoxList = new List<TextBox> { textBox };
             }
-               // comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
         }
 
+        private PaymentMethod paymentMethod;
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
@@ -237,87 +242,96 @@ namespace ChapeauUI
             paymentMethodList[currentPersonIndex].Visible = false;
             amountTextBoxList[currentPersonIndex].Visible = false;
 
-            PaymentMethod selectedPaymentMethod;
-            Enum.TryParse(paymentMethodList[currentPersonIndex].SelectedItem?.ToString(), out selectedPaymentMethod);
-            
+          
+            currentPersonIndex++;
+
+            // Check if there are more persons to display
+            if (currentPersonIndex < numberOfPeople)
+            {
+                // Display the controls for the next person
+                ShowPersonControls(currentPersonIndex);
+
+                PaymentMethod selectedPaymentMethod;
+                Enum.TryParse(paymentMethodList[currentPersonIndex].SelectedItem?.ToString(), out selectedPaymentMethod);
                 // Assign the selected payment method to the existing payment object
                 payment.PaymentMethod = selectedPaymentMethod;
-                currentPersonIndex++;
-
-                // Check if there are more persons to display
-                if (currentPersonIndex < numberOfPeople)
-                {
-                    // Display the controls for the next person
-                    ShowPersonControls(currentPersonIndex);
-                }
-                else
-                {
-                    btnNextPerson.Text = "Done";
-                    btnNextPerson.BackColor = Color.Orange;
+            }
+            else
+            {
+                btnNextPerson.Text = "Done";
+                btnNextPerson.BackColor = Color.Orange;
                 btnNextPerson.Enabled = false;
-                }
-            
+            }
+
         }
 
         private void btnSubmitAll_Click(object sender, EventArgs e)
         {
-            //uuiyui
             // Calculate the total amount paid
-            decimal totalAmountPaid = 0;
-            List<decimal> parsedAmounts = new List<decimal>();
+             decimal totalAmountPaid = 0;
+            decimal amountPaidPerPerson = 0;
 
-            if (numberOfPeople == 1)
-            {
+             if (numberOfPeople == 1)
+             {
                 TextBox textBox = amountTextBoxList[0];
                 if (decimal.TryParse(textBox.Text, out decimal amount))
                 {
                     totalAmountPaid = amount;
-                    parsedAmounts.Add(amount);
+                }
+                else 
+                {
+                    MessageBox.Show("Invalid amount entered.");
                 }
             }
-            else
-            {
-                foreach (TextBox textBox in amountTextBoxList)
-                {
+             else
+             {
+                 foreach (TextBox textBox in amountTextBoxList)
+                 {
                     if (decimal.TryParse(textBox.Text, out decimal amount))
                     {
-                        totalAmountPaid += amount;
-                        parsedAmounts.Add(amount);
+                        amountPaidPerPerson = amount;
+                        totalAmountPaid += amountPaidPerPerson;
                     }
+                    else
+                    {
+                        // Display an error message or handle the invalid input
+                        MessageBox.Show("Invalid amount entered.");
+                        break; // Exit the loop if parsing fails for any textbox
+                    }
+
                 }
-            }
+             }
 
-            // Add tip if applicable
-            if (GiveTip(tip))
-            {
-                totalAmountPaid += tip;
-                payment.Tips = tip; // Store the tip
-            }
+             // Add tip if applicable
+             if (GiveTip(tip))
+             {
+                 totalAmountPaid += tip;
+             }
 
-            // Perform UI updates
-            lblTotalAmountPaid.Text = totalAmountPaid.ToString("0.00");
+             // Perform UI updates
+             lblTotalAmountPaid.Text = totalAmountPaid.ToString("0.00");
 
-            DisplayBill bill = new DisplayBill();
-            decimal totalCheck = bill.TotalAmountIncVAT();
+             DisplayBill bill = new DisplayBill();
+            decimal totalCheck = bill.TotalAmountIncludeVAT();
 
-            decimal change = totalAmountPaid - totalCheck;
-            if (change >= 0)
-            {
-                lblTotalChange.Text = change.ToString("0.00");
-            }
-            else
-            {
-                lblTotalChange.Hide();
-                lblChange.Hide();
-                lblInsufficientPaymnt.Text = "The total amount is not enough for the bill!";
-            }
+             decimal change = totalAmountPaid - totalCheck;
+             if (change >= 0)
+             {
+                 lblTotalChange.Text = change.ToString("0.00");
+             }
+             else
+             {
+                 lblTotalChange.Hide();
+                 lblChange.Hide();
+                 lblInsufficientPaymnt.Text = "The total amount is not enough for the bill!";
+             }
 
-            // Re-enable UI updates
-            pnlPersonControls.ResumeLayout();
+             // Re-enable UI updates
+            // pnlPersonControls.ResumeLayout();
 
         }
-    }
 
+    }
 }
 
     
