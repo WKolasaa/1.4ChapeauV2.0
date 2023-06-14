@@ -94,7 +94,6 @@
             this.lblTotalVAT.Size = new System.Drawing.Size(35, 37);
             this.lblTotalVAT.TabIndex = 13;
             this.lblTotalVAT.Text = "..";
-            this.lblTotalVAT.Click += new System.EventHandler(this.lblTotalVAT_Click);
             // 
             // btnProceedToPayment
             // 

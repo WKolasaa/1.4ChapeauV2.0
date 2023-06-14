@@ -14,16 +14,12 @@ namespace ChapeauUI
 {
     public partial class DisplayPayment : Form
     {
-        private Payment payment;
 
-        public DisplayPayment(Payment payment)
+        public DisplayPayment( )
         {
-            this.payment = payment;
             InitializeComponent();
             this.CenterToScreen();
         }
-      
-
       
             private List<Payment> GetPaymentHistory()
             {
@@ -46,7 +42,7 @@ namespace ChapeauUI
             {
                 ListViewItem listView = new ListViewItem(payment.TotalAmount.ToString());
                 listView.SubItems.Add(payment.Tips.ToString());
-                listView.SubItems.Add(payment.FeedBack);
+                listView.SubItems.Add(payment.Feedback);
                 listView.SubItems.Add(payment.tableNumber.ToString());
 
                 PaymentService service = new PaymentService();
@@ -56,18 +52,18 @@ namespace ChapeauUI
                 listView.Tag = payment;
                 listViewPaymentHistory.Items.Add(listView);
             }
-            listViewPaymentHistory.Columns[0].Width = 200;
-            listViewPaymentHistory.Columns[1].Width = 100;
+            listViewPaymentHistory.Columns[0].Width = 100;
+            listViewPaymentHistory.Columns[1].Width = 50;
             listViewPaymentHistory.Columns[2].Width = 200;
-            listViewPaymentHistory.Columns[3].Width = 100;
-
-
+            listViewPaymentHistory.Columns[3].Width = 50;
+            listViewPaymentHistory.Columns[4].Width = 100;
             listViewPaymentHistory.View = View.Details;
           }
          
          
         private void btnTableView_Click(object sender, EventArgs e)
         {
+           // TableOverview tablesOverView = new TableOverview();
 
         }
 
