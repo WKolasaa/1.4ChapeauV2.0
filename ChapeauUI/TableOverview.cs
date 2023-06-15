@@ -23,106 +23,160 @@ namespace ChapeauUI
 
         public TableOverview(Employee employee)
         {
-            this.employee = employee;
+            try
+            {
+                this.employee = employee;
 
-            tables = new List<Table>();
-            tableService = new TableService();
-            tables = tableService.GetAllTables();
-            buttonDictionary = new Dictionary<Button, Table>();
+                tables = new List<Table>();
+                tableService = new TableService();
+                tables = tableService.GetAllTables();
+                buttonDictionary = new Dictionary<Button, Table>();
 
-            InitializeComponent();
+                InitializeComponent();
 
-            AssigneTableButtonHandler();
+                AssigneTableButtonHandler();
 
-            this.CenterToScreen();
+                this.CenterToScreen();
 
-            UserNamelbl.Text = $"{employee.Name}";
-
+                UserNamelbl.Text = $"{employee.FirstName}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during initialization: " + ex.Message, "Error");
+            }
         }
 
         private void Logoutbtn_Click(object sender, EventArgs e)
         {
-            var message = MessageBox.Show("Are you sure you would like to logout?", "Confirmation", MessageBoxButtons.YesNo);
-            if (message == DialogResult.Yes)
+            try
             {
-                this.Hide();
-                LoginScreen loginScreen = new LoginScreen();
-                loginScreen.ShowDialog();
-                this.Close();
+                var message = MessageBox.Show("Are you sure you would like to logout?", "Confirmation", MessageBoxButtons.YesNo);
+                if (message == DialogResult.Yes)
+                {
+                    this.Hide();
+                    LoginScreen loginScreen = new LoginScreen();
+                    loginScreen.ShowDialog();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during logout: " + ex.Message, "Error");
             }
         }
 
-
         private void SelectedTable(int tableNumber)
         {
-            this.Hide();
-            TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
-            tableOrderView.ShowDialog();
-            this.Show();
-            AssigneTableButtonHandler();
-
-
+            try
+            {
+                this.Hide();
+                TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
+                tableOrderView.ShowDialog();
+                this.Show();
+                AssigneTableButtonHandler();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while selecting the table: " + ex.Message, "Error");
+            }
         }
+
         private void TableButtonClick(object sender, EventArgs e)
         {
-            Button tableButton = (Button)sender;
-            int tableNumber = int.Parse(tableButton.Tag.ToString());
-            SelectedTable(tableNumber);
+            try
+            {
+                Button tableButton = (Button)sender;
+                int tableNumber = int.Parse(tableButton.Tag.ToString());
+                SelectedTable(tableNumber);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while handling the table button click: " + ex.Message, "Error");
+            }
         }
 
         private void AssigneTableButtonHandler()
         {
-            // TODO: improve
-            /* List<Table> tables = tableService.GetAllTables();
-
-             foreach (Table table in tables)
-             {
-                 // create button, hint dictionary
-                 // create eventhandler
-             }*/
-            tablepanel.Controls.Clear(); // FUCKIGN LINE !!!!
-            tables = tableService.GetAllTables();
-
-            for (int i = 0; i < tables.Count; i++)
+            try
             {
-                Button tableButton = new Button();
-                tableButton.Size = new Size(40, 10);  // Set the size of the table button;  // Set the background image of the button to a table image
-                tableButton.BackgroundImageLayout = ImageLayout.Zoom;  // Stretch the image to fit the button size
-                tableButton.Text = "Table " + (i + 1);
-                tableButton.Size = new Size(100, 50);
-                tableButton.Location = new Point(20 * (i % 3 * 10), 10 + (i / 3) * 50);
-                tableButton.Tag = i;
-                tableButton.Click += TableButtonClick;
-                buttonDictionary.Add(GetColour(tables[i], tableButton), tables[i]);
+                // Clear existing controls
+                tablepanel.Controls.Clear();
 
-                // Add the button to a container
+                // Get all tables
+                tables = tableService.GetAllTables();
 
-                tablepanel.Controls.Add(tableButton);
+                int buttonDiameter = 100;  // Set the desired diameter of each circular button
+                int buttonsPerRow = 4;  // Set the number of buttons to display per row
+                int horizontalSpacing = 200;  // Set the desired horizontal spacing between buttons
+                int verticalSpacing = 90;  // Set the desired vertical spacing between buttons
+
+                for (int i = 0; i < tables.Count; i++)
+                {
+                    Button tableButton = new Button();
+                    tableButton.Text = "Table " + (i + 1);
+                    tableButton.Size = new Size(buttonDiameter, buttonDiameter);
+
+                    // Calculate the X and Y coordinates for the button's location
+                    int x = 20 + (i % buttonsPerRow) * (buttonDiameter + horizontalSpacing);
+                    int y = 10 + (i / buttonsPerRow) * (buttonDiameter + verticalSpacing);
+
+                    tableButton.Location = new Point(x, y);
+                    tableButton.Tag = i;
+                    tableButton.Click += TableButtonClick;
+                    buttonDictionary.Add(GetColour(tables[i], tableButton), tables[i]);
+
+                    // Create a circular region for the button
+                    System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+                    path.AddEllipse(0, 0, buttonDiameter, buttonDiameter);
+                    tableButton.Region = new Region(path);
+
+                    // Add the button to the container
+                    tablepanel.Controls.Add(tableButton);
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while assigning table buttons: " + ex.Message, "Error");
+            }
         }
 
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
-            AssigneTableButtonHandler();
+            try
+            {
+                AssigneTableButtonHandler();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while refreshing table buttons: " + ex.Message, "Error");
+            }
         }
 
         private Button GetColour(Table table, Button button)
         {
-            switch (table.TableStatus)
+            try
             {
-                case TableStatus.Occupied:
-                    button.BackColor = Color.Yellow;
-                    break;
-                case TableStatus.Free:
-                    button.BackColor = Color.Green;
-                    break;
-                case TableStatus.Reserved:
-                    button.BackColor = Color.Red;
-                    break;
-            }
+                switch (table.TableStatus)
+                {
+                    case TableStatus.Occupied:
+                        button.BackColor = Color.Yellow;
+                        break;
+                    case TableStatus.Free:
+                        button.BackColor = Color.Green;
+                        break;
+                    case TableStatus.Reserved:
+                        button.BackColor = Color.Red;
+                        break;
+                }
 
-            return button;
+                return button;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while getting table color: " + ex.Message, "Error");
+                return button;
+            }
         }
     }
+
 }

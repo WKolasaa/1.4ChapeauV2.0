@@ -121,11 +121,11 @@ namespace ChapeauDAL
             };
             DataTable reader = ExecuteSelectQuery(command, parameter);
 
-            Employee emp = ReadEmployee(reader);
+            Employee employee = ReadEmployee(reader);
 
             conn.Close();
 
-            return emp;
+            return employee;
         }
 
         private Employee ReadEmployee(DataTable reader)

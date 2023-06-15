@@ -113,12 +113,11 @@ namespace ChapeauUI
                 loginScreen.ShowDialog();
                 this.Close();
             }
-        } 
+        }
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {
-            table.TableStatus = TableStatus.Free;
-            tableService.UpdateTableStatus(table);
+            tableService.FreeTable(table.TableNumber,TableStatus.Free);
 
 
         }
@@ -129,8 +128,7 @@ namespace ChapeauUI
             this.Hide();
             display.ShowDialog();
             this.Close();
-            table.TableStatus = TableStatus.Free;
-            tableService.UpdateTableStatus(table);
+            tableService.FreeTable(table.TableNumber,TableStatus.Free);
 
 
 

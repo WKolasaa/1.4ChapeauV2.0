@@ -19,12 +19,12 @@ namespace ChapeauDAL
             return ReadTables(dataTable);
         }
 
-        public Table GetTable(int tableID)
+        public Table GetTableById(int tableID)
         {
             string query = "SELECT tableID, Occupied, tableNumber FROM [Tables] WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-              new SqlParameter("@tableID", tableID)
+            new SqlParameter("@tableID", tableID)
             };
 
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
@@ -36,8 +36,8 @@ namespace ChapeauDAL
             string query = "UPDATE [Tables] SET Occupied = @Occupied WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-           new SqlParameter("@Occupied", (int)table.TableStatus),
-           new SqlParameter("@tableID", table.TableId)
+            new SqlParameter("@Occupied", table.TableStatus),
+            new SqlParameter("@tableID", table.TableId)
             };
             ExecuteEditQuery(query, sqlParameters);
         }
@@ -50,9 +50,9 @@ namespace ChapeauDAL
 
                 Table table = new Table()
                 {
-                    TableId = (int)row["tableID"],
-                    TableStatus = (TableStatus)(int)row["Occupied"],
-                    TableNumber = (int)row["tableNumber"]
+                    TableId = Convert.ToInt32(row["tableID"]),
+                    TableStatus = (TableStatus)Convert.ToInt32(row["Occupied"]),
+                    TableNumber = Convert.ToInt32(row["tableNumber"])
                 };
 
                 return table;
@@ -68,9 +68,9 @@ namespace ChapeauDAL
             {
                 Table table = new Table()
                 {
-                    TableId = (int)dr["tableID"],
-                    TableStatus = (TableStatus)(int)dr["Occupied"],
-                    TableNumber = (int)dr["tableNumber"],
+                    TableId = Convert.ToInt32(dr["tableID"]),
+                    TableStatus = (TableStatus)Convert.ToInt32(dr["Occupied"]),
+                    TableNumber = Convert.ToInt32(dr["tableNumber"]),
                 };
                 tables.Add(table);
             }
@@ -78,4 +78,5 @@ namespace ChapeauDAL
             return tables;
         }
     }
+
 }

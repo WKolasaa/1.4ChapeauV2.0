@@ -9,9 +9,7 @@ namespace ChapeauUI
 {
     public partial class LoginScreen : Form
     {
-        public Employee employeeLogged = new Employee(); // instead of creating an employee object try to get the whole employee if it exist 
-
-        private EmployeeService employeeService;
+        private readonly EmployeeService employeeService;
 
         public LoginScreen()
         {
@@ -19,8 +17,6 @@ namespace ChapeauUI
             InitializeComponent();
             this.CenterToScreen();
             passwordTextBox.UseSystemPasswordChar = true;
-
-
         }
 
         private void ValidateForm(Employee employee)
@@ -30,37 +26,31 @@ namespace ChapeauUI
                 case EmployeeType.Waiter:
                     {
                         this.Hide();
-                        TableOverview tableOverview = new TableOverview(employeeLogged);
+                        TableOverview tableOverview = new TableOverview(employee);
                         tableOverview.ShowDialog();
                         this.Close();
                         break;
                     }
 
                 case EmployeeType.Bartender:
-                    {
-                        this.Hide();
-                        KitchenAndBarUI kitchenUI= new KitchenAndBarUI(employeeLogged);
-                        kitchenUI.ShowDialog();
-                        this.Close();
-                        break;
-                    }
-
                 case EmployeeType.Chef:
                     {
                         this.Hide();
-                        KitchenAndBarUI barUI = new KitchenAndBarUI(employeeLogged);
-                        barUI.ShowDialog();
+                        KitchenAndBarUI kitchenUI = new KitchenAndBarUI(employee);
+                        kitchenUI.ShowDialog();
                         this.Close();
                         break;
                     }
                 case EmployeeType.Manager:
                     {
                         this.Hide();
-                        ManagerMainView managerMainView = new ManagerMainView(employeeLogged);
+                        ManagerMainView managerMainView = new ManagerMainView(employee);
                         managerMainView.ShowDialog();
                         this.Close();
                         break;
                     }
+                default:
+                    throw new Exception("Invalid employee");
             }
         }
 
@@ -68,15 +58,11 @@ namespace ChapeauUI
         {
             try
             {
-
-
                 string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
                 usernameTextBox.Enabled = false;
                 passwordTextBox.Enabled = false;
-
-
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
@@ -84,16 +70,21 @@ namespace ChapeauUI
                     return;
                 }
 
-                ValidateForm(employeeService.LoginEmployee(username, password));
+                Employee loggedEmployee = employeeService.LoginEmployee(username, password);
+                ValidateForm(loggedEmployee);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            loginbtn.Enabled = true;
-            usernameTextBox.Enabled = true;
-            passwordTextBox.Enabled = true;
+            finally
+            {
+                passwordTextBox.Clear();
+                loginbtn.Enabled = true;
+                usernameTextBox.Enabled = true;
+                passwordTextBox.Enabled = true;
+            }
         }
     }
+
 }
