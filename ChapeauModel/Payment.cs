@@ -13,11 +13,11 @@ namespace ChapeauModel
         public string Feedback { get; set; }
 
         public int tableNumber;// same thing
-        public decimal TotalPrice { get; set; }
         public int PaymentMethodID { get; set; }
         public int PaymentHistoryID { get; set; }
         public decimal Tips { get; set; }
         public decimal TotalAmount { get; set; }
+        public List<PaymentMethod> PaymentMethods;
         public PaymentMethod PaymentMethod { get; set; }
     }
     public enum PaymentMethod

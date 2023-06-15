@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ColumnHeader columnHeader1;
+            System.Windows.Forms.ColumnHeader columnHeader1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableOrderView));
+
             panel1 = new Panel();
             Userlbl = new Label();
             label1 = new Label();
@@ -59,6 +60,7 @@
             // 
             // panel1
             // 
+
             panel1.BackColor = Color.DarkOrange;
             panel1.Controls.Add(Userlbl);
             panel1.Controls.Add(label1);
@@ -134,18 +136,28 @@
             // 
             // listcolumnName
             // 
-            listcolumnName.Text = "Name";
-            listcolumnName.Width = 100;
+            this.listcolumnName.Text = "Name";
+            this.listcolumnName.Width = 100;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Price";
-            columnHeader2.Width = 100;
+            this.columnHeader2.Text = "Price";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            columnHeader3.Text = "Status";
-            columnHeader3.Width = 100;
+            this.columnHeader3.Text = "Status";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Comment";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "OrderTime";
+            this.columnHeader5.Width = 100;
             // 
             // columnHeader4
             // 
@@ -159,6 +171,7 @@
             // 
             // BillBtn
             // 
+
             BillBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
             BillBtn.Location = new Point(719, 271);
             BillBtn.Margin = new Padding(3, 4, 3, 4);

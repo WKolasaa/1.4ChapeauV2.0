@@ -12,40 +12,32 @@ namespace ChapeauDAL
 {
     public class PaymentDao : BaseDao
     {
-         public int AddPaymentHistory(Payment payment)
+         public void AddPaymentHistory(Payment payment)
          {
             conn.Open();
-            int paymentHistoryID;
+
+            // Convert the payment methods list to a string representation
+            string paymentMethodsString = string.Join(",", payment.PaymentMethods);
 
             // Insert into PaymentHistory table
             SqlCommand command = new SqlCommand(
-                "INSERT INTO PaymentHistory (TotalAmount, Tip, Feedback, TableNumber) " +
-                "VALUES (@TotalAmount, @Tip, @Feedback, @TableNumber); SELECT SCOPE_IDENTITY();",
-                conn);
-            
-                // Preventing SQL injections
-                command.Parameters.AddWithValue("@TotalAmount", payment.TotalAmount);
+                  "INSERT INTO PaymentHistory (TotalAmount, Tip, Feedback, TableNumber, PaymentMethods) " +
+                "VALUES (@TotalAmount, @Tip, @Feedback, @TableNumber, @PaymentMethods); SELECT SCOPE_IDENTITY();",
+                 conn);
+
+
+            // Preventing SQL injections
+            command.Parameters.AddWithValue("@TotalAmount", payment.TotalAmount);
                 command.Parameters.AddWithValue("@Tip", payment.Tips);
                 command.Parameters.AddWithValue("@Feedback", payment.Feedback);
                 command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
+                command.Parameters.AddWithValue("@PaymentMethods", paymentMethodsString);
 
-                paymentHistoryID = Convert.ToInt32(command.ExecuteScalar());
-
-            // Insert into PaymentHistoryPaymentMethod table
-            SqlCommand paymentMethodCommand = new SqlCommand(
-                "INSERT INTO PaymentHistoryPaymentMethod (PaymentHistoryID, PaymentMethodID) " +
-                "VALUES (@PaymentHistoryID, @PaymentMethodID)",
-                conn);
-            
-                paymentMethodCommand.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryID);
-                paymentMethodCommand.Parameters.AddWithValue("@PaymentMethodID", payment.PaymentMethodID);
+            command.ExecuteNonQuery();
 
            
-            paymentMethodCommand.ExecuteNonQuery();
 
-            conn.Close();
-            return paymentHistoryID;
-
+            conn.Close();            
          }
 
         public string GetPaymentMethod(int paymentHistoryId)
@@ -69,18 +61,27 @@ namespace ChapeauDAL
 
 
 
- public List<Payment> GetPaymentHistory()  // getting data from database 
- {
-     string query = "SELECT ph.paymentHistoryID, ph.TotalAmount, ph.Tip, ph.Feedback, ph.TableNumber, pm.PaymentMethodName " +
-            "FROM PaymentHistory ph " +
-            "INNER JOIN PaymentHistoryPaymentMethod phpm ON ph.paymentHistoryID = phpm.PaymentHistoryID " +
-            "INNER JOIN PaymentMethod pm ON phpm.PaymentMethodID = pm.PaymentMethodID"; 
-     SqlParameter[] sqlParameters = new SqlParameter[0];
-     return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
- }
+        public List<Payment> GetPaymentHistory()
+        {
+            string query = "SELECT paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
+                           "FROM PaymentHistory";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
+        }
+        public List<Payment> GetLastPaymentHistory()
+        {
+            string query = "SELECT TOP 1 paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
+                           "FROM PaymentHistory " +
+                           "ORDER BY paymentHistoryID DESC"; // Select only the top (highest) paymentHistoryID
 
-     public bool GetVATStatus(OrderItem item)
-     {   
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+
+            return ReadPaymentHistory(dataTable);
+        }
+
+        public bool GetVATStatus(OrderItem item)
+        {   
        conn.Open();
          SqlCommand command = new SqlCommand
         ("SELECT vat_category FROM OrderItems WHERE itemName = @itemName",conn);
@@ -110,7 +111,7 @@ namespace ChapeauDAL
          List<OrderItem> items = new List<OrderItem>();
         conn.Open();
         SqlCommand command = new SqlCommand(
-          "SELECT tableNumber, PricePerItem, itemName, Quantity, Comments FROM OrderItems WHERE tableNumber = @tableNumber", conn);
+          "SELECT tableNumber, PricePerItem, itemName, Quantity, Comments, vat_category FROM OrderItems WHERE tableNumber = @tableNumber", conn);
      command.Parameters.AddWithValue("@tableNumber", tableNumber);
 
      using (SqlDataReader reader = command.ExecuteReader())
@@ -123,7 +124,9 @@ namespace ChapeauDAL
                  PricePerItem = reader.GetDecimal(1),
                  ItemName = reader.GetString(2),
                  Quantity = reader.GetInt32(3),
-                 Comment = reader.IsDBNull(4) ? "" : reader.GetString(4)  
+                 Comment = reader.IsDBNull(4) ? "" : reader.GetString(4),
+                 VatCategory=reader.GetBoolean(5),
+
              };
              items.Add(item);
          }  
@@ -134,52 +137,47 @@ namespace ChapeauDAL
 
        private List<Payment> ReadPaymentHistory(DataTable dataTable) // data from database into class
        {
-          List<Payment> payments = new List<Payment>();
+            List<Payment> payments = new List<Payment>();
+            HashSet<string> uniquePaymentMethods = new HashSet<string>();
 
-         foreach (DataRow dr in dataTable.Rows)
-         {
-            Payment payment = new Payment()
+            foreach (DataRow dr in dataTable.Rows)
             {
-              PaymentHistoryID = (int)dr["paymentHistoryID"],
-              TotalAmount = (decimal)dr["TotalAmount"],
-              Tips = (decimal)dr["Tip"],
-               Feedback = dr["Feedback"].ToString(),
-              tableNumber = (int)dr["TableNumber"],
-              PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), GetPaymentMethod((int)dr["paymentHistoryID"])) // Convert string to enum
-            };
-           payments.Add(payment);
-         }
-           return payments;
-       }
+                int paymentHistoryID = (int)dr["paymentHistoryID"];
+                string paymentMethoddd = dr["PaymentMethods"].ToString();
 
- private int GetPaymentMethodID(int paymentHistoryID)
- {
-     int paymentMethodID = 0;
-     conn.Open();
+                Payment payment = new Payment()
+                {
+                    PaymentHistoryID = (int)dr["paymentHistoryID"],
+                    TotalAmount = (decimal)dr["TotalAmount"],
+                    Tips = (decimal)dr["Tip"],
+                    Feedback = dr["Feedback"].ToString(),
+                    tableNumber = (int)dr["TableNumber"],
+                    PaymentMethods = new List<PaymentMethod>()
+                };
+                string paymentMethodsString = dr["PaymentMethods"].ToString();
+                List<string> paymentMethods = paymentMethodsString.Split(',').ToList();
 
-     SqlCommand command = new SqlCommand(
-         "SELECT PaymentMethodID FROM PaymentHistoryPaymentMethod WHERE PaymentHistoryID = @PaymentHistoryID", conn);
-     command.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryID);
+                foreach (string method in paymentMethods)
+                {
+                    if (Enum.TryParse(method, out PaymentMethod paymentMethod))
+                    {
+                        payment.PaymentMethods.Add(paymentMethod);
+                    }
+                }
 
-     object result = command.ExecuteScalar();
-     if (result != null)
-     {
-         paymentMethodID = Convert.ToInt32(result);
-     }
+                payments.Add(payment);
+            }
+            return payments;
 
-     conn.Close();
-     return paymentMethodID;
- }
+        }
 
 
 
 
 
-
- private List<OrderItem> ReadOrderItems(DataTable dataTable)
-     {
-     List<OrderItem> items = new List<OrderItem>();
-
+        private List<OrderItem> ReadOrderItems(DataTable dataTable)
+       {
+         List<OrderItem> items = new List<OrderItem>();
           foreach (DataRow dr in dataTable.Rows)
           {
              OrderItem item = new OrderItem()
@@ -193,38 +191,7 @@ namespace ChapeauDAL
             };
              items.Add(item);
           }
-        return items;
-     }
-
- /// ////////////////////////////////////////////////////////////////////////////
-
- private SqlCommand CreatePaymentMethodCommand(int paymentHistoryID)
- {
-     SqlCommand paymentMethodCommand = new SqlCommand(
-         "SELECT PaymentMethod.PaymentMethodName FROM PaymentHistoryPaymentMethod " +
-         "INNER JOIN PaymentMethod ON PaymentHistoryPaymentMethod.PaymentMethodID = PaymentMethod.PaymentMethodID " +
-         "WHERE PaymentHistoryPaymentMethod.PaymentHistoryID = @PaymentHistoryID", conn);
-
-     paymentMethodCommand.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryID);
-
-     return paymentMethodCommand;
- }
-
- private PaymentMethod ExecutePaymentMethodCommand(SqlCommand command)
- {
-     string paymentMethodString = string.Empty;
-
-     conn.Open();
-     using (SqlDataReader reader = command.ExecuteReader())
-     {
-         if (reader.Read())
-         {
-             paymentMethodString = reader.GetString(0);
-         }
-     }
-     conn.Close();
-
-     return (PaymentMethod)Enum.Parse(typeof(PaymentMethod), paymentMethodString);
- }
-}
+          return items;
+       }
+    }
 }

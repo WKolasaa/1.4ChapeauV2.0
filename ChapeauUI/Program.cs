@@ -14,7 +14,7 @@ namespace ChapeauUI
             // see https://aka.ms/applicationconfiguration.
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginScreen());
+            Application.Run(new DisplayBill());
         }
     }
 }
