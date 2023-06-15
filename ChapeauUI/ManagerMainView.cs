@@ -66,7 +66,7 @@ namespace ChapeauUI
         {
             this.Hide();
             LoginScreen loginScreen = new LoginScreen();
-            loginScreen.employeeLogged = null;
+            //loginScree = null;
             loginScreen.ShowDialog();
             this.Close();
         }

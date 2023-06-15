@@ -23,10 +23,9 @@ namespace ChapeauUI
 
         }
 
-        private void ValidateForm(string UserName)
+        private void ValidateForm(Employee employee)
         {
-            employeeLogged = employeeService.GetEmployeeByUserName(UserName);
-            switch (employeeLogged.EmployeeType)
+            switch (employee.EmployeeType)
             {
                 case EmployeeType.Waiter:
                     {
@@ -40,7 +39,7 @@ namespace ChapeauUI
                 case EmployeeType.Bartender:
                     {
                         this.Hide();
-                        KitchenAndBarUI kitchenUI= new KitchenAndBarUI(employeeLogged);
+                        KitchenAndBarUI kitchenUI = new KitchenAndBarUI(employeeLogged);
                         kitchenUI.ShowDialog();
                         this.Close();
                         break;
@@ -62,7 +61,11 @@ namespace ChapeauUI
                         this.Close();
                         break;
                     }
+                default:
+                    throw new Exception("Invalid employee");
             }
+
+
         }
 
         private void loginbtn_Click_1(object sender, EventArgs e)
@@ -85,20 +88,12 @@ namespace ChapeauUI
                     return;
                 }
 
-                bool isValidLogin = employeeService.VerifyLogin(username, password);
-                if (isValidLogin)
-                {
-                    MessageBox.Show("Successful login");
-                    ValidateForm(username);
-                }
-                else
-                {
-                    MessageBox.Show("Failed to login");
-                }
+                ValidateForm(employeeService.LoginEmployee(username, password));
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("This username does not exist! " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
             loginbtn.Enabled = true;
