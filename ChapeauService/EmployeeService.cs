@@ -33,11 +33,31 @@ namespace ChapeauService
             employeeDAO.DeleteEmployee(employee);
         }
 
+        public Employee LoginEmployee(string username, string password)
+        {
+            if (VerifyLogin(username, password))
+            {
+                return employeeDAO.GetEmployeeByUserName(username);
+            }
+            else
+            {
+                throw new Exception("invalid credentials");
+            }
+        }
+
         public bool VerifyLogin(string username, string password)
         {
-            string hashedPasswordFromDB = employeeDAO.GetHashedPassword(username);
-            return BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDB);
-
+            try
+            {
+                string hashedPasswordFromDB = employeeDAO.GetHashedPassword(username);
+                return BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDB);
+            }
+            catch (Exception e)
+            {
+               
+                Console.WriteLine($"An error occurred during login verification: {e}");
+                return false;
+            }
         }
 
         public string HashPassword(string plainTextPassword)

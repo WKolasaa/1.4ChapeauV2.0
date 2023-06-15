@@ -17,9 +17,9 @@ namespace ChapeauService
             return tableDAO.GetAllTables();
         }
 
-        public Table GetTable(int tableID)
+        public Table GetTableById(int tableID)
         {
-            return tableDAO.GetTable(tableID);
+            return tableDAO.GetTableById(tableID);
         }
 
         public void UpdateTableStatus(Table table)
@@ -27,10 +27,10 @@ namespace ChapeauService
             tableDAO.UpdateTableStatus(table);
         }
 
-        public void FreeTabTable(int tableID, TableStatus status)
+        public void FreeTable(int tableID, TableStatus status)
         {
             
-            Table table = tableDAO.GetTable(tableID);
+            Table table = tableDAO.GetTableById(tableID);
             if (table != null)
             {
                 table.TableStatus = status;
