@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ColumnHeader columnHeader1;
+            System.Windows.Forms.ColumnHeader columnHeader1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableOrderView));
-            panel1 = new Panel();
-            Userlbl = new Label();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
-            GoBackBtn = new Button();
-            LogoutBtn = new Button();
-            listViewOrders = new ListView();
-            listcolumnName = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            BillBtn = new Button();
-            AddOrderbtn = new Button();
-            ReserveTableBtn = new Button();
-            FreeTableBtn = new Button();
-            tableNumberlbl = new Label();
-            columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
-            columnHeader1 = new ColumnHeader();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Userlbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.GoBackBtn = new System.Windows.Forms.Button();
+            this.LogoutBtn = new System.Windows.Forms.Button();
+            this.listViewOrders = new System.Windows.Forms.ListView();
+            this.listcolumnName = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.BillBtn = new System.Windows.Forms.Button();
+            this.AddOrderbtn = new System.Windows.Forms.Button();
+            this.ReserveTableBtn = new System.Windows.Forms.Button();
+            this.FreeTableBtn = new System.Windows.Forms.Button();
+            this.tableNumberlbl = new System.Windows.Forms.Label();
+            columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
             // 
             // columnHeader1
             // 
@@ -59,172 +59,186 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(Userlbl);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(GoBackBtn);
-            panel1.Controls.Add(LogoutBtn);
-            panel1.Location = new Point(-1, -2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(801, 103);
-            panel1.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.Userlbl);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.GoBackBtn);
+            this.panel1.Controls.Add(this.LogoutBtn);
+            this.panel1.Location = new System.Drawing.Point(-2, -4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1488, 220);
+            this.panel1.TabIndex = 0;
             // 
             // Userlbl
             // 
-            Userlbl.AutoSize = true;
-            Userlbl.Location = new Point(680, 44);
-            Userlbl.Name = "Userlbl";
-            Userlbl.Size = new Size(0, 15);
-            Userlbl.TabIndex = 4;
+            this.Userlbl.AutoSize = true;
+            this.Userlbl.Location = new System.Drawing.Point(1263, 94);
+            this.Userlbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.Userlbl.Name = "Userlbl";
+            this.Userlbl.Size = new System.Drawing.Size(0, 32);
+            this.Userlbl.TabIndex = 4;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(616, 44);
-            label1.Name = "label1";
-            label1.Size = new Size(30, 15);
-            label1.TabIndex = 3;
-            label1.Text = "User";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1144, 94);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 32);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "User";
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(264, 16);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(184, 50);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(490, 34);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(342, 107);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // GoBackBtn
             // 
-            GoBackBtn.Location = new Point(36, 59);
-            GoBackBtn.Name = "GoBackBtn";
-            GoBackBtn.Size = new Size(75, 25);
-            GoBackBtn.TabIndex = 1;
-            GoBackBtn.Text = "Back";
-            GoBackBtn.UseVisualStyleBackColor = true;
-            GoBackBtn.Click += GoBackBtn_Click;
+            this.GoBackBtn.Location = new System.Drawing.Point(67, 126);
+            this.GoBackBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GoBackBtn.Name = "GoBackBtn";
+            this.GoBackBtn.Size = new System.Drawing.Size(139, 53);
+            this.GoBackBtn.TabIndex = 1;
+            this.GoBackBtn.Text = "Back";
+            this.GoBackBtn.UseVisualStyleBackColor = true;
             // 
             // LogoutBtn
             // 
-            LogoutBtn.Location = new Point(36, 16);
-            LogoutBtn.Name = "LogoutBtn";
-            LogoutBtn.Size = new Size(75, 26);
-            LogoutBtn.TabIndex = 0;
-            LogoutBtn.Text = "Logout";
-            LogoutBtn.UseVisualStyleBackColor = true;
-            LogoutBtn.Click += LogoutBtn_Click;
+            this.LogoutBtn.Location = new System.Drawing.Point(67, 34);
+            this.LogoutBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Size = new System.Drawing.Size(139, 55);
+            this.LogoutBtn.TabIndex = 0;
+            this.LogoutBtn.Text = "Logout";
+            this.LogoutBtn.UseVisualStyleBackColor = true;
             // 
             // listViewOrders
             // 
-            listViewOrders.Columns.AddRange(new ColumnHeader[] { listcolumnName, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
-            listViewOrders.Location = new Point(12, 130);
-            listViewOrders.Name = "listViewOrders";
-            listViewOrders.Size = new Size(597, 335);
-            listViewOrders.TabIndex = 1;
-            listViewOrders.UseCompatibleStateImageBehavior = false;
-            listViewOrders.View = View.Details;
+            this.listViewOrders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listcolumnName,
+            columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listViewOrders.Location = new System.Drawing.Point(22, 277);
+            this.listViewOrders.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listViewOrders.Name = "listViewOrders";
+            this.listViewOrders.Size = new System.Drawing.Size(1105, 710);
+            this.listViewOrders.TabIndex = 1;
+            this.listViewOrders.UseCompatibleStateImageBehavior = false;
+            this.listViewOrders.View = System.Windows.Forms.View.Details;
             // 
             // listcolumnName
             // 
-            listcolumnName.Text = "Name";
-            listcolumnName.Width = 100;
+            this.listcolumnName.Text = "Name";
+            this.listcolumnName.Width = 100;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Price";
-            columnHeader2.Width = 100;
+            this.columnHeader2.Text = "Price";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            columnHeader3.Text = "Status";
-            columnHeader3.Width = 100;
-            // 
-            // BillBtn
-            // 
-            BillBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            BillBtn.Location = new Point(629, 203);
-            BillBtn.Name = "BillBtn";
-            BillBtn.Size = new Size(115, 40);
-            BillBtn.TabIndex = 2;
-            BillBtn.Text = "Bill";
-            BillBtn.UseVisualStyleBackColor = true;
-            BillBtn.Click += BillBtn_Click;
-            // 
-            // AddOrderbtn
-            // 
-            AddOrderbtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            AddOrderbtn.Location = new Point(629, 144);
-            AddOrderbtn.Name = "AddOrderbtn";
-            AddOrderbtn.Size = new Size(115, 39);
-            AddOrderbtn.TabIndex = 3;
-            AddOrderbtn.Text = "Add Order";
-            AddOrderbtn.UseVisualStyleBackColor = true;
-            AddOrderbtn.Click += AddOrderbtn_Click;
-            // 
-            // ReserveTableBtn
-            // 
-            ReserveTableBtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            ReserveTableBtn.Location = new Point(629, 262);
-            ReserveTableBtn.Name = "ReserveTableBtn";
-            ReserveTableBtn.Size = new Size(123, 65);
-            ReserveTableBtn.TabIndex = 4;
-            ReserveTableBtn.Text = "Reserve Table";
-            ReserveTableBtn.UseVisualStyleBackColor = true;
-            ReserveTableBtn.Click += OccupyTableBtn_Click;
-            // 
-            // FreeTableBtn
-            // 
-            FreeTableBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            FreeTableBtn.Location = new Point(629, 348);
-            FreeTableBtn.Name = "FreeTableBtn";
-            FreeTableBtn.Size = new Size(115, 55);
-            FreeTableBtn.TabIndex = 5;
-            FreeTableBtn.Text = "FreeTable";
-            FreeTableBtn.UseVisualStyleBackColor = true;
-            FreeTableBtn.Click += FreeTableBtn_Click;
-            // 
-            // tableNumberlbl
-            // 
-            tableNumberlbl.AutoSize = true;
-            tableNumberlbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            tableNumberlbl.Location = new Point(279, 106);
-            tableNumberlbl.Name = "tableNumberlbl";
-            tableNumberlbl.Size = new Size(22, 21);
-            tableNumberlbl.TabIndex = 6;
-            tableNumberlbl.Text = "...";
+            this.columnHeader3.Text = "Status";
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            columnHeader4.Text = "Comment";
-            columnHeader4.Width = 100;
+            this.columnHeader4.Text = "Comment";
+            this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
-            columnHeader5.Text = "OrderTime";
-            columnHeader5.Width = 100;
+            this.columnHeader5.Text = "OrderTime";
+            this.columnHeader5.Width = 100;
+            // 
+            // BillBtn
+            // 
+            this.BillBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BillBtn.Location = new System.Drawing.Point(1168, 433);
+            this.BillBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BillBtn.Name = "BillBtn";
+            this.BillBtn.Size = new System.Drawing.Size(214, 85);
+            this.BillBtn.TabIndex = 2;
+            this.BillBtn.Text = "Bill";
+            this.BillBtn.UseVisualStyleBackColor = true;
+            // 
+            // AddOrderbtn
+            // 
+            this.AddOrderbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AddOrderbtn.Location = new System.Drawing.Point(1168, 307);
+            this.AddOrderbtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AddOrderbtn.Name = "AddOrderbtn";
+            this.AddOrderbtn.Size = new System.Drawing.Size(214, 83);
+            this.AddOrderbtn.TabIndex = 3;
+            this.AddOrderbtn.Text = "Add Order";
+            this.AddOrderbtn.UseVisualStyleBackColor = true;
+            // 
+            // ReserveTableBtn
+            // 
+            this.ReserveTableBtn.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ReserveTableBtn.Location = new System.Drawing.Point(1168, 559);
+            this.ReserveTableBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ReserveTableBtn.Name = "ReserveTableBtn";
+            this.ReserveTableBtn.Size = new System.Drawing.Size(228, 139);
+            this.ReserveTableBtn.TabIndex = 4;
+            this.ReserveTableBtn.Text = "Reserve Table";
+            this.ReserveTableBtn.UseVisualStyleBackColor = true;
+            // 
+            // FreeTableBtn
+            // 
+            this.FreeTableBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FreeTableBtn.Location = new System.Drawing.Point(1168, 742);
+            this.FreeTableBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.FreeTableBtn.Name = "FreeTableBtn";
+            this.FreeTableBtn.Size = new System.Drawing.Size(214, 117);
+            this.FreeTableBtn.TabIndex = 5;
+            this.FreeTableBtn.Text = "FreeTable";
+            this.FreeTableBtn.UseVisualStyleBackColor = true;
+            // 
+            // tableNumberlbl
+            // 
+            this.tableNumberlbl.AutoSize = true;
+            this.tableNumberlbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tableNumberlbl.Location = new System.Drawing.Point(518, 226);
+            this.tableNumberlbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.tableNumberlbl.Name = "tableNumberlbl";
+            this.tableNumberlbl.Size = new System.Drawing.Size(47, 45);
+            this.tableNumberlbl.TabIndex = 6;
+            this.tableNumberlbl.Text = "...";
             // 
             // TableOrderView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 508);
-            Controls.Add(tableNumberlbl);
-            Controls.Add(FreeTableBtn);
-            Controls.Add(ReserveTableBtn);
-            Controls.Add(AddOrderbtn);
-            Controls.Add(BillBtn);
-            Controls.Add(listViewOrders);
-            Controls.Add(panel1);
-            Name = "TableOrderView";
-            Text = "TableOrderView";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1486, 1084);
+            this.Controls.Add(this.tableNumberlbl);
+            this.Controls.Add(this.FreeTableBtn);
+            this.Controls.Add(this.ReserveTableBtn);
+            this.Controls.Add(this.AddOrderbtn);
+            this.Controls.Add(this.BillBtn);
+            this.Controls.Add(this.listViewOrders);
+            this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Name = "TableOrderView";
+            this.Text = "TableOrderView";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

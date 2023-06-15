@@ -14,35 +14,39 @@ namespace ChapeauUI
 {
     public partial class DisplayBill : Form
     {
-       // private Payment payment;
+        private Payment payment;
         private const decimal HighVAT = 0.21m;//for the alcoholic
         private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
-
-        private OrderItem OrderItem;
+        private TableService service = new TableService();
+        Table table = new Table();
+       // int tableNumber;
         public DisplayBill()
         {
+            payment = new Payment();
             InitializeComponent();
             this.CenterToScreen();
             DisplaypaymentDetails();
-            OrderItem = new OrderItem();
+            this.table = table;
         }
 
-
+       
         private List<OrderItem> GetBill() // 
         { 
         PaymentService paymentService =new PaymentService();
-            List<OrderItem> itemsInsideBill = paymentService.GetItemsByTableNumber(4);// i should call the method in the service layer of the salman part
+            List<OrderItem> itemsInsideBill = paymentService.GetItemsByTableNumber(2);// i should call the method in the service layer of the salman part
             return itemsInsideBill;
         }
 
         private void DisplayBillItems(List<OrderItem> orderItems)
         {
             ListViewBill.Clear();
-            ListViewBill.Columns.Add("Quantity", 200);
-            ListViewBill.Columns.Add("TNum", 100);
-            ListViewBill.Columns.Add("Item", 200);
-            ListViewBill.Columns.Add("Comment", 200);
-            ListViewBill.Columns.Add("Price", 200);
+            ListViewBill.Columns.Add("Quantity",100);
+            ListViewBill.Columns.Add("TNum",100);
+            ListViewBill.Columns.Add("Item",200);
+            ListViewBill.Columns.Add("Comment",200);
+            ListViewBill.Columns.Add("Price",100);
+            ListViewBill.Columns.Add("VatAmount",100);
+
 
             foreach (OrderItem order in orderItems)
             {
@@ -52,6 +56,9 @@ namespace ChapeauUI
                 listView.SubItems.Add(order.Comment);
                 listView.SubItems.Add(order.PricePerItem.ToString());
 
+                decimal vatAmount = VATPerItem(order);
+                listView.SubItems.Add(vatAmount.ToString("0.00"));
+               
                 listView.Tag = order;
                 ListViewBill.Items.Add(listView);
             }
@@ -60,6 +67,7 @@ namespace ChapeauUI
             ListViewBill.Columns[2].Width = 200;
             ListViewBill.Columns[3].Width = 200;
             ListViewBill.Columns[4].Width = 100;
+            ListViewBill.Columns[5].Width = 100;
 
             ListViewBill.View = View.Details;
         }
@@ -71,14 +79,15 @@ namespace ChapeauUI
         }
         private void DisplaypaymentDetails()
         {
-             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT(4);// here should i call the method from the Salman part
+             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT(2);// here should i call the method from the Salman part
             txtTotalPriceWithoutVat.Text = TotalPriceExcludeVat.ToString();
 
             decimal TotalVAT = TotalVat();
             lblTotalVAT.Text = $"{TotalVAT:0.00}";
 
-            decimal totalAmountIncVAT = TotalAmountIncludeVAT();
-            lblResultPriceWithVAT.Text = totalAmountIncVAT.ToString("0.00");
+            payment.TotalAmount = TotalAmountIncludeVAT();
+            lblResultPriceWithVAT.Text = payment.TotalAmount.ToString("0.00");
+
         }
         
 
@@ -97,13 +106,12 @@ namespace ChapeauUI
             }
             return totalAmount;
         }
-   
 
        
         internal decimal TotalVat()//  this method is called inside the DisplayPaymentMethod so is internal
         { 
             PaymentService paymentService = new PaymentService();
-            List<OrderItem> items = paymentService.GetItemsByTableNumber(4); // Retrieve all items from the DAL
+            List<OrderItem> items = paymentService.GetItemsByTableNumber(2); // Retrieve all items from the DAL
 
             decimal totalVat = 0;
             foreach (OrderItem item in items)
@@ -127,15 +135,14 @@ namespace ChapeauUI
 
         private void btnProceedToPayment_Click(object sender, EventArgs e)
         {
-            DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(OrderItem);// by this way i can access the same instance in diff form
+            DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(payment);
             paymentMethod.Show();
         }
 
         internal decimal TotalAmountIncludeVAT()
         { 
-         return TotalVat() + TotalPriceWithoutVAT(4);
+         return TotalVat() + TotalPriceWithoutVAT(2);
         }
-
-       
+      
     }
 }

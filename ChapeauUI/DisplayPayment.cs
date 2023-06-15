@@ -14,18 +14,26 @@ namespace ChapeauUI
 {
     public partial class DisplayPayment : Form
     {
-
-        public DisplayPayment( )
+       private Payment payment;
+        public DisplayPayment(Payment payment)
         {
             InitializeComponent();
             this.CenterToScreen();
+            this.payment = payment;
+
+            // Call the method to retrieve the payment history from the database
+            List<Payment> paymentHistory = GetPaymentHistory();
+            // Display the payment history in the ListView
+            DisplayPaymentHistory(paymentHistory);
         }
       
             private List<Payment> GetPaymentHistory()
             {
-                PaymentService paymentService = new PaymentService();
-                List<Payment> paymentHistory = paymentService.GetPaymentHistory();
-                return paymentHistory;
+             PaymentService paymentService = new PaymentService();
+             paymentService.StorePaymentHistory(payment);// insert
+            // Retrieve the payment history from the service layer
+            List<Payment> paymentHistory = paymentService.GetLastPaymentHistory();
+            return paymentHistory;
             }
 
         
@@ -36,7 +44,7 @@ namespace ChapeauUI
             listViewPaymentHistory.Columns.Add("Tip", 100);
             listViewPaymentHistory.Columns.Add("Feedback", 200);
             listViewPaymentHistory.Columns.Add("TableNumber", 100);
-            listViewPaymentHistory.Columns.Add("PaymentMethod", 150); // Add the PaymentMethod column
+            listViewPaymentHistory.Columns.Add("PaymentMethods", 150); // Update column name
 
             foreach (Payment payment in payments)
             {
@@ -45,35 +53,38 @@ namespace ChapeauUI
                 listView.SubItems.Add(payment.Feedback);
                 listView.SubItems.Add(payment.tableNumber.ToString());
 
-                PaymentService service = new PaymentService();
-                string paymentMethod =service.GetPaymentMethod(payment.PaymentHistoryID);
-                listView.SubItems.Add(paymentMethod);
+                string paymentMethodsString = string.Join(", ", payment.PaymentMethods);
+                listView.SubItems.Add(paymentMethodsString);
 
                 listView.Tag = payment;
                 listViewPaymentHistory.Items.Add(listView);
             }
+
+            // Set column widths and other properties of the ListView
             listViewPaymentHistory.Columns[0].Width = 100;
             listViewPaymentHistory.Columns[1].Width = 50;
             listViewPaymentHistory.Columns[2].Width = 200;
             listViewPaymentHistory.Columns[3].Width = 50;
             listViewPaymentHistory.Columns[4].Width = 100;
             listViewPaymentHistory.View = View.Details;
-          }
-         
-         
-        private void btnTableView_Click(object sender, EventArgs e)
-        {
-           // TableOverview tablesOverView = new TableOverview();
 
-        }
+          }
+
 
         private void btnPaymentHistory_Click(object sender, EventArgs e)
         {
-            // Call the method to retrieve the payment history from the database
-            List<Payment> paymentHistory = GetPaymentHistory();
-
+            int paymentHistoryID = int.Parse(txtPaymentHistoryID.Text);
+            PaymentService service = new PaymentService();
+           // List<Payment> paymentHistory = service.GetPaymentHistory();
             // Display the payment history in the ListView
-            DisplayPaymentHistory(paymentHistory);
+            //DisplayPaymentHistory(paymentHistory);
+
+        }
+
+        private void btnTableView_Click(object sender, EventArgs e)
+        {
+            // TableOverview tablesOverView = new TableOverview();
+
         }
     }
 }
