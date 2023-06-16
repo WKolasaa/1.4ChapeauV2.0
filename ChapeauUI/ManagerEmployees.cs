@@ -15,7 +15,7 @@ namespace ChapeauUI
 {
     public partial class ManagerEmployees : Form
     {
-        ManagerMenuStip strip = new ManagerMenuStip();  
+        ManagerMenuStip strip = new ManagerMenuStip();
         public ManagerEmployees()
         {
             InitializeComponent();
@@ -41,7 +41,6 @@ namespace ChapeauUI
             lvEmployees.Columns.Add("Name", 150);
             lvEmployees.Columns.Add("User Name", 150);
             lvEmployees.Columns.Add("Role", 100);
-            lvEmployees.Columns.Add("Password", 150);
 
             foreach (var employee in employees)
             {
@@ -50,7 +49,6 @@ namespace ChapeauUI
                 li.SubItems.Add(employee.Name);
                 li.SubItems.Add(employee.UserName);
                 li.SubItems.Add(employee.EmployeeType.ToString());
-                li.SubItems.Add(employee.Password);
 
                 li.Tag = employee;
                 lvEmployees.Items.Add(li);
@@ -61,12 +59,12 @@ namespace ChapeauUI
 
         private void btEmployeesAdd_Click(object sender, EventArgs e)
         {
-            ManagerEmployeeAdd sistema = new ManagerEmployeeAdd();
+            ManagerEmployeeAdd sistema = new ManagerEmployeeAdd(true, tempEmployee);
             sistema.ShowDialog();
             DisplayEmployees(GetEmployees());
         }
 
-        Employee tempEmployee = new Employee();
+        Employee tempEmployee;
 
         private void btEmployeesUpdate_Click(object sender, EventArgs e)
         {
@@ -76,8 +74,8 @@ namespace ChapeauUI
             }
             else
             {
-                ManagerEmployeeUpdate managerEmployeeUpdate = new ManagerEmployeeUpdate(tempEmployee);
-                managerEmployeeUpdate.ShowDialog();
+                ManagerEmployeeAdd form = new ManagerEmployeeAdd(false, tempEmployee);
+                form.ShowDialog();
                 DisplayEmployees(GetEmployees());
             }
         }

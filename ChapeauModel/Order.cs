@@ -15,7 +15,6 @@ namespace ChapeauModel
         public Employee Employee { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime OrderTime { get; set; }
-
         public OrderItem Comment { get; set; }
 
         public Order(int orderID, Table tableNumber, Employee employee, OrderStatus order_Status, float totalPrice, DateTime dateTime, OrderItem comment)

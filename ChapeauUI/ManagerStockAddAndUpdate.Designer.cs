@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerStockAdd
+    partial class ManagerStockAddAndUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -40,13 +40,14 @@
             // 
             // btAddStock
             // 
+            btAddStock.BackColor = Color.FromArgb(138, 210, 176);
             btAddStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btAddStock.Location = new Point(74, 299);
             btAddStock.Name = "btAddStock";
             btAddStock.Size = new Size(190, 29);
             btAddStock.TabIndex = 20;
             btAddStock.Text = "Add Stock Item";
-            btAddStock.UseVisualStyleBackColor = true;
+            btAddStock.UseVisualStyleBackColor = false;
             btAddStock.Click += btAddStock_Click;
             // 
             // txtAddStockQuantity
@@ -105,13 +106,14 @@
             // 
             // btCancel
             // 
+            btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btCancel.Location = new Point(320, 299);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 21;
             btCancel.Text = "Cancel";
-            btCancel.UseVisualStyleBackColor = true;
+            btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
             // ManagerStockAdd
@@ -129,7 +131,6 @@
             Controls.Add(label1);
             Name = "ManagerStockAdd";
             Text = "ManagerStockAdd";
-            Load += ManagerStockAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }

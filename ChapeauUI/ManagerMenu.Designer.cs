@@ -42,35 +42,38 @@
             // 
             // btMenuUpdate
             // 
+            btMenuUpdate.BackColor = Color.FromArgb(255, 179, 71);
             btMenuUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btMenuUpdate.Location = new Point(322, 349);
             btMenuUpdate.Name = "btMenuUpdate";
             btMenuUpdate.Size = new Size(134, 52);
             btMenuUpdate.TabIndex = 7;
             btMenuUpdate.Text = "Update";
-            btMenuUpdate.UseVisualStyleBackColor = true;
+            btMenuUpdate.UseVisualStyleBackColor = false;
             btMenuUpdate.Click += btMenuUpdate_Click;
             // 
             // btMenuRemove
             // 
+            btMenuRemove.BackColor = Color.FromArgb(245, 108, 117);
             btMenuRemove.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btMenuRemove.Location = new Point(619, 349);
             btMenuRemove.Name = "btMenuRemove";
             btMenuRemove.Size = new Size(134, 52);
             btMenuRemove.TabIndex = 6;
             btMenuRemove.Text = "Remove";
-            btMenuRemove.UseVisualStyleBackColor = true;
+            btMenuRemove.UseVisualStyleBackColor = false;
             btMenuRemove.Click += btMenuRemove_Click;
             // 
             // btMenuAdd
             // 
+            btMenuAdd.BackColor = Color.FromArgb(138, 210, 176);
             btMenuAdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btMenuAdd.Location = new Point(47, 349);
             btMenuAdd.Name = "btMenuAdd";
             btMenuAdd.Size = new Size(134, 52);
             btMenuAdd.TabIndex = 5;
             btMenuAdd.Text = "Add";
-            btMenuAdd.UseVisualStyleBackColor = true;
+            btMenuAdd.UseVisualStyleBackColor = false;
             btMenuAdd.Click += btMenuAdd_Click;
             // 
             // lvMenu

@@ -16,6 +16,8 @@ namespace ChapeauUI
     public partial class ManagerStock : Form
     {
         ManagerMenuStip strip = new ManagerMenuStip();
+        Stock temp;
+
         public ManagerStock()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace ChapeauUI
             lvStock.Clear();
 
             lvStock.Columns.Add("ID", 50);
-            lvStock.Columns.Add("Name", 400);
+            lvStock.Columns.Add("Name", 560);
             lvStock.Columns.Add("Quantity", 100);
 
             foreach (Stock st in stock)
@@ -56,12 +58,12 @@ namespace ChapeauUI
 
         private void btStockAdd_Click(object sender, EventArgs e)
         {
-            ManagerStockAdd managerStockAdd = new ManagerStockAdd();
+            ManagerStockAddAndUpdate managerStockAdd = new ManagerStockAddAndUpdate(true, temp);
             managerStockAdd.ShowDialog();
             DisplayStock(GetStock());
         }
 
-        Stock temp = new Stock();
+        
 
         private void btStockUpdate_Click(object sender, EventArgs e)
         {
@@ -69,17 +71,17 @@ namespace ChapeauUI
                 MessageBox.Show("Stock item wasn't selected");
             else
             {
-                ManagerStockUpdate managerStockUpdate = new ManagerStockUpdate(temp);
-                managerStockUpdate.ShowDialog();
+                ManagerStockAddAndUpdate managerStockAdd = new ManagerStockAddAndUpdate(false, temp);
+                managerStockAdd.ShowDialog();
                 DisplayStock(GetStock());
             }
         }
 
         private void btStockRemove_Click(object sender, EventArgs e)
         {
-            if(lvStock.SelectedItems.Count == 0)
+            if (lvStock.SelectedItems.Count == 0)
                 MessageBox.Show("Stock item wasn't selected");
-            else 
+            else
             {
                 StockService stockService = new StockService();
 
@@ -96,8 +98,11 @@ namespace ChapeauUI
 
         private void lvStock_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem li = lvStock.SelectedItems[0];
-            temp = (Stock)li.Tag;
+            if (lvStock.SelectedItems.Count > 0)
+            {
+                ListViewItem li = lvStock.SelectedItems[0];
+                temp = (Stock)li.Tag;
+            }
         }
 
         private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)

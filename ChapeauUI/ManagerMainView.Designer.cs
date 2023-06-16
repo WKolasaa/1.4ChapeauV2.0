@@ -43,35 +43,38 @@
             // 
             // btManagerEmployees
             // 
+            btManagerEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btManagerEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btManagerEmployees.Location = new Point(291, 94);
             btManagerEmployees.Name = "btManagerEmployees";
             btManagerEmployees.Size = new Size(161, 52);
             btManagerEmployees.TabIndex = 0;
             btManagerEmployees.Text = "Employees";
-            btManagerEmployees.UseVisualStyleBackColor = true;
+            btManagerEmployees.UseVisualStyleBackColor = false;
             btManagerEmployees.Click += btManagerEmployees_Click;
             // 
             // btStockEmployees
             // 
+            btStockEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btStockEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btStockEmployees.Location = new Point(291, 195);
             btStockEmployees.Name = "btStockEmployees";
             btStockEmployees.Size = new Size(161, 52);
             btStockEmployees.TabIndex = 1;
             btStockEmployees.Text = "Stock";
-            btStockEmployees.UseVisualStyleBackColor = true;
+            btStockEmployees.UseVisualStyleBackColor = false;
             btStockEmployees.Click += btStockEmployees_Click;
             // 
             // btMenuEmployees
             // 
+            btMenuEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btMenuEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btMenuEmployees.Location = new Point(291, 305);
             btMenuEmployees.Name = "btMenuEmployees";
             btMenuEmployees.Size = new Size(161, 52);
             btMenuEmployees.TabIndex = 2;
             btMenuEmployees.Text = "Menu";
-            btMenuEmployees.UseVisualStyleBackColor = true;
+            btMenuEmployees.UseVisualStyleBackColor = false;
             btMenuEmployees.Click += btMenuEmployees_Click;
             // 
             // menuStrip1
@@ -128,13 +131,14 @@
             // 
             // btLogout
             // 
+            btLogout.BackColor = Color.FromArgb(255, 179, 71);
             btLogout.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btLogout.Location = new Point(615, 139);
             btLogout.Name = "btLogout";
             btLogout.Size = new Size(114, 32);
             btLogout.TabIndex = 5;
             btLogout.Text = "Log out";
-            btLogout.UseVisualStyleBackColor = true;
+            btLogout.UseVisualStyleBackColor = false;
             btLogout.Click += btLogout_Click;
             // 
             // ManagerMainView

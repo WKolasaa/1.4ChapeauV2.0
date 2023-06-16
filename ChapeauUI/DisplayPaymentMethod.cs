@@ -5,220 +5,386 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using ComboBox = System.Windows.Forms.ComboBox;
+using Label = System.Windows.Forms.Label;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace ChapeauUI
 {
     public partial class DisplayPaymentMethod : Form
     {
         private Payment payment;
+        private List<ComboBox> paymentMethodList; // List to store the selected payment methods
+        private List<TextBox> amountTextBoxList; // List to store the entered amounts
+        private int currentPersonIndex = 0; // Index of the current person
+        private int numberOfPeople = 0;
+        private decimal tip = 0;
 
         public DisplayPaymentMethod(Payment payment)
         {
-            this.payment=payment;
+            this.payment = payment;
+            payment.PaymentMethods = new List<PaymentMethod>();
+
             InitializeComponent();
             this.CenterToScreen();
-            btnSet.Click += btnSet_Click;
+
 
             rbtnNo.Checked = false;
             rbtnYes.Checked = false;
 
-       
             lblSplitQuestion.Hide();
-            txtNumberOfPeople.Hide();
-            lblPaymentMethodNoSplit.Hide();
-            groupBoxPaymentMethods.Hide();
-            dataGridViewSplitBill.Hide();
-           btnSet.Hide();
+            btnSubmitAll.Hide();
+            numericUpDownNumberOfPeople.Minimum = 2;// set the minimum
+            numericUpDownNumberOfPeople.Hide();
+            btnSetNumber.Hide();
+            lblFeddbackHeader.Show();
+            lblFeddbackHeader.Show();
+            btnSubmitAll.Show();
+            txtTipAmount.Show();
+            txtFeedback.Show();
+            btnNextPerson.Hide();
         }
 
 
         private void rbtnYes_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtnYes.Checked)
+            if (CollectivePayment())
             {
-            
+
                 lblSplitQuestion.Show();
-                txtNumberOfPeople.Show();
-                lblPaymentMethodNoSplit.Hide();
-                groupBoxPaymentMethods.Hide();
+                btnSubmitAll.Show();
+                btnSetNumber.Show();
+                numericUpDownNumberOfPeople.Show();
+
             }
 
         }
         private void rbtnNo_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtnNo.Checked)
+            if (!CollectivePayment())
             {
-              
                 lblSplitQuestion.Hide();
-                txtNumberOfPeople.Hide();
-             
-                lblPaymentMethodNoSplit.Show();
-                groupBoxPaymentMethods.Show();  
+                btnSubmitAll.Show();
+                numericUpDownNumberOfPeople.Visible = false;
+                numberOfPeople = 1;
+                btnSetNumber.Hide();
+                btnNextPerson.Show();
+
+                pnlPersonControls.Controls.Clear();
+                ShowPersonControls(0);
             }
+        }
+        private bool CollectivePayment()
+        {
+            return rbtnYes.Checked;
         }
 
 
-        /*private decimal AmountPerPerson(int numberOfPeople)
+        private void btnSetNumber_Click(object sender, EventArgs e)//responsible for initializing and setting up the controls based on the number of people
         {
-            DisplayBill bill = new DisplayBill();
-             decimal totalAmount = bill.TotalAmountIncVAT();
-            decimal amountPerPerson = totalAmount / numberOfPeople;
-            return amountPerPerson;
-        }*/
+            numberOfPeople = (int)numericUpDownNumberOfPeople.Value;
+            if (CollectivePayment())
+            {
+                btnNextPerson.Show();
+            }
+
+            pnlPersonControls.Controls.Clear();
+            paymentMethodList = new List<ComboBox>();
+            amountTextBoxList = new List<TextBox>();// for calculating the total price
+          //  payment.PaymentMethods = new List<PaymentMethod>();
+
+
+            int labelX = 10; // Represents the X coordinate for the labels
+            int controlX = labelX + 100; // Represents the X coordinate for the combo boxes and text boxes
+
+            int verticalGap = 80; // Represents the vertical space between the controls
+            int horizontalSpace = 50; // Represents the horizontal space between the controls
+
+            for (int i = 1; i <= numberOfPeople; i++)
+            {
+                // Create a ComboBox for the payment method selection
+                ComboBox comboBox = new ComboBox();
+                comboBox.Name = "comboBoxPerson" + i;
+                comboBox.Location = new Point(controlX + 30, (i - 1) * verticalGap);
+                comboBox.Size = new Size(100, 20);
+                comboBox.Items.Add("Cash");
+                comboBox.Items.Add("Visa");
+                comboBox.Items.Add("Debit");
+                pnlPersonControls.Controls.Add(comboBox);
+
+                // Add the ComboBox to the paymentMethodList
+                paymentMethodList.Add(comboBox);// !!!!!!!!!!!!!!!!!!!!
+
+                // Create a TextBox for entering the payment amount
+                TextBox textBox = new TextBox();
+                textBox.Name = "textBoxAmount" + i;
+                textBox.Location = new Point(controlX + comboBox.Width + horizontalSpace + 25, (i - 1) * verticalGap);
+                textBox.Size = new Size(140, 80);
+                pnlPersonControls.Controls.Add(textBox);
+
+            }
+            // Display the first person's controls
+            ShowPersonControls(0);
+            btnSetNumber.BackColor = Color.Orange;
+        }
+
         
-        private void btnVisa_Click(object sender, EventArgs e)
+
+        private void ShowPersonControls(int index)//handles the actual display
         {
 
-            if (btnVisa.BackColor == Color.Green)
+            // Clear the panel before displaying the controls
+            pnlPersonControls.Controls.Clear();
+
+            int labelX = 30; // Represents the X coordinate for the labels
+            int controlX = labelX + 100; // Represents the X coordinate for the combo boxes and text boxes
+
+            Label label = new Label(); // Add this line
+            label.Font = new Font(label.Font, FontStyle.Regular);
+            label.Size = new Size(200, 60);
+            label.Location = new Point(labelX, 0);
+            pnlPersonControls.Controls.Add(label);
+
+            ComboBox comboBox = new ComboBox();
+            comboBox.Location = new Point(controlX + 100, 0);
+            comboBox.Items.Add(PaymentMethod.Cash);
+            comboBox.Items.Add(PaymentMethod.Visa);
+            comboBox.Items.Add(PaymentMethod.Debit);
+            comboBox.BackColor = Color.FloralWhite;
+            pnlPersonControls.Controls.Add(comboBox);
+            comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+
+            TextBox textBox = new TextBox();
+            textBox.Location = new Point(controlX + comboBox.Width + 240, 0);
+            textBox.BackColor = Color.FloralWhite; // Set the background color to grey
+            textBox.Size = new Size(120,50);
+            pnlPersonControls.Controls.Add(textBox);
+
+
+
+            if (CollectivePayment())
             {
-                    btnVisa.BackColor = SystemColors.Control;
-                payment.PaymentMethod = PaymentMethod.Visa;
+                label.Text = "Payer Select" + (index + 1);
+                paymentMethodList.Add(comboBox);
+                amountTextBoxList.Add(textBox);
+
+                
             }
             else
             {
-                    btnVisa.BackColor = Color.Green;
+                label.Text = "Payer ";
+
+                paymentMethodList = new List<ComboBox> { comboBox };
+                amountTextBoxList = new List<TextBox> { textBox };
+             
             }
         }
 
-        private void btnDebit_Click(object sender, EventArgs e)
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-                if (btnDebit.BackColor == Color.Green)
-                {
-                    btnDebit.BackColor = SystemColors.Control;
-                payment.PaymentMethod = PaymentMethod.Debit;
+            ComboBox comboBox = (ComboBox)sender;
 
-                }
-              else
-              {
-                 btnDebit.BackColor = Color.Green;
-              }
+            // Update the payment method when a different option is selected
+            if (comboBox.SelectedIndex >= 0)
+            {
+                PaymentMethod selectedPaymentMethod = (PaymentMethod)comboBox.SelectedItem;
+               payment.PaymentMethods.Add(selectedPaymentMethod);
+            }
         }
 
-        private void btnCash_Click(object sender, EventArgs e)
-        {
-                if (btnCash.BackColor == Color.Green)
-                {
-                    btnCash.BackColor = SystemColors.Control;
-                payment.PaymentMethod = PaymentMethod.Cash;
+        private void btnNextPerson_Click_1(object sender, EventArgs e)
+        {  
+             if (currentPersonIndex < numberOfPeople-1)
+             {
+                 paymentMethodList[currentPersonIndex].Visible = false;
+                 amountTextBoxList[currentPersonIndex].Visible = false;
+                 currentPersonIndex++;
 
-                }
-               else
-               {
-                 btnCash.BackColor = Color.Green;
-               }
+                 ShowPersonControls(currentPersonIndex);
+             }
+             else
+             {
+
+                 btnNextPerson.Text = "Done";
+                 btnNextPerson.BackColor = Color.Orange;
+                 btnNextPerson.Enabled = false;
+             }
         }
+
 
        
-        private void button1_Click(object sender, EventArgs e)//btnPAY
+        private decimal CalculateTotalAmountPaid()
+        {
+            decimal totalAmountPaid = 0;
+
+            if (!CollectivePayment()) // if split or not
+            {
+                TextBox textBox = amountTextBoxList[0];
+                if (decimal.TryParse(textBox.Text, out decimal amount)) // checks if the customer has entered a valid decimal number in the TextBox
+                {
+                    totalAmountPaid = amount;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid amount entered.");
+                }
+            }
+            else
+            {
+                foreach (TextBox textBox in amountTextBoxList)
+                {
+                    if (decimal.TryParse(textBox.Text, out decimal amount))
+                    {
+                        totalAmountPaid += amount;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid amount entered.");
+                        return 0;
+                    }
+                }
+            }
+
+            return totalAmountPaid;
+        }
+
+        private void btnAddTip_Click(object sender, EventArgs e)
+        {
+              tip = decimal.Parse(txtTipAmount.Text);
+
+            if (GiveTip(tip))
+            {
+                payment.Tips = tip;
+
+                lblThankfulMessage.Text = "TIP HAS BEEN ADDED!";
+                lblThankfulMessage.ForeColor = Color.Green;
+                btnAddTip.BackColor = Color.Orange;
+            }
+            else
+            {
+                payment.Tips = 0;
+
+                btnAddTip.Enabled = false;
+            }
+        }
+        private bool GiveTip(decimal tip)
+        {  
+            return tip > 0;
+        }
+       
+        private void btnSubmitAll_Click(object sender, EventArgs e)
+        {
+            payment.Feedback = txtFeedback.Text;
+            decimal totalAmountPaid = CalculateTotalAmountPaid();
+            decimal totalCheck = payment.TotalAmount;
+
+
+            if (totalAmountPaid >= totalCheck)
+            {
+
+                if (GiveTip(tip))
+                {
+                    totalAmountPaid += tip;
+                }
+                lblTotalAmountPaid.Text = totalAmountPaid.ToString("€ 0.00");
+
+                decimal change = totalAmountPaid - totalCheck;
+                if (change >= 0)
+                {
+                    lblTotalChange.Text = change.ToString("€ 0.00");
+                }
+                else
+                {
+                    lblTotalChange.Hide();
+                    lblChange.Hide();
+                }
+                btnSubmitAll.BackColor = Color.Orange;
+            }
+            else
+            {
+                MessageBox.Show("Insufficient amount paid."); // // / / / / // / / / / // / / / / // / / / 
+                this.Close();
+
+            }
+
+            // Calculate the total amount paid
+            /*  decimal totalAmountPaid = 0;
+             decimal amountPaidPerPerson = 0;
+
+              if (!CollectivePayment())// if split or not
+              {
+                 TextBox textBox = amountTextBoxList[0];
+                 if (decimal.TryParse(textBox.Text, out decimal amount))//checks if the customer has entered a valid decimal number in the TextBox
+                 {
+                     totalAmountPaid = amount;
+                 }
+                 else 
+                 {
+                     MessageBox.Show("Invalid amount entered.");
+                 }
+              }
+              else
+              {
+                  foreach (TextBox textBox in amountTextBoxList)
+                  {
+                     if (decimal.TryParse(textBox.Text, out decimal amount))
+                     {
+                         amountPaidPerPerson = amount;
+                         totalAmountPaid += amountPaidPerPerson;
+                     }
+                     else
+                     {
+                         // Display an error message or handle the invalid input
+                         MessageBox.Show("Invalid amount entered.");
+                         break; // Exit the loop if parsing fails for any textbox
+                     }
+                  }
+              }
+
+              // Add tip if applicable
+              if (GiveTip(tip))
+              {
+                  totalAmountPaid += tip;
+              }
+
+              // Perform UI updates
+
+
+             decimal totalCheck = payment.TotalAmount;
+             payment.Feedback = txtFeedback.Text;
+              decimal change = totalAmountPaid - totalCheck;
+              if (change >= 0)
+              {
+                  lblTotalChange.Text = change.ToString("€ 0.00");
+              }
+              else
+              {
+                  lblTotalChange.Hide();
+                  lblChange.Hide();
+
+              }
+             btnSubmitAll.BackColor = Color.Orange;*/
+        }
+
+           
+        private void btnPay_Click(object sender, EventArgs e)//btnPAY
         {
             DisplayPayment displayPayment = new DisplayPayment(payment);
             displayPayment.Show();
-        }
-
-        private void txtNumberOfPeople_TextChanged_1(object sender, EventArgs e)
-        {
-               int numberOfPeople;
-            if  (int.TryParse(txtNumberOfPeople.Text, out numberOfPeople))
-            {
-                   if (numberOfPeople > 0)
-                   {
-                    dataGridViewSplitBill.Show();
-                    btnSet.Show();
-
-                   }
-
-                   dataGridViewSplitBill.Rows.Clear();
-                  dataGridViewSplitBill.Columns.Add("PersonNumberColumn", "Person");
-                  dataGridViewSplitBill.Columns.Add("AmountPerPersonColumn", "Amount Per Person");
-                  dataGridViewSplitBill.Columns.Add("PaymentMethodColumn", "Payment Method");
-
-                for (int i = 1; i <= numberOfPeople; i++)
-                {
-                    dataGridViewSplitBill.Rows.Add(i.ToString(), "", "");
-                }
-                dataGridViewSplitBill.AllowUserToAddRows = false;
-
-            }
-            else
-            {
-                // Handle the case where the input is not a valid number
-                dataGridViewSplitBill.Rows.Clear();
-                dataGridViewSplitBill.Hide();
-            }
+            //btnPAY.Enabled = false;
         }
 
        
-
-        private void dataGridViewSplitBill_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-                //if (e.ColumnIndex == dataGridViewSplitBill.Columns["AmountPaidColumn"].Index)
-                //{
-                    // Prompt the customer to enter the amount they want to pay
-                    
-                //}
-                if (e.ColumnIndex == dataGridViewSplitBill.Columns["PaymentMethodColumn"].Index)
-                {
-                    DataGridViewButtonCell buttonCell = dataGridViewSplitBill.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
-
-                    if (buttonCell != null)
-                    {
-                        string currentMethod = buttonCell.Value.ToString().ToLower();
-                        string newMethod = "";
-
-                        switch (currentMethod)
-                        {
-                            case "visa":
-                                newMethod = "Debit";
-                            payment.PaymentMethod = PaymentMethod.Debit;
-                            break;
-                            case "debit":
-                                newMethod = "Cash";
-                            payment.PaymentMethod = PaymentMethod.Cash;
-                            break;
-                            case "cash":
-                                newMethod = "";
-                            payment.PaymentMethod = PaymentMethod.Cash;
-                            break;
-                            case "":
-                                newMethod = "Visa"; // if the customer didn't choose method visa is the default
-                            payment.PaymentMethod = PaymentMethod.Visa;
-                            break;
-                            default:
-                                // Handle the case where an unrecognized payment method is encountered
-                                MessageBox.Show("Invalid payment method.");
-                                break;
-                        }
-
-                        buttonCell.Value = newMethod;
-                    }
-                }
-        }
-
-        private void btnSet_Click(object sender, EventArgs e)
-        {
-                decimal totalAmountPaid = 0;
-
-                // Calculate the total amount paid by summing up the amounts in the dataGridViewSplitBill
-                foreach (DataGridViewRow row in dataGridViewSplitBill.Rows)
-                {
-                    if (decimal.TryParse(row.Cells["AmountPerPersonColumn"].Value.ToString(), out decimal rowAmountPaid))
-                    {
-                        totalAmountPaid += rowAmountPaid;
-                    }
-                }
-
-                DisplayBill bill = new DisplayBill();
-                decimal totalAmount = bill.TotalAmountIncVAT();
-
-                lblTotalAmountPaid.Text = totalAmountPaid.ToString("0.00");
-                payment.PaidAmount=totalAmountPaid;
-                // Calculate the change result
-                decimal changeResult = totalAmountPaid - totalAmount;
-                lblTotalChange.Text = changeResult >= 0 ? changeResult.ToString("0.00") : "Insufficient Payment";
-        }
     }
 }
+
+    
+
+
+

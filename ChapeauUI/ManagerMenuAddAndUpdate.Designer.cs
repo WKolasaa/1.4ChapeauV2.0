@@ -1,6 +1,6 @@
 ﻿namespace ChapeauUI
 {
-    partial class ManagerMenuAdd
+    partial class ManagerMenuAddAndUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -94,24 +94,26 @@
             // 
             // btAddMenu
             // 
+            btAddMenu.BackColor = Color.FromArgb(138, 210, 176);
             btAddMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btAddMenu.Location = new Point(55, 290);
             btAddMenu.Name = "btAddMenu";
             btAddMenu.Size = new Size(202, 29);
             btAddMenu.TabIndex = 13;
             btAddMenu.Text = "Add Menu Item";
-            btAddMenu.UseVisualStyleBackColor = true;
+            btAddMenu.UseVisualStyleBackColor = false;
             btAddMenu.Click += btAddMenu_Click;
             // 
             // btCancel
             // 
+            btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btCancel.Location = new Point(301, 290);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 14;
             btCancel.Text = "Cancel";
-            btCancel.UseVisualStyleBackColor = true;
+            btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
             // ManagerMenuAdd
@@ -129,7 +131,6 @@
             Controls.Add(label1);
             Name = "ManagerMenuAdd";
             Text = "ManagerMenuAdd";
-            Load += ManagerMenuAdd_Load;
             ResumeLayout(false);
             PerformLayout();
         }
