@@ -35,23 +35,22 @@ namespace ChapeauService
 
             return payments;
         }
-
-
-        public string GetPaymentMethod(int paymentHistoryId)
-        {
-            return PaymentDao.GetPaymentMethod(paymentHistoryId);
-        }
-
         
-
         public bool GetVATStatus(OrderItem item)
         {
             return PaymentDao.GetVATStatus(item);
         }
+
         public List<OrderItem> GetItemsByTableNumber(int tableNumber)
         {
             List<OrderItem> items = PaymentDao.GetItemsByTableNumber(tableNumber);
             return items;
+        }
+
+        public List<Payment> GetPaymentHistoryByID(int paymentHistoryId)
+        { 
+        List<Payment> paymentHistory=PaymentDao.GetPaymentHistoryByID(paymentHistoryId);
+            return paymentHistory;
         }
 
         public List<OrderItem> GetAllItem()
