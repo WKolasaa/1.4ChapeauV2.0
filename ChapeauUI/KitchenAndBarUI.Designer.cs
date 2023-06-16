@@ -52,6 +52,8 @@
             btnViewAllOrders = new Button();
             btnViewOngoingOrders = new Button();
             btnViewPastOrders = new Button();
+            lblTime = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHeader.SuspendLayout();
             panelHeader2.SuspendLayout();
@@ -237,7 +239,7 @@
             // 
             // btnViewOngoingOrders
             // 
-            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 128, 0);
             btnViewOngoingOrders.Location = new Point(233, 168);
             btnViewOngoingOrders.Name = "btnViewOngoingOrders";
             btnViewOngoingOrders.Size = new Size(175, 30);
@@ -257,12 +259,33 @@
             btnViewPastOrders.UseVisualStyleBackColor = false;
             btnViewPastOrders.Click += btnViewPastOrders_Click;
             // 
+            // lblTime
+            // 
+            lblTime.AutoSize = true;
+            lblTime.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTime.Location = new Point(233, 26);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(0, 30);
+            lblTime.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(155, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(71, 30);
+            label1.TabIndex = 14;
+            label1.Text = "Clock:";
+            // 
             // KitchenAndBarUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1117, 592);
+            Controls.Add(label1);
+            Controls.Add(lblTime);
             Controls.Add(btnViewPastOrders);
             Controls.Add(btnViewOngoingOrders);
             Controls.Add(btnViewAllOrders);
@@ -287,6 +310,7 @@
             panelHeader3.ResumeLayout(false);
             panelHeader3.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -314,5 +338,7 @@
         private Button btnViewAllOrders;
         private Button btnViewOngoingOrders;
         private Button btnViewPastOrders;
+        private Label lblTime;
+        private Label label1;
     }
 }
