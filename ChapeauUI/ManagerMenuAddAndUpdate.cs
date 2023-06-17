@@ -10,16 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Menu = ChapeauModel.Menu;
+using MenuItem = ChapeauModel.MenuItem;
 
 namespace ChapeauUI
 {
     public partial class ManagerMenuAddAndUpdate : Form
     {
         private bool AddForm;
-        private Menu MenuItem;
+        private MenuItem MenuItem;
 
-        public ManagerMenuAddAndUpdate(bool Add, Menu menuItem)
+        public ManagerMenuAddAndUpdate(bool Add, MenuItem menuItem)
         {
             InitializeComponent();
             CenterToScreen();
@@ -47,7 +47,7 @@ namespace ChapeauUI
                 MenuService menuService = new MenuService();
                 if (AddForm)
                 {
-                    Menu menu = insertData();
+                    MenuItem menu = insertData();
                     menuService.AddMenu(menu);
                     MessageBox.Show("Menu Item Added!");
                 }
@@ -74,9 +74,9 @@ namespace ChapeauUI
             txtAddMenuPrice.Text = MenuItem.Price.ToString();
         }
 
-        private Menu insertData()
+        private MenuItem insertData()
         {
-            Menu tempMenu = new Menu();
+            MenuItem tempMenu = new MenuItem();
 
             tempMenu.MenuItemID = int.Parse(txtAddMenuID.Text);
             tempMenu.Description = txtAddMenuDesciprion.Text;

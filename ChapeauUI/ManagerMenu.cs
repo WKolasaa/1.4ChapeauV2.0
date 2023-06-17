@@ -15,7 +15,7 @@ namespace ChapeauUI
     public partial class ManagerMenu : Form
     {
         ManagerMenuStip strip = new ManagerMenuStip();
-        Menu temp = new Menu();
+        MenuItem temp = new MenuItem();
         public ManagerMenu()
         {
             InitializeComponent();
@@ -27,13 +27,13 @@ namespace ChapeauUI
             DisplayMenu(GetMenu());
         }
 
-        private List<Menu> GetMenu()
+        private List<MenuItem> GetMenu()
         {
             MenuService menuService = new MenuService();
             return menuService.GetMenu();
         }
 
-        private void DisplayMenu(List<Menu> Menu)
+        private void DisplayMenu(List<MenuItem> Menu)
         {
             lvMenu.Clear();
 
@@ -41,7 +41,7 @@ namespace ChapeauUI
             lvMenu.Columns.Add("Name", 560);
             lvMenu.Columns.Add("Price", 100);
 
-            foreach (Menu m in Menu)
+            foreach (MenuItem m in Menu)
             {
                 ListViewItem li = new ListViewItem(m.MenuItemID.ToString());
                 li.SubItems.Add(m.Description.ToString());
@@ -101,7 +101,7 @@ namespace ChapeauUI
             if (lvMenu.SelectedIndices.Count > 0)
             {
                 ListViewItem listViewItem = lvMenu.SelectedItems[0];
-                temp = (Menu)listViewItem.Tag;
+                temp = (MenuItem)listViewItem.Tag;
             }
         }
 

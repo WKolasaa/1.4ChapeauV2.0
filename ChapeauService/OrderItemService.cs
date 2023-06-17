@@ -22,7 +22,7 @@ namespace ChapeauService
             return orderitemdao.GetAllItems();
         }
 
-        public void AddOrderItem(Menu menu)
+        public void AddOrderItem(MenuItem menu)
         {
 
         }
@@ -32,6 +32,7 @@ namespace ChapeauService
             orderitemdao.UpdateOrderItemStatus(orderitem, orderStatus);
         }
 
+   
         public List<OrderItem> GetAllDrinks()
         {
             return orderitemdao.GetAllDrinks();
@@ -47,6 +48,10 @@ namespace ChapeauService
             return orderitemdao.GetOrderItemsByTableId(taleId);
         }
 
+        public bool CheckIfTableHasActiveOrders(Table table)
+        {
+            return orderitemdao.CheckIfTableHasOrderItems(table);
+        }
 
 
         public List<OrderItem> GetAllFood()

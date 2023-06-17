@@ -19,13 +19,14 @@ namespace ChapeauUI
         TableService tableService;
         OrderService orderService;
         OrderItemService orderItemService;
-
+        OrderItem orderItem;
         public TableOrderView(Employee employee, Table table)
         {
             this.employee = employee;
             tableService = new TableService();
             orderService = new OrderService();
             orderItemService = new OrderItemService();
+            orderItem = new OrderItem();
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
@@ -70,18 +71,14 @@ namespace ChapeauUI
                 listItem.SubItems.Add(item.Status.ToString());
                 listItem.SubItems.Add($"{item.Comment}");
                 listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
+                listItem.Tag = item;
 
                 listViewOrders.Items.Add(listItem);
             }
 
             listViewOrders.View = View.Details;
 
-
-
-
         }
-
-
 
 
         private void AddOrderbtn_Click(object sender, EventArgs e)
@@ -117,9 +114,7 @@ namespace ChapeauUI
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {
-            tableService.FreeTable(table.TableNumber,TableStatus.Free);
-
-
+            tableService.FreeTable(table.TableNumber, TableStatus.Free);
         }
 
         private void BillBtn_Click(object sender, EventArgs e)
@@ -128,11 +123,28 @@ namespace ChapeauUI
             this.Hide();
             display.ShowDialog();
             this.Close();
-            tableService.FreeTable(table.TableNumber,TableStatus.Free);
-
-
+            tableService.FreeTable(table.TableNumber, TableStatus.Free);
 
         }
-    }
 
-}
+        private void servingBtn_Click(object sender, EventArgs e)
+        {
+            if (orderItem != null)
+            {
+                orderItemService.UpdateOrderItemStatus(orderItem, 3);
+            }
+
+        }
+
+        private void listViewOrders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewOrders.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewOrders.SelectedItems[0];
+                orderItem = (OrderItem)item.Tag;
+
+            }
+        }
+
+    }
+    }

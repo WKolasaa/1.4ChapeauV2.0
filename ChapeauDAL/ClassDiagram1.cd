@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SomerenDAL.BaseDao">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAACABAAAQQAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>BaseDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.EmployeeDAO">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAAICAABAAABAAEAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>EmployeeDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.MenuDAO">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAwAAAAAAAgAAAAABAAAAACAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>MenuDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.OrderDAO">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAEAAAIABAAg=</HashCode>
+      <FileName>OrderDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.OrderItemDAO">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAABAAAAAAAFAAAAAgAIAAEAAEAAAgEAAQEAAAAA=</HashCode>
+      <FileName>OrderItemDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.PaymentDao">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAACBAAAiAAAAAAAABAAAAAAEAAEAAAAAAAAAGAAAA=</HashCode>
+      <FileName>PaymentDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.StockDAO">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEAAAAAIAAAAECAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StockDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauDAL.TableDAO">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <InheritanceLine Type="SomerenDAL.BaseDao" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="3.209" />
+        <Point X="3" Y="4.375" />
+        <Point X="4.75" Y="4.375" />
+        <Point X="4.75" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCQAAAAAAAAAAAAAAAAAAAAIAAAAABAAAAA=</HashCode>
+      <FileName>TableDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

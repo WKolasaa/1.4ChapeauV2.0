@@ -20,6 +20,9 @@ namespace ChapeauUI
         TableService tableService;
         List<Table> tables;
         Dictionary<Button, Table> buttonDictionary;
+        Table table;
+        OrderItemService orderItemService;
+
 
         public TableOverview(Employee employee)
         {
@@ -31,6 +34,9 @@ namespace ChapeauUI
                 tableService = new TableService();
                 tables = tableService.GetAllTables();
                 buttonDictionary = new Dictionary<Button, Table>();
+                orderItemService = new OrderItemService();
+
+                table = new Table();
 
                 InitializeComponent();
 
@@ -38,7 +44,7 @@ namespace ChapeauUI
 
                 this.CenterToScreen();
 
-                UserNamelbl.Text = $"{employee.FirstName}";
+                UserNamelbl.Text = $"{employee.Name}";
             }
             catch (Exception ex)
             {
@@ -109,9 +115,13 @@ namespace ChapeauUI
                 int buttonsPerRow = 4;  // Set the number of buttons to display per row
                 int horizontalSpacing = 200;  // Set the desired horizontal spacing between buttons
                 int verticalSpacing = 90;  // Set the desired vertical spacing between buttons
+                int labelWidth = 140;  // Set the desired width of the status label
+                int labelHeight = 20;  // Set the desired height of the status label
+                int labelSpacing = 10;  // Set the desired spacing between the table button and the status label
 
                 for (int i = 0; i < tables.Count; i++)
                 {
+                    // Create a table button
                     Button tableButton = new Button();
                     tableButton.Text = "Table " + (i + 1);
                     tableButton.Size = new Size(buttonDiameter, buttonDiameter);
@@ -123,7 +133,7 @@ namespace ChapeauUI
                     tableButton.Location = new Point(x, y);
                     tableButton.Tag = i;
                     tableButton.Click += TableButtonClick;
-                    buttonDictionary.Add(GetColour(tables[i], tableButton), tables[i]);
+                    GetColour(tables[i], tableButton);  // Set the button color based on the table status
 
                     // Create a circular region for the button
                     System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -132,6 +142,37 @@ namespace ChapeauUI
 
                     // Add the button to the container
                     tablepanel.Controls.Add(tableButton);
+
+                    // Check if the table has order items
+                    if (orderItemService.CheckIfTableHasActiveOrders(tables[i]))
+                    {
+                        // Create a status label
+                        Label statusLabel = new Label();
+                        statusLabel.Size = new Size(labelWidth, labelHeight);
+
+                        // Calculate the X and Y coordinates for the label's location
+                        int labelX = x + buttonDiameter + labelSpacing;
+                        int labelY = y + (buttonDiameter - labelHeight) / 2;  // Center the label vertically next to the button
+
+                        statusLabel.Location = new Point(labelX, labelY);
+
+                        // Get the order status for the table
+                        List<OrderItem> orderItems = orderItemService.GetOrderStatusByTable(tables[i].TableId);
+                        if (orderItems.Count > 0)
+                        {
+                            OrderStatus orderStatus = orderItems[0].Status;
+                            string orderStatusText = $"OrderStatus:{orderStatus.ToString()}"; // Convert enum to string
+                            statusLabel.Text = orderStatusText;
+
+                        }
+                        else
+                        {
+                            statusLabel.Text = "No order";
+                        }
+
+                        // Add the label to the container
+                        tablepanel.Controls.Add(statusLabel);
+                    }
                 }
             }
             catch (Exception ex)
@@ -139,6 +180,11 @@ namespace ChapeauUI
                 MessageBox.Show("An error occurred while assigning table buttons: " + ex.Message, "Error");
             }
         }
+
+
+
+
+
 
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
@@ -162,7 +208,14 @@ namespace ChapeauUI
                         button.BackColor = Color.Yellow;
                         break;
                     case TableStatus.Free:
-                        button.BackColor = Color.Green;
+                        if (orderItemService.CheckIfTableHasActiveOrders(table))
+                        {
+                            button.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            button.BackColor = Color.Green;
+                        }
                         break;
                     case TableStatus.Reserved:
                         button.BackColor = Color.Red;
@@ -177,6 +230,7 @@ namespace ChapeauUI
                 return button;
             }
         }
+
     }
 
 }

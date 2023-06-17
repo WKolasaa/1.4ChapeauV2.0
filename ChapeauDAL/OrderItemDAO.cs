@@ -33,6 +33,23 @@ namespace ChapeauDAL
             return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
 
         }
+        public bool CheckIfTableHasOrderItems(Table table)
+        {
+            string query = "SELECT OrderItemID FROM OrderItems WHERE TableNumber = @tableNumber";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@tableNumber", table.TableId)
+            };
+
+            DataTable result = ExecuteSelectQuery(query, parameters);
+
+            return result.Rows.Count > 0; // Return true if there are order items, false otherwise
+        }
+
+
+
+
+
 
         private List<OrderItem> ReadOrderStatus(DataTable dataTable)
         {
@@ -59,6 +76,7 @@ namespace ChapeauDAL
                 orderItem.Quantity = (int)row["Quantity"];
                 orderItem.PricePerItem = (decimal)row["PricePerItem"];
                 orderItem.Status = (OrderStatus)(int)row["OrderStatus"];
+                orderItem.Comment = (string)row["Comments"];
                 orderItemList.Add(orderItem);
             }
 
@@ -170,6 +188,7 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, parameter);
         }
 
+       
         public void DeleteOrder()
         {
         }

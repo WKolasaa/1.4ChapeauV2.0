@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChapeauModel
 { 
-    public class Menu
+    public class MenuItem
     {
         public int MenuItemID { get; set; }
         public string Description { get; set; }
@@ -18,7 +18,7 @@ namespace ChapeauModel
         public string Category { get; set; }
         public string ItemType { get; set; }   
 
-        public Menu(int menuItemID, string description, double price, int contains, bool vAT_Category, string category, string itemType)
+        public MenuItem(int menuItemID, string description, double price, int contains, bool vAT_Category, string category, string itemType)
         {
             MenuItemID = menuItemID;
             Description = description;
@@ -29,6 +29,6 @@ namespace ChapeauModel
             ItemType = itemType;
         }   
 
-        public Menu() { }
+        public MenuItem() { }
     }
 }

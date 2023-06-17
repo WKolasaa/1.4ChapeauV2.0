@@ -45,7 +45,7 @@
             // 
             // Logoutbtn
             // 
-            Logoutbtn.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Logoutbtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             Logoutbtn.Location = new Point(15, 16);
             Logoutbtn.Margin = new Padding(3, 4, 3, 4);
             Logoutbtn.Name = "Logoutbtn";
@@ -103,6 +103,7 @@
             // Refreshbtn
             // 
             Refreshbtn.BackColor = Color.Transparent;
+            Refreshbtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             Refreshbtn.Location = new Point(15, 69);
             Refreshbtn.Margin = new Padding(3, 4, 3, 4);
             Refreshbtn.Name = "Refreshbtn";

@@ -14,9 +14,9 @@ namespace ChapeauDAL
     {
         // ...
 
-        public List<Menu> GetMenu()
+        public List<MenuItem> GetMenu()
         {
-            List<Menu> menuItems = new List<Menu>();
+            List<MenuItem> menuItems = new List<MenuItem>();
 
             conn.Open();
             string query = "SELECT description, price, category, sequence FROM MenuItem";
@@ -30,13 +30,13 @@ namespace ChapeauDAL
             return menuItems;
         }
 
-        private List<Menu> ReadMenuItems(DataTable dataTable)
+        private List<MenuItem> ReadMenuItems(DataTable dataTable)
         {
-            List<Menu> menu = new List<Menu>();
+            List<MenuItem> menu = new List<MenuItem>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Menu menuItem = new Menu()
+                MenuItem menuItem = new MenuItem()
                 {
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
@@ -53,12 +53,12 @@ namespace ChapeauDAL
 
             return menu;
         }
-        private Menu ReadMenuItem(DataTable dataTable)
+        private MenuItem ReadMenuItem(DataTable dataTable)
         {
             if (dataTable != null)
             {
                 DataRow row = dataTable.Rows[0];
-                Menu menuItem = new Menu()
+                MenuItem menuItem = new MenuItem()
                 {
                     Description = (string)row["description"],
                     Price = (double)row["price"],
@@ -71,9 +71,9 @@ namespace ChapeauDAL
             return null;
         }
 
-        public List<Menu> GetMenuItemByCategory(string category)
+        public List<MenuItem> GetMenuItemByCategory(string category)
         {
-            List<Menu> menuItems = new List<Menu>();
+            List<MenuItem> menuItems = new List<MenuItem>();
             string query = "SELECT description, price, category,sequence FROM MenuItem WHERE CHARINDEX(@category, category) > 0";
 
             SqlParameter[] sqlParameters = new SqlParameter[]
@@ -85,7 +85,7 @@ namespace ChapeauDAL
 
             foreach (DataRow row in reader.Rows)
             {
-                Menu menuItem = new Menu
+                MenuItem menuItem = new MenuItem
                 {
                     Description = row["description"].ToString(),
                     Price = Convert.ToSingle(row["price"]),
@@ -115,7 +115,7 @@ namespace ChapeauDAL
 
         // ...
 
-        public void AddMenuItem(Menu menu)
+        public void AddMenuItem(MenuItem menu)
         {
             conn.Open();
             string query = "INSERT INTO MenuItem (menuItemID, description, price) VALUES (@menuItemID, @description, @price)";
@@ -131,7 +131,7 @@ namespace ChapeauDAL
             conn.Close();
         }
 
-        public void UpdateMenu(Menu menu)
+        public void UpdateMenu(MenuItem menu)
         {
             conn.Open();
             string query = "UPDATE MenuItem SET description = @description, price = @price WHERE menuItemID = @itemID";
@@ -146,7 +146,7 @@ namespace ChapeauDAL
             conn.Close();
         }
 
-        public void DeleteMenuItem(Menu menu)
+        public void DeleteMenuItem(MenuItem menu)
         {
             conn.Open();
             string query = "DELETE FROM MenuItem WHERE menuItemID = @itemID";

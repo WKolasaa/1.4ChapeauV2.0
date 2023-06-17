@@ -25,13 +25,13 @@ namespace ChapeauModel
         public string Comment { get; set; }
 
         public int Category { get; set; }
-        public Menu MenuItem { get; set; }
+        public MenuItem MenuItem { get; set; }
 
         public DateTime TimePlaced { get; set; }
 
         public OrderItem() { }
 
-        public OrderItem(decimal price, int table, string name, int quantity, bool vatCategory, string comment, int category, Menu menuItem)
+        public OrderItem(decimal price, int table, string name, int quantity, bool vatCategory, string comment, int category, MenuItem menuItem)
         {
             PricePerItem = price;
             TableNumber = table;
