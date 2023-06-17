@@ -35,6 +35,7 @@
             Quantity = new ColumnHeader();
             Comments = new ColumnHeader();
             TimeSpan = new ColumnHeader();
+            OrderID = new ColumnHeader();
             listViewSelectedItem = new ListView();
             ItemID = new ColumnHeader();
             OrderStatus = new ColumnHeader();
@@ -48,7 +49,11 @@
             labelInfo2 = new Label();
             btnInPreparation = new Button();
             btnPrepared = new Button();
-            OrderID = new ColumnHeader();
+            btnViewAllOrders = new Button();
+            btnViewOngoingOrders = new Button();
+            btnViewPastOrders = new Button();
+            lblTime = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHeader.SuspendLayout();
             panelHeader2.SuspendLayout();
@@ -90,6 +95,10 @@
             // 
             TimeSpan.Text = "Time ";
             TimeSpan.Width = 90;
+            // 
+            // OrderID
+            // 
+            OrderID.Text = "Order ID";
             // 
             // listViewSelectedItem
             // 
@@ -217,9 +226,57 @@
             btnPrepared.UseVisualStyleBackColor = false;
             btnPrepared.Click += btnPrepared_Click;
             // 
-            // OrderID
+            // btnViewAllOrders
             // 
-            OrderID.Text = "Order ID";
+            btnViewAllOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewAllOrders.Location = new Point(39, 168);
+            btnViewAllOrders.Name = "btnViewAllOrders";
+            btnViewAllOrders.Size = new Size(175, 30);
+            btnViewAllOrders.TabIndex = 10;
+            btnViewAllOrders.Text = "View All Orders";
+            btnViewAllOrders.UseVisualStyleBackColor = false;
+            btnViewAllOrders.Click += btnViewAllOrders_Click;
+            // 
+            // btnViewOngoingOrders
+            // 
+            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 128, 0);
+            btnViewOngoingOrders.Location = new Point(233, 168);
+            btnViewOngoingOrders.Name = "btnViewOngoingOrders";
+            btnViewOngoingOrders.Size = new Size(175, 30);
+            btnViewOngoingOrders.TabIndex = 11;
+            btnViewOngoingOrders.Text = "View Ongoing Orders";
+            btnViewOngoingOrders.UseVisualStyleBackColor = false;
+            btnViewOngoingOrders.Click += btnViewOngoingOrders_Click;
+            // 
+            // btnViewPastOrders
+            // 
+            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewPastOrders.Location = new Point(426, 168);
+            btnViewPastOrders.Name = "btnViewPastOrders";
+            btnViewPastOrders.Size = new Size(175, 30);
+            btnViewPastOrders.TabIndex = 12;
+            btnViewPastOrders.Text = "View Past Orders";
+            btnViewPastOrders.UseVisualStyleBackColor = false;
+            btnViewPastOrders.Click += btnViewPastOrders_Click;
+            // 
+            // lblTime
+            // 
+            lblTime.AutoSize = true;
+            lblTime.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTime.Location = new Point(233, 26);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(0, 30);
+            lblTime.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(155, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(71, 30);
+            label1.TabIndex = 14;
+            label1.Text = "Clock:";
             // 
             // KitchenAndBarUI
             // 
@@ -227,6 +284,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1117, 592);
+            Controls.Add(label1);
+            Controls.Add(lblTime);
+            Controls.Add(btnViewPastOrders);
+            Controls.Add(btnViewOngoingOrders);
+            Controls.Add(btnViewAllOrders);
             Controls.Add(btnPrepared);
             Controls.Add(btnInPreparation);
             Controls.Add(panelHeader3);
@@ -236,6 +298,8 @@
             Controls.Add(pictureBox1);
             Controls.Add(listViewSelectedItem);
             Controls.Add(orderesListView);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "KitchenAndBarUI";
             Text = "Kitchen ";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -246,6 +310,7 @@
             panelHeader3.ResumeLayout(false);
             panelHeader3.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -270,5 +335,10 @@
         private ColumnHeader OrderStatus;
         private ColumnHeader TimeSpan;
         private ColumnHeader OrderID;
+        private Button btnViewAllOrders;
+        private Button btnViewOngoingOrders;
+        private Button btnViewPastOrders;
+        private Label lblTime;
+        private Label label1;
     }
 }
