@@ -33,6 +33,23 @@ namespace ChapeauDAL
             return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
 
         }
+        public bool CheckIfTableHasOrderItems(Table table)
+        {
+            string query = "SELECT OrderItemID FROM OrderItems WHERE TableNumber = @tableNumber";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@tableNumber", table.TableId)
+            };
+
+            DataTable result = ExecuteSelectQuery(query, parameters);
+
+            return result.Rows.Count > 0; // Return true if there are order items, false otherwise
+        }
+
+
+
+
+
 
         private List<OrderItem> ReadOrderStatus(DataTable dataTable)
         {
@@ -55,15 +72,35 @@ namespace ChapeauDAL
             foreach (DataRow row in dataTable.Rows)
             {
                 OrderItem orderItem = new OrderItem();
+                orderItem.OrderItemID = (int)row["OrderItemID"];
                 orderItem.ItemName = (string)row["itemName"];
                 orderItem.Quantity = (int)row["Quantity"];
                 orderItem.PricePerItem = (decimal)row["PricePerItem"];
                 orderItem.Status = (OrderStatus)(int)row["OrderStatus"];
+                orderItem.Comment = (string)row["Comments"];
                 orderItemList.Add(orderItem);
             }
 
             return orderItemList;
         }
+        public List<OrderItem> GetFoodStatusByTableId(int tableId)
+        {
+            string foodQuery = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE Category = '0' AND TableNumber = @tableNumber";
+            SqlParameter[] foodParameters = { new SqlParameter("@tableNumber", tableId) };
+            DataTable foodDataTable = ExecuteSelectQuery(foodQuery, foodParameters);
+            return ReadOrderStatus(foodDataTable);
+        }
+
+        public List<OrderItem> GetDrinkStatusByTableId(int tableId)
+        {
+            string drinkQuery = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE Category = '1' AND TableNumber = @tableNumber";
+            SqlParameter[] drinkParameters = { new SqlParameter("@tableNumber", tableId) };
+            DataTable drinkDataTable = ExecuteSelectQuery(drinkQuery, drinkParameters);
+            return ReadOrderStatus(drinkDataTable);
+        }
+
+
+
 
 
         public List<OrderItem> GetAllFood()
@@ -169,6 +206,18 @@ namespace ChapeauDAL
 
             ExecuteEditQuery(query, parameter);
         }
+
+        public void UpdateOrderStatus(OrderItem orderItem, OrderStatus status)
+        {
+            string query = "UPDATE OrderItems SET OrderStatus = @orderStatus WHERE OrderItemID = @orderItemID";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@orderStatus", (int)status),
+                new SqlParameter("@orderItemID", orderItem.OrderItemID)
+            };
+            ExecuteEditQuery(query, parameters);
+        }
+
 
         public void DeleteOrder()
         {

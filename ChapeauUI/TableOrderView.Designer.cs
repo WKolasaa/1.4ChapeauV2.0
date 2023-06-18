@@ -84,11 +84,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(704, 59);
+            label1.Location = new Point(733, 59);
             label1.Name = "label1";
-            label1.Size = new Size(38, 20);
+            label1.Size = new Size(41, 20);
             label1.TabIndex = 3;
-            label1.Text = "User";
+            label1.Text = "User:";
             // 
             // pictureBox1
             // 
@@ -103,10 +103,11 @@
             // 
             // GoBackBtn
             // 
-            GoBackBtn.Location = new Point(41, 79);
+            GoBackBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            GoBackBtn.Location = new Point(13, 78);
             GoBackBtn.Margin = new Padding(3, 4, 3, 4);
             GoBackBtn.Name = "GoBackBtn";
-            GoBackBtn.Size = new Size(86, 33);
+            GoBackBtn.Size = new Size(96, 45);
             GoBackBtn.TabIndex = 1;
             GoBackBtn.Text = "Back";
             GoBackBtn.UseVisualStyleBackColor = true;
@@ -114,10 +115,11 @@
             // 
             // LogoutBtn
             // 
-            LogoutBtn.Location = new Point(41, 21);
+            LogoutBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            LogoutBtn.Location = new Point(13, 16);
             LogoutBtn.Margin = new Padding(3, 4, 3, 4);
             LogoutBtn.Name = "LogoutBtn";
-            LogoutBtn.Size = new Size(86, 35);
+            LogoutBtn.Size = new Size(96, 45);
             LogoutBtn.TabIndex = 0;
             LogoutBtn.Text = "Logout";
             LogoutBtn.UseVisualStyleBackColor = true;
@@ -126,8 +128,10 @@
             // listViewOrders
             // 
             listViewOrders.Columns.AddRange(new ColumnHeader[] { listcolumnName, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            listViewOrders.FullRowSelect = true;
             listViewOrders.Location = new Point(14, 173);
             listViewOrders.Margin = new Padding(3, 4, 3, 4);
+            listViewOrders.MultiSelect = false;
             listViewOrders.Name = "listViewOrders";
             listViewOrders.Size = new Size(682, 445);
             listViewOrders.TabIndex = 1;
@@ -171,12 +175,12 @@
             // 
             // BillBtn
             // 
-
             BillBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
             BillBtn.Location = new Point(719, 271);
+
             BillBtn.Margin = new Padding(3, 4, 3, 4);
             BillBtn.Name = "BillBtn";
-            BillBtn.Size = new Size(131, 53);
+            BillBtn.Size = new Size(131, 64);
             BillBtn.TabIndex = 2;
             BillBtn.Text = "Bill";
             BillBtn.UseVisualStyleBackColor = true;
@@ -184,11 +188,11 @@
             // 
             // AddOrderbtn
             // 
-            AddOrderbtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            AddOrderbtn.Location = new Point(719, 192);
+            AddOrderbtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            AddOrderbtn.Location = new Point(719, 173);
             AddOrderbtn.Margin = new Padding(3, 4, 3, 4);
             AddOrderbtn.Name = "AddOrderbtn";
-            AddOrderbtn.Size = new Size(131, 52);
+            AddOrderbtn.Size = new Size(131, 64);
             AddOrderbtn.TabIndex = 3;
             AddOrderbtn.Text = "Add Order";
             AddOrderbtn.UseVisualStyleBackColor = true;
@@ -196,11 +200,11 @@
             // 
             // ReserveTableBtn
             // 
-            ReserveTableBtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            ReserveTableBtn.Location = new Point(719, 349);
+            ReserveTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            ReserveTableBtn.Location = new Point(719, 367);
             ReserveTableBtn.Margin = new Padding(3, 4, 3, 4);
             ReserveTableBtn.Name = "ReserveTableBtn";
-            ReserveTableBtn.Size = new Size(141, 87);
+            ReserveTableBtn.Size = new Size(131, 64);
             ReserveTableBtn.TabIndex = 4;
             ReserveTableBtn.Text = "Reserve Table";
             ReserveTableBtn.UseVisualStyleBackColor = true;
@@ -208,11 +212,11 @@
             // 
             // FreeTableBtn
             // 
-            FreeTableBtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            FreeTableBtn.Location = new Point(719, 464);
+            FreeTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            FreeTableBtn.Location = new Point(719, 451);
             FreeTableBtn.Margin = new Padding(3, 4, 3, 4);
             FreeTableBtn.Name = "FreeTableBtn";
-            FreeTableBtn.Size = new Size(141, 73);
+            FreeTableBtn.Size = new Size(131, 64);
             FreeTableBtn.TabIndex = 5;
             FreeTableBtn.Text = "FreeTable";
             FreeTableBtn.UseVisualStyleBackColor = true;

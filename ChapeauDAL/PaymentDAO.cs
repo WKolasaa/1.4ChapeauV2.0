@@ -25,41 +25,17 @@ namespace ChapeauDAL
                 "VALUES (@TotalAmount, @Tip, @Feedback, @TableNumber, @PaymentMethods); SELECT SCOPE_IDENTITY();",
                  conn);
 
-
             // Preventing SQL injections
             command.Parameters.AddWithValue("@TotalAmount", payment.TotalAmount);
                 command.Parameters.AddWithValue("@Tip", payment.Tips);
                 command.Parameters.AddWithValue("@Feedback", payment.Feedback);
-                command.Parameters.AddWithValue("@TableNumber", payment.tableNumber);
+                command.Parameters.AddWithValue("@TableNumber", payment.TableNumber);
                 command.Parameters.AddWithValue("@PaymentMethods", paymentMethodsString);
 
             command.ExecuteNonQuery();
 
-           
-
             conn.Close();            
          }
-
-        public string GetPaymentMethod(int paymentHistoryId)
-        {
-            string paymentMethod = string.Empty;
-            conn.Open();
-
-            SqlCommand command = new SqlCommand(
-              "SELECT PaymentMethod.PaymentMethodName " +
-              "FROM PaymentHistoryPaymentMethod " +
-              "INNER JOIN PaymentMethod ON PaymentHistoryPaymentMethod.PaymentMethodID = PaymentMethod.PaymentMethodID " +
-              "WHERE PaymentHistoryPaymentMethod.PaymentHistoryID = @PaymentHistoryID", conn);
-       
-                command.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryId);
-
-               
-            
-            conn.Close();
-            return paymentMethod;
-        }
-
-
 
         public List<Payment> GetPaymentHistory()
         {
@@ -68,6 +44,7 @@ namespace ChapeauDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
         }
+
         public List<Payment> GetLastPaymentHistory()
         {
             string query = "SELECT TOP 1 paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
@@ -79,6 +56,40 @@ namespace ChapeauDAL
 
             return ReadPaymentHistory(dataTable);
         }
+
+        public List<Payment> GetPaymentHistoryByID(int paymentHistoryId)
+        {
+            List<Payment> paymentList = new List<Payment>();
+
+            conn.Open();
+
+            SqlCommand command = new SqlCommand(
+                "SELECT paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
+                "FROM PaymentHistory " +
+                "WHERE PaymentHistoryID = @PaymentHistoryID", conn);
+            command.Parameters.AddWithValue("@PaymentHistoryID", paymentHistoryId);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Payment payment = new Payment();
+                payment.PaymentHistoryID = reader.GetInt32(0);
+                payment.TotalAmount = reader.GetDecimal(1);
+                payment.Tips = reader.GetDecimal(2);
+                payment.Feedback = reader.GetString(3);
+                payment.TableNumber = reader.GetInt32(4);
+                // Assuming PaymentMethods is stored as a string in the database
+                payment.PaymentMethods = reader.GetString(5).Split(',')
+                    .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))
+                    .ToList<PaymentMethod>();
+                paymentList.Add(payment); // Add the payment to the list
+
+            }
+            conn.Close();
+            return paymentList;
+        }
+
 
         public bool GetVATStatus(OrderItem item)
         {   
@@ -138,12 +149,9 @@ namespace ChapeauDAL
        private List<Payment> ReadPaymentHistory(DataTable dataTable) // data from database into class
        {
             List<Payment> payments = new List<Payment>();
-            HashSet<string> uniquePaymentMethods = new HashSet<string>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                int paymentHistoryID = (int)dr["paymentHistoryID"];
-                string paymentMethoddd = dr["PaymentMethods"].ToString();
 
                 Payment payment = new Payment()
                 {
@@ -151,7 +159,7 @@ namespace ChapeauDAL
                     TotalAmount = (decimal)dr["TotalAmount"],
                     Tips = (decimal)dr["Tip"],
                     Feedback = dr["Feedback"].ToString(),
-                    tableNumber = (int)dr["TableNumber"],
+                    TableNumber = (int)dr["TableNumber"],
                     PaymentMethods = new List<PaymentMethod>()
                 };
                 string paymentMethodsString = dr["PaymentMethods"].ToString();
@@ -168,12 +176,7 @@ namespace ChapeauDAL
                 payments.Add(payment);
             }
             return payments;
-
-        }
-
-
-
-
+       }
 
         private List<OrderItem> ReadOrderItems(DataTable dataTable)
        {
