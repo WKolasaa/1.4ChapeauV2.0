@@ -32,7 +32,21 @@ namespace ChapeauService
             orderitemdao.UpdateOrderItemStatus(orderitem, orderStatus);
         }
 
-   
+        public void UpdateOrderItemStats(OrderItem orderItem, OrderStatus status)
+        {
+            orderitemdao.UpdateOrderStatus(orderItem,status);
+        }
+        public List<OrderItem> GetFoodStatusByTableId(int tableId)
+        {
+            return orderitemdao.GetFoodStatusByTableId(tableId);
+        }
+
+        public List<OrderItem> GetDrinkStatusByTableId(int tableId)
+        {
+            return orderitemdao.GetDrinkStatusByTableId(tableId);
+        }
+
+
         public List<OrderItem> GetAllDrinks()
         {
             return orderitemdao.GetAllDrinks();

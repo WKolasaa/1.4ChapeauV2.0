@@ -47,7 +47,6 @@
             ReserveTableBtn = new Button();
             FreeTableBtn = new Button();
             tableNumberlbl = new Label();
-            servingBtn = new Button();
             columnHeader1 = new ColumnHeader();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -136,7 +135,6 @@
             listViewOrders.TabIndex = 1;
             listViewOrders.UseCompatibleStateImageBehavior = false;
             listViewOrders.View = View.Details;
-            listViewOrders.SelectedIndexChanged += listViewOrders_SelectedIndexChanged;
             // 
             // listcolumnName
             // 
@@ -166,7 +164,7 @@
             // BillBtn
             // 
             BillBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            BillBtn.Location = new Point(719, 255);
+            BillBtn.Location = new Point(719, 268);
             BillBtn.Margin = new Padding(3, 4, 3, 4);
             BillBtn.Name = "BillBtn";
             BillBtn.Size = new Size(131, 64);
@@ -190,7 +188,7 @@
             // ReserveTableBtn
             // 
             ReserveTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            ReserveTableBtn.Location = new Point(719, 339);
+            ReserveTableBtn.Location = new Point(719, 367);
             ReserveTableBtn.Margin = new Padding(3, 4, 3, 4);
             ReserveTableBtn.Name = "ReserveTableBtn";
             ReserveTableBtn.Size = new Size(131, 64);
@@ -202,7 +200,7 @@
             // FreeTableBtn
             // 
             FreeTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            FreeTableBtn.Location = new Point(719, 423);
+            FreeTableBtn.Location = new Point(719, 451);
             FreeTableBtn.Margin = new Padding(3, 4, 3, 4);
             FreeTableBtn.Name = "FreeTableBtn";
             FreeTableBtn.Size = new Size(131, 64);
@@ -221,24 +219,12 @@
             tableNumberlbl.TabIndex = 6;
             tableNumberlbl.Text = "...";
             // 
-            // servingBtn
-            // 
-            servingBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            servingBtn.Location = new Point(719, 505);
-            servingBtn.Name = "servingBtn";
-            servingBtn.Size = new Size(131, 64);
-            servingBtn.TabIndex = 7;
-            servingBtn.Text = "Serving";
-            servingBtn.UseVisualStyleBackColor = true;
-            servingBtn.Click += servingBtn_Click;
-            // 
             // TableOrderView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOrange;
             ClientSize = new Size(914, 677);
-            Controls.Add(servingBtn);
             Controls.Add(tableNumberlbl);
             Controls.Add(FreeTableBtn);
             Controls.Add(ReserveTableBtn);
@@ -275,6 +261,5 @@
         private Label tableNumberlbl;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
-        private Button servingBtn;
     }
 }

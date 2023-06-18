@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,6 @@ namespace ChapeauUI
             tableService = new TableService();
             orderService = new OrderService();
             orderItemService = new OrderItemService();
-            orderItem = new OrderItem();
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
@@ -66,6 +66,7 @@ namespace ChapeauUI
             foreach (OrderItem item in itemsList)
             {
                 ListViewItem listItem = new ListViewItem(item.ItemName);
+                listItem.SubItems.Add(item.OrderItemID.ToString());
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
@@ -89,11 +90,18 @@ namespace ChapeauUI
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)
         {
-            table.TableStatus = TableStatus.Reserved;
-            tableService.UpdateTableStatus(table);
-            AddOrderbtn.Enabled = true;
-
+            if (!orderItemService.CheckIfTableHasActiveOrders(table))
+            {
+                table.TableStatus = TableStatus.Reserved;
+                tableService.UpdateTableStatus(table);
+                AddOrderbtn.Enabled = true;
+            }
+            else
+            {
+                ReserveTableBtn.Enabled = false;
+            }
         }
+
 
         private void GoBackBtn_Click(object sender, EventArgs e)
         {
@@ -127,24 +135,6 @@ namespace ChapeauUI
 
         }
 
-        private void servingBtn_Click(object sender, EventArgs e)
-        {
-            if (orderItem != null)
-            {
-                orderItemService.UpdateOrderItemStatus(orderItem, 3);
-            }
-
-        }
-
-        private void listViewOrders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listViewOrders.SelectedItems.Count > 0)
-            {
-                ListViewItem item = listViewOrders.SelectedItems[0];
-                orderItem = (OrderItem)item.Tag;
-
-            }
-        }
 
     }
-    }
+}
