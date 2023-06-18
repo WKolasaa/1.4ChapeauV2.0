@@ -72,6 +72,7 @@ namespace ChapeauDAL
             foreach (DataRow row in dataTable.Rows)
             {
                 OrderItem orderItem = new OrderItem();
+                orderItem.OrderItemID = (int)row["OrderItemID"];
                 orderItem.ItemName = (string)row["itemName"];
                 orderItem.Quantity = (int)row["Quantity"];
                 orderItem.PricePerItem = (decimal)row["PricePerItem"];
