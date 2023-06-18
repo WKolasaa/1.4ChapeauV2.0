@@ -27,7 +27,7 @@ namespace ChapeauUI
         {
             switch (employee.EmployeeType)
             {
-                case EmployeeType.Waiter:
+                case EmployeeType.Waiter: 
                     {
                         this.Hide();
                         TableOverview tableOverview = new TableOverview(employee);

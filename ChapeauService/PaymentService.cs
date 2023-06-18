@@ -17,38 +17,40 @@ namespace ChapeauService
             PaymentDao = new PaymentDao();
         }
 
-        public int StorePaymentHistory(Payment payment)
+        public void StorePaymentHistory(Payment payment)
         {
-            int paymentHistoryID = PaymentDao.AddPaymentHistory(payment);
-            return paymentHistoryID;
+             PaymentDao.AddPaymentHistory(payment);
         }
 
         public List<Payment> GetPaymentHistory()
         {
             List<Payment> payments = PaymentDao.GetPaymentHistory();
-
-            // Retrieve and set the payment method for each payment
-            foreach (Payment payment in payments)
-            {
-                string paymentMethod = GetPaymentMethod(payment.PaymentHistoryID);
-                payment.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), paymentMethod);
-            }
+            
             return payments;
         }
 
-        public string GetPaymentMethod(int paymentHistoryId)
+        public List<Payment> GetLastPaymentHistory()
         {
-            return PaymentDao.GetPaymentMethod(paymentHistoryId);
-        }
+            List<Payment> payments = PaymentDao.GetLastPaymentHistory();
 
+            return payments;
+        }
+        
         public bool GetVATStatus(OrderItem item)
         {
             return PaymentDao.GetVATStatus(item);
         }
+
         public List<OrderItem> GetItemsByTableNumber(int tableNumber)
         {
             List<OrderItem> items = PaymentDao.GetItemsByTableNumber(tableNumber);
             return items;
+        }
+
+        public List<Payment> GetPaymentHistoryByID(int paymentHistoryId)
+        { 
+        List<Payment> paymentHistory=PaymentDao.GetPaymentHistoryByID(paymentHistoryId);
+            return paymentHistory;
         }
 
         public List<OrderItem> GetAllItem()

@@ -14,66 +14,85 @@ namespace ChapeauUI
 {
     public partial class DisplayPayment : Form
     {
-
-        public DisplayPayment( )
+       private Payment payment;
+        public DisplayPayment(Payment payment)
         {
             InitializeComponent();
             this.CenterToScreen();
+            this.payment = payment;
+
+            // Call the method to retrieve the payment history from the database
+            List<Payment> paymentHistory = GetPaymentHistory();
+            // Display the payment history in the ListView
+            DisplayPaymentHistory(paymentHistory);
         }
       
             private List<Payment> GetPaymentHistory()
             {
-                PaymentService paymentService = new PaymentService();
-                List<Payment> paymentHistory = paymentService.GetPaymentHistory();
-                return paymentHistory;
+             PaymentService paymentService = new PaymentService();
+             paymentService.StorePaymentHistory(payment);// insert
+            // Retrieve the payment history from the service layer
+            List<Payment> paymentHistory = paymentService.GetLastPaymentHistory();
+            return paymentHistory;
             }
 
         
           private void DisplayPaymentHistory(List<Payment> payments)
           {
             listViewPaymentHistory.Clear();
-            listViewPaymentHistory.Columns.Add("TotalAmount", 200);
-            listViewPaymentHistory.Columns.Add("Tip", 100);
-            listViewPaymentHistory.Columns.Add("Feedback", 200);
-            listViewPaymentHistory.Columns.Add("TableNumber", 100);
-            listViewPaymentHistory.Columns.Add("PaymentMethod", 150); // Add the PaymentMethod column
+            listViewPaymentHistory.Columns.Add("ID",70);
+            listViewPaymentHistory.Columns.Add("TotalAmount",175);
+            listViewPaymentHistory.Columns.Add("Tip",100);
+            listViewPaymentHistory.Columns.Add("Feedback",200);
+            listViewPaymentHistory.Columns.Add("TableNumber",200);
+            listViewPaymentHistory.Columns.Add("PaymentMethods",200); // Update column name
 
             foreach (Payment payment in payments)
             {
-                ListViewItem listView = new ListViewItem(payment.TotalAmount.ToString());
+                ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString()); 
+                listView.SubItems.Add(payment.TotalAmount.ToString("0.00"));
                 listView.SubItems.Add(payment.Tips.ToString());
                 listView.SubItems.Add(payment.Feedback);
-                listView.SubItems.Add(payment.tableNumber.ToString());
+                listView.SubItems.Add(payment.TableNumber.ToString());
 
-                PaymentService service = new PaymentService();
-                string paymentMethod =service.GetPaymentMethod(payment.PaymentHistoryID);
-                listView.SubItems.Add(paymentMethod);
+                string paymentMethodsString = string.Join(", ", payment.PaymentMethods);
+                listView.SubItems.Add(paymentMethodsString);
 
                 listView.Tag = payment;
                 listViewPaymentHistory.Items.Add(listView);
             }
-            listViewPaymentHistory.Columns[0].Width = 100;
-            listViewPaymentHistory.Columns[1].Width = 50;
-            listViewPaymentHistory.Columns[2].Width = 200;
-            listViewPaymentHistory.Columns[3].Width = 50;
-            listViewPaymentHistory.Columns[4].Width = 100;
-            listViewPaymentHistory.View = View.Details;
-          }
-         
-         
-        private void btnTableView_Click(object sender, EventArgs e)
-        {
-           // TableOverview tablesOverView = new TableOverview();
 
-        }
+            // Set column widths and other properties of the ListView
+            listViewPaymentHistory.Columns[0].Width = 70;
+            listViewPaymentHistory.Columns[1].Width = 175;
+            listViewPaymentHistory.Columns[2].Width = 100;
+            listViewPaymentHistory.Columns[3].Width = 200;
+            listViewPaymentHistory.Columns[4].Width = 200;
+            listViewPaymentHistory.Columns[5].Width = 200;
+            listViewPaymentHistory.View = View.Details;
+
+          }
+
 
         private void btnPaymentHistory_Click(object sender, EventArgs e)
         {
-            // Call the method to retrieve the payment history from the database
-            List<Payment> paymentHistory = GetPaymentHistory();
-
-            // Display the payment history in the ListView
+            int paymentHistoryID = int.Parse(txtPaymentHistoryID.Text);
+            PaymentService service = new PaymentService();
+            List<Payment> paymentHistory = service.GetPaymentHistoryByID(paymentHistoryID);
             DisplayPaymentHistory(paymentHistory);
+
+
+        }
+
+        private void btnTableView_Click(object sender, EventArgs e)
+        {
+    
+            Employee employee = new Employee();
+             TableOverview tablesOverView = new TableOverview(employee);
+            TableService tableService = new TableService();
+             tableService.FreeTable(payment.TableNumber,TableStatus.Free);
+            tablesOverView.Show();
+
         }
     }
 }

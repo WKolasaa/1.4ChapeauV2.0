@@ -127,14 +127,12 @@ namespace ChapeauUI
 
         private void BillBtn_Click(object sender, EventArgs e)
         {
-            DisplayBill display = new DisplayBill();
+            DisplayBill display = new DisplayBill(table);
             this.Hide();
             display.ShowDialog();
             this.Close();
             tableService.FreeTable(table.TableNumber, TableStatus.Free);
 
         }
-
-
     }
 }
