@@ -62,5 +62,20 @@ namespace ChapeauService
           {
               orderitemdao.UpdateMenu(menu);
           } */
+
+        public List<OrderItem> GetFoodStatusByTableId(int i)
+        {
+            return new List<OrderItem>();
+        }
+
+        public List<OrderItem> GetDrinkStatusByTableId(int i)
+        {
+            return new List<OrderItem>();
+        }
+
+        public bool CheckIfTableHasActiveOrders(Table table)
+        {
+            return true;
+        }
     }
 }
