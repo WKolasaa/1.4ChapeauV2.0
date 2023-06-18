@@ -66,6 +66,7 @@ namespace ChapeauUI
             foreach (OrderItem item in itemsList)
             {
                 ListViewItem listItem = new ListViewItem(item.ItemName);
+                listItem.SubItems.Add(item.OrderItemID.ToString());
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
