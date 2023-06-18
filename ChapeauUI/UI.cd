@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChapeauUI.DisplayBill">
+    <Position X="12.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAEABAAAASAAgACAAAAAAAIAAAIAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.DisplayPayment">
+    <Position X="14.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACABAAAACAAAACAAAAAAAAAgAADACAAUA=</HashCode>
+      <FileName>DisplayPayment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.DisplayPaymentMethod">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFBAEgAAAnUgIBAMgVSAAACSEwAgAAggRUIAACAAoRA=</HashCode>
+      <FileName>DisplayPaymentMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.KitchenAndBarUI">
+    <Position X="10.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQMABAIACACItBigECIBAACAEABABAAAAQAgKBCIIA=</HashCode>
+      <FileName>KitchenAndBarUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.LoginScreen">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAFAAACSABAICAAQAAACAAAAAAABAAAA=</HashCode>
+      <FileName>LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerEmployeeAdd">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAqAEAAACEQABAABACJAAECBAAAAAAEgAAAAAAIBAA=</HashCode>
+      <FileName>ManagerEmployeeAddAndUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerEmployees">
+    <Position X="20.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQACAAAACAEAAAAAgCAAAACAAAAAAABCIAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerMainView">
+    <Position X="18.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEJAAAGAAAIACQgCIAAAiABQAABEBCABIAAAQAAA=</HashCode>
+      <FileName>ManagerMainView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerMenu">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAEAAAAGAAAIgAogCAIAAiAAAAAACBCAAIQAAQEBg=</HashCode>
+      <FileName>ManagerMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerMenuAddAndUpdate">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAQkBAABACAAAECAAAAAAAAgAIIAIAIAAA=</HashCode>
+      <FileName>ManagerMenuAddAndUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerStock">
+    <Position X="2.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAKAAAABAAgCAAAACAAAAAAABCAgAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.ManagerStockAddAndUpdate">
+    <Position X="4.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAHEUABAABAKAAAECAAAAAAAAgAAAQAAIAAA=</HashCode>
+      <FileName>ManagerStockAddAndUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.TableOrderView">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAhAACCCCAQxFIACCIAGTiAQIAAAAAAAAAAQDKAAA=</HashCode>
+      <FileName>TableOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChapeauUI.TableOverview">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIAgAAAACgEAhBAAACIBgAGAQEAAAAAIAgAAQBAAAA=</HashCode>
+      <FileName>TableOverview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

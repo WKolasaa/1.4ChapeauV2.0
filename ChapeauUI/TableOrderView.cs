@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace ChapeauUI
         TableService tableService;
         OrderService orderService;
         OrderItemService orderItemService;
-
+        OrderItem orderItem;
         public TableOrderView(Employee employee, Table table)
         {
             this.employee = employee;
@@ -65,23 +66,20 @@ namespace ChapeauUI
             foreach (OrderItem item in itemsList)
             {
                 ListViewItem listItem = new ListViewItem(item.ItemName);
+                listItem.SubItems.Add(item.OrderItemID.ToString());
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
                 listItem.SubItems.Add($"{item.Comment}");
                 listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
+                listItem.Tag = item;
 
                 listViewOrders.Items.Add(listItem);
             }
 
             listViewOrders.View = View.Details;
 
-
-
-
         }
-
-
 
 
         private void AddOrderbtn_Click(object sender, EventArgs e)
@@ -92,11 +90,18 @@ namespace ChapeauUI
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)
         {
-            table.TableStatus = TableStatus.Reserved;
-            tableService.UpdateTableStatus(table);
-            AddOrderbtn.Enabled = true;
-
+            if (!orderItemService.CheckIfTableHasActiveOrders(table))
+            {
+                table.TableStatus = TableStatus.Reserved;
+                tableService.UpdateTableStatus(table);
+                AddOrderbtn.Enabled = true;
+            }
+            else
+            {
+                ReserveTableBtn.Enabled = false;
+            }
         }
+
 
         private void GoBackBtn_Click(object sender, EventArgs e)
         {
@@ -117,9 +122,7 @@ namespace ChapeauUI
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {
-            tableService.FreeTable(table.TableNumber,TableStatus.Free);
-
-
+            tableService.FreeTable(table.TableNumber, TableStatus.Free);
         }
 
         private void BillBtn_Click(object sender, EventArgs e)
@@ -128,13 +131,8 @@ namespace ChapeauUI
             this.Hide();
             display.ShowDialog();
             this.Close();
-            tableService.FreeTable(table.TableNumber,TableStatus.Free);
-
-
+            tableService.FreeTable(table.TableNumber, TableStatus.Free);
 
         }
-
-       
     }
-
 }

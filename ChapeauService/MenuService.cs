@@ -17,25 +17,25 @@ namespace ChapeauService
             menudb = new MenuDAO();
         }
 
-        public List<Menu> GetMenu()
+        public List<MenuItem> GetMenu()
         {
             return menudb.GetMenu();
         }
 
-        public void AddMenu(Menu menu)
+        public void AddMenu(MenuItem menu)
         { 
             menudb.AddMenuItem(menu);
         }
 
-        public void RemoveMenu(Menu menu)
+        public void RemoveMenu(MenuItem menu)
         {
             menudb.DeleteMenuItem(menu);
         }
-        public void UpdateMenu(Menu menu)
+        public void UpdateMenu(MenuItem menu)
         {
             menudb.UpdateMenu(menu);
         }
-        public List<Menu> GetMenuByCategory(string category)
+        public List<MenuItem> GetMenuByCategory(string category)
         {
             return menudb.GetMenuItemByCategory(category);
 

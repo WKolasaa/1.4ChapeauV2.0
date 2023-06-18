@@ -30,7 +30,7 @@ namespace ChapeauUI
                 case EmployeeType.Waiter: 
                     {
                         this.Hide();
-                        TableOverview tableOverview = new TableOverview(employeeLogged);
+                        TableOverview tableOverview = new TableOverview(employee);
                         tableOverview.ShowDialog();
                         this.Close();
                         break;
@@ -39,7 +39,7 @@ namespace ChapeauUI
                 case EmployeeType.Bartender:
                     {
                         this.Hide();
-                        KitchenAndBarUI kitchenUI = new KitchenAndBarUI(employeeLogged);
+                        KitchenAndBarUI kitchenUI = new KitchenAndBarUI(employee);
                         kitchenUI.ShowDialog();
                         this.Close();
                         break;
@@ -48,7 +48,7 @@ namespace ChapeauUI
                 case EmployeeType.Chef:
                     {
                         this.Hide();
-                        KitchenAndBarUI barUI = new KitchenAndBarUI(employeeLogged);
+                        KitchenAndBarUI barUI = new KitchenAndBarUI(employee);
                         barUI.ShowDialog();
                         this.Close();
                         break;
@@ -56,7 +56,7 @@ namespace ChapeauUI
                 case EmployeeType.Manager:
                     {
                         this.Hide();
-                        ManagerMainView managerMainView = new ManagerMainView(employeeLogged);
+                        ManagerMainView managerMainView = new ManagerMainView(employee);
                         managerMainView.ShowDialog();
                         this.Close();
                         break;

@@ -17,21 +17,21 @@ namespace OrderTable
         }
 
         //LISTS
-        private List<Menu> GetMenu()
+        private List<MenuItem> GetMenu()
         {
-            List<Menu> menuList = MenuService.GetMenu();
+            List<MenuItem> menuList = MenuService.GetMenu();
             return menuList;
         }
 
         //DISPLAYING THE LISTS
 
-        private void DisplayMenuItemsStarter(List<Menu> menu)
+        private void DisplayMenuItemsStarter(List<MenuItem> menu)
         {
             listViewStarters.Clear();
             listViewStarters.Columns.Add("Description", 150);
             listViewStarters.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menu)
+            foreach (MenuItem menuItem in menu)
             {
                 if (menuItem.ItemType == "Starter")
                 {
@@ -45,13 +45,13 @@ namespace OrderTable
 
             listViewStarters.View = View.Details;
         }
-        private void DisplayMenuItemsMain(List<Menu> menu)
+        private void DisplayMenuItemsMain(List<MenuItem> menu)
         {
             listViewMain.Clear();
             listViewMain.Columns.Add("Description", 150);
             listViewMain.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menu)
+            foreach (MenuItem menuItem in menu)
             {
                 if (menuItem.ItemType == "Main")
                 {
@@ -66,13 +66,13 @@ namespace OrderTable
             listViewMain.View = View.Details;
         }
 
-        private void DisplayMenuItemsDessert(List<Menu> menu)
+        private void DisplayMenuItemsDessert(List<MenuItem> menu)
         {
             listViewDessert.Clear();
             listViewDessert.Columns.Add("Description", 150);
             listViewDessert.Columns.Add("Price", 150);
 
-            foreach (Menu menuItem in menu)
+            foreach (MenuItem menuItem in menu)
             {
                 if (menuItem.ItemType == "Desserts")
                 {
@@ -94,7 +94,7 @@ namespace OrderTable
         private void btnLunch_Click(object sender, EventArgs e)
         {
             string category = "Lunch";
-            List<Menu> lunchItems = MenuService.GetMenuByCategory(category);
+            List<MenuItem> lunchItems = MenuService.GetMenuByCategory(category);
             DisplayMenuItemsStarter(lunchItems);
             DisplayMenuItemsMain(lunchItems);
             DisplayMenuItemsDessert(lunchItems);
@@ -103,7 +103,7 @@ namespace OrderTable
         private void btnDinner_Click(object sender, EventArgs e)
         {
             string category = "Diner";
-            List<Menu> dinnerItems = MenuService.GetMenuByCategory(category);
+            List<MenuItem> dinnerItems = MenuService.GetMenuByCategory(category);
             DisplayMenuItemsStarter(dinnerItems);
             DisplayMenuItemsMain(dinnerItems);
             DisplayMenuItemsDessert(dinnerItems);
