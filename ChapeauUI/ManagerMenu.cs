@@ -1,21 +1,13 @@
 ﻿using ChapeauModel;
 using ChapeauService;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChapeauUI
 {
     public partial class ManagerMenu : Form
     {
-        ManagerMenuStip strip = new ManagerMenuStip();
-        MenuItem temp = new MenuItem();
+        private ManagerMenuStip strip = new ManagerMenuStip();
+        private MenuItem temp;
+
         public ManagerMenu()
         {
             InitializeComponent();
@@ -24,7 +16,14 @@ namespace ChapeauUI
 
         private void ManagerMenu_Load(object sender, EventArgs e)
         {
-            DisplayMenu(GetMenu());
+            try
+            {
+                DisplayMenu(GetMenu());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private List<MenuItem> GetMenu()
@@ -35,23 +34,22 @@ namespace ChapeauUI
 
         private void DisplayMenu(List<MenuItem> Menu)
         {
-            lvMenu.Clear();
-
-            lvMenu.Columns.Add("Item ID", 50);
-            lvMenu.Columns.Add("Name", 560);
-            lvMenu.Columns.Add("Price", 100);
+            lvMenu.Items.Clear();
 
             foreach (MenuItem m in Menu)
             {
                 ListViewItem li = new ListViewItem(m.MenuItemID.ToString());
-                li.SubItems.Add(m.Description.ToString());
+                li.SubItems.Add(m.Description);
                 li.SubItems.Add($"{m.Price:0.00}€");
+                if (m.VAT_Category)
+                    li.SubItems.Add("21%");
+                else
+                    li.SubItems.Add("6%");
+                li.SubItems.Add(m.ItemType.ToString());
 
                 li.Tag = m;
                 lvMenu.Items.Add(li);
             }
-
-            lvMenu.View = View.Details;
         }
 
         private void btMenuAdd_Click(object sender, EventArgs e)
@@ -89,7 +87,14 @@ namespace ChapeauUI
 
                 if (result == DialogResult.Yes)
                 {
-                    menuService.RemoveMenu(temp);
+                    try
+                    {
+                        menuService.RemoveMenu(temp);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
 
                 DisplayMenu(GetMenu());

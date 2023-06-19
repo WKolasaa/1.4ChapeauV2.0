@@ -138,7 +138,7 @@
             // btAddEmployee
             // 
             btAddEmployee.BackColor = Color.FromArgb(138, 210, 176);
-            btAddEmployee.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btAddEmployee.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btAddEmployee.Location = new Point(82, 330);
             btAddEmployee.Name = "btAddEmployee";
             btAddEmployee.Size = new Size(166, 29);
@@ -168,7 +168,7 @@
             // btCancel
             // 
             btCancel.BackColor = Color.FromArgb(245, 108, 117);
-            btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btCancel.Location = new Point(279, 330);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerMainView));
             btManagerEmployees = new Button();
             btStockEmployees = new Button();
             btMenuEmployees = new Button();
@@ -38,14 +39,16 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             lbUser = new Label();
             btLogout = new Button();
+            pictureBox1 = new PictureBox();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btManagerEmployees
             // 
             btManagerEmployees.BackColor = Color.FromArgb(138, 210, 176);
-            btManagerEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btManagerEmployees.Location = new Point(291, 94);
+            btManagerEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btManagerEmployees.Location = new Point(299, 169);
             btManagerEmployees.Name = "btManagerEmployees";
             btManagerEmployees.Size = new Size(161, 52);
             btManagerEmployees.TabIndex = 0;
@@ -56,8 +59,8 @@
             // btStockEmployees
             // 
             btStockEmployees.BackColor = Color.FromArgb(138, 210, 176);
-            btStockEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btStockEmployees.Location = new Point(291, 195);
+            btStockEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btStockEmployees.Location = new Point(299, 270);
             btStockEmployees.Name = "btStockEmployees";
             btStockEmployees.Size = new Size(161, 52);
             btStockEmployees.TabIndex = 1;
@@ -68,8 +71,8 @@
             // btMenuEmployees
             // 
             btMenuEmployees.BackColor = Color.FromArgb(138, 210, 176);
-            btMenuEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btMenuEmployees.Location = new Point(291, 305);
+            btMenuEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btMenuEmployees.Location = new Point(299, 380);
             btMenuEmployees.Name = "btMenuEmployees";
             btMenuEmployees.Size = new Size(161, 52);
             btMenuEmployees.TabIndex = 2;
@@ -123,7 +126,7 @@
             // 
             lbUser.AutoSize = true;
             lbUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbUser.Location = new Point(614, 99);
+            lbUser.Location = new Point(604, 48);
             lbUser.Name = "lbUser";
             lbUser.Size = new Size(52, 21);
             lbUser.TabIndex = 4;
@@ -132,8 +135,8 @@
             // btLogout
             // 
             btLogout.BackColor = Color.FromArgb(255, 179, 71);
-            btLogout.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btLogout.Location = new Point(615, 139);
+            btLogout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btLogout.Location = new Point(604, 88);
             btLogout.Name = "btLogout";
             btLogout.Size = new Size(114, 32);
             btLogout.TabIndex = 5;
@@ -141,11 +144,22 @@
             btLogout.UseVisualStyleBackColor = false;
             btLogout.Click += btLogout_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 48);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(219, 72);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
             // ManagerMainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(btLogout);
             Controls.Add(lbUser);
             Controls.Add(btMenuEmployees);
@@ -158,6 +172,7 @@
             Load += ManagerMainView_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,5 +189,6 @@
         private ToolStripMenuItem menuToolStripMenuItem;
         private Label lbUser;
         private Button btLogout;
+        private PictureBox pictureBox1;
     }
 }
