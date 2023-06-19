@@ -192,6 +192,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ListViewBill);
             this.Controls.Add(this.label6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "DisplayBill";
             this.Text = "DisplayBill";
             this.Load += new System.EventHandler(this.DisplayBill_Load);
