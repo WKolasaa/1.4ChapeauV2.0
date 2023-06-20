@@ -26,12 +26,10 @@ namespace ChapeauUI
         private OrderItemService orderItemService;
 
 
-        public TableOverview(Employee employee)
+        public TableOverview()
         {
             try
             {
-                this.employee = employee;
-
                 tables = new List<Table>();
                 tableService = new TableService();
                 orderItemService = new OrderItemService();
@@ -44,7 +42,9 @@ namespace ChapeauUI
 
                 this.CenterToScreen();
 
-                namelabel.Text = $"{employee.Name}";
+                UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+
+                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}"; 
             }
             catch (Exception ex)
             {

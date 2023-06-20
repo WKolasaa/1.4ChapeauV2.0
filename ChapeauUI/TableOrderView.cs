@@ -32,7 +32,8 @@ namespace ChapeauUI
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
-            namelabel.Text = $"{employee.Name}";
+            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+            namelabel.Text = $"{loggedEmployee.GetEmployee().Name}";
             tableNumberlbl.Text = $"Table{table.TableId}";
             DisplayOrders();
             CheckTableAvailability();

@@ -124,10 +124,5 @@ namespace ChapeauUI
         {
             strip.OpenStockView(this);
         }
-
-        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            strip.OpenMenuView(this);
-        }
     }
 }

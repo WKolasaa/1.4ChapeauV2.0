@@ -42,6 +42,8 @@
             label6 = new Label();
             txtAddEmployeeUserName = new TextBox();
             btCancel = new Button();
+            label7 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             SuspendLayout();
             // 
             // cbAddEmployeeRole
@@ -139,7 +141,7 @@
             // 
             btAddEmployee.BackColor = Color.FromArgb(138, 210, 176);
             btAddEmployee.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btAddEmployee.Location = new Point(82, 330);
+            btAddEmployee.Location = new Point(82, 352);
             btAddEmployee.Name = "btAddEmployee";
             btAddEmployee.Size = new Size(166, 29);
             btAddEmployee.TabIndex = 10;
@@ -169,7 +171,7 @@
             // 
             btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btCancel.Location = new Point(279, 330);
+            btCancel.Location = new Point(279, 352);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 13;
@@ -177,11 +179,32 @@
             btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(82, 307);
+            label7.Name = "label7";
+            label7.Size = new Size(104, 21);
+            label7.TabIndex = 14;
+            label7.Text = "Date of Birth: ";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            dateTimePicker1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Location = new Point(233, 301);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(212, 29);
+            dateTimePicker1.TabIndex = 15;
+            // 
             // ManagerEmployeeAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 393);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(label7);
             Controls.Add(btCancel);
             Controls.Add(txtAddEmployeeUserName);
             Controls.Add(label6);
@@ -218,5 +241,7 @@
         private Label label6;
         private TextBox txtAddEmployeeUserName;
         private Button btCancel;
+        private Label label7;
+        private DateTimePicker dateTimePicker1;
     }
 }

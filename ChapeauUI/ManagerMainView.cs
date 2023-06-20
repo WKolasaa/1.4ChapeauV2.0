@@ -6,12 +6,11 @@ namespace ChapeauUI
     public partial class ManagerMainView : Form
     {
         ManagerMenuStip strip = new ManagerMenuStip();
-        Employee employee;
-        public ManagerMainView(Employee employee)
+
+        public ManagerMainView()
         {
             InitializeComponent();
             this.CenterToScreen();
-            this.employee = employee;
         }
 
         private void btManagerEmployees_Click(object sender, EventArgs e)
@@ -27,11 +26,6 @@ namespace ChapeauUI
         private void btStockEmployees_Click(object sender, EventArgs e)
         {
             strip.OpenStockView(this);
-        }
-
-        private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            strip.OpenMainView(this);
         }
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,6 +45,9 @@ namespace ChapeauUI
 
         private void ManagerMainView_Load(object sender, EventArgs e)
         {
+            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+            Employee employee = loggedEmployee.GetEmployee();
+
             lbUser.Text = $"Welcome {employee.Name}!";
             PaymentService service = new PaymentService();
             lbIncome.Text = $"{service.TodayIncome()}€";
@@ -64,5 +61,6 @@ namespace ChapeauUI
             loginScreen.ShowDialog();
             this.Close();
         }
+
     }
 }
