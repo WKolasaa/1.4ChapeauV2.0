@@ -51,6 +51,7 @@ namespace ChapeauUI
         private void ManagerMainView_Load(object sender, EventArgs e)
         {
             lbUser.Text = $"Welcome {employee.Name}!";
+
         }
 
         private void btLogout_Click(object sender, EventArgs e)

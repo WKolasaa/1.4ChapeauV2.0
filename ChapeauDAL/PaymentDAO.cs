@@ -200,5 +200,14 @@ namespace ChapeauDAL
           }
           return items;
         }
+
+        //private double TodayIncome()
+        //{
+        //    string query = "SELECT TotalAmount FROM PaymentHistory WHERE date = @date"
+        //    SqlParameter[] parameter =
+        //    {
+        //        new SqlParameter("@date", )
+        //    }
+        //}
     }
 }
