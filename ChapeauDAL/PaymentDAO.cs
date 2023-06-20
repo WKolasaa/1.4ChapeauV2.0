@@ -183,7 +183,7 @@ namespace ChapeauDAL
                     Feedback = dr["Feedback"].ToString(),
                     TableNumber = (int)dr["TableNumber"],
                     PaymentMethods = new List<PaymentMethod>(),
-                    Datetime = (DateTime)dr["Datetime"],
+                    //Datetime = (DateTime)dr["Datetime"],
                 };
                 string paymentMethodsString = dr["PaymentMethods"].ToString();
                 List<string> paymentMethods = paymentMethodsString.Split(',').ToList();

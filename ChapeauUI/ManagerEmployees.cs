@@ -32,6 +32,7 @@ namespace ChapeauUI
                 ListViewItem li = new ListViewItem(employee.EmployeeId.ToString());
                 li.SubItems.Add(employee.Name);
                 li.SubItems.Add(employee.UserName);
+                li.SubItems.Add(employee.DateOfBirth.ToShortDateString());
                 li.SubItems.Add(employee.EmployeeType.ToString());
 
                 li.Tag = employee;
@@ -41,8 +42,8 @@ namespace ChapeauUI
 
         private void btEmployeesAdd_Click(object sender, EventArgs e)
         {
-            ManagerEmployeeAdd sistema = new ManagerEmployeeAdd(true, tempEmployee);
-            sistema.ShowDialog();
+            ManagerEmployeeAdd form = new ManagerEmployeeAdd(true, tempEmployee);
+            form.ShowDialog();
             DisplayEmployees(GetEmployees());
         }
 
@@ -103,11 +104,6 @@ namespace ChapeauUI
         private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             strip.OpenMainView(this);
-        }
-
-        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            strip.OpenEmployeesView(this);
         }
 
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)

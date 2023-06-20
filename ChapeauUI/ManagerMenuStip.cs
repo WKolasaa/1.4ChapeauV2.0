@@ -13,7 +13,7 @@ namespace ChapeauUI
         {
             LoginScreen loginScreen = new LoginScreen();
             form.Hide();
-            ManagerMainView managerMainView = new ManagerMainView(loginScreen.employeeLogged);
+            ManagerMainView managerMainView = new ManagerMainView();
             managerMainView.ShowDialog();
             form.Close();
         }

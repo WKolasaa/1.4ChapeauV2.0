@@ -90,7 +90,7 @@ namespace ChapeauUI
              tableService.FreeTable(payment.TableNumber,TableStatus.Free);
             PaymentService service = new PaymentService();
             service.DeleteBill(payment.TableNumber);// check
-           TableOverview tablesOverView = new TableOverview(employee);// problem!?
+            TableOverview tablesOverView = new TableOverview();// problem!?
             tablesOverView.Show();
         }
     }

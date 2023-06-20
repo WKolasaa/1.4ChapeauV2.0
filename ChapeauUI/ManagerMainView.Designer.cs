@@ -98,7 +98,6 @@
             mainMenuToolStripMenuItem.Name = "mainMenuToolStripMenuItem";
             mainMenuToolStripMenuItem.Size = new Size(101, 25);
             mainMenuToolStripMenuItem.Text = "Main Menu";
-            mainMenuToolStripMenuItem.Click += mainMenuToolStripMenuItem_Click;
             // 
             // employeesToolStripMenuItem
             // 

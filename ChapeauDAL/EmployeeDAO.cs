@@ -35,7 +35,8 @@ namespace ChapeauDAL
                     FirstName = dr["firstName"].ToString(),
                     LastName = dr["lastName"].ToString(),
                     Password = dr["password"].ToString(),
-                    UserName = dr["Username"].ToString()
+                    UserName = dr["Username"].ToString(),
+                    DateOfBirth = (DateTime)dr["dateOfBirth"]
                 };
 
                 employees.Add(employee);
@@ -55,7 +56,7 @@ namespace ChapeauDAL
                 new SqlParameter("@firstName",employee.FirstName),
                 new SqlParameter("@lastName",employee.LastName),
                 new SqlParameter("@password",employee.Password),
-                new SqlParameter("@dateOfBirth", DateTime.Now), 
+                new SqlParameter("@dateOfBirth", employee.DateOfBirth), 
                 new SqlParameter("@UserName", employee.UserName)
             };
 
@@ -64,13 +65,16 @@ namespace ChapeauDAL
 
         public void EditEmployee(Employee employee)
         {
-            string query = "UPDATE Employee SET employeeType=@employeeType,firstName=@firstName,[password]=@password WHERE EmployeeID=@employeeID;";
+            string query = "UPDATE Employee SET employeeType=@employeeType,firstName=@firstName, lastName=@lastName, dateOfBirth=@dateOfBirth, Username=@Username [password]=@password WHERE EmployeeID=@employeeID;";
 
             SqlParameter[] parameter =
             {
                 new SqlParameter("@employeeID", employee.EmployeeId),
                 new SqlParameter("@employeeType", employee.EmployeeType.ToString()),
                 new SqlParameter("@firstName", employee.FirstName),
+                new SqlParameter("@lastName", employee.LastName),
+                new SqlParameter(@"dateOfBirth", employee.DateOfBirth),
+                new SqlParameter("@Username", employee.UserName),
                 new SqlParameter("@password", BCrypt.Net.BCrypt.HashPassword(employee.Password))
             };
 
@@ -105,7 +109,7 @@ namespace ChapeauDAL
 
         public Employee GetEmployeeByUserName(string UserName)
         {
-            string command = "SELECT employeeID,employeeType,firstName,lastName,password,Username FROM Employee WHERE Username = @UserName";
+            string command = "SELECT employeeID,employeeType,firstName,lastName,password,Username, dateOfBirth FROM Employee WHERE Username = @UserName";
 
             SqlParameter[] parameter =
             {
@@ -129,6 +133,7 @@ namespace ChapeauDAL
             employee.LastName = dr["lastName"].ToString();
             employee.Password = dr["password"].ToString();
             employee.UserName = dr["Username"].ToString();
+            employee.DateOfBirth = (DateTime)dr["dateOfBirth"];
 
             return employee;
         }
