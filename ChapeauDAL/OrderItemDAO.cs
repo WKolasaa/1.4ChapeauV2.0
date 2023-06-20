@@ -166,9 +166,7 @@ namespace ChapeauDAL
    
         public void AddOrderItem(OrderItem orderItem)
         {
-            int tableNumber = orderItem.TableNumber;
-
-            string query = "INSERT INTO [OrderItems] (PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, menu_item_id) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments, @Category, @menu_item_id); ";
+            string query = "INSERT INTO [OrderItems] (PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, menuItemId, TimePlaced, OrderStatus, ItemStatus) VALUES (@PricePerItem, @tableNumber, @itemName, @Quantity, @vat_category, @Comments, @Category, @menu_item_id, @TimePlaced, @OrderStatus, @ItemStatus);";
             SqlParameter[] sqlParameters =
             {
                 new SqlParameter("@PricePerItem", orderItem.PricePerItem),
@@ -178,7 +176,10 @@ namespace ChapeauDAL
                 new SqlParameter("@vat_category", orderItem.VatCategory),
                 new SqlParameter("@Comments", orderItem.Comment),
                 new SqlParameter("@Category", orderItem.Category),
-                new SqlParameter("@menu_item_id", orderItem.MenuItem),
+                new SqlParameter("@menu_item_id", orderItem.MenuItem.MenuItemID),
+                new SqlParameter("@TimePlaced", orderItem.TimePlaced),
+                new SqlParameter("@OrderStatus", 1),
+                new SqlParameter("@ItemStatus", 1)
 
             };
 

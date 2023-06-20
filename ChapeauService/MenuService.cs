@@ -35,10 +35,9 @@ namespace ChapeauService
         {
             menudb.UpdateMenu(menu);
         }
-        public List<MenuItem> GetMenuByCategory(string category)
+        public List<MenuItem> GetMenuByCategory(int category)
         {
             return menudb.GetMenuItemByCategory(category);
-
         }
     }
 }

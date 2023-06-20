@@ -123,7 +123,7 @@ namespace ChapeauUI
              bool isAlcoholic =paymentService.GetVATStatus(item);
 
             decimal vatRate = isAlcoholic ? HighVAT : LowVAT;
-            decimal vatPerItem =item.PricePerItem * vatRate*item.Quantity;
+            decimal vatPerItem =(decimal)item.PricePerItem * vatRate*item.Quantity;
 
             return vatPerItem;
         }

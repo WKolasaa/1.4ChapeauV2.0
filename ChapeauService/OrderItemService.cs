@@ -23,9 +23,9 @@ namespace ChapeauService
             return orderitemdao.GetAllItems();
         }
 
-        public void AddOrderItem(MenuItem menu)
+        public void AddOrderItem(OrderItem order)
         {
-
+            orderitemdao.AddOrderItem(order);
         }
 
         public void UpdateOrderItemStatus(OrderItem orderitem, int orderStatus)
