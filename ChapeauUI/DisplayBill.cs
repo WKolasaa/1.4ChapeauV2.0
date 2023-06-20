@@ -24,7 +24,7 @@ namespace ChapeauUI
             InitializeComponent();
             this.CenterToScreen();
 
-            payment.TableNumber = table.TableNumber;
+            payment.TableNumber = table.TableId;
             lblTableNumber.Text =$"TABLE {payment.TableNumber}";
 
             DisplaypaymentDetails();
