@@ -26,7 +26,7 @@ namespace ChapeauUI
         private void ValidateForm(Employee employee)
         {
             UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
-            loggedEmployee.LogEmployee(employee); 
+            loggedEmployee.LogEmployee(employee);
 
             switch (employee.EmployeeType)
             {
