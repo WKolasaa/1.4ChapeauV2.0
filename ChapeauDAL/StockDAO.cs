@@ -15,11 +15,9 @@ namespace ChapeauDAL
     {
         public List<Stock> GetStock()
         {
-            conn.Open();
             string query = "SELECT itemID, itemName, quantity FROM InventoryItem";
-            SqlParameter[] parameter = new SqlParameter[0];
-            conn.Close();
-            return ReadStock(ExecuteSelectQuery(query,parameter));
+
+            return ReadStock(ExecuteSelectQuery(query));
         }
 
         private List<Stock> ReadStock(DataTable dataTable)
@@ -43,30 +41,23 @@ namespace ChapeauDAL
 
         public void AddStock(Stock stock)
         {
-            conn.Open();
             string query = "INSERT INTO InventoryItem (itemID, itemName, quantity) VALUES (@itemID, itemName, quantity)";
 
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", stock.StockID),
                 new SqlParameter("@itemName", stock.StockName),
                 new SqlParameter("@quantity", stock.Quantity)
             };
 
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                command.Parameters.AddRange(parameter);
-                command.ExecuteNonQuery();
-            }
-           
-            conn.Close();
+            ExecuteEditQuery(query,parameter);
         }
 
         public void UpdateStock(Stock stock)
         {
-            conn.Open();
             string query = "UPDATE InventoryItem SET itemID = @itemID, itemName = @itemName, quantity = @quantity WHERE itemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", stock.StockID),
                 new SqlParameter("@itemName", stock.StockName),
@@ -74,19 +65,18 @@ namespace ChapeauDAL
             };
 
             ExecuteEditQuery(query, parameter);
-            conn.Close(); 
         }
 
         public void DeleteStock(Stock stock)
         {
-            conn.Open();
             string query = "DELETE FROM InventoryItem WHERE itemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", stock.StockID)
             };
+
             ExecuteEditQuery(query, parameter);
-            conn.Close();
         }
     }
 }

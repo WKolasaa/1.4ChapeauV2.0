@@ -30,6 +30,7 @@
         {
             ColumnHeader columnHeader1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableOrderView));
+
             panel1 = new Panel();
             namelabel = new Label();
             button1 = new Button();
@@ -52,6 +53,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
+
             // 
             // columnHeader1
             // 
@@ -60,6 +62,7 @@
             // 
             // panel1
             // 
+
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(namelabel);
             panel1.Controls.Add(button1);
@@ -71,9 +74,11 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(915, 136);
             panel1.TabIndex = 0;
+
             // 
             // namelabel
             // 
+
             namelabel.AutoSize = true;
             namelabel.BackColor = Color.FromArgb(255, 179, 71);
             namelabel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
@@ -82,6 +87,7 @@
             namelabel.Size = new Size(0, 20);
             namelabel.TabIndex = 4;
             namelabel.TextAlign = ContentAlignment.MiddleLeft;
+
             // 
             // button1
             // 
@@ -144,6 +150,7 @@
             listViewOrders.UseCompatibleStateImageBehavior = false;
             listViewOrders.View = View.Details;
             listViewOrders.SelectedIndexChanged += listViewOrders_SelectedIndexChanged;
+
             // 
             // listcolumnName
             // 
@@ -160,18 +167,9 @@
             columnHeader3.Text = "Status";
             columnHeader3.Width = 100;
             // 
-            // columnHeader4
-            // 
-            columnHeader4.Text = "Comment";
-            columnHeader4.Width = 100;
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "OrderTime";
-            columnHeader5.Width = 100;
-            // 
             // BillBtn
             // 
+
             BillBtn.BackColor = Color.FromArgb(138, 210, 176);
             BillBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             BillBtn.Location = new Point(719, 262);
@@ -266,6 +264,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+
         }
 
         #endregion

@@ -40,12 +40,13 @@ namespace ChapeauUI
           private void DisplayPaymentHistory(List<Payment> payments)
           {
             listViewPaymentHistory.Clear();
+            // set column name
             listViewPaymentHistory.Columns.Add("ID",70);
             listViewPaymentHistory.Columns.Add("TotalAmount",175);
             listViewPaymentHistory.Columns.Add("Tip",100);
             listViewPaymentHistory.Columns.Add("Feedback",200);
             listViewPaymentHistory.Columns.Add("TableNumber",200);
-            listViewPaymentHistory.Columns.Add("PaymentMethods",200); // Update column name
+            listViewPaymentHistory.Columns.Add("PaymentMethods",200);
 
             foreach (Payment payment in payments)
             {
@@ -70,7 +71,6 @@ namespace ChapeauUI
             listViewPaymentHistory.Columns[4].Width = 200;
             listViewPaymentHistory.Columns[5].Width = 200;
             listViewPaymentHistory.View = View.Details;
-
           }
 
 
@@ -80,19 +80,16 @@ namespace ChapeauUI
             PaymentService service = new PaymentService();
             List<Payment> paymentHistory = service.GetPaymentHistoryByID(paymentHistoryID);
             DisplayPaymentHistory(paymentHistory);
-
-
         }
 
         private void btnTableView_Click(object sender, EventArgs e)
         {
     
             Employee employee = new Employee();
-             TableOverview tablesOverView = new TableOverview(employee);
             TableService tableService = new TableService();
              tableService.FreeTable(payment.TableNumber,TableStatus.Free);
-            tablesOverView.Show();
-
+           // TableOverview tablesOverView = new TableOverview(employee);// problem!?
+            //tablesOverView.Show();
         }
     }
 }

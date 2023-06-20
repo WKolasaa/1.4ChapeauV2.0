@@ -137,6 +137,11 @@
             this.Controls.Add(this.btnPaymentHistory);
             this.Controls.Add(this.btnTableView);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1011, 1213);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1011, 1213);
             this.Name = "DisplayPayment";
             this.Text = "Payment History";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

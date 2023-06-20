@@ -41,7 +41,7 @@
             // btAddStock
             // 
             btAddStock.BackColor = Color.FromArgb(138, 210, 176);
-            btAddStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btAddStock.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btAddStock.Location = new Point(74, 299);
             btAddStock.Name = "btAddStock";
             btAddStock.Size = new Size(190, 29);
@@ -107,7 +107,7 @@
             // btCancel
             // 
             btCancel.BackColor = Color.FromArgb(245, 108, 117);
-            btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btCancel.Location = new Point(320, 299);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
@@ -116,7 +116,7 @@
             btCancel.UseVisualStyleBackColor = false;
             btCancel.Click += btCancel_Click;
             // 
-            // ManagerStockAdd
+            // ManagerStockAddAndUpdate
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -129,7 +129,7 @@
             Controls.Add(label2);
             Controls.Add(txtAddStockID);
             Controls.Add(label1);
-            Name = "ManagerStockAdd";
+            Name = "ManagerStockAddAndUpdate";
             Text = "ManagerStockAdd";
             ResumeLayout(false);
             PerformLayout();

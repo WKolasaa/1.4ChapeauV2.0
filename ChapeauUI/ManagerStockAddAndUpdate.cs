@@ -1,20 +1,11 @@
 ﻿using ChapeauModel;
 using ChapeauService;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChapeauUI
 {
     public partial class ManagerStockAddAndUpdate : Form
     {
-        private bool AddForm;
+        private readonly bool AddForm;
         private Stock stockItem;
 
         public ManagerStockAddAndUpdate(bool Add, Stock stock)
@@ -29,8 +20,15 @@ namespace ChapeauUI
 
         private void UpdateForm()
         {
-            importData();
-            btAddStock.Text = "Update Stock Item";
+            try
+            {
+                importData();
+                btAddStock.Text = "Adjust Stock Item";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btAddStock_Click(object sender, EventArgs e)
@@ -42,26 +40,33 @@ namespace ChapeauUI
 
             else
             {
-                StockService stockService = new StockService();
-
-                if (AddForm)
+                try
                 {
-                    Stock stock = insertData();
+                    StockService stockService = new StockService();
 
-                    stockService.AddStock(stock);
+                    if (AddForm)
+                    {
+                        Stock stock = insertData();
 
-                    MessageBox.Show("Stock Item Added!");
+                        stockService.AddStock(stock);
+
+                        MessageBox.Show("Stock Item Added!");
+                    }
+                    else
+                    {
+                        stockItem = insertData();
+
+                        stockService.UpdateStock(stockItem);
+
+                        MessageBox.Show("Stock Item Adjusted!");
+                    }
+
+                    Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    stockItem = insertData();
-
-                    stockService.UpdateStock(stockItem);
-
-                    MessageBox.Show("Stock Item Updated!");
+                    MessageBox.Show(ex.Message);
                 }
-
-                Close();
             }
         }
 

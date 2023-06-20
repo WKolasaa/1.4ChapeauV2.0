@@ -12,20 +12,14 @@ namespace ChapeauDAL
 {
     public class MenuDAO : BaseDao
     {
-        // ...
-
         public List<MenuItem> GetMenu()
         {
             List<MenuItem> menuItems = new List<MenuItem>();
 
-            conn.Open();
-            string query = "SELECT description, price, category, sequence FROM MenuItem";
-            SqlParameter[] parameter = new SqlParameter[0];
+            string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem";
 
-            DataTable dataTable = ExecuteSelectQuery(query, parameter);
+            DataTable dataTable = ExecuteSelectQuery(query);
             menuItems = ReadMenuItems(dataTable);
-
-            conn.Close();
 
             return menuItems;
         }
@@ -38,14 +32,11 @@ namespace ChapeauDAL
             {
                 MenuItem menuItem = new MenuItem()
                 {
+                    MenuItemID = (int)dr["menuItemID"],
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
-
-                    Category = (string)dr["category"],
-                    ItemType = ItemSequence(Convert.ToInt32(dr["sequence"])),
-
-                    // Contains = (int)dr["contains"],
-                    // Category = (string)dr["category"],
+                    ItemType = (ItemCategory)dr["course_type"],
+                    VAT_Category = (bool)dr["vat_category"]
                 };
 
                 menu.Add(menuItem);
@@ -53,6 +44,7 @@ namespace ChapeauDAL
 
             return menu;
         }
+
         private MenuItem ReadMenuItem(DataTable dataTable)
         {
             if (dataTable != null)
@@ -60,10 +52,11 @@ namespace ChapeauDAL
                 DataRow row = dataTable.Rows[0];
                 MenuItem menuItem = new MenuItem()
                 {
+                    MenuItemID = (int)row["menuItemID"],
                     Description = (string)row["description"],
                     Price = (double)row["price"],
-                    Contains = (int)row["contains"],
-                    //Category = (string)row["category"],
+                    ItemType = (ItemCategory)row["course_type"],
+                    VAT_Category = (bool)row["vat_category"]
                 };
                 return menuItem;
             }
@@ -74,11 +67,11 @@ namespace ChapeauDAL
         public List<MenuItem> GetMenuItemByCategory(string category)
         {
             List<MenuItem> menuItems = new List<MenuItem>();
-            string query = "SELECT description, price, category,sequence FROM MenuItem WHERE CHARINDEX(@category, category) > 0";
+            string query = "SELECT menuItemID, description, price, course_type FROM MenuItem WHERE CHARINDEX(@course_type, course_type) > 0";
 
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-               new SqlParameter("@category", category)
+               new SqlParameter("course_type", category)
             };
 
             DataTable reader = ExecuteSelectQuery(query, sqlParameters);
@@ -87,10 +80,10 @@ namespace ChapeauDAL
             {
                 MenuItem menuItem = new MenuItem
                 {
+                    MenuItemID = (int)row["menuItemID"],
                     Description = row["description"].ToString(),
                     Price = Convert.ToSingle(row["price"]),
-                    Category = row["category"].ToString(),
-                    ItemType = ItemSequence(Convert.ToInt32(row["sequence"])),
+                    ItemType = (ItemCategory)row["course_type"],
                 };
 
                 menuItems.Add(menuItem);
@@ -98,65 +91,47 @@ namespace ChapeauDAL
 
             return menuItems;
         }
-        private string ItemSequence(int sequence)//Remember to change its place 
-        {
-            switch (sequence)
-            {
-                case 1:
-                    return "Starter";
-                case 2:
-                    return "Main";
-                case 3:
-                    return "Dessert";
-                default:
-                    return "Unknown";
-            }
-        }
-
-        // ...
 
         public void AddMenuItem(MenuItem menu)
         {
-            conn.Open();
-            string query = "INSERT INTO MenuItem (menuItemID, description, price) VALUES (@menuItemID, @description, @price)";
+            string query = "INSERT INTO MenuItem (menuItemID, description, price, vat_category, course_type) VALUES (@menuItemID, @description, @price, @vat_category, @course_type)";
 
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
-            new SqlParameter("@menuItemID", menu.MenuItemID),
-            new SqlParameter("@description", menu.Description),
-            new SqlParameter("@price", menu.Price)
+                new SqlParameter("@menuItemID", menu.MenuItemID),
+                new SqlParameter("@description", menu.Description),
+                new SqlParameter("@price", menu.Price),
+                new SqlParameter("@vat_category", menu.VAT_Category),
+                new SqlParameter("@course_type", (int)menu.ItemType)
             };
 
             ExecuteEditQuery(query, parameter);
-            conn.Close();
         }
 
         public void UpdateMenu(MenuItem menu)
         {
-            conn.Open();
-            string query = "UPDATE MenuItem SET description = @description, price = @price WHERE menuItemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+            string query = "UPDATE MenuItem SET description = @description, price = @price, vat_category = @vat_category, course_type = @course_type WHERE menuItemID = @itemID";
+            SqlParameter[] parameter =
             {
-            new SqlParameter("@itemID", menu.MenuItemID),
-            new SqlParameter("@description", menu.Description),
-            new SqlParameter("@price", menu.Price)
+                new SqlParameter("@itemID", menu.MenuItemID),
+                new SqlParameter("@description", menu.Description),
+                new SqlParameter("@price", menu.Price),
+                new SqlParameter("@vat_category", menu.VAT_Category),
+                new SqlParameter("@course_type", (int)menu.ItemType)
             };
 
             ExecuteEditQuery(query, parameter);
-            conn.Close();
         }
 
         public void DeleteMenuItem(MenuItem menu)
         {
-            conn.Open();
             string query = "DELETE FROM MenuItem WHERE menuItemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
-            new SqlParameter("@itemID", menu.MenuItemID)
+                new SqlParameter("@itemID", menu.MenuItemID)
             };
 
             ExecuteEditQuery(query, parameter);
-            conn.Close();
         }
     }
 

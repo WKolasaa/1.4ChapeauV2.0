@@ -7,6 +7,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Utilities;
+using System.Xml.Linq;
 
 namespace ChapeauDAL
 {
@@ -32,7 +34,7 @@ namespace ChapeauDAL
                 command.Parameters.AddWithValue("@TableNumber", payment.TableNumber);
                 command.Parameters.AddWithValue("@PaymentMethods", paymentMethodsString);
 
-            command.ExecuteNonQuery();
+            command.ExecuteNonQuery();//SQL commands that don't return any result set
 
             conn.Close();            
          }
@@ -41,7 +43,7 @@ namespace ChapeauDAL
         {
             string query = "SELECT paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
                            "FROM PaymentHistory";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
+            SqlParameter[] sqlParameters = new SqlParameter[0];// executed does not require any additional parameters.
             return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
         }
 
@@ -81,8 +83,9 @@ namespace ChapeauDAL
                 payment.TableNumber = reader.GetInt32(4);
                 // Assuming PaymentMethods is stored as a string in the database
                 payment.PaymentMethods = reader.GetString(5).Split(',')
-                    .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))
-                    .ToList<PaymentMethod>();
+                 // lambda parameter name that represents an individual element in the Split array.
+                  .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))//=> separates the parameter 
+                  .ToList<PaymentMethod>();
                 paymentList.Add(payment); // Add the payment to the list
 
             }
@@ -135,6 +138,7 @@ namespace ChapeauDAL
                  PricePerItem = reader.GetDecimal(1),
                  ItemName = reader.GetString(2),
                  Quantity = reader.GetInt32(3),
+                 //DBNull is a .NET framework type that represents a missing or nonexistent value.
                  Comment = reader.IsDBNull(4) ? "" : reader.GetString(4),
                  VatCategory=reader.GetBoolean(5),
 
@@ -146,7 +150,7 @@ namespace ChapeauDAL
      return items;
  }
 
-       private List<Payment> ReadPaymentHistory(DataTable dataTable) // data from database into class
+       private List<Payment> ReadPaymentHistory(DataTable dataTable)
        {
             List<Payment> payments = new List<Payment>();
 
@@ -195,6 +199,15 @@ namespace ChapeauDAL
              items.Add(item);
           }
           return items;
-       }
+        }
+
+        //private double TodayIncome()
+        //{
+        //    string query = "SELECT TotalAmount FROM PaymentHistory WHERE date = @date"
+        //    SqlParameter[] parameter =
+        //    {
+        //        new SqlParameter("@date", )
+        //    }
+        //}
     }
 }

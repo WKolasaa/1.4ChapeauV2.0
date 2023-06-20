@@ -1,21 +1,12 @@
-﻿using ChapeauModel;
+﻿using System.Collections;
+using ChapeauModel;
 using ChapeauService;
-using Org.BouncyCastle.Math.EC.Multiplier;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChapeauUI
 {
     public partial class ManagerStock : Form
     {
-        ManagerMenuStip strip = new ManagerMenuStip();
+        ManagerMenuStip strip = new ManagerMenuStip(); 
         Stock temp;
 
         public ManagerStock()
@@ -37,22 +28,17 @@ namespace ChapeauUI
 
         private void DisplayStock(List<Stock> stock)
         {
-            lvStock.Clear();
-
-            lvStock.Columns.Add("ID", 50);
-            lvStock.Columns.Add("Name", 560);
-            lvStock.Columns.Add("Quantity", 100);
+            lvStock.Items.Clear();
 
             foreach (Stock st in stock)
             {
                 ListViewItem li = new ListViewItem(st.StockID.ToString());
-                li.SubItems.Add(st.StockName.ToString());
+                li.SubItems.Add(st.StockName);
                 li.SubItems.Add(st.Quantity.ToString());
 
                 li.Tag = st;
                 lvStock.Items.Add(li);
             }
-
             lvStock.View = View.Details;
         }
 
@@ -63,7 +49,7 @@ namespace ChapeauUI
             DisplayStock(GetStock());
         }
 
-        
+
 
         private void btStockUpdate_Click(object sender, EventArgs e)
         {
@@ -89,7 +75,14 @@ namespace ChapeauUI
 
                 if (result == DialogResult.Yes)
                 {
-                    stockService.DeleteStock(temp);
+                    try
+                    {
+                        stockService.DeleteStock(temp);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
 
                 DisplayStock(GetStock());

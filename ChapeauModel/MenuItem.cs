@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ChapeauModel
-{ 
+{
     public class MenuItem
     {
         public int MenuItemID { get; set; }
@@ -15,17 +15,15 @@ namespace ChapeauModel
         public double Price { get; set; }
         public int Contains { get; set; }
         public bool VAT_Category { get; set; }
-        public string Category { get; set; }
-        public string ItemType { get; set; }   
+        public ItemCategory ItemType { get; set; }   
 
-        public MenuItem(int menuItemID, string description, double price, int contains, bool vAT_Category, string category, string itemType)
+        public MenuItem(int menuItemID, string description, double price, int contains, bool vAT_Category, ItemCategory itemType)
         {
             MenuItemID = menuItemID;
             Description = description;
             Price = price;
             Contains = contains;
             VAT_Category = vAT_Category;
-            Category = category;
             ItemType = itemType;
         }   
 

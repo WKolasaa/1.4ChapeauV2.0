@@ -17,27 +17,24 @@ namespace ChapeauUI
         private Payment payment;
         private const decimal HighVAT = 0.21m;//for the alcoholic
         private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
-        private TableService service = new TableService();
-        private Table table;
-        int tableNumber;
+       
         public DisplayBill(Table table)
         {
             payment = new Payment();
-            this.table = table;
             InitializeComponent();
             this.CenterToScreen();
-            tableNumber = table.TableId;
-            payment.TableNumber = tableNumber;
-            lblTableNumber.Text =$"TABLE {tableNumber}";
+
+            payment.TableNumber = table.TableNumber;
+            lblTableNumber.Text =$"TABLE {payment.TableNumber}";
+
             DisplaypaymentDetails();
 
         }
 
-    private List<OrderItem> GetBill() 
+        private List<OrderItem> GetBill() 
         { 
              PaymentService paymentService =new PaymentService();
-
-            List<OrderItem> itemsInsideBill = paymentService.GetItemsByTableNumber(tableNumber);
+            List<OrderItem> itemsInsideBill = paymentService.GetItemsByTableNumber(payment.TableNumber);
             return itemsInsideBill;
         }
 
@@ -80,7 +77,7 @@ namespace ChapeauUI
         }
         private void DisplaypaymentDetails()
         {
-             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT(tableNumber);
+             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT(payment.TableNumber);
             lblAmountExcludeVAT.Text = TotalPriceExcludeVat.ToString("€ 0.00");
 
             decimal TotalVAT = TotalVat();
@@ -88,12 +85,10 @@ namespace ChapeauUI
 
             payment.TotalAmount = TotalAmountIncludeVAT();
             lblResultPriceWithVAT.Text = payment.TotalAmount.ToString("€ 0.00");
-
         }
 
         private decimal TotalPriceWithoutVAT(int table)
         {
-           // payment.tableNumber = table;//edit it when the others finish their part
             PaymentService paymentService = new PaymentService();
              List<OrderItem> totalPriceItems = paymentService.GetItemsByTableNumber(table); // Retrieve items for the specific table
 
@@ -108,10 +103,10 @@ namespace ChapeauUI
         }
 
        
-        internal decimal TotalVat()//  this method is called inside the DisplayPaymentMethod so is internal
+        private decimal TotalVat()
         { 
             PaymentService paymentService = new PaymentService();
-            List<OrderItem> items = paymentService.GetItemsByTableNumber(tableNumber); // Retrieve all items from the DAL
+            List<OrderItem> items = paymentService.GetItemsByTableNumber(payment.TableNumber); // Retrieve all items from the DAL
 
             decimal totalVat = 0;
             foreach (OrderItem item in items)
@@ -133,9 +128,9 @@ namespace ChapeauUI
             return vatPerItem;
         }
 
-        internal decimal TotalAmountIncludeVAT()
+        private decimal TotalAmountIncludeVAT()
         { 
-         return TotalVat() + TotalPriceWithoutVAT(tableNumber);
+         return TotalVat() + TotalPriceWithoutVAT(payment.TableNumber);
         }
 
         private void btnProceedToPayment_Click(object sender, EventArgs e)
@@ -143,7 +138,5 @@ namespace ChapeauUI
             DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(payment);
             paymentMethod.Show();
         }
-
-        
     }
 }
