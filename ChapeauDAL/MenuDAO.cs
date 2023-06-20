@@ -17,9 +17,8 @@ namespace ChapeauDAL
             List<MenuItem> menuItems = new List<MenuItem>();
 
             string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem";
-            SqlParameter[] parameter = new SqlParameter[0];
 
-            DataTable dataTable = ExecuteSelectQuery(query, parameter);
+            DataTable dataTable = ExecuteSelectQuery(query);
             menuItems = ReadMenuItems(dataTable);
 
             return menuItems;
@@ -97,7 +96,7 @@ namespace ChapeauDAL
         {
             string query = "INSERT INTO MenuItem (menuItemID, description, price, vat_category, course_type) VALUES (@menuItemID, @description, @price, @vat_category, @course_type)";
 
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@menuItemID", menu.MenuItemID),
                 new SqlParameter("@description", menu.Description),
@@ -112,7 +111,7 @@ namespace ChapeauDAL
         public void UpdateMenu(MenuItem menu)
         {
             string query = "UPDATE MenuItem SET description = @description, price = @price, vat_category = @vat_category, course_type = @course_type WHERE menuItemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID),
                 new SqlParameter("@description", menu.Description),
@@ -127,7 +126,7 @@ namespace ChapeauDAL
         public void DeleteMenuItem(MenuItem menu)
         {
             string query = "DELETE FROM MenuItem WHERE menuItemID = @itemID";
-            SqlParameter[] parameter = new SqlParameter[]
+            SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID)
             };
