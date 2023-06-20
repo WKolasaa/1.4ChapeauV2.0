@@ -111,6 +111,13 @@ namespace OrderTable
             {
                 ListViewItem li = listView1.SelectedItems[0];
                 MenuItem temp = (MenuItem)li.Tag;
+                int category = 0;
+
+                if (temp.ItemType < 0 && temp.ItemType >= ItemCategory.DesertDiner)
+                    category = 0;
+                else
+                    category = 1;
+
                 OrderItem orderItemTemp = new OrderItem()
                 {
                     OrderItemID = temp.MenuItemID,
@@ -120,7 +127,7 @@ namespace OrderTable
                     Status = OrderStatus.Ordered,
                     VatCategory = temp.VAT_Category,
                     Comment = comment,
-                    Category = (int)temp.ItemType,
+                    Category = category,
                     MenuItem = temp,
                     Quantity = 1,
                     TimePlaced = DateTime.Now,
