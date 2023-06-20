@@ -220,9 +220,10 @@ namespace ChapeauDAL
             return items;
         }
 
-        public decimal TodaysIncome()
+        public decimal TodaysIncome() // Manager part to display today's income 
         {
             string query = "SELECT TotalAmount FROM PaymentHistory WHERE PaymentData = @date";
+
             SqlParameter[] parameter =
             {
                 new SqlParameter("@date", DateTime.Today)
