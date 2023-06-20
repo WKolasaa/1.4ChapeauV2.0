@@ -1,15 +1,5 @@
 ﻿using ChapeauModel;
 using ChapeauService;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChapeauUI
 {
@@ -35,16 +25,10 @@ namespace ChapeauUI
 
         private void DisplayEmployees(List<Employee> employees)
         {
-            lvEmployees.Clear();
+            lvEmployees.Items.Clear();
 
-            lvEmployees.Columns.Add("ID", 50);
-            lvEmployees.Columns.Add("Name", 150);
-            lvEmployees.Columns.Add("User Name", 150);
-            lvEmployees.Columns.Add("Role", 100);
-
-            foreach (var employee in employees)
+            foreach (Employee employee in employees)
             {
-                //ListViewItem li = new ListViewItem();
                 ListViewItem li = new ListViewItem(employee.EmployeeId.ToString());
                 li.SubItems.Add(employee.Name);
                 li.SubItems.Add(employee.UserName);
@@ -53,8 +37,6 @@ namespace ChapeauUI
                 li.Tag = employee;
                 lvEmployees.Items.Add(li);
             }
-
-            lvEmployees.View = View.Details;
         }
 
         private void btEmployeesAdd_Click(object sender, EventArgs e)
@@ -103,7 +85,14 @@ namespace ChapeauUI
 
                 if (result == DialogResult.Yes)
                 {
-                    employeeService.DeleteEmployee(tempEmployee);
+                    try
+                    {
+                        employeeService.DeleteEmployee(tempEmployee);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
 
                 DisplayEmployees(GetEmployees());

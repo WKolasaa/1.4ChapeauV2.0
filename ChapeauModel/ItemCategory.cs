@@ -1,5 +1,6 @@
-﻿public enum ItemCategory
+﻿using System.ComponentModel;
+
+public enum ItemCategory
 {
-    Food = 0,
-    Drink = 1
+    StartersLunch = 1, MainsLunch, DesertLunch, StartersDiner, EntremetsDiner, MainDiner, DesertDiner, SoftDrinks, BeerOnTap, WinePerBottle, WinePerGlass, SpiritDrink, CoffeTea,
 }
