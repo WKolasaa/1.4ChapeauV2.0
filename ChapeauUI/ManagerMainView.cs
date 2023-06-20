@@ -1,4 +1,5 @@
 ﻿using ChapeauModel;
+using ChapeauService;
 
 namespace ChapeauUI
 {
@@ -51,7 +52,8 @@ namespace ChapeauUI
         private void ManagerMainView_Load(object sender, EventArgs e)
         {
             lbUser.Text = $"Welcome {employee.Name}!";
-
+            PaymentService service = new PaymentService();
+            lbIncome.Text = $"{service.TodayIncome()}€";
         }
 
         private void btLogout_Click(object sender, EventArgs e)
