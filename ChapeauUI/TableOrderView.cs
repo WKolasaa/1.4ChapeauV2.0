@@ -99,7 +99,7 @@ namespace ChapeauUI
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
-                listItem.SubItems.Add($"{item.Comment}");
+                listItem.SubItems.Add(item.Comment.ToString());
                 listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
                 listItem.Tag = item;
 
