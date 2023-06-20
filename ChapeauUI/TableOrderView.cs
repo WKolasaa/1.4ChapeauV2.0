@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using ChapeauModel;
 using ChapeauService;
+using OrderTable;
 
 namespace ChapeauUI
 {
@@ -110,7 +111,11 @@ namespace ChapeauUI
 
         private void AddOrderbtn_Click(object sender, EventArgs e)
         {
-            // Handle the button click event to add an order
+            Hide();
+            OrderForm form = new OrderForm(table.TableId);
+            form.ShowDialog();
+            Show();
+            DisplayOrders();
         }
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)

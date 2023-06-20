@@ -64,32 +64,16 @@ namespace ChapeauDAL
             return null;
         }
 
-        public List<MenuItem> GetMenuItemByCategory(string category)
+        public List<MenuItem> GetMenuItemByCategory(int category)
         {
-            List<MenuItem> menuItems = new List<MenuItem>();
-            string query = "SELECT menuItemID, description, price, course_type FROM MenuItem WHERE CHARINDEX(@course_type, course_type) > 0";
+            string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem WHERE course_type = @course_type";
 
-            SqlParameter[] sqlParameters = new SqlParameter[]
+            SqlParameter[] sqlParameters = 
             {
                new SqlParameter("course_type", category)
             };
 
-            DataTable reader = ExecuteSelectQuery(query, sqlParameters);
-
-            foreach (DataRow row in reader.Rows)
-            {
-                MenuItem menuItem = new MenuItem
-                {
-                    MenuItemID = (int)row["menuItemID"],
-                    Description = row["description"].ToString(),
-                    Price = Convert.ToSingle(row["price"]),
-                    ItemType = (ItemCategory)row["course_type"],
-                };
-
-                menuItems.Add(menuItem);
-            }
-
-            return menuItems;
+            return ReadMenuItems(ExecuteSelectQuery(query, sqlParameters));
         }
 
         public void AddMenuItem(MenuItem menu)
