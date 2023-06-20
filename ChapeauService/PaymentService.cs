@@ -62,5 +62,10 @@ namespace ChapeauService
             return items;
         }
 
+        public decimal TodayIncome()
+        {
+            return PaymentDao.TodaysIncome();
+        }
+
     }
 }

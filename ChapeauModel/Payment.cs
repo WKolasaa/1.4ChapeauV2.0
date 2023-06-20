@@ -19,7 +19,7 @@ namespace ChapeauModel
         public List<PaymentMethod> PaymentMethods;
         public PaymentMethod PaymentMethod { get; set; }
 
-        public DateOnly Datetime { get; set; } 
+        public DateTime Datetime { get; set; } 
     }
     
 }

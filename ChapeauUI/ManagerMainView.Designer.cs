@@ -50,7 +50,7 @@
             // 
             btManagerEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btManagerEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btManagerEmployees.Location = new Point(465, 165);
+            btManagerEmployees.Location = new Point(315, 159);
             btManagerEmployees.Name = "btManagerEmployees";
             btManagerEmployees.Size = new Size(161, 52);
             btManagerEmployees.TabIndex = 0;
@@ -62,7 +62,7 @@
             // 
             btStockEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btStockEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btStockEmployees.Location = new Point(465, 266);
+            btStockEmployees.Location = new Point(315, 263);
             btStockEmployees.Name = "btStockEmployees";
             btStockEmployees.Size = new Size(161, 52);
             btStockEmployees.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             btMenuEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btMenuEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btMenuEmployees.Location = new Point(465, 376);
+            btMenuEmployees.Location = new Point(315, 370);
             btMenuEmployees.Name = "btMenuEmployees";
             btMenuEmployees.Size = new Size(161, 52);
             btMenuEmployees.TabIndex = 2;
@@ -127,10 +127,10 @@
             // lbUser
             // 
             lbUser.AutoSize = true;
-            lbUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbUser.Location = new Point(604, 48);
             lbUser.Name = "lbUser";
-            lbUser.Size = new Size(52, 21);
+            lbUser.Size = new Size(57, 21);
             lbUser.TabIndex = 4;
             lbUser.Text = "label1";
             // 
@@ -149,7 +149,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 48);
+            pictureBox1.Location = new Point(290, 48);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(219, 72);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -160,7 +160,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(54, 235);
+            label1.Location = new Point(12, 74);
             label1.Name = "label1";
             label1.Size = new Size(136, 21);
             label1.TabIndex = 15;
@@ -170,7 +170,7 @@
             // 
             lbIncome.AutoSize = true;
             lbIncome.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbIncome.Location = new Point(196, 235);
+            lbIncome.Location = new Point(154, 74);
             lbIncome.Name = "lbIncome";
             lbIncome.Size = new Size(57, 21);
             lbIncome.TabIndex = 16;
