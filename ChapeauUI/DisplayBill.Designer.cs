@@ -91,9 +91,8 @@
             this.lblTotalVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTotalVAT.Location = new System.Drawing.Point(786, 844);
             this.lblTotalVAT.Name = "lblTotalVAT";
-            this.lblTotalVAT.Size = new System.Drawing.Size(170, 37);
+            this.lblTotalVAT.Size = new System.Drawing.Size(0, 37);
             this.lblTotalVAT.TabIndex = 13;
-            this.lblTotalVAT.Text = "lbl total vat";
             // 
             // btnProceedToPayment
             // 
@@ -123,9 +122,8 @@
             this.lblResultPriceWithVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblResultPriceWithVAT.Location = new System.Drawing.Point(786, 931);
             this.lblResultPriceWithVAT.Name = "lblResultPriceWithVAT";
-            this.lblResultPriceWithVAT.Size = new System.Drawing.Size(203, 37);
+            this.lblResultPriceWithVAT.Size = new System.Drawing.Size(0, 37);
             this.lblResultPriceWithVAT.TabIndex = 16;
-            this.lblResultPriceWithVAT.Text = "price with vat";
             // 
             // lblAmountExcludeVAT
             // 
@@ -134,9 +132,8 @@
             this.lblAmountExcludeVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblAmountExcludeVAT.Location = new System.Drawing.Point(786, 737);
             this.lblAmountExcludeVAT.Name = "lblAmountExcludeVAT";
-            this.lblAmountExcludeVAT.Size = new System.Drawing.Size(111, 37);
+            this.lblAmountExcludeVAT.Size = new System.Drawing.Size(0, 37);
             this.lblAmountExcludeVAT.TabIndex = 17;
-            this.lblAmountExcludeVAT.Text = "Exl vat";
             // 
             // label3
             // 
@@ -168,9 +165,9 @@
             // lblTableNumber
             // 
             this.lblTableNumber.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTableNumber.Location = new System.Drawing.Point(33, 96);
+            this.lblTableNumber.Location = new System.Drawing.Point(33, 92);
             this.lblTableNumber.Name = "lblTableNumber";
-            this.lblTableNumber.Size = new System.Drawing.Size(156, 64);
+            this.lblTableNumber.Size = new System.Drawing.Size(234, 64);
             this.lblTableNumber.TabIndex = 21;
             // 
             // DisplayBill

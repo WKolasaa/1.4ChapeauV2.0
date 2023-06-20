@@ -134,5 +134,6 @@ namespace ChapeauUI
             tableService.FreeTable(table.TableNumber, TableStatus.Free);
 
         }
+
     }
 }
