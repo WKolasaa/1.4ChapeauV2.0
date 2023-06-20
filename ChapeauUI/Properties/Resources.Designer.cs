@@ -59,5 +59,15 @@ namespace ChapeauUI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2023_06_19_234218_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot_2023-06-19_234218-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

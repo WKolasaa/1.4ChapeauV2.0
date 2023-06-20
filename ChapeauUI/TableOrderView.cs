@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using ChapeauModel;
 using ChapeauService;
 
@@ -15,58 +16,84 @@ namespace ChapeauUI
 {
     public partial class TableOrderView : Form
     {
-        Employee employee;
-        Table table;
-        TableService tableService;
-        OrderService orderService;
-        OrderItemService orderItemService;
-        OrderItem orderItem;
+        private Employee employee;
+        private Table table;
+        private TableService tableService;
+        private OrderService orderService;
+        private OrderItemService orderItemService;
+        private OrderItem orderItem;
         public TableOrderView(Employee employee, Table table)
         {
             this.employee = employee;
             tableService = new TableService();
             orderService = new OrderService();
             orderItemService = new OrderItemService();
+            orderItem = new OrderItem();
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
-            Userlbl.Text = $"{employee.Name}";
-            tableNumberlbl.Text = $"Table{table.TableNumber}";
-            CheckTableAvailability();
+            namelabel.Text = $"{employee.Name}";
+            tableNumberlbl.Text = $"Table{table.TableId}";
             DisplayOrders();
+            CheckTableAvailability();
         }
 
+        // Check the availability of the table and enable/disable buttons accordingly
         private void CheckTableAvailability()
         {
-            if (table.TableStatus == TableStatus.Occupied)
+            switch (table.TableStatus)
             {
-                AddOrderbtn.Enabled = true;
-                FreeTableBtn.Enabled = false;
-                ReserveTableBtn.Enabled = false;
-
-            }
-            else if (table.TableStatus == TableStatus.Reserved)
-            {
-                ReserveTableBtn.Enabled = false;
-                BillBtn.Enabled = false;
-                AddOrderbtn.Enabled = false;
-
-            }
-            else
-            {
-                AddOrderbtn.Enabled = true;
-                FreeTableBtn.Enabled = false;
+                case TableStatus.Occupied:
+                    OcuppiedTableButtons();
+                    break;
+                case TableStatus.Free:
+                    FreeTableButtons();
+                    break;
+                default:
+                    ReserveTableButtons();
+                    break;
             }
         }
+
+        private void OcuppiedTableButtons()
+        {
+            // Enable buttons when table is occupied
+            AddOrderbtn.Enabled = true;
+            FreeTableBtn.Enabled = false;
+            ReserveTableBtn.Enabled = false;
+            BillBtn.Enabled = true;
+            serveBtn.Enabled = true;
+        }
+
+        private void FreeTableButtons()
+        {
+            // Disable buttons when table is free
+            AddOrderbtn.Enabled = true;
+            FreeTableBtn.Enabled = false;
+            ReserveTableBtn.Enabled = true;
+            BillBtn.Enabled = false;
+            serveBtn.Enabled = false;
+        }
+
+        private void ReserveTableButtons()
+        {
+            AddOrderbtn.Enabled = false;
+            FreeTableBtn.Enabled = true;
+            ReserveTableBtn.Enabled = false;
+            BillBtn.Enabled = false;
+            serveBtn.Enabled = false;
+        }
+
+
+        // Display the orders for the current table in the ListView control
         private void DisplayOrders()
         {
-            List<OrderItem> itemsList = orderItemService.GetOrderItemsByTable(table.TableNumber);
-
+            listViewOrders.Items.Clear();
+            List<OrderItem> itemsList = orderItemService.GetOrderItemsByTable(table.TableId);
 
             foreach (OrderItem item in itemsList)
             {
                 ListViewItem listItem = new ListViewItem(item.ItemName);
-                listItem.SubItems.Add(item.OrderItemID.ToString());
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
@@ -78,34 +105,28 @@ namespace ChapeauUI
             }
 
             listViewOrders.View = View.Details;
-
         }
-
 
         private void AddOrderbtn_Click(object sender, EventArgs e)
         {
-            table.TableStatus = TableStatus.Occupied;
-            tableService.UpdateTableStatus(table);
+            // Handle the button click event to add an order
         }
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)
         {
-            if (!orderItemService.CheckIfTableHasActiveOrders(table))
-            {
-                table.TableStatus = TableStatus.Reserved;
-                tableService.UpdateTableStatus(table);
-                AddOrderbtn.Enabled = true;
-            }
-            else
-            {
-                ReserveTableBtn.Enabled = false;
-            }
-        }
 
+            table.TableStatus = TableStatus.Reserved;
+            tableService.UpdateTableStatus(table);
+            FreeTableButtons();
+
+        }
 
         private void GoBackBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // Close the form when the Go Back button is clicked
+            Close();
+
+
         }
 
         private void LogoutBtn_Click(object sender, EventArgs e)
@@ -113,6 +134,7 @@ namespace ChapeauUI
             var message = MessageBox.Show("Are you sure you would like to logout?", "Confirmation", MessageBoxButtons.YesNo);
             if (message == DialogResult.Yes)
             {
+                // Hide the current form, show the LoginScreen form, and close the current form
                 this.Hide();
                 LoginScreen loginScreen = new LoginScreen();
                 loginScreen.ShowDialog();
@@ -122,18 +144,39 @@ namespace ChapeauUI
 
         private void FreeTableBtn_Click(object sender, EventArgs e)
         {
-            tableService.FreeTable(table.TableNumber, TableStatus.Free);
+            // Free the table by updating its status
+            tableService.FreeTable(table.TableId, TableStatus.Free);
+            ReserveTableButtons();
         }
 
         private void BillBtn_Click(object sender, EventArgs e)
         {
+            // Show the DisplayBill form, hide the current form, and then free the table
             DisplayBill display = new DisplayBill(table);
             this.Hide();
             display.ShowDialog();
             this.Close();
-            tableService.FreeTable(table.TableNumber, TableStatus.Free);
+            tableService.FreeTable(table.TableId, TableStatus.Free);
+        }
 
+        private void serveBtn_Click(object sender, EventArgs e)
+        {
+            // Update the state of the selected order item to Served and display the updated orders
+            orderItemService.UpdateOrderItemState(orderItem, OrderStatus.Served);
+            DisplayOrders();
+        }
+
+        private void listViewOrders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Retrieve the selected order item when the selection changes in the ListView
+            if (listViewOrders.SelectedItems.Count > 0)
+            {
+                ListViewItem listView = listViewOrders.SelectedItems[0];
+                orderItem = (OrderItem)listView.Tag;
+            }
         }
 
     }
+
 }
+

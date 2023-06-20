@@ -23,8 +23,10 @@ namespace ChapeauUI
             payment = new Payment();
             InitializeComponent();
             this.CenterToScreen();
+
             payment.TableNumber = table.TableNumber;
             lblTableNumber.Text =$"TABLE {payment.TableNumber}";
+
             DisplaypaymentDetails();
 
         }

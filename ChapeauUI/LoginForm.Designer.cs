@@ -38,7 +38,6 @@
             usernameTextBox = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            lblLogin = new Label();
             LoginPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             passwordPanel.SuspendLayout();
@@ -47,7 +46,7 @@
             // 
             // LoginPanel
             // 
-            LoginPanel.BackColor = Color.DarkOrange;
+            LoginPanel.BackColor = SystemColors.Control;
             LoginPanel.BorderStyle = BorderStyle.FixedSingle;
             LoginPanel.Controls.Add(pictureBox1);
             LoginPanel.Controls.Add(loginbtn);
@@ -55,7 +54,6 @@
             LoginPanel.Controls.Add(UsernamePanel);
             LoginPanel.Controls.Add(label2);
             LoginPanel.Controls.Add(label1);
-            LoginPanel.Controls.Add(lblLogin);
             LoginPanel.Location = new Point(0, 0);
             LoginPanel.Name = "LoginPanel";
             LoginPanel.Size = new Size(802, 451);
@@ -63,30 +61,32 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.DarkOrange;
+            pictureBox1.BackColor = SystemColors.Control;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(117, 19);
+            pictureBox1.Location = new Point(99, 27);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(539, 97);
+            pictureBox1.Size = new Size(539, 101);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
             // loginbtn
             // 
+            loginbtn.BackColor = Color.FromArgb(138, 210, 176);
             loginbtn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            loginbtn.Location = new Point(310, 357);
+            loginbtn.ForeColor = SystemColors.ControlText;
+            loginbtn.Location = new Point(296, 322);
             loginbtn.Name = "loginbtn";
             loginbtn.Size = new Size(152, 60);
             loginbtn.TabIndex = 6;
             loginbtn.Text = "Login";
-            loginbtn.UseVisualStyleBackColor = true;
+            loginbtn.UseVisualStyleBackColor = false;
             loginbtn.Click += loginbtn_Click_1;
             // 
             // passwordPanel
             // 
             passwordPanel.Controls.Add(passwordTextBox);
-            passwordPanel.Location = new Point(269, 273);
+            passwordPanel.Location = new Point(268, 237);
             passwordPanel.Name = "passwordPanel";
             passwordPanel.Size = new Size(250, 48);
             passwordPanel.TabIndex = 5;
@@ -101,7 +101,7 @@
             // UsernamePanel
             // 
             UsernamePanel.Controls.Add(usernameTextBox);
-            UsernamePanel.Location = new Point(269, 200);
+            UsernamePanel.Location = new Point(268, 164);
             UsernamePanel.Name = "UsernamePanel";
             UsernamePanel.Size = new Size(250, 48);
             UsernamePanel.TabIndex = 4;
@@ -117,7 +117,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(117, 209);
+            label2.Location = new Point(116, 173);
             label2.Name = "label2";
             label2.Size = new Size(130, 29);
             label2.TabIndex = 3;
@@ -127,22 +127,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(117, 280);
+            label1.Location = new Point(116, 244);
             label1.Name = "label1";
             label1.Size = new Size(124, 29);
             label1.TabIndex = 2;
             label1.Text = "Password";
-            // 
-            // lblLogin
-            // 
-            lblLogin.AutoSize = true;
-            lblLogin.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblLogin.Location = new Point(310, 124);
-            lblLogin.Margin = new Padding(5, 0, 5, 0);
-            lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(142, 54);
-            lblLogin.TabIndex = 1;
-            lblLogin.Text = "Login";
             // 
             // LoginScreen
             // 
@@ -168,7 +157,6 @@
         #endregion
 
         private Panel LoginPanel;
-        private Label lblLogin;
         private Panel UsernamePanel;
         private Label label2;
         private Label label1;

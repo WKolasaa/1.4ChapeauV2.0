@@ -14,14 +14,14 @@ namespace ChapeauDAL
     {
         public List<Table> GetAllTables()
         {
-            string query = "SELECT tableID, Occupied, tableNumber FROM [Tables]";
+            string query = "SELECT tableID, Occupied FROM [Tables]";
             DataTable dataTable = ExecuteSelectQuery(query);
             return ReadTables(dataTable);
         }
 
         public Table GetTableById(int tableID)
         {
-            string query = "SELECT tableID, Occupied, tableNumber FROM [Tables] WHERE tableID = @tableID";
+            string query = "SELECT tableID, Occupied FROM [Tables] WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
             new SqlParameter("@tableID", tableID)
@@ -52,7 +52,7 @@ namespace ChapeauDAL
                 {
                     TableId = Convert.ToInt32(row["tableID"]),
                     TableStatus = (TableStatus)Convert.ToInt32(row["Occupied"]),
-                    TableNumber = Convert.ToInt32(row["tableNumber"])
+                   
                 };
 
                 return table;
@@ -70,7 +70,6 @@ namespace ChapeauDAL
                 {
                     TableId = Convert.ToInt32(dr["tableID"]),
                     TableStatus = (TableStatus)Convert.ToInt32(dr["Occupied"]),
-                    TableNumber = Convert.ToInt32(dr["tableNumber"]),
                 };
                 tables.Add(table);
             }
