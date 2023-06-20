@@ -35,7 +35,10 @@ namespace ChapeauService
 
             return payments;
         }
-        
+        public void DeleteBill(int tableNumber)
+        {
+            PaymentDao.DeleteBill(tableNumber);
+        }
         public bool GetVATStatus(OrderItem item)
         {
             return PaymentDao.GetVATStatus(item);

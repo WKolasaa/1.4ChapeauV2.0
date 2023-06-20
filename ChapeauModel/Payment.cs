@@ -18,6 +18,8 @@ namespace ChapeauModel
         public decimal TotalAmount { get; set; }
         public List<PaymentMethod> PaymentMethods;
         public PaymentMethod PaymentMethod { get; set; }
+
+        public DateOnly Datetime { get; set; } 
     }
     
 }

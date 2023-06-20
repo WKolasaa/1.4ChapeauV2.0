@@ -88,8 +88,10 @@ namespace ChapeauUI
             Employee employee = new Employee();
             TableService tableService = new TableService();
              tableService.FreeTable(payment.TableNumber,TableStatus.Free);
-           // TableOverview tablesOverView = new TableOverview(employee);// problem!?
-            //tablesOverView.Show();
+            PaymentService service = new PaymentService();
+            service.DeleteBill(payment.TableNumber);// check
+           TableOverview tablesOverView = new TableOverview(employee);// problem!?
+            tablesOverView.Show();
         }
     }
 }
