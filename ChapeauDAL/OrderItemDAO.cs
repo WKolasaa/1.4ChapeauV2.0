@@ -2,6 +2,7 @@
 using Org.BouncyCastle.Asn1.X509;
 using SomerenDAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -48,9 +49,6 @@ namespace ChapeauDAL
 
 
 
-
-
-
         private List<OrderItem> ReadOrderStatus(DataTable dataTable)
         {
             List<OrderItem> orderItemList = new List<OrderItem>();
@@ -86,18 +84,19 @@ namespace ChapeauDAL
         public List<OrderItem> GetFoodStatusByTableId(int tableId)
         {
             string foodQuery = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE Category = '0' AND TableNumber = @tableNumber";
-            SqlParameter[] foodParameters = { new SqlParameter("@tableNumber", tableId) };
-            DataTable foodDataTable = ExecuteSelectQuery(foodQuery, foodParameters);
+            SqlParameter foodParameter = new SqlParameter("@tableNumber", SqlDbType.Int) { Value = tableId };
+            DataTable foodDataTable = ExecuteSelectQuery(foodQuery, foodParameter);
             return ReadOrderStatus(foodDataTable);
         }
 
         public List<OrderItem> GetDrinkStatusByTableId(int tableId)
         {
             string drinkQuery = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE Category = '1' AND TableNumber = @tableNumber";
-            SqlParameter[] drinkParameters = { new SqlParameter("@tableNumber", tableId) };
-            DataTable drinkDataTable = ExecuteSelectQuery(drinkQuery, drinkParameters);
+            SqlParameter drinkParameter = new SqlParameter("@tableNumber", SqlDbType.Int) { Value = tableId };
+            DataTable drinkDataTable = ExecuteSelectQuery(drinkQuery, drinkParameter);
             return ReadOrderStatus(drinkDataTable);
         }
+
 
 
 
