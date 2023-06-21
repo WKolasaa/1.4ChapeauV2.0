@@ -58,20 +58,5 @@ namespace ChapeauService
         {
             return orderitemdao.GetOrderItemsByTableId(taleId);
         }
-
-        public bool CheckIfTableHasActiveOrders(Table table)
-        {
-            return orderitemdao.CheckIfTableHasOrderItems(table);
-        }
-
-        /*  public void RemoveMenu(Menu menu)
-          {
-              orderitemdao.DeleteMenuItem(menu);
-          }
-          public void UpdateMenu(Menu menu)
-          {
-              orderitemdao.UpdateMenu(menu);
-          } */
-
     }
 }

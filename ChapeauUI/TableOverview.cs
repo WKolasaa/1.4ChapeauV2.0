@@ -18,7 +18,7 @@ namespace ChapeauUI
 {
     public partial class TableOverview : Form
     {
-        
+
         private TableService tableService;
         private List<Table> tables;
         private Employee employee;
@@ -28,12 +28,12 @@ namespace ChapeauUI
         {
             try
             {
-                
+
                 tables = new List<Table>();
                 tableService = new TableService();
                 orderItemService = new OrderItemService();
 
-                InitializeComponent(); 
+                InitializeComponent();
 
                 AssignTableButtonHandler(); // Assign table buttons to the panel
 
@@ -58,7 +58,7 @@ namespace ChapeauUI
                     this.Hide();
                     LoginScreen loginScreen = new LoginScreen(); // Create a new login screen form
                     loginScreen.ShowDialog(); // Display the login screen
-                    this.Close(); 
+                    this.Close();
                 }
             }
             catch (Exception ex)
