@@ -45,7 +45,7 @@ namespace ChapeauUI
 
         private void ManagerMainView_Load(object sender, EventArgs e)
         {
-            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance(); //Get instance of employee
             Employee employee = loggedEmployee.GetEmployee();
 
             lbUser.Text = $"Welcome {employee.Name}!";
@@ -57,7 +57,6 @@ namespace ChapeauUI
         {
             this.Hide();
             LoginScreen loginScreen = new LoginScreen();
-            //loginScree = null;
             loginScreen.ShowDialog();
             this.Close();
         }

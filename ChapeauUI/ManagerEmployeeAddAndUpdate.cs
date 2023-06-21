@@ -11,12 +11,12 @@ public partial class ManagerEmployeeAdd : Form
     public ManagerEmployeeAdd(bool Add, Employee employee)
     {
         InitializeComponent();
-        cbAddEmployeeRole.DataSource = Enum.GetValues(typeof(EmployeeType)); //ComboBox 
+        cbAddEmployeeRole.DataSource = Enum.GetValues(typeof(EmployeeType)); //loading data into ComboBox 
         txtAddEmployeePassword.UseSystemPasswordChar = true;
         CenterToScreen();
         this.employee = employee;
         AddForm = Add;
-        if (Add)
+        if (Add) // check if user pressed add or ajust button 
             btAddEmployee.Text = "Add employee";
         else
             UpdateForm();
@@ -72,7 +72,7 @@ public partial class ManagerEmployeeAdd : Form
         Close();
     }
 
-    private void importData()
+    private void importData() //import data from employee object 
     {
         try
         {
@@ -90,7 +90,7 @@ public partial class ManagerEmployeeAdd : Form
         }
     }
 
-    private Employee insertData()
+    private Employee insertData() //insert data to temporary Employee object
     {
         Employee importedEmployee = new Employee();
 

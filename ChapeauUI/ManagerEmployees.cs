@@ -6,6 +6,7 @@ namespace ChapeauUI
     public partial class ManagerEmployees : Form
     {
         ManagerMenuStip strip = new ManagerMenuStip();
+        Employee tempEmployee;
         public ManagerEmployees()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace ChapeauUI
             return employees;
         }
 
-        private void DisplayEmployees(List<Employee> employees)
+        private void DisplayEmployees(List<Employee> employees) //displaying list of employees
         {
             lvEmployees.Items.Clear();
 
@@ -46,8 +47,6 @@ namespace ChapeauUI
             form.ShowDialog();
             DisplayEmployees(GetEmployees());
         }
-
-        Employee tempEmployee;
 
         private void btEmployeesUpdate_Click(object sender, EventArgs e)
         {
