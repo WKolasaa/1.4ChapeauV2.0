@@ -23,16 +23,26 @@ namespace ChapeauDAL
         public List<OrderItem> GetOrderStatusByTableId(int tableId)
         {
             string query = "SELECT OrderItemID, OrderStatus FROM OrderItems WHERE TableNumber = @tableNumber";
-            SqlParameter[] sp = new SqlParameter[] { new SqlParameter("@tableNumber", tableId) };
+            SqlParameter sp = new SqlParameter("@tableNumber", tableId);
             return ReadOrderStatus(ExecuteSelectQuery(query, sp));
         }
 
         public List<OrderItem> GetOrderItemsByTableId(int tableId)
         {
             string query = "SELECT OrderItemID, OrderStatus ,PricePerItem, TableNumber, itemName, Quantity, vat_category, Comments, TimePlaced FROM OrderItems WHERE TableNumber = @tableNumber";
-            SqlParameter[] sp = new SqlParameter[] { new SqlParameter("@tableNumber", tableId) };
+            SqlParameter sp = new SqlParameter("@tableNumber", tableId);
             return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
 
+        }
+        
+        public bool CheckIfTableHasOrderItems(Table table)
+        {
+            string query = "SELECT OrderItemID FROM OrderItems WHERE TableNumber = @tableNumber";
+            SqlParameter parameters = new SqlParameter("@tableNumber", table.TableId);
+
+            DataTable result = ExecuteSelectQuery(query, parameters);
+
+            return result.Rows.Count > 0; // Return true if there are order items, false otherwise
         }
 
         private List<OrderItem> ReadOrderStatus(DataTable dataTable)

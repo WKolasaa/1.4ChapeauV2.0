@@ -46,7 +46,7 @@ namespace ChapeauUI
             orderedItems = GetAllItems();
             orderesListView.Items.Clear();
 
-            foreach (OrderItem orderItem in orderedItems)
+            foreach (OrderItem orderItem in orderedItems)// adds all the order items into the listview
             {
                 ListViewItem item = new ListViewItem($"{orderItem.TableNumber}");
                 // Calculate the elapsed time since the order was placed

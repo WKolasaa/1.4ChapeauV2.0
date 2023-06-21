@@ -24,10 +24,7 @@ namespace ChapeauDAL
         {
             // Retrieves a specific table from the database based on the provided tableID
             string query = "SELECT tableID, Occupied FROM [Tables] WHERE tableID = @tableID";
-            SqlParameter[] sqlParameters =
-            {
-              new SqlParameter("@tableID", tableID)
-            };
+            SqlParameter sqlParameters = new SqlParameter("@tableID", tableID);
 
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
             return ReadTable(dataTable);
