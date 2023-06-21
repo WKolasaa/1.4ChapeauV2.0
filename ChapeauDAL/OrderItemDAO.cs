@@ -163,20 +163,6 @@ namespace ChapeauDAL
             ExecuteEditQuery(query, sqlParameters);
         }*/
 
-        public void UpdateOrderItemStatus(OrderItem orderItem, int orderStatus)
-        {
-
-            string query = "UPDATE OrderItems SET OrderStatus = @orderStatus WHERE OrderItemID = @orderItemID";
-            SqlParameter[] parameter = new SqlParameter[]
-            {
-                new SqlParameter("@orderStatus", orderStatus),
-                new SqlParameter("@orderItemID", orderItem.OrderItemID)
-                
-            };
-
-            ExecuteEditQuery(query, parameter);
-        }
-
         public void UpdateOrderStatus(OrderItem orderItem, OrderStatus status)
         {
             string query = "UPDATE OrderItems SET OrderStatus = @orderStatus WHERE OrderItemID = @orderItemID";

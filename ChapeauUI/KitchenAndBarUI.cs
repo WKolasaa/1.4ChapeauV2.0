@@ -118,14 +118,14 @@ namespace ChapeauUI
         private void btnInPreparation_Click(object sender, EventArgs e)
         {
             // Change the status of the selected item to "In Preparation"
-            buttonClick(1);
+            buttonClick(ChapeauModel.OrderStatus.Preparing);
             // Refresh the order list
             RefreshListView();
         }
         private void btnPrepared_Click(object sender, EventArgs e)
         {
             // Change the status of the selected item to "Prepared"
-            buttonClick(2);
+            buttonClick(ChapeauModel.OrderStatus.Ready);
             // Refresh the order list
             RefreshListView();
         }
@@ -146,14 +146,14 @@ namespace ChapeauUI
             }
         }
 
-        public void buttonClick(int changedStatus)
+        public void buttonClick(OrderStatus changedStatus)
         {
             if (orderesListView.Items.Count > 0)
             {
                 ListViewItem selectedItem = orderesListView.SelectedItems[0];
                 OrderItem orderItem = (OrderItem)selectedItem.Tag;
                 // Update the status of the selected item
-                orderItemService.UpdateOrderItemStatus(orderItem, changedStatus);
+                orderItemService.UpdateOrderItemState(orderItem, changedStatus);
 
                 listViewSelectedItem.Items.Clear();
 

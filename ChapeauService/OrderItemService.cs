@@ -28,11 +28,6 @@ namespace ChapeauService
             orderitemdao.AddOrderItem(order);
         }
 
-        public void UpdateOrderItemStatus(OrderItem orderitem, int orderStatus)
-        {
-            orderitemdao.UpdateOrderItemStatus(orderitem, orderStatus);
-        }
-
         public void UpdateOrderItemState(OrderItem orderItem, OrderStatus status)
         {
             orderitemdao.UpdateOrderStatus(orderItem,status);
