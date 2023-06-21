@@ -309,6 +309,8 @@ namespace ChapeauUI
             displayPayment.ShowDialog();
             btnPAY.Enabled = false;
             this.Close();
+
+
         }
     }
 }

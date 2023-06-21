@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            lblSplitQuestion = new Label();
-            rbtnYes = new RadioButton();
-            rbtnNo = new RadioButton();
-            groupBoxSplitOption = new GroupBox();
-            lblAmountPaidByCustomers = new Label();
-            lblChange = new Label();
-            btnPAY = new Button();
-            lblTotalAmountPaid = new Label();
-            numericUpDownNumberOfPeople = new NumericUpDown();
-            btnSetNumber = new Button();
-            pnlPersonControls = new Panel();
-            lblTotalChange = new Label();
-            btnNextPerson = new Button();
-            lblTipHeader = new Label();
-            label4 = new Label();
-            txtTipAmount = new TextBox();
-            lblFeddbackHeader = new Label();
-            lblTipQuestion = new Label();
-            txtFeedback = new TextBox();
-            lblThankfulMessage = new Label();
-            btnAddTip = new Button();
-            lblInsufficientPaymnt = new Label();
-            btnSubmitAll = new Button();
-            groupBoxSplitOption.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownNumberOfPeople).BeginInit();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSplitQuestion = new System.Windows.Forms.Label();
+            this.rbtnYes = new System.Windows.Forms.RadioButton();
+            this.rbtnNo = new System.Windows.Forms.RadioButton();
+            this.groupBoxSplitOption = new System.Windows.Forms.GroupBox();
+            this.lblAmountPaidByCustomers = new System.Windows.Forms.Label();
+            this.lblChange = new System.Windows.Forms.Label();
+            this.btnPAY = new System.Windows.Forms.Button();
+            this.lblTotalAmountPaid = new System.Windows.Forms.Label();
+            this.numericUpDownNumberOfPeople = new System.Windows.Forms.NumericUpDown();
+            this.btnSetNumber = new System.Windows.Forms.Button();
+            this.pnlPersonControls = new System.Windows.Forms.Panel();
+            this.lblTotalChange = new System.Windows.Forms.Label();
+            this.btnNextPerson = new System.Windows.Forms.Button();
+            this.lblTipHeader = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTipAmount = new System.Windows.Forms.TextBox();
+            this.lblFeddbackHeader = new System.Windows.Forms.Label();
+            this.lblTipQuestion = new System.Windows.Forms.Label();
+            this.txtFeedback = new System.Windows.Forms.TextBox();
+            this.lblThankfulMessage = new System.Windows.Forms.Label();
+            this.btnAddTip = new System.Windows.Forms.Button();
+            this.lblInsufficientPaymnt = new System.Windows.Forms.Label();
+            this.btnSubmitAll = new System.Windows.Forms.Button();
+            this.groupBoxSplitOption.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfPeople)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
