@@ -101,7 +101,6 @@ namespace ChapeauDAL
 
 
 
-
         public List<OrderItem> GetAllFood()
         {
             string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = 0";

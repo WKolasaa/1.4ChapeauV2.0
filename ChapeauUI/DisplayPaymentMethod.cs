@@ -31,10 +31,10 @@ namespace ChapeauUI
         {
             this.payment = payment;
             payment.PaymentMethods = new List<PaymentMethod>();
+
             payment.Datetime=DateTime.Today;// manager part "income"
             InitializeComponent();
             this.CenterToScreen();
-
 
             rbtnNo.Checked = false;
             rbtnYes.Checked = false;
@@ -57,14 +57,11 @@ namespace ChapeauUI
         {
             if (CollectivePayment())
             {
-
                 lblSplitQuestion.Show();
                 btnSubmitAll.Show();
                 btnSetNumber.Show();
                 numericUpDownNumberOfPeople.Show();
-
             }
-
         }
         private void rbtnNo_CheckedChanged(object sender, EventArgs e)
         {
@@ -76,9 +73,8 @@ namespace ChapeauUI
                 numberOfPeople = 1;
                 btnSetNumber.Hide();
                 btnNextPerson.Hide();
-
                 pnlPersonControls.Controls.Clear();
-                ShowPersonControls(0);
+                ShowPersonControls(currentPersonIndex);//test
             }
         }
         private bool CollectivePayment()
@@ -127,7 +123,7 @@ namespace ChapeauUI
 
         
 
-        private void ShowPersonControls(int index)//handles the actual display
+        private void ShowPersonControls(int currentPerson)//handles the actual display
         {
 
             // Clear the panel before displaying the controls
@@ -159,7 +155,7 @@ namespace ChapeauUI
 
             if (CollectivePayment())
             {
-                label.Text = "Payer Select" + (index + 1);
+                label.Text = "Payer Select" + (currentPerson + 1);
                 // Add the ComboBox to the paymentMethodList for tracking the payment method of the current person
                 paymentMethodList.Add(comboBox);
 
@@ -275,27 +271,22 @@ namespace ChapeauUI
             payment.Feedback = txtFeedback.Text;
             decimal totalAmountPaid = CalculateTotalAmountPaid();
             decimal totalCheck = payment.TotalAmount;
+            totalAmountPaid += tip;
+            decimal change = totalAmountPaid - totalCheck;
 
-
-            if (totalAmountPaid >= totalCheck)
+            if (change >= 0)
             {
-                if (GiveTip(tip))
-                {
-                    totalAmountPaid += tip;
-                }
                 lblTotalAmountPaid.Text = totalAmountPaid.ToString("€ 0.00");
-
-                decimal change = totalAmountPaid - totalCheck;
-                if (change >= 0)
-                {
-                    lblTotalChange.Text = change.ToString("€ 0.00");
-                    btnSubmitAll.BackColor = Color.Orange;
-                }
+                lblTotalChange.Text = change.ToString("€ 0.00");
+                btnSubmitAll.BackColor = Color.Orange;   
             }
             else
             {
-                MessageBox.Show("Insufficient amount paid.");  
+                MessageBox.Show("Insufficient amount paid.");
+                payment.Tips = 0;
                 this.Close();
+                DisplayBill displayBill = new DisplayBill(payment.TableNumber);
+                displayBill.Show();
             }
         }
 
@@ -304,6 +295,7 @@ namespace ChapeauUI
             DisplayPayment displayPayment = new DisplayPayment(payment);
             displayPayment.Show();
             btnPAY.Enabled = false;
+            this.Close();
         }
     }
 }
