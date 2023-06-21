@@ -82,6 +82,7 @@ public partial class ManagerEmployeeAdd : Form
             cbAddEmployeeRole.SelectedItem = employee.EmployeeType;
             txtAddEmployeeUserName.Text = employee.UserName;
             txtAddEmployeePassword.Text = employee.Password;
+            dateTimePicker1.Value = employee.DateOfBirth;
         }
         catch (Exception exception)
         {
@@ -99,6 +100,7 @@ public partial class ManagerEmployeeAdd : Form
         importedEmployee.EmployeeType = (EmployeeType)cbAddEmployeeRole.SelectedIndex;
         importedEmployee.Password = txtAddEmployeePassword.Text;
         importedEmployee.UserName = txtAddEmployeeUserName.Text;
+        importedEmployee.DateOfBirth = dateTimePicker1.Value;
 
         return importedEmployee;
     }

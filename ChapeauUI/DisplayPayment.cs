@@ -87,7 +87,9 @@ namespace ChapeauUI
 
             PaymentService service = new PaymentService();
             service.DeleteBill(payment.TableNumber);// check
-            this.Close();   
+
+            TableOverview tablesOverView = new TableOverview();// problem!?
+            tablesOverView.Show();
         }
     }
 }

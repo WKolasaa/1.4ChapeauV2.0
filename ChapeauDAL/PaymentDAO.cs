@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Org.BouncyCastle.Utilities;
 using System.Xml.Linq;
 
@@ -88,7 +90,8 @@ namespace ChapeauDAL
                   // lambda parameter name that represents an individual element in the Split array.
                   .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))//=> separates the parameter 
                   .ToList<PaymentMethod>();
-                payment.Datetime =reader.GetDateTime(6);//
+
+                payment.Datetime = reader.GetDateTime(6);//
 
                 paymentList.Add(payment); // Add the payment to the list
 
@@ -216,6 +219,28 @@ namespace ChapeauDAL
                 items.Add(item);
             }
             return items;
-        }      
+
+        }
+
+        public decimal TodaysIncome() // Manager part to display today's income 
+        {
+            string query = "SELECT TotalAmount FROM PaymentHistory WHERE PaymentData = @date";
+
+            SqlParameter[] parameter =
+            {
+                new SqlParameter("@date", DateTime.Today)
+            };
+
+            DataTable table = ExecuteSelectQuery(query, parameter);
+
+            decimal income = 0;
+
+            foreach (DataRow tableRow in table.Rows)
+            {
+                income += (decimal)tableRow["TotalAmount"];
+            }
+
+            return income;
+        }
     }
 }

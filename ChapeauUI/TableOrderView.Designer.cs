@@ -30,7 +30,6 @@
         {
             ColumnHeader columnHeader1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableOrderView));
-
             panel1 = new Panel();
             namelabel = new Label();
             button1 = new Button();
@@ -41,8 +40,8 @@
             listcolumnName = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
+            listcolumncomment = new ColumnHeader();
+            columnTime = new ColumnHeader();
             BillBtn = new Button();
             AddOrderbtn = new Button();
             ReserveTableBtn = new Button();
@@ -53,7 +52,6 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-
             // 
             // columnHeader1
             // 
@@ -62,7 +60,6 @@
             // 
             // panel1
             // 
-
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(namelabel);
             panel1.Controls.Add(button1);
@@ -74,11 +71,9 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(915, 136);
             panel1.TabIndex = 0;
-
             // 
             // namelabel
             // 
-
             namelabel.AutoSize = true;
             namelabel.BackColor = Color.FromArgb(255, 179, 71);
             namelabel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
@@ -87,7 +82,6 @@
             namelabel.Size = new Size(0, 20);
             namelabel.TabIndex = 4;
             namelabel.TextAlign = ContentAlignment.MiddleLeft;
-
             // 
             // button1
             // 
@@ -139,7 +133,7 @@
             // 
             // listViewOrders
             // 
-            listViewOrders.Columns.AddRange(new ColumnHeader[] { listcolumnName, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            listViewOrders.Columns.AddRange(new ColumnHeader[] { listcolumnName, columnHeader1, columnHeader2, columnHeader3, listcolumncomment, columnTime });
             listViewOrders.FullRowSelect = true;
             listViewOrders.Location = new Point(14, 173);
             listViewOrders.Margin = new Padding(3, 4, 3, 4);
@@ -150,7 +144,6 @@
             listViewOrders.UseCompatibleStateImageBehavior = false;
             listViewOrders.View = View.Details;
             listViewOrders.SelectedIndexChanged += listViewOrders_SelectedIndexChanged;
-
             // 
             // listcolumnName
             // 
@@ -167,9 +160,16 @@
             columnHeader3.Text = "Status";
             columnHeader3.Width = 100;
             // 
+            // listcolumncomment
+            // 
+            listcolumncomment.Text = "Comment";
+            // 
+            // columnTime
+            // 
+            columnTime.Text = "Time";
+            // 
             // BillBtn
             // 
-
             BillBtn.BackColor = Color.FromArgb(138, 210, 176);
             BillBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             BillBtn.Location = new Point(719, 262);
@@ -264,7 +264,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-
         }
 
         #endregion
@@ -282,10 +281,10 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private Label tableNumberlbl;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
         private Button serveBtn;
         private Label namelabel;
         private Button button1;
+        private ColumnHeader listcolumncomment;
+        private ColumnHeader columnTime;
     }
 }

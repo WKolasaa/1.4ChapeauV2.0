@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using ChapeauModel;
 using ChapeauService;
+using OrderTable;
 
 namespace ChapeauUI
 {
@@ -32,7 +33,8 @@ namespace ChapeauUI
             this.table = table;
             InitializeComponent();
             this.CenterToScreen();
-            namelabel.Text = $"{employee.Name}";
+            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+            namelabel.Text = $"{loggedEmployee.GetEmployee().Name}";
             tableNumberlbl.Text = $"Table{table.TableId}";
             DisplayOrders();
             CheckTableAvailability();
@@ -98,7 +100,7 @@ namespace ChapeauUI
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
-                listItem.SubItems.Add($"{item.Comment}");
+                listItem.SubItems.Add(item.Comment.ToString());
                 listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
                 listItem.Tag = item;
 
@@ -110,7 +112,11 @@ namespace ChapeauUI
 
         private void AddOrderbtn_Click(object sender, EventArgs e)
         {
-            // Handle the button click event to add an order
+            Hide();
+            OrderForm form = new OrderForm(table.TableId);
+            form.ShowDialog();
+            Show();
+            DisplayOrders();
         }
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)

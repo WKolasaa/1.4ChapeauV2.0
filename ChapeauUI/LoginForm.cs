@@ -25,12 +25,15 @@ namespace ChapeauUI
 
         private void ValidateForm(Employee employee)
         {
+            UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+            loggedEmployee.LogEmployee(employee);
+
             switch (employee.EmployeeType)
             {
                 case EmployeeType.Waiter:
                     {
                         this.Hide();
-                        TableOverview tableOverview = new TableOverview(employee);
+                        TableOverview tableOverview = new TableOverview(); 
                         tableOverview.ShowDialog();
                         this.Close();
                         break;
@@ -56,7 +59,7 @@ namespace ChapeauUI
                 case EmployeeType.Manager:
                     {
                         this.Hide();
-                        ManagerMainView managerMainView = new ManagerMainView(employee);
+                        ManagerMainView managerMainView = new ManagerMainView();
                         managerMainView.ShowDialog();
                         this.Close();
                         break;

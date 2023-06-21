@@ -12,7 +12,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TheArtOfDevHtmlRenderer.Adapters;
 using static ChapeauModel.Order;
 
 namespace ChapeauUI
@@ -26,12 +25,10 @@ namespace ChapeauUI
         private OrderItemService orderItemService;
 
 
-        public TableOverview(Employee employee)
+        public TableOverview()
         {
             try
             {
-                this.employee = employee;
-
                 tables = new List<Table>();
                 tableService = new TableService();
                 orderItemService = new OrderItemService();
@@ -44,7 +41,9 @@ namespace ChapeauUI
 
                 this.CenterToScreen();
 
-                namelabel.Text = $"{employee.Name}";
+                UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
+
+                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}"; 
             }
             catch (Exception ex)
             {

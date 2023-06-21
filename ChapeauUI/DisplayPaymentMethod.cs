@@ -31,7 +31,8 @@ namespace ChapeauUI
         {
             this.payment = payment;
             payment.PaymentMethods = new List<PaymentMethod>();
-            payment.Datetime = DateTime.Now;// manager part "income"
+
+            payment.Datetime=DateTime.Today;// manager part "income"
             InitializeComponent();
             this.CenterToScreen();
 

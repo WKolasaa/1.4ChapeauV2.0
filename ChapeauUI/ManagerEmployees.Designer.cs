@@ -44,13 +44,14 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            DateOfBIrth = new ColumnHeader();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lvEmployees
             // 
-            lvEmployees.Columns.AddRange(new ColumnHeader[] { ID, Name, User_Name, Role });
+            lvEmployees.Columns.AddRange(new ColumnHeader[] { ID, Name, User_Name, DateOfBIrth, Role });
             lvEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lvEmployees.FullRowSelect = true;
             lvEmployees.GridLines = true;
@@ -80,7 +81,7 @@
             // Role
             // 
             Role.Text = "Role";
-            Role.Width = 150;
+            Role.Width = 100;
             // 
             // btEmployeesAdd
             // 
@@ -142,7 +143,6 @@
             employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
             employeesToolStripMenuItem.Size = new Size(97, 25);
             employeesToolStripMenuItem.Text = "Employees";
-            employeesToolStripMenuItem.Click += employeesToolStripMenuItem_Click;
             // 
             // stockToolStripMenuItem
             // 
@@ -179,6 +179,11 @@
             label1.Size = new Size(243, 54);
             label1.TabIndex = 12;
             label1.Text = "EMPLOYEES";
+            // 
+            // DateOfBIrth
+            // 
+            DateOfBIrth.Text = "Date of birth";
+            DateOfBIrth.Width = 150;
             // 
             // ManagerEmployees
             // 
@@ -218,5 +223,6 @@
         private ColumnHeader Role;
         private PictureBox pictureBox1;
         private Label label1;
+        private ColumnHeader DateOfBIrth;
     }
 }

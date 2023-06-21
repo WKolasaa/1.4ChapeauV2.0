@@ -25,6 +25,7 @@ namespace ChapeauUI
             this.CenterToScreen();
 
             payment.TableNumber = tableNumber;
+
             lblTableNumber.Text =$"TABLE {payment.TableNumber}";
 
             DisplaypaymentDetails();
@@ -136,7 +137,9 @@ namespace ChapeauUI
             }
             // decimal vatRate = isAlcoholic ? HighVAT : LowVAT;
 
+
             decimal vatPerItem = item.PricePerItem * vatRate * item.Quantity;
+
 
             return vatPerItem;
         }
