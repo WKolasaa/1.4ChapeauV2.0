@@ -29,7 +29,7 @@ namespace ChapeauDAL
 
         public List<OrderItem> GetOrderItemsByTableId(int tableId)
         {
-            string query = "SELECT OrderItemID, OrderStatus ,PricePerItem, TableNumber, itemName, Quantity, vat_category, Comments FROM OrderItems WHERE TableNumber = @tableNumber";
+            string query = "SELECT OrderItemID, OrderStatus ,PricePerItem, TableNumber, itemName, Quantity, vat_category, Comments, TimePlaced FROM OrderItems WHERE TableNumber = @tableNumber";
             SqlParameter[] sp = new SqlParameter[] { new SqlParameter("@tableNumber", tableId) };
             return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
 
@@ -76,6 +76,7 @@ namespace ChapeauDAL
                 orderItem.PricePerItem = (decimal)row["PricePerItem"];
                 orderItem.Status = (OrderStatus)(int)row["OrderStatus"];
                 orderItem.Comment = (string)row["Comments"];
+                orderItem.TimePlaced = (DateTime)row["TimePlaced"];
                 orderItemList.Add(orderItem);
             }
 

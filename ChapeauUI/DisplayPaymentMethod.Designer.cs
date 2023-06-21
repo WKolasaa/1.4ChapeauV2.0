@@ -28,324 +28,323 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblSplitQuestion = new System.Windows.Forms.Label();
-            this.rbtnYes = new System.Windows.Forms.RadioButton();
-            this.rbtnNo = new System.Windows.Forms.RadioButton();
-            this.groupBoxSplitOption = new System.Windows.Forms.GroupBox();
-            this.lblAmountPaidByCustomers = new System.Windows.Forms.Label();
-            this.lblChange = new System.Windows.Forms.Label();
-            this.btnPAY = new System.Windows.Forms.Button();
-            this.lblTotalAmountPaid = new System.Windows.Forms.Label();
-            this.numericUpDownNumberOfPeople = new System.Windows.Forms.NumericUpDown();
-            this.btnSetNumber = new System.Windows.Forms.Button();
-            this.pnlPersonControls = new System.Windows.Forms.Panel();
-            this.lblTotalChange = new System.Windows.Forms.Label();
-            this.btnNextPerson = new System.Windows.Forms.Button();
-            this.lblTipHeader = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtTipAmount = new System.Windows.Forms.TextBox();
-            this.lblFeddbackHeader = new System.Windows.Forms.Label();
-            this.lblTipQuestion = new System.Windows.Forms.Label();
-            this.txtFeedback = new System.Windows.Forms.TextBox();
-            this.lblThankfulMessage = new System.Windows.Forms.Label();
-            this.btnAddTip = new System.Windows.Forms.Button();
-            this.lblInsufficientPaymnt = new System.Windows.Forms.Label();
-            this.btnSubmitAll = new System.Windows.Forms.Button();
-            this.groupBoxSplitOption.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfPeople)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            lblSplitQuestion = new Label();
+            rbtnYes = new RadioButton();
+            rbtnNo = new RadioButton();
+            groupBoxSplitOption = new GroupBox();
+            lblAmountPaidByCustomers = new Label();
+            lblChange = new Label();
+            btnPAY = new Button();
+            lblTotalAmountPaid = new Label();
+            numericUpDownNumberOfPeople = new NumericUpDown();
+            btnSetNumber = new Button();
+            pnlPersonControls = new Panel();
+            lblTotalChange = new Label();
+            btnNextPerson = new Button();
+            lblTipHeader = new Label();
+            label4 = new Label();
+            txtTipAmount = new TextBox();
+            lblFeddbackHeader = new Label();
+            lblTipQuestion = new Label();
+            txtFeedback = new TextBox();
+            lblThankfulMessage = new Label();
+            btnAddTip = new Button();
+            lblInsufficientPaymnt = new Label();
+            btnSubmitAll = new Button();
+            groupBoxSplitOption.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownNumberOfPeople).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(361, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(224, 59);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PAYMENT";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(361, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(142, 37);
+            label1.TabIndex = 0;
+            label1.Text = "PAYMENT";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(11, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(497, 37);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Collective Payment or Group Transaction";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(11, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(320, 23);
+            label2.TabIndex = 1;
+            label2.Text = "Collective Payment or Group Transaction";
             // 
             // lblSplitQuestion
             // 
-            this.lblSplitQuestion.AutoSize = true;
-            this.lblSplitQuestion.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSplitQuestion.Location = new System.Drawing.Point(12, 195);
-            this.lblSplitQuestion.Name = "lblSplitQuestion";
-            this.lblSplitQuestion.Size = new System.Drawing.Size(301, 37);
-            this.lblSplitQuestion.TabIndex = 2;
-            this.lblSplitQuestion.Text = "Number of Contributors";
+            lblSplitQuestion.AutoSize = true;
+            lblSplitQuestion.Font = new Font("Segoe UI", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSplitQuestion.Location = new Point(12, 195);
+            lblSplitQuestion.Name = "lblSplitQuestion";
+            lblSplitQuestion.Size = new Size(194, 23);
+            lblSplitQuestion.TabIndex = 2;
+            lblSplitQuestion.Text = "Number of Contributors";
             // 
             // rbtnYes
             // 
-            this.rbtnYes.AutoSize = true;
-            this.rbtnYes.Location = new System.Drawing.Point(6, 36);
-            this.rbtnYes.Name = "rbtnYes";
-            this.rbtnYes.Size = new System.Drawing.Size(74, 34);
-            this.rbtnYes.TabIndex = 3;
-            this.rbtnYes.Text = "Yes";
-            this.rbtnYes.UseVisualStyleBackColor = true;
-            this.rbtnYes.CheckedChanged += new System.EventHandler(this.rbtnYes_CheckedChanged);
+            rbtnYes.AutoSize = true;
+            rbtnYes.Location = new Point(6, 36);
+            rbtnYes.Name = "rbtnYes";
+            rbtnYes.Size = new Size(50, 23);
+            rbtnYes.TabIndex = 3;
+            rbtnYes.Text = "Yes";
+            rbtnYes.UseVisualStyleBackColor = true;
+            rbtnYes.CheckedChanged += rbtnYes_CheckedChanged;
             // 
             // rbtnNo
             // 
-            this.rbtnNo.AutoSize = true;
-            this.rbtnNo.Location = new System.Drawing.Point(112, 36);
-            this.rbtnNo.Name = "rbtnNo";
-            this.rbtnNo.Size = new System.Drawing.Size(72, 34);
-            this.rbtnNo.TabIndex = 4;
-            this.rbtnNo.Text = "No";
-            this.rbtnNo.UseVisualStyleBackColor = true;
-            this.rbtnNo.CheckedChanged += new System.EventHandler(this.rbtnNo_CheckedChanged);
+            rbtnNo.AutoSize = true;
+            rbtnNo.Location = new Point(112, 36);
+            rbtnNo.Name = "rbtnNo";
+            rbtnNo.Size = new Size(48, 23);
+            rbtnNo.TabIndex = 4;
+            rbtnNo.Text = "No";
+            rbtnNo.UseVisualStyleBackColor = true;
+            rbtnNo.CheckedChanged += rbtnNo_CheckedChanged;
             // 
             // groupBoxSplitOption
             // 
-            this.groupBoxSplitOption.Controls.Add(this.rbtnNo);
-            this.groupBoxSplitOption.Controls.Add(this.rbtnYes);
-            this.groupBoxSplitOption.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBoxSplitOption.Location = new System.Drawing.Point(711, 71);
-            this.groupBoxSplitOption.Name = "groupBoxSplitOption";
-            this.groupBoxSplitOption.Size = new System.Drawing.Size(188, 78);
-            this.groupBoxSplitOption.TabIndex = 8;
-            this.groupBoxSplitOption.TabStop = false;
+            groupBoxSplitOption.Controls.Add(rbtnNo);
+            groupBoxSplitOption.Controls.Add(rbtnYes);
+            groupBoxSplitOption.ForeColor = SystemColors.ActiveCaptionText;
+            groupBoxSplitOption.Location = new Point(711, 71);
+            groupBoxSplitOption.Name = "groupBoxSplitOption";
+            groupBoxSplitOption.Size = new Size(188, 78);
+            groupBoxSplitOption.TabIndex = 8;
+            groupBoxSplitOption.TabStop = false;
             // 
             // lblAmountPaidByCustomers
             // 
-            this.lblAmountPaidByCustomers.AutoSize = true;
-            this.lblAmountPaidByCustomers.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAmountPaidByCustomers.Location = new System.Drawing.Point(470, 827);
-            this.lblAmountPaidByCustomers.Name = "lblAmountPaidByCustomers";
-            this.lblAmountPaidByCustomers.Size = new System.Drawing.Size(235, 50);
-            this.lblAmountPaidByCustomers.TabIndex = 12;
-            this.lblAmountPaidByCustomers.Text = "Amount Paid";
+            lblAmountPaidByCustomers.AutoSize = true;
+            lblAmountPaidByCustomers.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAmountPaidByCustomers.Location = new Point(470, 827);
+            lblAmountPaidByCustomers.Name = "lblAmountPaidByCustomers";
+            lblAmountPaidByCustomers.Size = new Size(151, 32);
+            lblAmountPaidByCustomers.TabIndex = 12;
+            lblAmountPaidByCustomers.Text = "Amount Paid";
             // 
             // lblChange
             // 
-            this.lblChange.AutoSize = true;
-            this.lblChange.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblChange.Location = new System.Drawing.Point(470, 913);
-            this.lblChange.Name = "lblChange";
-            this.lblChange.Size = new System.Drawing.Size(167, 50);
-            this.lblChange.TabIndex = 15;
-            this.lblChange.Text = "CHANGE";
+            lblChange.AutoSize = true;
+            lblChange.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            lblChange.Location = new Point(470, 913);
+            lblChange.Name = "lblChange";
+            lblChange.Size = new Size(107, 32);
+            lblChange.TabIndex = 15;
+            lblChange.Text = "CHANGE";
             // 
             // btnPAY
             // 
-            this.btnPAY.BackColor = System.Drawing.Color.Orange;
-            this.btnPAY.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPAY.Location = new System.Drawing.Point(361, 1033);
-            this.btnPAY.Name = "btnPAY";
-            this.btnPAY.Size = new System.Drawing.Size(258, 69);
-            this.btnPAY.TabIndex = 20;
-            this.btnPAY.Text = "PAY";
-            this.btnPAY.UseVisualStyleBackColor = false;
-            this.btnPAY.Click += new System.EventHandler(this.btnPay_Click);
+            btnPAY.BackColor = Color.Orange;
+            btnPAY.Font = new Font("Segoe UI", 13.875F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPAY.Location = new Point(361, 1033);
+            btnPAY.Name = "btnPAY";
+            btnPAY.Size = new Size(258, 69);
+            btnPAY.TabIndex = 20;
+            btnPAY.Text = "PAY";
+            btnPAY.UseVisualStyleBackColor = false;
+            btnPAY.Click += btnPay_Click;
             // 
             // lblTotalAmountPaid
             // 
-            this.lblTotalAmountPaid.AutoSize = true;
-            this.lblTotalAmountPaid.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalAmountPaid.Location = new System.Drawing.Point(793, 827);
-            this.lblTotalAmountPaid.Name = "lblTotalAmountPaid";
-            this.lblTotalAmountPaid.Size = new System.Drawing.Size(0, 50);
-            this.lblTotalAmountPaid.TabIndex = 23;
+            lblTotalAmountPaid.AutoSize = true;
+            lblTotalAmountPaid.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTotalAmountPaid.Location = new Point(793, 827);
+            lblTotalAmountPaid.Name = "lblTotalAmountPaid";
+            lblTotalAmountPaid.Size = new Size(0, 32);
+            lblTotalAmountPaid.TabIndex = 23;
             // 
             // numericUpDownNumberOfPeople
             // 
-            this.numericUpDownNumberOfPeople.Location = new System.Drawing.Point(765, 193);
-            this.numericUpDownNumberOfPeople.Name = "numericUpDownNumberOfPeople";
-            this.numericUpDownNumberOfPeople.Size = new System.Drawing.Size(130, 35);
-            this.numericUpDownNumberOfPeople.TabIndex = 29;
+            numericUpDownNumberOfPeople.Location = new Point(765, 193);
+            numericUpDownNumberOfPeople.Name = "numericUpDownNumberOfPeople";
+            numericUpDownNumberOfPeople.Size = new Size(130, 25);
+            numericUpDownNumberOfPeople.TabIndex = 29;
             // 
             // btnSetNumber
             // 
-            this.btnSetNumber.BackColor = System.Drawing.Color.LightGreen;
-            this.btnSetNumber.Location = new System.Drawing.Point(794, 234);
-            this.btnSetNumber.Name = "btnSetNumber";
-            this.btnSetNumber.Size = new System.Drawing.Size(101, 43);
-            this.btnSetNumber.TabIndex = 30;
-            this.btnSetNumber.Text = "SET";
-            this.btnSetNumber.UseVisualStyleBackColor = false;
-            this.btnSetNumber.Click += new System.EventHandler(this.btnSetNumber_Click);
+            btnSetNumber.BackColor = Color.LightGreen;
+            btnSetNumber.Location = new Point(794, 234);
+            btnSetNumber.Name = "btnSetNumber";
+            btnSetNumber.Size = new Size(101, 43);
+            btnSetNumber.TabIndex = 30;
+            btnSetNumber.Text = "SET";
+            btnSetNumber.UseVisualStyleBackColor = false;
+            btnSetNumber.Click += btnSetNumber_Click;
             // 
             // pnlPersonControls
             // 
-            this.pnlPersonControls.AutoSize = true;
-            this.pnlPersonControls.Location = new System.Drawing.Point(99, 297);
-            this.pnlPersonControls.Name = "pnlPersonControls";
-            this.pnlPersonControls.Size = new System.Drawing.Size(606, 53);
-            this.pnlPersonControls.TabIndex = 31;
+            pnlPersonControls.AutoSize = true;
+            pnlPersonControls.Location = new Point(99, 297);
+            pnlPersonControls.Name = "pnlPersonControls";
+            pnlPersonControls.Size = new Size(606, 53);
+            pnlPersonControls.TabIndex = 31;
             // 
             // lblTotalChange
             // 
-            this.lblTotalChange.AutoSize = true;
-            this.lblTotalChange.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalChange.Location = new System.Drawing.Point(793, 913);
-            this.lblTotalChange.Name = "lblTotalChange";
-            this.lblTotalChange.Size = new System.Drawing.Size(0, 50);
-            this.lblTotalChange.TabIndex = 17;
+            lblTotalChange.AutoSize = true;
+            lblTotalChange.Font = new Font("Segoe UI", 13.875F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTotalChange.Location = new Point(793, 913);
+            lblTotalChange.Name = "lblTotalChange";
+            lblTotalChange.Size = new Size(0, 32);
+            lblTotalChange.TabIndex = 17;
             // 
             // btnNextPerson
             // 
-            this.btnNextPerson.BackColor = System.Drawing.Color.LightGreen;
-            this.btnNextPerson.Location = new System.Drawing.Point(606, 356);
-            this.btnNextPerson.Name = "btnNextPerson";
-            this.btnNextPerson.Size = new System.Drawing.Size(100, 43);
-            this.btnNextPerson.TabIndex = 33;
-            this.btnNextPerson.Text = "NEXT";
-            this.btnNextPerson.UseVisualStyleBackColor = false;
-            this.btnNextPerson.Click += new System.EventHandler(this.btnNextPerson_Click_1);
+            btnNextPerson.BackColor = Color.LightGreen;
+            btnNextPerson.Location = new Point(606, 356);
+            btnNextPerson.Name = "btnNextPerson";
+            btnNextPerson.Size = new Size(100, 43);
+            btnNextPerson.TabIndex = 33;
+            btnNextPerson.Text = "NEXT";
+            btnNextPerson.UseVisualStyleBackColor = false;
+            btnNextPerson.Click += btnNextPerson_Click_1;
             // 
             // lblTipHeader
             // 
-            this.lblTipHeader.AutoSize = true;
-            this.lblTipHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTipHeader.Location = new System.Drawing.Point(12, 410);
-            this.lblTipHeader.Name = "lblTipHeader";
-            this.lblTipHeader.Size = new System.Drawing.Size(113, 65);
-            this.lblTipHeader.TabIndex = 34;
-            this.lblTipHeader.Text = "TIP:";
+            lblTipHeader.AutoSize = true;
+            lblTipHeader.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTipHeader.Location = new Point(12, 410);
+            lblTipHeader.Name = "lblTipHeader";
+            lblTipHeader.Size = new Size(72, 41);
+            lblTipHeader.TabIndex = 34;
+            lblTipHeader.Text = "TIP:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(11, 501);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(410, 45);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "Would you like to add Tip ?";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(11, 501);
+            label4.Name = "label4";
+            label4.Size = new Size(252, 28);
+            label4.TabIndex = 35;
+            label4.Text = "Would you like to add Tip ?";
             // 
             // txtTipAmount
             // 
-            this.txtTipAmount.BackColor = System.Drawing.SystemColors.Control;
-            this.txtTipAmount.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtTipAmount.Location = new System.Drawing.Point(756, 510);
-            this.txtTipAmount.Name = "txtTipAmount";
-            this.txtTipAmount.Size = new System.Drawing.Size(139, 35);
-            this.txtTipAmount.TabIndex = 36;
+            txtTipAmount.BackColor = SystemColors.Control;
+            txtTipAmount.ForeColor = SystemColors.InactiveCaptionText;
+            txtTipAmount.Location = new Point(756, 510);
+            txtTipAmount.Name = "txtTipAmount";
+            txtTipAmount.Size = new Size(139, 25);
+            txtTipAmount.TabIndex = 36;
             // 
             // lblFeddbackHeader
             // 
-            this.lblFeddbackHeader.AutoSize = true;
-            this.lblFeddbackHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFeddbackHeader.Location = new System.Drawing.Point(11, 620);
-            this.lblFeddbackHeader.Name = "lblFeddbackHeader";
-            this.lblFeddbackHeader.Size = new System.Drawing.Size(278, 65);
-            this.lblFeddbackHeader.TabIndex = 37;
-            this.lblFeddbackHeader.Text = "FEEDBACK:";
+            lblFeddbackHeader.AutoSize = true;
+            lblFeddbackHeader.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblFeddbackHeader.Location = new Point(11, 620);
+            lblFeddbackHeader.Name = "lblFeddbackHeader";
+            lblFeddbackHeader.Size = new Size(174, 41);
+            lblFeddbackHeader.TabIndex = 37;
+            lblFeddbackHeader.Text = "FEEDBACK:";
             // 
             // lblTipQuestion
             // 
-            this.lblTipQuestion.AutoSize = true;
-            this.lblTipQuestion.Location = new System.Drawing.Point(11, 705);
-            this.lblTipQuestion.Name = "lblTipQuestion";
-            this.lblTipQuestion.Size = new System.Drawing.Size(378, 30);
-            this.lblTipQuestion.TabIndex = 39;
-            this.lblTipQuestion.Text = "Do you have any comment or feedback";
+            lblTipQuestion.AutoSize = true;
+            lblTipQuestion.Location = new Point(11, 705);
+            lblTipQuestion.Name = "lblTipQuestion";
+            lblTipQuestion.Size = new Size(250, 19);
+            lblTipQuestion.TabIndex = 39;
+            lblTipQuestion.Text = "Do you have any comment or feedback";
             // 
             // txtFeedback
             // 
-            this.txtFeedback.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFeedback.Location = new System.Drawing.Point(734, 700);
-            this.txtFeedback.Name = "txtFeedback";
-            this.txtFeedback.Size = new System.Drawing.Size(161, 35);
-            this.txtFeedback.TabIndex = 40;
+            txtFeedback.BackColor = SystemColors.Control;
+            txtFeedback.Location = new Point(734, 700);
+            txtFeedback.Name = "txtFeedback";
+            txtFeedback.Size = new Size(161, 25);
+            txtFeedback.TabIndex = 40;
             // 
             // lblThankfulMessage
             // 
-            this.lblThankfulMessage.AutoSize = true;
-            this.lblThankfulMessage.Location = new System.Drawing.Point(43, 570);
-            this.lblThankfulMessage.Name = "lblThankfulMessage";
-            this.lblThankfulMessage.Size = new System.Drawing.Size(0, 30);
-            this.lblThankfulMessage.TabIndex = 41;
+            lblThankfulMessage.AutoSize = true;
+            lblThankfulMessage.Location = new Point(43, 570);
+            lblThankfulMessage.Name = "lblThankfulMessage";
+            lblThankfulMessage.Size = new Size(0, 19);
+            lblThankfulMessage.TabIndex = 41;
             // 
             // btnAddTip
             // 
-            this.btnAddTip.BackColor = System.Drawing.Color.LightGreen;
-            this.btnAddTip.Location = new System.Drawing.Point(813, 564);
-            this.btnAddTip.Name = "btnAddTip";
-            this.btnAddTip.Size = new System.Drawing.Size(82, 43);
-            this.btnAddTip.TabIndex = 38;
-            this.btnAddTip.Text = "ADD";
-            this.btnAddTip.UseVisualStyleBackColor = false;
-            this.btnAddTip.Click += new System.EventHandler(this.btnAddTip_Click);
+            btnAddTip.BackColor = Color.LightGreen;
+            btnAddTip.Location = new Point(813, 564);
+            btnAddTip.Name = "btnAddTip";
+            btnAddTip.Size = new Size(82, 43);
+            btnAddTip.TabIndex = 38;
+            btnAddTip.Text = "ADD";
+            btnAddTip.UseVisualStyleBackColor = false;
+            btnAddTip.Click += btnAddTip_Click;
             // 
             // lblInsufficientPaymnt
             // 
-            this.lblInsufficientPaymnt.AutoSize = true;
-            this.lblInsufficientPaymnt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblInsufficientPaymnt.Location = new System.Drawing.Point(145, 892);
-            this.lblInsufficientPaymnt.Name = "lblInsufficientPaymnt";
-            this.lblInsufficientPaymnt.Size = new System.Drawing.Size(0, 45);
-            this.lblInsufficientPaymnt.TabIndex = 42;
+            lblInsufficientPaymnt.AutoSize = true;
+            lblInsufficientPaymnt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblInsufficientPaymnt.Location = new Point(145, 892);
+            lblInsufficientPaymnt.Name = "lblInsufficientPaymnt";
+            lblInsufficientPaymnt.Size = new Size(0, 28);
+            lblInsufficientPaymnt.TabIndex = 42;
             // 
             // btnSubmitAll
             // 
-            this.btnSubmitAll.BackColor = System.Drawing.Color.LightGreen;
-            this.btnSubmitAll.Location = new System.Drawing.Point(798, 741);
-            this.btnSubmitAll.Name = "btnSubmitAll";
-            this.btnSubmitAll.Size = new System.Drawing.Size(97, 43);
-            this.btnSubmitAll.TabIndex = 43;
-            this.btnSubmitAll.Text = "SUBMIT";
-            this.btnSubmitAll.UseVisualStyleBackColor = false;
-            this.btnSubmitAll.Click += new System.EventHandler(this.btnSubmitAll_Click);
+            btnSubmitAll.BackColor = Color.LightGreen;
+            btnSubmitAll.Location = new Point(798, 741);
+            btnSubmitAll.Name = "btnSubmitAll";
+            btnSubmitAll.Size = new Size(97, 43);
+            btnSubmitAll.TabIndex = 43;
+            btnSubmitAll.Text = "SUBMIT";
+            btnSubmitAll.UseVisualStyleBackColor = false;
+            btnSubmitAll.Click += btnSubmitAll_Click;
             // 
             // DisplayPaymentMethod
             // 
-            this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(985, 1142);
-            this.Controls.Add(this.btnSubmitAll);
-            this.Controls.Add(this.lblInsufficientPaymnt);
-            this.Controls.Add(this.lblThankfulMessage);
-            this.Controls.Add(this.txtFeedback);
-            this.Controls.Add(this.lblTipQuestion);
-            this.Controls.Add(this.btnAddTip);
-            this.Controls.Add(this.lblFeddbackHeader);
-            this.Controls.Add(this.txtTipAmount);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lblTipHeader);
-            this.Controls.Add(this.btnNextPerson);
-            this.Controls.Add(this.pnlPersonControls);
-            this.Controls.Add(this.btnSetNumber);
-            this.Controls.Add(this.numericUpDownNumberOfPeople);
-            this.Controls.Add(this.lblTotalAmountPaid);
-            this.Controls.Add(this.btnPAY);
-            this.Controls.Add(this.lblTotalChange);
-            this.Controls.Add(this.lblChange);
-            this.Controls.Add(this.lblAmountPaidByCustomers);
-            this.Controls.Add(this.groupBoxSplitOption);
-            this.Controls.Add(this.lblSplitQuestion);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "DisplayPaymentMethod";
-            this.Tag = "-";
-            this.Text = "DisplayPaymentMethod";
-            this.groupBoxSplitOption.ResumeLayout(false);
-            this.groupBoxSplitOption.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfPeople)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AllowDrop = true;
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLightLight;
+            ClientSize = new Size(985, 1055);
+            Controls.Add(btnSubmitAll);
+            Controls.Add(lblInsufficientPaymnt);
+            Controls.Add(lblThankfulMessage);
+            Controls.Add(txtFeedback);
+            Controls.Add(lblTipQuestion);
+            Controls.Add(btnAddTip);
+            Controls.Add(lblFeddbackHeader);
+            Controls.Add(txtTipAmount);
+            Controls.Add(label4);
+            Controls.Add(lblTipHeader);
+            Controls.Add(btnNextPerson);
+            Controls.Add(pnlPersonControls);
+            Controls.Add(btnSetNumber);
+            Controls.Add(numericUpDownNumberOfPeople);
+            Controls.Add(lblTotalAmountPaid);
+            Controls.Add(btnPAY);
+            Controls.Add(lblTotalChange);
+            Controls.Add(lblChange);
+            Controls.Add(lblAmountPaidByCustomers);
+            Controls.Add(groupBoxSplitOption);
+            Controls.Add(lblSplitQuestion);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Font = new Font("Segoe UI", 7.875F, FontStyle.Regular, GraphicsUnit.Point);
+            ForeColor = SystemColors.ActiveCaptionText;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "DisplayPaymentMethod";
+            Tag = "-";
+            Text = "DisplayPaymentMethod";
+            groupBoxSplitOption.ResumeLayout(false);
+            groupBoxSplitOption.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownNumberOfPeople).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

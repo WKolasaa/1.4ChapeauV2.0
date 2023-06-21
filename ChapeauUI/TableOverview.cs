@@ -18,10 +18,10 @@ namespace ChapeauUI
 {
     public partial class TableOverview : Form
     {
-        private Employee employee;
+      
         private TableService tableService;
         private List<Table> tables;
-        private Table table;
+        private Employee employee;
         private OrderItemService orderItemService;
 
 
@@ -33,7 +33,6 @@ namespace ChapeauUI
                 tableService = new TableService();
                 orderItemService = new OrderItemService();
 
-                table = new Table();
 
                 InitializeComponent();
 
@@ -151,7 +150,7 @@ namespace ChapeauUI
                 else if (foodItem.Status == OrderStatus.Preparing) isFoodPreparing = true;
                 else if (foodItem.Status == OrderStatus.Ordered) isFoodOrdered = true;
 
-                if (isFoodReady && isFoodPreparing && isFoodOrdered) break;
+                if (isFoodReady || isFoodPreparing || isFoodOrdered) break;
             }
 
             foreach (var drinkItem in orderItemService.GetDrinkStatusByTableId(table.TableId))
@@ -160,7 +159,7 @@ namespace ChapeauUI
                 else if (drinkItem.Status == OrderStatus.Preparing) isDrinkPreparing = true;
                 else if (drinkItem.Status == OrderStatus.Ordered) isDrinkOrdered = true;
 
-                if (isDrinkReady && isDrinkPreparing && isDrinkOrdered) break;
+                if (isDrinkReady || isDrinkPreparing || isDrinkOrdered) break;
             }
 
             if (isFoodReady && isDrinkReady) statusLabel.Text = "Food and Drink: Ready";
@@ -171,6 +170,7 @@ namespace ChapeauUI
 
             return statusLabel;
         }
+
 
 
 
