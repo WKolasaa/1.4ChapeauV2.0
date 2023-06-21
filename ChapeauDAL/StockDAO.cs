@@ -41,7 +41,7 @@ namespace ChapeauDAL
 
         public void AddStock(Stock stock)
         {
-            string query = "INSERT INTO InventoryItem (itemID, itemName, quantity) VALUES (@itemID, itemName, quantity)";
+            string query = "INSERT INTO InventoryItem (itemID, itemName, quantity) VALUES (@itemID, @itemName, @quantity)";
 
             SqlParameter[] parameter =
             {
