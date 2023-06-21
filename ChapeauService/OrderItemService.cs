@@ -49,9 +49,9 @@ namespace ChapeauService
         }
 
 
-        public List<OrderItem> GetAllDrinks()
+        public List<OrderItem> GetAllOrderItems(int category)
         {
-            return orderitemdao.GetAllDrinks();
+            return orderitemdao.GetAllOrderItems(category);
         }
 
         public List<OrderItem> GetOrderStatusByTable(int taleId)
@@ -67,12 +67,6 @@ namespace ChapeauService
         public bool CheckIfTableHasActiveOrders(Table table)
         {
             return orderitemdao.CheckIfTableHasOrderItems(table);
-        }
-
-
-        public List<OrderItem> GetAllFood()
-        {
-            return orderitemdao.GetAllFood();
         }
 
         /*  public void RemoveMenu(Menu menu)
