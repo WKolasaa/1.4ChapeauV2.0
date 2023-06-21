@@ -32,7 +32,7 @@ namespace ChapeauUI
             return menuService.GetMenu();
         }
 
-        private void DisplayMenu(List<MenuItem> Menu)
+        private void DisplayMenu(List<MenuItem> Menu) //displaying list of menu objects
         {
             lvMenu.Items.Clear();
 

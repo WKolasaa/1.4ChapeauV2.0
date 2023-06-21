@@ -14,7 +14,7 @@ namespace ChapeauUI
             CenterToScreen();
             AddForm = Add;
             stockItem = stock;
-            if (!AddForm)
+            if (!AddForm) //checks if user pressed add or adjust button 
                 UpdateForm();
         }
 
@@ -80,14 +80,14 @@ namespace ChapeauUI
             Close();
         }
 
-        private void importData()
+        private void importData() //import data from stock object
         {
             txtAddStockID.Text = stockItem.StockID.ToString();
-            txtAddStockName.Text = stockItem.StockName.ToString();
+            txtAddStockName.Text = stockItem.StockName;
             txtAddStockQuantity.Text = stockItem.Quantity.ToString();
         }
 
-        private Stock insertData()
+        private Stock insertData() //insert data into temporary object
         {
             Stock stock = new Stock();
             stock.StockID = int.Parse(txtAddStockID.Text);

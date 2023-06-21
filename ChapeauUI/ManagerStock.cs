@@ -26,7 +26,7 @@ namespace ChapeauUI
             return service.GetStock();
         }
 
-        private void DisplayStock(List<Stock> stock)
+        private void DisplayStock(List<Stock> stock) //displaying list of stock objects
         {
             lvStock.Items.Clear();
 

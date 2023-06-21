@@ -15,7 +15,7 @@ public partial class ManagerMenuAddAndUpdate : Form
         cbCategory.DataSource = Enum.GetValues(typeof(ItemCategory));
         AddForm = Add;
         MenuItem = menuItem;
-        if (!AddForm)
+        if (!AddForm) // checks if user pressed add or ajust button
             UpdateForm();
     }
 
@@ -73,7 +73,7 @@ public partial class ManagerMenuAddAndUpdate : Form
         Close();
     }
 
-    private void importData()
+    private void importData() //import data from menu object
     {
         txtAddMenuID.Text = MenuItem.MenuItemID.ToString();
         txtAddMenuDesciprion.Text = MenuItem.Description;
@@ -91,7 +91,7 @@ public partial class ManagerMenuAddAndUpdate : Form
         }
     }
 
-    private MenuItem insertData()
+    private MenuItem insertData() //insert data into temporary object
     {
         MenuItem tempMenu = new MenuItem();
 
