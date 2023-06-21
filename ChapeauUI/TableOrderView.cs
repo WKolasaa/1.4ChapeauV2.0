@@ -200,11 +200,11 @@ namespace ChapeauUI
             if (allOrdersReady)
             {
                 // Show the DisplayBill form, hide the current form, and then free the table
+                Hide();
                 DisplayBill display = new DisplayBill(table.TableId);
-                this.Hide();
                 display.ShowDialog();
                 this.Close();
-                tableService.FreeTable(table.TableId, TableStatus.Free);
+               // tableService.FreeTable(table.TableId, TableStatus.Free);
             }
             else
             {

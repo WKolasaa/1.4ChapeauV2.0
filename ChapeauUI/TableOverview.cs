@@ -73,10 +73,10 @@ namespace ChapeauUI
         {
             try
             {
-                this.Hide();
+                 this.Hide();
                 TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
-                tableOrderView.ShowDialog();
-                this.Show();
+                 tableOrderView.ShowDialog();
+                 this.Show();
                 AssignTableButtonHandler();
             }
             catch (Exception ex)
