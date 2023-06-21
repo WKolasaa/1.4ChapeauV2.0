@@ -40,8 +40,8 @@ namespace ChapeauUI
                 this.CenterToScreen();
 
                 UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
-
-                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}";
+                namelabel.BringToFront();
+                button1.Text = $"{loggedEmployee.GetEmployee().Name}";
             }
             catch (Exception ex)
             {
@@ -225,17 +225,7 @@ namespace ChapeauUI
                         button.BackColor = Color.Orange;
                         break;
                     case TableStatus.Free:
-                        bool hasActiveOrders = orderItemService.CheckIfTableHasActiveOrders(table);
-                        if (hasActiveOrders)
-                        {
-                            table.TableStatus = TableStatus.Occupied;
-                            button.BackColor = Color.Orange;
-                        }
-                        else
-                        {
-                            table.TableStatus = TableStatus.Free;
-                            button.BackColor = Color.MediumSeaGreen;
-                        }
+                        button.BackColor = Color.MediumSeaGreen;
                         break;
                     case TableStatus.Reserved:
                         button.BackColor = Color.Gray;

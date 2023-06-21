@@ -32,7 +32,7 @@ namespace ChapeauUI
             this.payment = payment;
             payment.PaymentMethods = new List<PaymentMethod>();
 
-            payment.Datetime=DateTime.Today;// manager part "income"
+            payment.Datetime = DateTime.Today;// manager part "income"
 
             InitializeComponent();
             this.CenterToScreen();
@@ -235,6 +235,16 @@ namespace ChapeauUI
                 }
             }
 
+            // Check if the payment method is selected for each person, and set it to PaymentMethod.Cash by default if nothing is selected
+            foreach (ComboBox comboBox in paymentMethodList)
+            {
+                if (comboBox.SelectedItem == null)
+                {
+                    comboBox.SelectedItem = PaymentMethod.Cash;
+                    comboBox.Enabled = false;
+                }
+            }
+
             return totalAmountPaid;
         }
 
@@ -279,7 +289,7 @@ namespace ChapeauUI
             {
                 lblTotalAmountPaid.Text = totalAmountPaid.ToString("€ 0.00");
                 lblTotalChange.Text = change.ToString("€ 0.00");
-                btnSubmitAll.BackColor = Color.Orange;   
+                btnSubmitAll.BackColor = Color.Orange;
             }
             else
             {
@@ -294,8 +304,9 @@ namespace ChapeauUI
 
         private void btnPay_Click(object sender, EventArgs e)//btnPAY
         {
+            this.Hide();
             DisplayPayment displayPayment = new DisplayPayment(payment);
-            displayPayment.Show();
+            displayPayment.ShowDialog();
             btnPAY.Enabled = false;
             this.Close();
         }

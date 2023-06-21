@@ -9,7 +9,6 @@ namespace OrderTable
 {
     public partial class OrderForm : Form
     {
-        private MenuDAO MenuDAO;
         private MenuService MenuService;
         private OrderItemService OrderItemService;
         private OrderItem itemFromListView;
@@ -22,14 +21,13 @@ namespace OrderTable
         public OrderForm(int tableNumber)
         {
             InitializeComponent();
+            Now = DateTime.Now;
             MenuService = new MenuService();
             DisplayMenuItems(GetMenu());
             pnComment.Hide();
-            MenuDAO = new MenuDAO();
             order = new List<OrderItem>();
             TableNumber = tableNumber;
             OrderItemService = new OrderItemService();
-            Now = DateTime.Now;
         }
 
         //LISTS
@@ -114,9 +112,9 @@ namespace OrderTable
             {
                 ListViewItem li = listView1.SelectedItems[0];
                 MenuItem temp = (MenuItem)li.Tag;
-                int category = 0;
+                int category;
 
-                if (temp.ItemType < 0 && temp.ItemType >= ItemCategory.DesertDiner)
+                if (temp.ItemType > 0 && (int)temp.ItemType < 8)
                     category = 0;
                 else
                     category = 1;

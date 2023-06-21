@@ -28,175 +28,188 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ListViewBill = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblTotalVAT = new System.Windows.Forms.Label();
-            this.btnProceedToPayment = new System.Windows.Forms.Button();
-            this.lblPriceWithVAT = new System.Windows.Forms.Label();
-            this.lblResultPriceWithVAT = new System.Windows.Forms.Label();
-            this.lblAmountExcludeVAT = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblTableNumber = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            ListViewBill = new ListView();
+            label1 = new Label();
+            label2 = new Label();
+            label5 = new Label();
+            lblTotalVAT = new Label();
+            btnProceedToPayment = new Button();
+            lblPriceWithVAT = new Label();
+            lblResultPriceWithVAT = new Label();
+            lblAmountExcludeVAT = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label6 = new Label();
+            lblTableNumber = new Label();
+            SuspendLayout();
             // 
             // ListViewBill
             // 
-            this.ListViewBill.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ListViewBill.Font = new System.Drawing.Font("Segoe UI Semibold", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ListViewBill.Location = new System.Drawing.Point(33, 163);
-            this.ListViewBill.Name = "ListViewBill";
-            this.ListViewBill.Size = new System.Drawing.Size(923, 520);
-            this.ListViewBill.TabIndex = 0;
-            this.ListViewBill.UseCompatibleStateImageBehavior = false;
+            ListViewBill.BackColor = SystemColors.InactiveBorder;
+            ListViewBill.Font = new Font("Segoe UI Semibold", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
+            ListViewBill.Location = new Point(18, 76);
+            ListViewBill.Margin = new Padding(2, 1, 2, 1);
+            ListViewBill.Name = "ListViewBill";
+            ListViewBill.Size = new Size(850, 246);
+            ListViewBill.TabIndex = 0;
+            ListViewBill.UseCompatibleStateImageBehavior = false;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(46, 725);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 59);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Total:";
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
+            label1.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(25, 340);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 30);
+            label1.TabIndex = 1;
+            label1.Text = "Total:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(361, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(294, 59);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Bill Summary";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(362, 9);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(150, 30);
+            label2.TabIndex = 3;
+            label2.Text = "Bill Summary";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(33, 826);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 59);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "VAT:";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(26, 387);
+            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(59, 30);
+            label5.TabIndex = 9;
+            label5.Text = "VAT:";
             // 
             // lblTotalVAT
             // 
-            this.lblTotalVAT.AutoSize = true;
-            this.lblTotalVAT.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblTotalVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalVAT.Location = new System.Drawing.Point(786, 844);
-            this.lblTotalVAT.Name = "lblTotalVAT";
-            this.lblTotalVAT.Size = new System.Drawing.Size(0, 37);
-            this.lblTotalVAT.TabIndex = 13;
+            lblTotalVAT.AutoSize = true;
+            lblTotalVAT.BackColor = SystemColors.ButtonHighlight;
+            lblTotalVAT.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTotalVAT.Location = new Point(741, 397);
+            lblTotalVAT.Margin = new Padding(2, 0, 2, 0);
+            lblTotalVAT.Name = "lblTotalVAT";
+            lblTotalVAT.Size = new Size(0, 20);
+            lblTotalVAT.TabIndex = 13;
             // 
             // btnProceedToPayment
             // 
-            this.btnProceedToPayment.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btnProceedToPayment.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnProceedToPayment.Location = new System.Drawing.Point(220, 1025);
-            this.btnProceedToPayment.Name = "btnProceedToPayment";
-            this.btnProceedToPayment.Size = new System.Drawing.Size(508, 87);
-            this.btnProceedToPayment.TabIndex = 14;
-            this.btnProceedToPayment.Text = "Proceed To Payment";
-            this.btnProceedToPayment.UseVisualStyleBackColor = false;
-            this.btnProceedToPayment.Click += new System.EventHandler(this.btnProceedToPayment_Click);
+            btnProceedToPayment.BackColor = Color.MediumAquamarine;
+            btnProceedToPayment.Font = new Font("Segoe UI", 16.125F, FontStyle.Regular, GraphicsUnit.Point);
+            btnProceedToPayment.Location = new Point(301, 474);
+            btnProceedToPayment.Margin = new Padding(2, 1, 2, 1);
+            btnProceedToPayment.Name = "btnProceedToPayment";
+            btnProceedToPayment.Size = new Size(274, 41);
+            btnProceedToPayment.TabIndex = 14;
+            btnProceedToPayment.Text = "Proceed To Payment";
+            btnProceedToPayment.UseVisualStyleBackColor = false;
+            btnProceedToPayment.Click += btnProceedToPayment_Click;
             // 
             // lblPriceWithVAT
             // 
-            this.lblPriceWithVAT.AutoSize = true;
-            this.lblPriceWithVAT.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPriceWithVAT.Location = new System.Drawing.Point(33, 913);
-            this.lblPriceWithVAT.Name = "lblPriceWithVAT";
-            this.lblPriceWithVAT.Size = new System.Drawing.Size(277, 59);
-            this.lblPriceWithVAT.TabIndex = 15;
-            this.lblPriceWithVAT.Text = "Bill Amount:";
+            lblPriceWithVAT.AutoSize = true;
+            lblPriceWithVAT.Font = new Font("Segoe UI", 16.125F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPriceWithVAT.Location = new Point(26, 428);
+            lblPriceWithVAT.Margin = new Padding(2, 0, 2, 0);
+            lblPriceWithVAT.Name = "lblPriceWithVAT";
+            lblPriceWithVAT.Size = new Size(140, 30);
+            lblPriceWithVAT.TabIndex = 15;
+            lblPriceWithVAT.Text = "Bill Amount:";
             // 
             // lblResultPriceWithVAT
             // 
-            this.lblResultPriceWithVAT.AutoSize = true;
-            this.lblResultPriceWithVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblResultPriceWithVAT.Location = new System.Drawing.Point(786, 931);
-            this.lblResultPriceWithVAT.Name = "lblResultPriceWithVAT";
-            this.lblResultPriceWithVAT.Size = new System.Drawing.Size(0, 37);
-            this.lblResultPriceWithVAT.TabIndex = 16;
+            lblResultPriceWithVAT.AutoSize = true;
+            lblResultPriceWithVAT.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblResultPriceWithVAT.Location = new Point(741, 437);
+            lblResultPriceWithVAT.Margin = new Padding(2, 0, 2, 0);
+            lblResultPriceWithVAT.Name = "lblResultPriceWithVAT";
+            lblResultPriceWithVAT.Size = new Size(0, 20);
+            lblResultPriceWithVAT.TabIndex = 16;
             // 
             // lblAmountExcludeVAT
             // 
-            this.lblAmountExcludeVAT.AutoSize = true;
-            this.lblAmountExcludeVAT.BackColor = System.Drawing.SystemColors.Control;
-            this.lblAmountExcludeVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAmountExcludeVAT.Location = new System.Drawing.Point(786, 737);
-            this.lblAmountExcludeVAT.Name = "lblAmountExcludeVAT";
-            this.lblAmountExcludeVAT.Size = new System.Drawing.Size(0, 37);
-            this.lblAmountExcludeVAT.TabIndex = 17;
+            lblAmountExcludeVAT.AutoSize = true;
+            lblAmountExcludeVAT.BackColor = SystemColors.Control;
+            lblAmountExcludeVAT.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAmountExcludeVAT.Location = new Point(741, 346);
+            lblAmountExcludeVAT.Margin = new Padding(2, 0, 2, 0);
+            lblAmountExcludeVAT.Name = "lblAmountExcludeVAT";
+            lblAmountExcludeVAT.Size = new Size(0, 20);
+            lblAmountExcludeVAT.TabIndex = 17;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 972);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 32);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "*Include VAT";
+            label3.AutoSize = true;
+            label3.Location = new Point(26, 456);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 15);
+            label3.TabIndex = 18;
+            label3.Text = "*Include VAT";
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.Orange;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.Location = new System.Drawing.Point(33, 684);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(923, 10);
-            this.label4.TabIndex = 19;
+            label4.BackColor = Color.Orange;
+            label4.BorderStyle = BorderStyle.FixedSingle;
+            label4.Location = new Point(18, 321);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(850, 6);
+            label4.TabIndex = 19;
             // 
             // label6
             // 
-            this.label6.BackColor = System.Drawing.SystemColors.Control;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(33, 694);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(923, 109);
-            this.label6.TabIndex = 20;
+            label6.BackColor = SystemColors.Control;
+            label6.BorderStyle = BorderStyle.Fixed3D;
+            label6.Location = new Point(18, 327);
+            label6.Margin = new Padding(2, 0, 2, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(850, 51);
+            label6.TabIndex = 20;
             // 
             // lblTableNumber
             // 
-            this.lblTableNumber.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTableNumber.Location = new System.Drawing.Point(33, 92);
-            this.lblTableNumber.Name = "lblTableNumber";
-            this.lblTableNumber.Size = new System.Drawing.Size(234, 64);
-            this.lblTableNumber.TabIndex = 21;
+            lblTableNumber.Font = new Font("Segoe UI", 13.875F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTableNumber.Location = new Point(18, 43);
+            lblTableNumber.Margin = new Padding(2, 0, 2, 0);
+            lblTableNumber.Name = "lblTableNumber";
+            lblTableNumber.Size = new Size(126, 30);
+            lblTableNumber.TabIndex = 21;
             // 
             // DisplayBill
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(985, 1142);
-            this.Controls.Add(this.lblTableNumber);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblAmountExcludeVAT);
-            this.Controls.Add(this.lblResultPriceWithVAT);
-            this.Controls.Add(this.lblPriceWithVAT);
-            this.Controls.Add(this.btnProceedToPayment);
-            this.Controls.Add(this.lblTotalVAT);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.ListViewBill);
-            this.Controls.Add(this.label6);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.Name = "DisplayBill";
-            this.Text = "DisplayBill";
-            this.Load += new System.EventHandler(this.DisplayBill_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLightLight;
+            ClientSize = new Size(879, 535);
+            Controls.Add(lblTableNumber);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label2);
+            Controls.Add(label3);
+            Controls.Add(lblAmountExcludeVAT);
+            Controls.Add(lblResultPriceWithVAT);
+            Controls.Add(lblPriceWithVAT);
+            Controls.Add(btnProceedToPayment);
+            Controls.Add(lblTotalVAT);
+            Controls.Add(label1);
+            Controls.Add(ListViewBill);
+            Controls.Add(label6);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Margin = new Padding(2, 1, 2, 1);
+            MaximizeBox = false;
+            Name = "DisplayBill";
+            Text = "DisplayBill";
+            Load += DisplayBill_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
