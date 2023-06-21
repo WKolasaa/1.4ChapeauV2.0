@@ -24,7 +24,7 @@ namespace ChapeauDAL
             string query = "SELECT tableID, Occupied FROM [Tables] WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-            new SqlParameter("@tableID", tableID)
+                new SqlParameter("@tableID", tableID)
             };
 
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
@@ -36,8 +36,8 @@ namespace ChapeauDAL
             string query = "UPDATE [Tables] SET Occupied = @Occupied WHERE tableID = @tableID";
             SqlParameter[] sqlParameters =
             {
-            new SqlParameter("@Occupied", table.TableStatus),
-            new SqlParameter("@tableID", table.TableId)
+                new SqlParameter("@Occupied", table.TableStatus),
+                new SqlParameter("@tableID", table.TableId)
             };
             ExecuteEditQuery(query, sqlParameters);
         }

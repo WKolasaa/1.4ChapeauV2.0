@@ -4,7 +4,7 @@ namespace ChapeauUI;
 
 public class UniqueLoggedInEmployee
 {
-    private static UniqueLoggedInEmployee uniqueInstance;
+    private static UniqueLoggedInEmployee uniqueInstance; //Singleton Pattern
     private Employee loggedEmployee;
 
     private UniqueLoggedInEmployee()

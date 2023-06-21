@@ -178,7 +178,7 @@ namespace ChapeauDAL
                 new SqlParameter("@Category", orderItem.Category),
                 new SqlParameter("@menu_item_id", orderItem.MenuItem.MenuItemID),
                 new SqlParameter("@TimePlaced", orderItem.TimePlaced),
-                new SqlParameter("@OrderStatus", 1),
+                new SqlParameter("@OrderStatus", orderItem.Status),
                 new SqlParameter("@ItemStatus", 1)
 
             };

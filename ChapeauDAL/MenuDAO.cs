@@ -45,25 +45,6 @@ namespace ChapeauDAL
             return menu;
         }
 
-        private MenuItem ReadMenuItem(DataTable dataTable)
-        {
-            if (dataTable != null)
-            {
-                DataRow row = dataTable.Rows[0];
-                MenuItem menuItem = new MenuItem()
-                {
-                    MenuItemID = (int)row["menuItemID"],
-                    Description = (string)row["description"],
-                    Price = (double)row["price"],
-                    ItemType = (ItemCategory)row["course_type"],
-                    VAT_Category = (bool)row["vat_category"]
-                };
-                return menuItem;
-            }
-
-            return null;
-        }
-
         public List<MenuItem> GetMenuItemByCategory(int category)
         {
             string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem WHERE course_type = @course_type";
