@@ -18,7 +18,7 @@ namespace ChapeauUI
         private const decimal HighVAT = 0.21m;//for the alcoholic
         private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
 
-       
+
         public DisplayBill(int tableNumber)
         {
             payment = new Payment();
@@ -27,7 +27,7 @@ namespace ChapeauUI
 
 
             payment.TableNumber = tableNumber;
-            lblTableNumber.Text =$"TABLE {payment.TableNumber}";
+            lblTableNumber.Text = $"TABLE {payment.TableNumber}";
 
             DisplaypaymentDetails();
 
@@ -40,8 +40,8 @@ namespace ChapeauUI
             return items;
         }
 
-        private List<OrderItem> GetBill() 
-        { 
+        private List<OrderItem> GetBill()
+        {
             List<OrderItem> itemsInsideBill = GetItemByTableNumber(payment.TableNumber);
             return itemsInsideBill;
         }
@@ -49,11 +49,11 @@ namespace ChapeauUI
         private void DisplayBillItems(List<OrderItem> orderItems)
         {
             ListViewBill.Clear();
-            ListViewBill.Columns.Add("Quantity",170);
-            ListViewBill.Columns.Add("Item",200);
-            ListViewBill.Columns.Add("Comment",200);
-            ListViewBill.Columns.Add("Price",130);
-            ListViewBill.Columns.Add("VatAmount",200);
+            ListViewBill.Columns.Add("Quantity", 170);
+            ListViewBill.Columns.Add("Item", 200);
+            ListViewBill.Columns.Add("Comment", 200);
+            ListViewBill.Columns.Add("Price", 130);
+            ListViewBill.Columns.Add("VatAmount", 200);
 
 
             foreach (OrderItem item in orderItems)
@@ -65,7 +65,7 @@ namespace ChapeauUI
                 listView.SubItems.Add(totalPrice.ToString());
                 decimal vatAmount = VATPerItem(item);
                 listView.SubItems.Add(vatAmount.ToString("0.00"));
-               
+
                 listView.Tag = item;
                 ListViewBill.Items.Add(listView);
             }
@@ -85,11 +85,11 @@ namespace ChapeauUI
         }
         private void DisplaypaymentDetails()
         {
-             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT();
+            decimal TotalPriceExcludeVat = TotalPriceWithoutVAT();
             lblAmountExcludeVAT.Text = TotalPriceExcludeVat.ToString("€ 0.00");
 
             decimal TotalVAT = TotalVat();
-            lblTotalVAT.Text =TotalVAT.ToString("€ 0.00");
+            lblTotalVAT.Text = TotalVAT.ToString("€ 0.00");
 
             payment.TotalAmount = TotalAmountIncludeVAT();
             lblResultPriceWithVAT.Text = payment.TotalAmount.ToString("€ 0.00");
@@ -100,7 +100,7 @@ namespace ChapeauUI
             List<OrderItem> totalPriceItems = GetItemByTableNumber(payment.TableNumber);
             decimal totalAmount = 0;
 
-            foreach ( OrderItem item in totalPriceItems)
+            foreach (OrderItem item in totalPriceItems)
             {
                 decimal totalItemPrice = item.PricePerItem * item.Quantity;
                 totalAmount += totalItemPrice;
@@ -110,7 +110,7 @@ namespace ChapeauUI
 
         private decimal TotalVat()
         {
-         
+
             List<OrderItem> items = GetItemByTableNumber(payment.TableNumber);
             decimal totalVat = 0;
             foreach (OrderItem item in items)
@@ -121,11 +121,11 @@ namespace ChapeauUI
             return totalVat;
         }
 
-        
+
         private decimal VATPerItem(OrderItem item)
         {
             PaymentService paymentService = new PaymentService();
-             bool isAlcoholic =paymentService.GetVATStatus(item);
+            bool isAlcoholic = paymentService.GetVATStatus(item);
             decimal vatRate;
 
             if (isAlcoholic)
@@ -146,13 +146,13 @@ namespace ChapeauUI
         }
 
         private decimal TotalAmountIncludeVAT()
-        { 
-         return TotalVat() + TotalPriceWithoutVAT();
+        {
+            return TotalVat() + TotalPriceWithoutVAT();
         }
 
         private void btnProceedToPayment_Click(object sender, EventArgs e)
-
-        {   this.Hide();
+        {
+            this.Hide();
             DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(payment);
             paymentMethod.ShowDialog();
             this.Close();

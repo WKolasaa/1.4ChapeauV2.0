@@ -14,7 +14,7 @@ namespace ChapeauUI
 {
     public partial class DisplayPayment : Form
     {
-       private Payment payment;
+        private Payment payment;
         public DisplayPayment(Payment payment)
         {
             InitializeComponent();
@@ -26,31 +26,31 @@ namespace ChapeauUI
             // Display the payment history in the ListView
             DisplayPaymentHistory(paymentHistory);
         }
-      
-            private List<Payment> GetPaymentHistory()
-            {
-             PaymentService paymentService = new PaymentService();
-             paymentService.StorePaymentHistory(payment);// insert
+
+        private List<Payment> GetPaymentHistory()
+        {
+            PaymentService paymentService = new PaymentService();
+            paymentService.StorePaymentHistory(payment);// insert
             // Retrieve the payment history from the service layer
             List<Payment> paymentHistory = paymentService.GetLastPaymentHistory();
             return paymentHistory;
-            }
+        }
 
-        
-          private void DisplayPaymentHistory(List<Payment> payments)
-          {
+
+        private void DisplayPaymentHistory(List<Payment> payments)
+        {
             listViewPaymentHistory.Clear();
             // set column name
-            listViewPaymentHistory.Columns.Add("ID",70);
-            listViewPaymentHistory.Columns.Add("TotalAmount",175);
-            listViewPaymentHistory.Columns.Add("Tip",100);
-            listViewPaymentHistory.Columns.Add("Feedback",200);
-            listViewPaymentHistory.Columns.Add("TableNumber",200);
-            listViewPaymentHistory.Columns.Add("PaymentMethods",200);
+            listViewPaymentHistory.Columns.Add("ID", 70);
+            listViewPaymentHistory.Columns.Add("TotalAmount", 175);
+            listViewPaymentHistory.Columns.Add("Tip", 100);
+            listViewPaymentHistory.Columns.Add("Feedback", 200);
+            listViewPaymentHistory.Columns.Add("TableNumber", 200);
+            listViewPaymentHistory.Columns.Add("PaymentMethods", 200);
 
             foreach (Payment payment in payments)
             {
-                ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString()); 
+                ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString());
                 listView.SubItems.Add(payment.TotalAmount.ToString("0.00"));
                 listView.SubItems.Add(payment.Tips.ToString());
                 listView.SubItems.Add(payment.Feedback);
@@ -71,7 +71,7 @@ namespace ChapeauUI
             listViewPaymentHistory.Columns[4].Width = 200;
             listViewPaymentHistory.Columns[5].Width = 200;
             listViewPaymentHistory.View = View.Details;
-          }
+        }
 
 
         private void btnPaymentHistory_Click(object sender, EventArgs e)
@@ -86,10 +86,15 @@ namespace ChapeauUI
         {
 
             PaymentService service = new PaymentService();
-            service.DeleteBill(payment.TableNumber);// check
+            service.DeleteBill(payment.TableNumber);// check\
 
+            TableService tableService = new TableService();
+            tableService.FreeTable(payment.TableNumber, TableStatus.Free);
+
+            this.Hide();
             TableOverview tablesOverView = new TableOverview();// problem!?
-            tablesOverView.Show();
+            tablesOverView.ShowDialog();
+            this.Close();
         }
     }
 }

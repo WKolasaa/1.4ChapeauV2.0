@@ -46,10 +46,9 @@
             // 
             Logoutbtn.BackColor = Color.FromArgb(255, 179, 71);
             Logoutbtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Logoutbtn.Location = new Point(15, 16);
-            Logoutbtn.Margin = new Padding(3, 4, 3, 4);
+            Logoutbtn.Location = new Point(13, 12);
             Logoutbtn.Name = "Logoutbtn";
-            Logoutbtn.Size = new Size(96, 45);
+            Logoutbtn.Size = new Size(84, 34);
             Logoutbtn.TabIndex = 0;
             Logoutbtn.Text = "Logout";
             Logoutbtn.UseVisualStyleBackColor = false;
@@ -59,10 +58,9 @@
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(287, 23);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(335, 17);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(222, 81);
+            pictureBox1.Size = new Size(194, 61);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -76,9 +74,8 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(Logoutbtn);
             panel1.Location = new Point(-1, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(915, 136);
+            panel1.Size = new Size(905, 102);
             panel1.TabIndex = 0;
             // 
             // namelabel
@@ -88,9 +85,9 @@
             namelabel.BackColor = Color.FromArgb(255, 179, 71);
             namelabel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             namelabel.Image = Properties.Resources.Screenshot_2023_06_19_234218_removebg_preview;
-            namelabel.Location = new Point(772, 39);
+            namelabel.Location = new Point(789, 29);
             namelabel.Name = "namelabel";
-            namelabel.Size = new Size(0, 20);
+            namelabel.Size = new Size(0, 17);
             namelabel.TabIndex = 6;
             namelabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -99,9 +96,11 @@
             button1.AutoSize = true;
             button1.BackColor = Color.FromArgb(255, 179, 71);
             button1.Enabled = false;
-            button1.Location = new Point(753, 23);
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(775, 29);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(145, 53);
+            button1.Size = new Size(127, 40);
             button1.TabIndex = 5;
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
@@ -110,10 +109,9 @@
             // 
             Refreshbtn.BackColor = Color.FromArgb(138, 210, 176);
             Refreshbtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Refreshbtn.Location = new Point(15, 69);
-            Refreshbtn.Margin = new Padding(3, 4, 3, 4);
+            Refreshbtn.Location = new Point(13, 52);
             Refreshbtn.Name = "Refreshbtn";
-            Refreshbtn.Size = new Size(96, 45);
+            Refreshbtn.Size = new Size(84, 34);
             Refreshbtn.TabIndex = 4;
             Refreshbtn.Text = "Refresh";
             Refreshbtn.UseVisualStyleBackColor = false;
@@ -121,32 +119,33 @@
             // 
             // tablepanel
             // 
-            tablepanel.Location = new Point(-1, 202);
+            tablepanel.Location = new Point(-1, 152);
+            tablepanel.Margin = new Padding(3, 2, 3, 2);
             tablepanel.Name = "tablepanel";
-            tablepanel.Size = new Size(898, 563);
+            tablepanel.Size = new Size(905, 515);
             tablepanel.TabIndex = 23;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = SystemColors.Control;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(286, 134);
+            pictureBox2.Location = new Point(334, 100);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(222, 69);
+            pictureBox2.Size = new Size(194, 52);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 24;
             pictureBox2.TabStop = false;
             // 
             // TableOverview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(909, 777);
+            ClientSize = new Size(915, 678);
             Controls.Add(pictureBox2);
             Controls.Add(tablepanel);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "TableOverview";
             Text = "TableOverview";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
