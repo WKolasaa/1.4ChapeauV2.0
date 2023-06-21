@@ -60,7 +60,7 @@ namespace ChapeauService
         {
             try
             {
-                Table table = tableDAO.GetTableById(tableID);
+                Table table = GetTableById(tableID);
                 if (table != null)
                 {
                     table.TableStatus = status;
@@ -69,7 +69,7 @@ namespace ChapeauService
             }
             catch (Exception ex)
             {
-                // Handle the exception or rethrow it for upper layers to handle
+                
                 throw new Exception($"An error occurred while freeing table with ID {tableID}.", ex);
             }
         }
