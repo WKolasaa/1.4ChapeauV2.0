@@ -102,7 +102,7 @@ namespace ChapeauUI
                 listItem.SubItems.Add(item.PricePerItem.ToString());
                 listItem.SubItems.Add(item.Status.ToString());
                 listItem.SubItems.Add(item.Comment.ToString());
-                listItem.SubItems.Add(item.TimePlaced.ToString("%m'm'%s's'"));
+                listItem.SubItems.Add($"{DateTime.Now.Subtract(item.TimePlaced).Duration()}");
                 listItem.Tag = item;
 
                 listViewOrders.Items.Add(listItem);
@@ -177,6 +177,11 @@ namespace ChapeauUI
                 orderItemService.UpdateOrderItemState(orderItem, OrderStatus.Served);
                 DisplayOrders();
             }
+            else if (orderItem.Status == OrderStatus.Served)
+            {
+                MessageBox.Show("The order is already served", "Order Served", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
             else
             {
                 MessageBox.Show("The order is not ready to be served yet.", "Order Not Ready", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -199,12 +204,12 @@ namespace ChapeauUI
 
             if (allOrdersReady)
             {
-                // Show the DisplayBill form, hide the current form, and then free the table
-                DisplayBill display = new DisplayBill(table.TableId);
+                // Show the DisplayBill form, hide the current form
                 this.Hide();
+                DisplayBill display = new DisplayBill(table.TableId);
                 display.ShowDialog();
                 this.Close();
-                tableService.FreeTable(table.TableId, TableStatus.Free);
+
             }
             else
             {

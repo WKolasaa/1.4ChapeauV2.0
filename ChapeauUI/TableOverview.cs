@@ -18,12 +18,11 @@ namespace ChapeauUI
 {
     public partial class TableOverview : Form
     {
-      
+
         private TableService tableService;
         private List<Table> tables;
         private Employee employee;
         private OrderItemService orderItemService;
-
 
         public TableOverview()
         {
@@ -42,7 +41,7 @@ namespace ChapeauUI
 
                 UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
 
-                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}"; 
+                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}";
             }
             catch (Exception ex)
             {
@@ -214,7 +213,7 @@ namespace ChapeauUI
             }
         }
 
-        [SuppressMessage("ReSharper.DPA", "DPA0005: Database issues")]
+
         private Button GetColour(Table table, Button button)
         {
             try

@@ -89,7 +89,7 @@
             button1.Enabled = false;
             button1.Location = new Point(762, 25);
             button1.Name = "button1";
-            button1.Size = new Size(119, 53);
+            button1.Size = new Size(141, 53);
             button1.TabIndex = 3;
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
