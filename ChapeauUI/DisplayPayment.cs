@@ -84,14 +84,10 @@ namespace ChapeauUI
 
         private void btnTableView_Click(object sender, EventArgs e)
         {
-    
-            Employee employee = new Employee();
-            TableService tableService = new TableService();
-             tableService.FreeTable(payment.TableNumber,TableStatus.Free);
+
             PaymentService service = new PaymentService();
             service.DeleteBill(payment.TableNumber);// check
-           TableOverview tablesOverView = new TableOverview(employee);// problem!?
-            tablesOverView.Show();
+            this.Close();   
         }
     }
 }

@@ -36,6 +36,7 @@ namespace ChapeauUI
             tableNumberlbl.Text = $"Table{table.TableId}";
             DisplayOrders();
             CheckTableAvailability();
+
         }
 
         // Check the availability of the table and enable/disable buttons accordingly
@@ -152,7 +153,7 @@ namespace ChapeauUI
         private void BillBtn_Click(object sender, EventArgs e)
         {
             // Show the DisplayBill form, hide the current form, and then free the table
-            DisplayBill display = new DisplayBill(table);
+            DisplayBill display = new DisplayBill(table.TableId);//test
             this.Hide();
             display.ShowDialog();
             this.Close();

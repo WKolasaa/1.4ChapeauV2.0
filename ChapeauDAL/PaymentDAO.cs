@@ -88,7 +88,7 @@ namespace ChapeauDAL
                   // lambda parameter name that represents an individual element in the Split array.
                   .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))//=> separates the parameter 
                   .ToList<PaymentMethod>();
-                payment.Datetime = DateOnly.Parse(reader.GetDataTypeName(6));//
+                payment.Datetime =reader.GetDateTime(6);//
 
                 paymentList.Add(payment); // Add the payment to the list
 
@@ -181,7 +181,7 @@ namespace ChapeauDAL
                     Feedback = dr["Feedback"].ToString(),
                     TableNumber = (int)dr["TableNumber"],
                     PaymentMethods = new List<PaymentMethod>(),
-                    Datetime = (DateOnly)dr["Datetime"],
+                    //Datetime = (DateTime)dr["Datetime"],
                 };
                 string paymentMethodsString = dr["PaymentMethods"].ToString();
                 List<string> paymentMethods = paymentMethodsString.Split(',').ToList();
@@ -216,15 +216,6 @@ namespace ChapeauDAL
                 items.Add(item);
             }
             return items;
-        }
-
-        //private double TodayIncome()
-        //{
-        //    string query = "SELECT TotalAmount FROM PaymentHistory WHERE date = @date"
-        //    SqlParameter[] parameter =
-        //    {
-        //        new SqlParameter("@date", )
-        //    }
-        //}
+        }      
     }
 }
