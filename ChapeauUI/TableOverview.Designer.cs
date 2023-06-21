@@ -83,6 +83,7 @@
             // 
             // namelabel
             // 
+            namelabel.AutoEllipsis = true;
             namelabel.AutoSize = true;
             namelabel.BackColor = Color.FromArgb(255, 179, 71);
             namelabel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
@@ -95,11 +96,12 @@
             // 
             // button1
             // 
+            button1.AutoSize = true;
             button1.BackColor = Color.FromArgb(255, 179, 71);
             button1.Enabled = false;
             button1.Location = new Point(753, 23);
             button1.Name = "button1";
-            button1.Size = new Size(119, 53);
+            button1.Size = new Size(145, 53);
             button1.TabIndex = 5;
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
