@@ -170,35 +170,38 @@
             // 
             // btAdd
             // 
+            btAdd.BackColor = Color.DarkSeaGreen;
             btAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btAdd.Location = new Point(30, 606);
             btAdd.Name = "btAdd";
             btAdd.Size = new Size(151, 37);
             btAdd.TabIndex = 14;
             btAdd.Text = "Add";
-            btAdd.UseVisualStyleBackColor = true;
+            btAdd.UseVisualStyleBackColor = false;
             btAdd.Click += btAdd_Click;
             // 
             // btUpdate
             // 
+            btUpdate.BackColor = Color.Orange;
             btUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btUpdate.Location = new Point(274, 606);
             btUpdate.Name = "btUpdate";
             btUpdate.Size = new Size(151, 37);
             btUpdate.TabIndex = 15;
             btUpdate.Text = "Comment";
-            btUpdate.UseVisualStyleBackColor = true;
+            btUpdate.UseVisualStyleBackColor = false;
             btUpdate.Click += btUpdate_Click;
             // 
             // btRemove
             // 
+            btRemove.BackColor = Color.Salmon;
             btRemove.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btRemove.Location = new Point(529, 606);
             btRemove.Name = "btRemove";
             btRemove.Size = new Size(151, 37);
             btRemove.TabIndex = 16;
             btRemove.Text = "Remove";
-            btRemove.UseVisualStyleBackColor = true;
+            btRemove.UseVisualStyleBackColor = false;
             btRemove.Click += btRemove_Click;
             // 
             // pnComment
@@ -213,13 +216,14 @@
             // 
             // btSubmitComment
             // 
+            btSubmitComment.BackColor = Color.DarkSeaGreen;
             btSubmitComment.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             btSubmitComment.Location = new Point(214, 230);
             btSubmitComment.Name = "btSubmitComment";
             btSubmitComment.Size = new Size(206, 43);
             btSubmitComment.TabIndex = 2;
-            btSubmitComment.Text = "submit";
-            btSubmitComment.UseVisualStyleBackColor = true;
+            btSubmitComment.Text = "Submit";
+            btSubmitComment.UseVisualStyleBackColor = false;
             btSubmitComment.Click += btSubmitComment_Click;
             // 
             // txtComment
@@ -236,19 +240,20 @@
             label2.Font = new Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(164, 31);
             label2.Name = "label2";
-            label2.Size = new Size(318, 54);
+            label2.Size = new Size(351, 54);
             label2.TabIndex = 0;
-            label2.Text = "Enter Comment";
+            label2.Text = "Enter a Comment";
             // 
             // btFinish
             // 
+            btFinish.BackColor = Color.DarkSeaGreen;
             btFinish.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             btFinish.Location = new Point(225, 689);
             btFinish.Name = "btFinish";
             btFinish.Size = new Size(242, 47);
             btFinish.TabIndex = 18;
             btFinish.Text = "Place Order";
-            btFinish.UseVisualStyleBackColor = true;
+            btFinish.UseVisualStyleBackColor = false;
             btFinish.Click += btFinish_Click;
             // 
             // OrderForm

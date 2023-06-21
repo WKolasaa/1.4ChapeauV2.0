@@ -36,13 +36,16 @@ namespace ChapeauUI
             try
             {
                 if (txtAddStockName.Text.Length == 0)
+                {
                     throw new Exception("Field cannot be empty!");
+                }
                 if (int.Parse(txtAddStockID.Text) < 0 || int.Parse(txtAddStockQuantity.Text) < 0)
                     throw new Exception("value cannot be lower then 0!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
 
             try

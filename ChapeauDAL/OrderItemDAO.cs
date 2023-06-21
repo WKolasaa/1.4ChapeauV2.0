@@ -34,6 +34,7 @@ namespace ChapeauDAL
             return ReadOrderItemsbyId(ExecuteSelectQuery(query, sp));
 
         }
+        
         public bool CheckIfTableHasOrderItems(Table table)
         {
             string query = "SELECT OrderItemID FROM OrderItems WHERE TableNumber = @tableNumber";
@@ -43,8 +44,6 @@ namespace ChapeauDAL
 
             return result.Rows.Count > 0; // Return true if there are order items, false otherwise
         }
-
-
 
         private List<OrderItem> ReadOrderStatus(DataTable dataTable)
         {
