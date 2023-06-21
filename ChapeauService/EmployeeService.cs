@@ -66,10 +66,5 @@ namespace ChapeauService
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(plainTextPassword, salt);
             return hashedPassword;
         }
-
-        public Employee GetEmployeeByUserName(string userName)
-        {
-            return employeeDAO.GetEmployeeByUserName(userName);
-        }
     }
 }

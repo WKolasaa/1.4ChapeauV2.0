@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Windows.Forms.VisualStyles;
 using ChapeauDAL;
 using ChapeauModel;
@@ -16,6 +17,7 @@ namespace OrderTable
         private int TableNumber;
         private string comment = "";
         private OrderItem selectedOrderItem;
+        private DateTime Now;
 
         public OrderForm(int tableNumber)
         {
@@ -27,6 +29,7 @@ namespace OrderTable
             order = new List<OrderItem>();
             TableNumber = tableNumber;
             OrderItemService = new OrderItemService();
+            Now = DateTime.Now;
         }
 
         //LISTS
@@ -130,7 +133,7 @@ namespace OrderTable
                     Category = category,
                     MenuItem = temp,
                     Quantity = 1,
-                    TimePlaced = DateTime.Now,
+                    TimePlaced = Now,
                 };
 
                 itemFromListView = orderItemTemp;

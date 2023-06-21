@@ -1,0 +1,15 @@
+#Manager#
+UserName: Manager 
+Password: 1234
+
+#Waiter#
+UserName: Waiter
+Password: 1234
+
+#Bartender#
+UserName: Bartender
+Password: 1234
+
+#Chef#
+UserName: Chef
+Password: 1234
