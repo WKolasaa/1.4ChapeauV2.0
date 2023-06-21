@@ -242,6 +242,7 @@
             ReserveTableBtn.TabIndex = 4;
             ReserveTableBtn.Text = "Reserve Table";
             ReserveTableBtn.UseVisualStyleBackColor = false;
+            ReserveTableBtn.Click += ReserveTableBtn_Click;
             // 
             // TableOrderView
             // 
