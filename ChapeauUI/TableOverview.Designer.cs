@@ -85,7 +85,7 @@
             namelabel.BackColor = Color.FromArgb(255, 179, 71);
             namelabel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             namelabel.Image = Properties.Resources.Screenshot_2023_06_19_234218_removebg_preview;
-            namelabel.Location = new Point(789, 29);
+            namelabel.Location = new Point(772, 40);
             namelabel.Name = "namelabel";
             namelabel.Size = new Size(0, 17);
             namelabel.TabIndex = 6;
@@ -97,7 +97,7 @@
             button1.BackColor = Color.FromArgb(255, 179, 71);
             button1.Enabled = false;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(775, 29);
+            button1.Location = new Point(762, 29);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(127, 40);
@@ -162,8 +162,8 @@
         private Panel panel1;
         private Button Refreshbtn;
         private Panel tablepanel;
-        private Label namelabel;
         private Button button1;
         private PictureBox pictureBox2;
+        private Label namelabel;
     }
 }

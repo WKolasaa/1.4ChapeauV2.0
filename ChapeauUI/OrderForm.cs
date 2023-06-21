@@ -175,7 +175,7 @@ namespace OrderTable
                 MessageBox.Show("Select order item!");
                 return;
             }
-            if(order.Count == 0)
+            if (order.Count == 0)
             {
                 MessageBox.Show("Order is empty!");
                 return;
