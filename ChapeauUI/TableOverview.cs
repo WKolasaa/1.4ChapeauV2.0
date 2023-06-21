@@ -18,7 +18,7 @@ namespace ChapeauUI
 {
     public partial class TableOverview : Form
     {
-
+        
         private TableService tableService;
         private List<Table> tables;
         private Employee employee;
@@ -28,20 +28,19 @@ namespace ChapeauUI
         {
             try
             {
+                
                 tables = new List<Table>();
                 tableService = new TableService();
                 orderItemService = new OrderItemService();
 
+                InitializeComponent(); 
 
-                InitializeComponent();
+                AssignTableButtonHandler(); // Assign table buttons to the panel
 
-                AssignTableButtonHandler();
+                this.CenterToScreen(); // Center the form on the screen
 
-                this.CenterToScreen();
-
-                UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance();
-
-                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}";
+                UniqueLoggedInEmployee loggedEmployee = UniqueLoggedInEmployee.GetInstance(); // Retrieve logged-in employee
+                namelabel.Text = $"{loggedEmployee.GetEmployee().Name}"; // Display the employee's name
             }
             catch (Exception ex)
             {
@@ -57,9 +56,9 @@ namespace ChapeauUI
                 if (message == DialogResult.Yes)
                 {
                     this.Hide();
-                    LoginScreen loginScreen = new LoginScreen();
-                    loginScreen.ShowDialog();
-                    this.Close();
+                    LoginScreen loginScreen = new LoginScreen(); // Create a new login screen form
+                    loginScreen.ShowDialog(); // Display the login screen
+                    this.Close(); 
                 }
             }
             catch (Exception ex)
@@ -73,10 +72,10 @@ namespace ChapeauUI
             try
             {
                 this.Hide();
-                TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]);
-                tableOrderView.ShowDialog();
+                TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]); // Create a new table order view form
+                tableOrderView.ShowDialog(); // Display the table order view form
                 this.Show();
-                AssignTableButtonHandler();
+                AssignTableButtonHandler(); // Refresh the table buttons
             }
             catch (Exception ex)
             {
@@ -88,9 +87,9 @@ namespace ChapeauUI
         {
             try
             {
-                Button tableButton = (Button)sender;
-                int tableNumber = int.Parse(tableButton.Tag.ToString());
-                SelectedTable(tableNumber);
+                Button tableButton = (Button)sender; // Get the clicked table button
+                int tableNumber = int.Parse(tableButton.Tag.ToString()); // Extract the table number from the button's tag
+                SelectedTable(tableNumber); // Handle the selected table
             }
             catch (Exception ex)
             {
@@ -102,10 +101,11 @@ namespace ChapeauUI
         {
             try
             {
-                tablepanel.Controls.Clear();
+                tablepanel.Controls.Clear(); // Clear the existing controls in the table panel
 
-                tables = tableService.GetAllTables();
+                tables = tableService.GetAllTables(); // Retrieve all tables
 
+                // Set up button and spacing dimensions
                 int buttonDiameter = 100;
                 int buttonsPerRow = 4;
                 int horizontalSpacing = 200;
@@ -113,16 +113,17 @@ namespace ChapeauUI
 
                 for (int i = 0; i < tables.Count; i++)
                 {
-                    Button tableButton = CreateTableButton(i, buttonDiameter);
-                    PositionButton(tableButton, i, buttonDiameter, horizontalSpacing, verticalSpacing);
-                    GetColour(tables[i], tableButton);
+                    Button tableButton = CreateTableButton(i, buttonDiameter); // Create a table button
+                    PositionButton(tableButton, i, buttonDiameter, horizontalSpacing, verticalSpacing); // Position the table button
+
+                    GetColour(tables[i], tableButton); // Set the color of the table button based on its status
 
                     // Create and position the status label
                     Label statusLabel = CreateStatusLabel(tables[i]);
                     PositionStatusLabel(statusLabel, tableButton);
 
-                    tablepanel.Controls.Add(tableButton);
-                    tablepanel.Controls.Add(statusLabel);
+                    tablepanel.Controls.Add(tableButton); // Add the table button to the panel
+                    tablepanel.Controls.Add(statusLabel); // Add the status label to the panel
                 }
             }
             catch (Exception ex)
@@ -130,6 +131,7 @@ namespace ChapeauUI
                 MessageBox.Show("An error occurred while assigning table buttons: " + ex.Message, "Error");
             }
         }
+
         private void PositionStatusLabel(Label statusLabel, Button tableButton)
         {
             // Position the status label next to the table button
@@ -143,6 +145,7 @@ namespace ChapeauUI
             bool isFoodPreparing = false, isDrinkPreparing = false;
             bool isFoodOrdered = false, isDrinkOrdered = false;
 
+            // Check the order status for food items associated with the table
             foreach (var foodItem in orderItemService.GetFoodStatusByTableId(table.TableId))
             {
                 if (foodItem.Status == OrderStatus.Ready) isFoodReady = true;
@@ -152,6 +155,7 @@ namespace ChapeauUI
                 if (isFoodReady || isFoodPreparing || isFoodOrdered) break;
             }
 
+            // Check the order status for drink items associated with the table
             foreach (var drinkItem in orderItemService.GetDrinkStatusByTableId(table.TableId))
             {
                 if (drinkItem.Status == OrderStatus.Ready) isDrinkReady = true;
@@ -161,6 +165,7 @@ namespace ChapeauUI
                 if (isDrinkReady || isDrinkPreparing || isDrinkOrdered) break;
             }
 
+            // Set the text of the status label based on the order statuses
             if (isFoodReady && isDrinkReady) statusLabel.Text = "Food and Drink: Ready";
             else if (isFoodReady) statusLabel.Text = "Food: Ready";
             else if (isDrinkReady) statusLabel.Text = "Drink: Ready";
@@ -169,9 +174,6 @@ namespace ChapeauUI
 
             return statusLabel;
         }
-
-
-
 
         private Button CreateTableButton(int tableIndex, int buttonDiameter)
         {
@@ -183,7 +185,7 @@ namespace ChapeauUI
                 Tag = tableIndex
             };
 
-            tableButton.Click += TableButtonClick;  // Attach the event handler for button click
+            tableButton.Click += TableButtonClick; // Attach the event handler for button click
 
             return tableButton;
         }
@@ -198,21 +200,17 @@ namespace ChapeauUI
             tableButton.Location = new Point(x, y);
         }
 
-
-
-
         private void Refreshbtn_Click(object sender, EventArgs e)
         {
             try
             {
-                AssignTableButtonHandler();
+                AssignTableButtonHandler(); // Refresh the table buttons
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred while refreshing table buttons: " + ex.Message, "Error");
             }
         }
-
 
         private Button GetColour(Table table, Button button)
         {
@@ -225,20 +223,10 @@ namespace ChapeauUI
                         button.BackColor = Color.Orange;
                         break;
                     case TableStatus.Free:
-                        bool hasActiveOrders = orderItemService.CheckIfTableHasActiveOrders(table);
-                        if (hasActiveOrders)
-                        {
-                            table.TableStatus = TableStatus.Occupied;
-                            button.BackColor = Color.Orange;
-                        }
-                        else
-                        {
-                            table.TableStatus = TableStatus.Free;
-                            button.BackColor = Color.MediumSeaGreen;
-                        }
+                        button.BackColor = Color.MediumSeaGreen;
                         break;
                     case TableStatus.Reserved:
-                        button.BackColor = Color.Gray;
+                        button.BackColor = Color.DarkGray;
                         break;
                 }
 
@@ -249,9 +237,8 @@ namespace ChapeauUI
                 MessageBox.Show("An error occurred while getting table color: " + ex.Message, "Error");
                 return button;
             }
-
         }
-
     }
+
 
 }

@@ -44,9 +44,14 @@ namespace ChapeauUI
         // Check the availability of the table and enable/disable buttons accordingly
         private void CheckTableAvailability()
         {
+            AddOrderbtn.Enabled = false;
+            FreeTableBtn.Enabled = false;
+            ReserveTableBtn.Enabled = false;
+            BillBtn.Enabled = false;
+            serveBtn.Enabled = false;
+
             switch (table.TableStatus)
             {
-
                 case TableStatus.Occupied:
                     OcuppiedTableButtons();
                     break;
@@ -59,24 +64,19 @@ namespace ChapeauUI
             }
         }
 
+
         private void OcuppiedTableButtons()
         {
-            // Enable buttons when table is occupied
             AddOrderbtn.Enabled = true;
-            FreeTableBtn.Enabled = false;
-            ReserveTableBtn.Enabled = false;
             BillBtn.Enabled = true;
             serveBtn.Enabled = true;
         }
 
         private void FreeTableButtons()
         {
-            // Disable buttons when table is free
             AddOrderbtn.Enabled = true;
-            FreeTableBtn.Enabled = false;
             ReserveTableBtn.Enabled = true;
-            BillBtn.Enabled = false;
-            serveBtn.Enabled = false;
+            FreeTableBtn.Enabled = false;
         }
 
         private void ReserveTableButtons()
@@ -84,8 +84,6 @@ namespace ChapeauUI
             AddOrderbtn.Enabled = false;
             FreeTableBtn.Enabled = true;
             ReserveTableBtn.Enabled = false;
-            BillBtn.Enabled = false;
-            serveBtn.Enabled = false;
         }
 
 
@@ -130,15 +128,6 @@ namespace ChapeauUI
         }
 
 
-        private void OccupyTableBtn_Click(object sender, EventArgs e)
-        {
-
-            table.TableStatus = TableStatus.Reserved;
-            tableService.UpdateTableStatus(table);
-            AddOrderbtn.Enabled = false;
-            FreeTableBtn.Enabled = true;
-
-        }
 
         private void GoBackBtn_Click(object sender, EventArgs e)
         {
@@ -146,6 +135,12 @@ namespace ChapeauUI
             Close();
 
 
+        }
+        private void ReserveTableBtn_Click(object sender, EventArgs e)
+        {
+            table.TableStatus = TableStatus.Reserved;
+            tableService.UpdateTableStatus(table);
+            ReserveTableButtons();
         }
 
         private void LogoutBtn_Click(object sender, EventArgs e)
@@ -166,6 +161,7 @@ namespace ChapeauUI
             // Free the table by updating its status
             tableService.FreeTable(table.TableId, TableStatus.Free);
             FreeTableButtons();
+
         }
 
         private void serveBtn_Click(object sender, EventArgs e)
@@ -230,7 +226,7 @@ namespace ChapeauUI
             return true;
         }
 
-
+       
     }
 
 }
