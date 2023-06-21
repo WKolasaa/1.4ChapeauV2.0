@@ -38,6 +38,7 @@ namespace ChapeauUI
             tableNumberlbl.Text = $"Table{table.TableId}";
             DisplayOrders();
             CheckTableAvailability();
+
         }
 
         // Check the availability of the table and enable/disable buttons accordingly
@@ -166,7 +167,6 @@ namespace ChapeauUI
             tableService.FreeTable(table.TableId, TableStatus.Free);
             FreeTableButtons();
         }
-
 
         private void serveBtn_Click(object sender, EventArgs e)
         {

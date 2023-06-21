@@ -90,6 +90,7 @@ namespace ChapeauDAL
                   // lambda parameter name that represents an individual element in the Split array.
                   .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))//=> separates the parameter 
                   .ToList<PaymentMethod>();
+
                 payment.Datetime = reader.GetDateTime(6);//
 
                 paymentList.Add(payment); // Add the payment to the list
@@ -218,6 +219,7 @@ namespace ChapeauDAL
                 items.Add(item);
             }
             return items;
+
         }
 
         public decimal TodaysIncome() // Manager part to display today's income 
