@@ -44,10 +44,10 @@
             columnTime = new ColumnHeader();
             BillBtn = new Button();
             AddOrderbtn = new Button();
-            ReserveTableBtn = new Button();
             FreeTableBtn = new Button();
             tableNumberlbl = new Label();
             serveBtn = new Button();
+            ReserveTableBtn = new Button();
             columnHeader1 = new ColumnHeader();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -56,7 +56,7 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Quantity";
-            columnHeader1.Width = 100;
+            columnHeader1.Width = 113;
             // 
             // panel1
             // 
@@ -148,25 +148,27 @@
             // listcolumnName
             // 
             listcolumnName.Text = "Name";
-            listcolumnName.Width = 100;
+            listcolumnName.Width = 113;
             // 
             // columnHeader2
             // 
             columnHeader2.Text = "Price";
-            columnHeader2.Width = 100;
+            columnHeader2.Width = 113;
             // 
             // columnHeader3
             // 
             columnHeader3.Text = "Status";
-            columnHeader3.Width = 100;
+            columnHeader3.Width = 113;
             // 
             // listcolumncomment
             // 
             listcolumncomment.Text = "Comment";
+            listcolumncomment.Width = 147;
             // 
             // columnTime
             // 
             columnTime.Text = "Time";
+            columnTime.Width = 80;
             // 
             // BillBtn
             // 
@@ -193,19 +195,6 @@
             AddOrderbtn.Text = "Add Order";
             AddOrderbtn.UseVisualStyleBackColor = false;
             AddOrderbtn.Click += AddOrderbtn_Click;
-            // 
-            // ReserveTableBtn
-            // 
-            ReserveTableBtn.BackColor = Color.FromArgb(238, 164, 127);
-            ReserveTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            ReserveTableBtn.Location = new Point(719, 344);
-            ReserveTableBtn.Margin = new Padding(3, 4, 3, 4);
-            ReserveTableBtn.Name = "ReserveTableBtn";
-            ReserveTableBtn.Size = new Size(131, 64);
-            ReserveTableBtn.TabIndex = 4;
-            ReserveTableBtn.Text = "Reserve Table";
-            ReserveTableBtn.UseVisualStyleBackColor = false;
-            ReserveTableBtn.Click += OccupyTableBtn_Click;
             // 
             // FreeTableBtn
             // 
@@ -242,6 +231,19 @@
             serveBtn.UseVisualStyleBackColor = false;
             serveBtn.Click += serveBtn_Click;
             // 
+            // ReserveTableBtn
+            // 
+            ReserveTableBtn.BackColor = Color.FromArgb(238, 164, 127);
+            ReserveTableBtn.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            ReserveTableBtn.Location = new Point(719, 344);
+            ReserveTableBtn.Margin = new Padding(3, 4, 3, 4);
+            ReserveTableBtn.Name = "ReserveTableBtn";
+            ReserveTableBtn.Size = new Size(131, 64);
+            ReserveTableBtn.TabIndex = 4;
+            ReserveTableBtn.Text = "Reserve Table";
+            ReserveTableBtn.UseVisualStyleBackColor = false;
+            ReserveTableBtn.Click += OccupyTableBtn_Click;
+            // 
             // TableOrderView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -275,7 +277,6 @@
         private ListView listViewOrders;
         private Button BillBtn;
         private Button AddOrderbtn;
-        private Button ReserveTableBtn;
         private Button FreeTableBtn;
         private ColumnHeader listcolumnName;
         private ColumnHeader columnHeader2;
@@ -286,5 +287,6 @@
         private Button button1;
         private ColumnHeader listcolumncomment;
         private ColumnHeader columnTime;
+        private Button ReserveTableBtn;
     }
 }

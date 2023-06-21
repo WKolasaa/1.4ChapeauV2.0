@@ -17,14 +17,14 @@ namespace ChapeauUI
         private Payment payment;
         private const decimal HighVAT = 0.21m;//for the alcoholic
         private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
-       
-        public DisplayBill(Table table)
+
+        public DisplayBill(int TableNumber)
         {
             payment = new Payment();
             InitializeComponent();
             this.CenterToScreen();
 
-            payment.TableNumber = table.TableId;
+            payment.TableNumber = TableNumber;
             lblTableNumber.Text =$"TABLE {payment.TableNumber}";
 
             DisplaypaymentDetails();

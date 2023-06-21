@@ -45,6 +45,7 @@ namespace ChapeauUI
         {
             switch (table.TableStatus)
             {
+
                 case TableStatus.Occupied:
                     OcuppiedTableButtons();
                     break;
@@ -116,14 +117,25 @@ namespace ChapeauUI
             form.ShowDialog();
             Show();
             DisplayOrders();
+
+            if (listViewOrders.Items.Count > 0)
+            {
+                table.TableStatus = TableStatus.Occupied;
+                tableService.UpdateTableStatus(table);
+                OcuppiedTableButtons();
+            }
+
+
         }
+
 
         private void OccupyTableBtn_Click(object sender, EventArgs e)
         {
 
             table.TableStatus = TableStatus.Reserved;
             tableService.UpdateTableStatus(table);
-            FreeTableButtons();
+            AddOrderbtn.Enabled = false;
+            FreeTableBtn.Enabled = true;
 
         }
 
@@ -152,24 +164,23 @@ namespace ChapeauUI
         {
             // Free the table by updating its status
             tableService.FreeTable(table.TableId, TableStatus.Free);
-            ReserveTableButtons();
+            FreeTableButtons();
         }
 
-        private void BillBtn_Click(object sender, EventArgs e)
-        {
-            // Show the DisplayBill form, hide the current form, and then free the table
-            DisplayBill display = new DisplayBill(table);
-            this.Hide();
-            display.ShowDialog();
-            this.Close();
-            tableService.FreeTable(table.TableId, TableStatus.Free);
-        }
 
         private void serveBtn_Click(object sender, EventArgs e)
         {
-            // Update the state of the selected order item to Served and display the updated orders
-            orderItemService.UpdateOrderItemState(orderItem, OrderStatus.Served);
-            DisplayOrders();
+            // Check if the selected order item is ready to be served
+            if (orderItem.Status == OrderStatus.Ready)
+            {
+                // Update the state of the selected order item to Served and display the updated orders
+                orderItemService.UpdateOrderItemState(orderItem, OrderStatus.Served);
+                DisplayOrders();
+            }
+            else
+            {
+                MessageBox.Show("The order is not ready to be served yet.", "Order Not Ready", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void listViewOrders_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,6 +192,39 @@ namespace ChapeauUI
                 orderItem = (OrderItem)listView.Tag;
             }
         }
+        private void BillBtn_Click(object sender, EventArgs e)
+        {
+            // Check if any orders are not served before generating the bill
+            bool allOrdersReady = CheckAllOrdersServed();
+
+            if (allOrdersReady)
+            {
+                // Show the DisplayBill form, hide the current form, and then free the table
+                DisplayBill display = new DisplayBill(table.TableId);
+                this.Hide();
+                display.ShowDialog();
+                this.Close();
+                tableService.FreeTable(table.TableId, TableStatus.Free);
+            }
+            else
+            {
+                MessageBox.Show("Orders are not served. Please wait for all orders to be served before generating the bill.", "Orders Not Served", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool CheckAllOrdersServed()
+        {
+            foreach (ListViewItem listItem in listViewOrders.Items)
+            {
+                OrderItem orderItem = (OrderItem)listItem.Tag;
+                if (orderItem.Status != OrderStatus.Served)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
     }
 
