@@ -200,11 +200,13 @@ namespace ChapeauUI
 
             if (allOrdersReady)
             {
+
                 // Show the DisplayBill form, hide the current form
                 this.Hide();
                 DisplayBill display = new DisplayBill(table.TableId);
                 display.ShowDialog();
                 this.Close();
+
 
             }
             else

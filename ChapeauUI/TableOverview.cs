@@ -71,6 +71,7 @@ namespace ChapeauUI
         {
             try
             {
+
                 this.Hide();
                 TableOrderView tableOrderView = new TableOrderView(employee, tables[tableNumber]); // Create a new table order view form
                 tableOrderView.ShowDialog(); // Display the table order view form

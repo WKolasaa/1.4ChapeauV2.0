@@ -151,6 +151,7 @@ namespace ChapeauUI
         }
 
         private void btnProceedToPayment_Click(object sender, EventArgs e)
+
         {   this.Hide();
             DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(payment);
             paymentMethod.ShowDialog();
