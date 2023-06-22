@@ -47,11 +47,10 @@ namespace ChapeauDAL
 
         public void AddEmployee(Employee employee)
         {
-            string query = "INSERT INTO Employee (employeeID, EmployeeType, FirstName, LastName, Password, dateOfBirth, Username) VALUES (@employeeID, @employeeType, @firstName, @lastName, @password, @dateOfBirth, @UserName)";
+            string query = "INSERT INTO Employee (EmployeeType, FirstName, LastName, Password, dateOfBirth, Username) VALUES (@employeeType, @firstName, @lastName, @password, @dateOfBirth, @UserName)";
 
             SqlParameter[] parameter =
             {
-                new SqlParameter("@employeeID", employee.EmployeeId),
                 new SqlParameter("@employeeType", Convert.ToInt32(employee.EmployeeType)),
                 new SqlParameter("@firstName",employee.FirstName),
                 new SqlParameter("@lastName",employee.LastName),
@@ -65,7 +64,7 @@ namespace ChapeauDAL
 
         public void EditEmployee(Employee employee)
         {
-            string query = "UPDATE Employee SET employeeType=@employeeType,firstName=@firstName, lastName=@lastName, dateOfBirth=@dateOfBirth, Username=@Username [password]=@password WHERE EmployeeID=@employeeID;";
+            string query = "UPDATE Employee SET employeeType=@employeeType,firstName=@firstName, lastName=@lastName, dateOfBirth=@dateOfBirth, Username=@Username, [password]=@password WHERE EmployeeID=@employeeID;";
 
             SqlParameter[] parameter =
             {
@@ -73,7 +72,7 @@ namespace ChapeauDAL
                 new SqlParameter("@employeeType", employee.EmployeeType.ToString()),
                 new SqlParameter("@firstName", employee.FirstName),
                 new SqlParameter("@lastName", employee.LastName),
-                new SqlParameter(@"dateOfBirth", employee.DateOfBirth),
+                new SqlParameter("@dateOfBirth", employee.DateOfBirth),
                 new SqlParameter("@Username", employee.UserName),
                 new SqlParameter("@password", BCrypt.Net.BCrypt.HashPassword(employee.Password))
             };

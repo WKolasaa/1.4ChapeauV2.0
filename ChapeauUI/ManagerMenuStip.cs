@@ -33,13 +33,5 @@ namespace ChapeauUI
             managerMenu.ShowDialog();
             form.Close();
         }
-
-        public void OpenStockView(Form form)
-        {
-            form.Hide();
-            ManagerStock managerStock = new ManagerStock();
-            managerStock.ShowDialog();
-            form.Hide();
-        }
     }
 }

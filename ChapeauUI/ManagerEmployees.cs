@@ -7,11 +7,13 @@ namespace ChapeauUI
     {
         ManagerMenuStip strip = new ManagerMenuStip();
         Employee tempEmployee;
+
         public ManagerEmployees()
         {
             InitializeComponent();
             this.CenterToScreen();
         }
+
         private void ManagerEmployees_Load(object sender, EventArgs e)
         {
             DisplayEmployees(GetEmployees());
@@ -43,7 +45,7 @@ namespace ChapeauUI
 
         private void btEmployeesAdd_Click(object sender, EventArgs e)
         {
-            ManagerEmployeeAdd form = new ManagerEmployeeAdd(true, tempEmployee);
+            ManagerEmployeeAdd form = new ManagerEmployeeAdd();
             form.ShowDialog();
             DisplayEmployees(GetEmployees());
         }
@@ -56,7 +58,7 @@ namespace ChapeauUI
             }
             else
             {
-                ManagerEmployeeAdd form = new ManagerEmployeeAdd(false, tempEmployee);
+                ManagerEmployeeAdd form = new ManagerEmployeeAdd(tempEmployee);
                 form.ShowDialog();
                 DisplayEmployees(GetEmployees());
             }
@@ -75,7 +77,7 @@ namespace ChapeauUI
         {
             if (lvEmployees.SelectedIndices.Count == 0)
             {
-                MessageBox.Show("Select Employee!!");
+                MessageBox.Show("Select Employee");
             }
             else
             {
@@ -103,11 +105,6 @@ namespace ChapeauUI
         private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             strip.OpenMainView(this);
-        }
-
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            strip.OpenStockView(this);
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)

@@ -5,27 +5,24 @@ namespace ChapeauUI;
 
 public partial class ManagerEmployeeAdd : Form
 {
-    private Employee employee;
-    private readonly bool AddForm;
+    public ManagerEmployeeAdd(Employee employee)
+    {
+        PrepareForm("Adjust employee");
+        importData(employee);
+    }
 
-    public ManagerEmployeeAdd(bool Add, Employee employee)
+    public ManagerEmployeeAdd()
+    {
+        PrepareForm("Add employee");
+    }
+
+    private void PrepareForm(string text)
     {
         InitializeComponent();
         cbAddEmployeeRole.DataSource = Enum.GetValues(typeof(EmployeeType)); //loading data into ComboBox 
         txtAddEmployeePassword.UseSystemPasswordChar = true;
         CenterToScreen();
-        this.employee = employee;
-        AddForm = Add;
-        if (Add) // check if user pressed add or ajust button 
-            btAddEmployee.Text = "Add employee";
-        else
-            UpdateForm();
-    }
-
-    private void UpdateForm()
-    {
-        importData();
-        btAddEmployee.Text = "Adjust employee";
+        btAddEmployee.Text = text;
     }
 
     private void btAddEmployee_Click(object sender, EventArgs e)
@@ -37,25 +34,18 @@ public partial class ManagerEmployeeAdd : Form
             return;
         }
 
-        if (int.Parse(txtAddEmployeeID.Text) < 0)
-        {
-            MessageBox.Show("ID cannot be lover then 0!");
-            return;
-        }
-
         try
         {
             EmployeeService employeeService = new EmployeeService();
-            if (AddForm)
+
+            if (btAddEmployee.Text == "Add employee")
             {
-                var newEmployee = insertData();
-                employeeService.AddEmployee(newEmployee);
+                employeeService.AddEmployee(insertData());
                 MessageBox.Show("Employee Added!");
             }
             else
             {
-                employee = insertData();
-                employeeService.EditEmployee(employee);
+                employeeService.EditEmployee(insertData());
                 MessageBox.Show("Employee Adjusted!");
             }
 
@@ -72,7 +62,7 @@ public partial class ManagerEmployeeAdd : Form
         Close();
     }
 
-    private void importData() //import data from employee object 
+    private void importData(Employee employee) //import data from employee object 
     {
         try
         {
@@ -96,7 +86,8 @@ public partial class ManagerEmployeeAdd : Form
 
         importedEmployee.FirstName = txtAddEmployeeFirstName.Text;
         importedEmployee.LastName = txtAddEmployeeLastName.Text;
-        importedEmployee.EmployeeId = int.Parse(txtAddEmployeeID.Text);
+        if(btAddEmployee.Text == "Adjust employee")
+            importedEmployee.EmployeeId = int.Parse(txtAddEmployeeID.Text);
         importedEmployee.EmployeeType = (EmployeeType)cbAddEmployeeRole.SelectedIndex;
         importedEmployee.Password = txtAddEmployeePassword.Text;
         importedEmployee.UserName = txtAddEmployeeUserName.Text;

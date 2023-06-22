@@ -222,25 +222,19 @@ namespace ChapeauDAL
 
         }
 
-        public decimal TodaysIncome() // Manager part to display today's income 
+        public DataTable Income(DateTime startDate, DateTime endDate) // Manager part to display today's income 
         {
-            string query = "SELECT TotalAmount FROM PaymentHistory WHERE PaymentData = @date";
+            string query = "SELECT TotalAmount FROM PaymentHistory WHERE PaymentData >= @startDate AND PaymentData <= @endDate";
 
             SqlParameter[] parameter =
             {
-                new SqlParameter("@date", DateTime.Today)
+                new SqlParameter("startDate", startDate),
+                new SqlParameter("@endDate", endDate)
             };
 
             DataTable table = ExecuteSelectQuery(query, parameter);
 
-            decimal income = 0;
-
-            foreach (DataRow tableRow in table.Rows)
-            {
-                income += (decimal)tableRow["TotalAmount"];
-            }
-
-            return income;
+            return table;
         }
     }
 }

@@ -2,6 +2,7 @@
 using ChapeauModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,9 +63,18 @@ namespace ChapeauService
             return items;
         }
 
-        public decimal TodayIncome()
+        public decimal Income(DateTime startDate, DateTime endDate)
         {
-            return PaymentDao.TodaysIncome();
+            DataTable table = PaymentDao.Income(startDate, endDate);
+
+            decimal income = 0;
+
+            foreach (DataRow row in table.Rows)
+            {
+                income += (decimal)row["TotalAmount"];
+            }
+
+            return income;
         }
 
     }

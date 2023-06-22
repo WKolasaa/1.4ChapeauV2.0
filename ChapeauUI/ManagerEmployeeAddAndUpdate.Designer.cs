@@ -107,6 +107,7 @@
             // 
             // txtAddEmployeeID
             // 
+            txtAddEmployeeID.Enabled = false;
             txtAddEmployeeID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAddEmployeeID.Location = new Point(233, 30);
             txtAddEmployeeID.Name = "txtAddEmployeeID";

@@ -12,13 +12,18 @@ namespace ChapeauDAL
 {
     public class MenuDAO : BaseDao
     {
-        public List<MenuItem> GetMenu()
+        public List<MenuItem> GetMenu(string sort)
         {
             List<MenuItem> menuItems = new List<MenuItem>();
 
-            string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem";
+            string query = $"SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable ORDER BY {sort} ASC"; // TODO manage hardcoded value
 
-            DataTable dataTable = ExecuteSelectQuery(query);
+            SqlParameter[] sqlParameter =
+            {
+                new SqlParameter("@sort", sort)
+            };
+
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameter);
             menuItems = ReadMenuItems(dataTable);
 
             return menuItems;
@@ -36,7 +41,8 @@ namespace ChapeauDAL
                     Description = (string)dr["description"],
                     Price = (double)dr["price"],
                     ItemType = (ItemCategory)dr["course_type"],
-                    VAT_Category = (bool)dr["vat_category"]
+                    VAT_Category = (bool)dr["vat_category"],
+                    Quantity = (int)dr["quantity"]
                 };
 
                 menu.Add(menuItem);
@@ -47,7 +53,7 @@ namespace ChapeauDAL
 
         public List<MenuItem> GetMenuItemByCategory(int category)
         {
-            string query = "SELECT menuItemID, description, price, course_type, vat_category FROM MenuItem WHERE course_type = @course_type";
+            string query = "SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable WHERE course_type = @course_type";
 
             SqlParameter[] sqlParameters = 
             {
@@ -59,15 +65,15 @@ namespace ChapeauDAL
 
         public void AddMenuItem(MenuItem menu)
         {
-            string query = "INSERT INTO MenuItem (menuItemID, description, price, vat_category, course_type) VALUES (@menuItemID, @description, @price, @vat_category, @course_type)";
+            string query = "INSERT INTO MenuItemTable (description, price, vat_category, course_type, quantity) VALUES (@description, @price, @vat_category, @course_type, @quantity)";
 
             SqlParameter[] parameter =
             {
-                new SqlParameter("@menuItemID", menu.MenuItemID),
                 new SqlParameter("@description", menu.Description),
                 new SqlParameter("@price", menu.Price),
                 new SqlParameter("@vat_category", menu.VAT_Category),
-                new SqlParameter("@course_type", (int)menu.ItemType)
+                new SqlParameter("@course_type", (int)menu.ItemType),
+                new SqlParameter("@quantity", menu.Quantity)
             };
 
             ExecuteEditQuery(query, parameter);
@@ -75,14 +81,15 @@ namespace ChapeauDAL
 
         public void UpdateMenu(MenuItem menu)
         {
-            string query = "UPDATE MenuItem SET description = @description, price = @price, vat_category = @vat_category, course_type = @course_type WHERE menuItemID = @itemID";
+            string query = "UPDATE MenuItemTable SET description = @description, price = @price, vat_category = @vat_category, course_type = @course_type, quantity = @quantity WHERE menuItemID = @itemID";
             SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID),
                 new SqlParameter("@description", menu.Description),
                 new SqlParameter("@price", menu.Price),
                 new SqlParameter("@vat_category", menu.VAT_Category),
-                new SqlParameter("@course_type", (int)menu.ItemType)
+                new SqlParameter("@course_type", (int)menu.ItemType),
+                new SqlParameter("@quantity", menu.Quantity)
             };
 
             ExecuteEditQuery(query, parameter);
@@ -90,7 +97,7 @@ namespace ChapeauDAL
 
         public void DeleteMenuItem(MenuItem menu)
         {
-            string query = "DELETE FROM MenuItem WHERE menuItemID = @itemID";
+            string query = "DELETE FROM MenuItemTable WHERE menuItemID = @itemID";
             SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID)
