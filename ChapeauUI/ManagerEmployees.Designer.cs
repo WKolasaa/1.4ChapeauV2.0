@@ -144,14 +144,6 @@
             employeesToolStripMenuItem.Size = new Size(97, 25);
             employeesToolStripMenuItem.Text = "Employees";
             // 
-            // stockToolStripMenuItem
-            // 
-            stockToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            stockToolStripMenuItem.Size = new Size(59, 25);
-            stockToolStripMenuItem.Text = "Stock";
-            stockToolStripMenuItem.Click += stockToolStripMenuItem_Click;
-            // 
             // menuToolStripMenuItem
             // 
             menuToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);

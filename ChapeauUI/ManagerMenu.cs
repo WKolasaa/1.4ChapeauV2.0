@@ -3,6 +3,11 @@ using ChapeauService;
 
 namespace ChapeauUI
 {
+    public enum Sort
+    {
+        menuItemID, description, price, vat_category, course_type, quantity
+    }
+
     public partial class ManagerMenu : Form
     {
         private ManagerMenuStip strip = new ManagerMenuStip();
@@ -12,13 +17,14 @@ namespace ChapeauUI
         {
             InitializeComponent();
             this.CenterToScreen();
+            cbSort.DataSource = Enum.GetValues(typeof(Sort));
         }
 
         private void ManagerMenu_Load(object sender, EventArgs e)
         {
             try
             {
-                DisplayMenu(GetMenu());
+                DisplayMenu(GetMenu((Sort)cbSort.SelectedItem));
             }
             catch (Exception ex)
             {
@@ -26,10 +32,10 @@ namespace ChapeauUI
             }
         }
 
-        private List<MenuItem> GetMenu()
+        private List<MenuItem> GetMenu(Sort sort)
         {
             MenuService menuService = new MenuService();
-            return menuService.GetMenu();
+            return menuService.GetMenu(sort.ToString());
         }
 
         private void DisplayMenu(List<MenuItem> Menu) //displaying list of menu objects
@@ -40,12 +46,13 @@ namespace ChapeauUI
             {
                 ListViewItem li = new ListViewItem(m.MenuItemID.ToString());
                 li.SubItems.Add(m.Description);
-                li.SubItems.Add($"{m.Price:0.00}€");
+                li.SubItems.Add($"€{m.Price:0.00}");
                 if (m.VAT_Category)
                     li.SubItems.Add("21%");
                 else
                     li.SubItems.Add("6%");
                 li.SubItems.Add(m.ItemType.ToString());
+                li.SubItems.Add(m.Quantity.ToString());
 
                 li.Tag = m;
                 lvMenu.Items.Add(li);
@@ -54,9 +61,9 @@ namespace ChapeauUI
 
         private void btMenuAdd_Click(object sender, EventArgs e)
         {
-            ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate(true, temp);
+            ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate();
             managerMenuAdd.ShowDialog();
-            DisplayMenu(GetMenu());
+            DisplayMenu(GetMenu((Sort)cbSort.SelectedItem));
         }
 
         private void btMenuUpdate_Click(object sender, EventArgs e)
@@ -67,9 +74,9 @@ namespace ChapeauUI
             }
             else
             {
-                ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate(false, temp);
+                ManagerMenuAddAndUpdate managerMenuAdd = new ManagerMenuAddAndUpdate(temp);
                 managerMenuAdd.ShowDialog();
-                DisplayMenu(GetMenu());
+                DisplayMenu(GetMenu((Sort)cbSort.SelectedItem));
             }
         }
 
@@ -96,8 +103,7 @@ namespace ChapeauUI
                         MessageBox.Show(ex.Message);
                     }
                 }
-
-                DisplayMenu(GetMenu());
+                DisplayMenu(GetMenu((Sort)cbSort.SelectedItem));
             }
         }
 
@@ -120,9 +126,9 @@ namespace ChapeauUI
             strip.OpenEmployeesView(this);
         }
 
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cbSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            strip.OpenStockView(this);
+            DisplayMenu(GetMenu((Sort)cbSort.SelectedItem));
         }
     }
 }

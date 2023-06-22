@@ -41,10 +41,13 @@
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             cbCategory = new ComboBox();
+            label5 = new Label();
+            txtQuantity = new TextBox();
             SuspendLayout();
             // 
             // txtAddMenuID
             // 
+            txtAddMenuID.Enabled = false;
             txtAddMenuID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAddMenuID.Location = new Point(255, 22);
             txtAddMenuID.Name = "txtAddMenuID";
@@ -101,7 +104,7 @@
             // 
             btAddMenu.BackColor = Color.FromArgb(138, 210, 176);
             btAddMenu.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btAddMenu.Location = new Point(55, 317);
+            btAddMenu.Location = new Point(55, 352);
             btAddMenu.Name = "btAddMenu";
             btAddMenu.Size = new Size(202, 29);
             btAddMenu.TabIndex = 13;
@@ -113,7 +116,7 @@
             // 
             btCancel.BackColor = Color.FromArgb(245, 108, 117);
             btCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btCancel.Location = new Point(301, 317);
+            btCancel.Location = new Point(301, 352);
             btCancel.Name = "btCancel";
             btCancel.Size = new Size(166, 29);
             btCancel.TabIndex = 14;
@@ -135,7 +138,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(55, 254);
+            label6.Location = new Point(55, 299);
             label6.Name = "label6";
             label6.Size = new Size(118, 21);
             label6.TabIndex = 19;
@@ -145,7 +148,7 @@
             // 
             radioButton1.AutoSize = true;
             radioButton1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            radioButton1.Location = new Point(255, 254);
+            radioButton1.Location = new Point(255, 299);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(50, 25);
             radioButton1.TabIndex = 20;
@@ -157,7 +160,7 @@
             // 
             radioButton2.AutoSize = true;
             radioButton2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            radioButton2.Location = new Point(402, 254);
+            radioButton2.Location = new Point(402, 299);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(59, 25);
             radioButton2.TabIndex = 21;
@@ -174,11 +177,31 @@
             cbCategory.Size = new Size(212, 29);
             cbCategory.TabIndex = 22;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(55, 249);
+            label5.Name = "label5";
+            label5.Size = new Size(152, 21);
+            label5.TabIndex = 23;
+            label5.Text = "Menu Item Quantity:";
+            // 
+            // txtQuantity
+            // 
+            txtQuantity.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtQuantity.Location = new Point(255, 246);
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(212, 29);
+            txtQuantity.TabIndex = 24;
+            // 
             // ManagerMenuAddAndUpdate
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 393);
+            Controls.Add(txtQuantity);
+            Controls.Add(label5);
             Controls.Add(cbCategory);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
@@ -213,5 +236,7 @@
         private RadioButton radioButton1;
         private RadioButton radioButton2;
         private ComboBox cbCategory;
+        private Label label5;
+        private TextBox txtQuantity;
     }
 }

@@ -5,31 +5,23 @@ namespace ChapeauUI;
 
 public partial class ManagerMenuAddAndUpdate : Form
 {
-    private readonly bool AddForm;
-    private MenuItem MenuItem;
+    public ManagerMenuAddAndUpdate(MenuItem menuItem)
+    {
+        PrepareForm("Adjust Menu Item");
+        importData(menuItem);
+    }
 
-    public ManagerMenuAddAndUpdate(bool Add, MenuItem menuItem)
+    public ManagerMenuAddAndUpdate()
+    {
+        PrepareForm("Add Menu Item");
+    }
+
+    private void PrepareForm(string text)
     {
         InitializeComponent();
         CenterToScreen();
         cbCategory.DataSource = Enum.GetValues(typeof(ItemCategory));
-        AddForm = Add;
-        MenuItem = menuItem;
-        if (!AddForm) // checks if user pressed add or ajust button
-            UpdateForm();
-    }
-
-    private void UpdateForm()
-    {
-        try
-        {
-            importData();
-            btAddMenu.Text = "Adjust Menu Item";
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
+        btAddMenu.Text = text;
     }
 
     private void btAddMenu_Click(object sender, EventArgs e)
@@ -40,7 +32,7 @@ public partial class ManagerMenuAddAndUpdate : Form
             return;
         }
 
-        if (int.Parse(txtAddMenuID.Text) < 0 || double.Parse(txtAddMenuPrice.Text) < 0)
+        if (double.Parse(txtAddMenuPrice.Text) < 0)
         {
             MessageBox.Show("Value cannot be lover then 0!");
             return;
@@ -49,7 +41,8 @@ public partial class ManagerMenuAddAndUpdate : Form
         try
         {
             var menuService = new MenuService();
-            if (AddForm)
+
+            if (btAddMenu.Text == "Add Menu Item")
             {
                 menuService.AddMenu(insertData());
                 MessageBox.Show("Menu Item Added!");
@@ -73,13 +66,14 @@ public partial class ManagerMenuAddAndUpdate : Form
         Close();
     }
 
-    private void importData() //import data from menu object
+    private void importData(MenuItem item) //import data from menu object
     {
-        txtAddMenuID.Text = MenuItem.MenuItemID.ToString();
-        txtAddMenuDesciprion.Text = MenuItem.Description;
-        txtAddMenuPrice.Text = MenuItem.Price.ToString();
-        cbCategory.SelectedItem = MenuItem.ItemType;
-        if (MenuItem.VAT_Category)
+        txtAddMenuID.Text = item.MenuItemID.ToString();
+        txtAddMenuDesciprion.Text = item.Description;
+        txtAddMenuPrice.Text = item.Price.ToString();
+        cbCategory.SelectedItem = item.ItemType;
+        txtQuantity.Text = item.Quantity.ToString();
+        if (item.VAT_Category)
         {
             radioButton1.Checked = false;
             radioButton2.Checked = true;
@@ -95,10 +89,12 @@ public partial class ManagerMenuAddAndUpdate : Form
     {
         MenuItem tempMenu = new MenuItem();
 
-        tempMenu.MenuItemID = int.Parse(txtAddMenuID.Text);
+        if (btAddMenu.Text == "Adjust Menu Item")
+            tempMenu.MenuItemID = int.Parse(txtAddMenuID.Text);
         tempMenu.Description = txtAddMenuDesciprion.Text;
         tempMenu.Price = double.Parse(txtAddMenuPrice.Text);
         tempMenu.ItemType = (ItemCategory)cbCategory.SelectedItem;
+        tempMenu.Quantity = int.Parse(txtQuantity.Text);
         if (radioButton1.Checked)
             tempMenu.VAT_Category = false;
         else

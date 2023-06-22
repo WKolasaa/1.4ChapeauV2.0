@@ -17,9 +17,9 @@ namespace ChapeauService
             menudb = new MenuDAO();
         }
 
-        public List<MenuItem> GetMenu()
+        public List<MenuItem> GetMenu(string sort)
         {
-            return menudb.GetMenu();
+            return menudb.GetMenu(sort);
         }
 
         public void AddMenu(MenuItem menu)

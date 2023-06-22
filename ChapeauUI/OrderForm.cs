@@ -3,6 +3,7 @@ using System.Windows.Forms.VisualStyles;
 using ChapeauDAL;
 using ChapeauModel;
 using ChapeauService;
+using ChapeauUI;
 using Org.BouncyCastle.Asn1.Esf;
 
 namespace OrderTable
@@ -33,7 +34,7 @@ namespace OrderTable
         //LISTS
         private List<MenuItem> GetMenu()
         {
-            List<MenuItem> menuList = MenuService.GetMenu();
+            List<MenuItem> menuList = MenuService.GetMenu(Sort.menuItemID.ToString());
             return menuList;
         }
 

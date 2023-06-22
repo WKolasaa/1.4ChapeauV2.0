@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerMainView));
             btManagerEmployees = new Button();
-            btStockEmployees = new Button();
             btMenuEmployees = new Button();
             menuStrip1 = new MenuStrip();
             mainMenuToolStripMenuItem = new ToolStripMenuItem();
@@ -41,7 +40,7 @@
             btLogout = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            lbIncome = new Label();
+            cbIncome = new ComboBox();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -50,7 +49,7 @@
             // 
             btManagerEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btManagerEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btManagerEmployees.Location = new Point(315, 159);
+            btManagerEmployees.Location = new Point(315, 191);
             btManagerEmployees.Name = "btManagerEmployees";
             btManagerEmployees.Size = new Size(161, 52);
             btManagerEmployees.TabIndex = 0;
@@ -58,23 +57,11 @@
             btManagerEmployees.UseVisualStyleBackColor = false;
             btManagerEmployees.Click += btManagerEmployees_Click;
             // 
-            // btStockEmployees
-            // 
-            btStockEmployees.BackColor = Color.FromArgb(138, 210, 176);
-            btStockEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btStockEmployees.Location = new Point(315, 263);
-            btStockEmployees.Name = "btStockEmployees";
-            btStockEmployees.Size = new Size(161, 52);
-            btStockEmployees.TabIndex = 1;
-            btStockEmployees.Text = "Stock";
-            btStockEmployees.UseVisualStyleBackColor = false;
-            btStockEmployees.Click += btStockEmployees_Click;
-            // 
             // btMenuEmployees
             // 
             btMenuEmployees.BackColor = Color.FromArgb(138, 210, 176);
             btMenuEmployees.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btMenuEmployees.Location = new Point(315, 370);
+            btMenuEmployees.Location = new Point(315, 310);
             btMenuEmployees.Name = "btMenuEmployees";
             btMenuEmployees.Size = new Size(161, 52);
             btMenuEmployees.TabIndex = 2;
@@ -85,6 +72,7 @@
             // menuStrip1
             // 
             menuStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { mainMenuToolStripMenuItem, employeesToolStripMenuItem, stockToolStripMenuItem, menuToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
@@ -109,11 +97,8 @@
             // 
             // stockToolStripMenuItem
             // 
-            stockToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            stockToolStripMenuItem.Size = new Size(59, 25);
-            stockToolStripMenuItem.Text = "Stock";
-            stockToolStripMenuItem.Click += stockToolStripMenuItem_Click;
+            stockToolStripMenuItem.Size = new Size(12, 25);
             // 
             // menuToolStripMenuItem
             // 
@@ -159,34 +144,33 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(12, 74);
+            label1.Location = new Point(-3, 73);
             label1.Name = "label1";
             label1.Size = new Size(136, 21);
             label1.TabIndex = 15;
             label1.Text = "Today's income: ";
             // 
-            // lbIncome
+            // cbIncome
             // 
-            lbIncome.AutoSize = true;
-            lbIncome.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbIncome.Location = new Point(154, 74);
-            lbIncome.Name = "lbIncome";
-            lbIncome.Size = new Size(57, 21);
-            lbIncome.TabIndex = 16;
-            lbIncome.Text = "label2";
+            cbIncome.FormattingEnabled = true;
+            cbIncome.Location = new Point(3, 106);
+            cbIncome.Margin = new Padding(3, 2, 3, 2);
+            cbIncome.Name = "cbIncome";
+            cbIncome.Size = new Size(204, 23);
+            cbIncome.TabIndex = 17;
+            cbIncome.SelectedIndexChanged += cbIncome_SelectedIndexChanged;
             // 
             // ManagerMainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lbIncome);
+            Controls.Add(cbIncome);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(btLogout);
             Controls.Add(lbUser);
             Controls.Add(btMenuEmployees);
-            Controls.Add(btStockEmployees);
             Controls.Add(btManagerEmployees);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -203,7 +187,6 @@
         #endregion
 
         private Button btManagerEmployees;
-        private Button btStockEmployees;
         private Button btMenuEmployees;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem mainMenuToolStripMenuItem;
@@ -214,6 +197,6 @@
         private Button btLogout;
         private PictureBox pictureBox1;
         private Label label1;
-        private Label lbIncome;
+        private ComboBox cbIncome;
     }
 }
