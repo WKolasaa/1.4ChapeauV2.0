@@ -5,8 +5,9 @@ namespace ChapeauUI
 {
     public enum Income
     {
-        today, yesterday, thisWeek, lastWeek, thisMonth, lastMonth, thisYear
+        Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear
     }
+
     public partial class ManagerMainView : Form
     {
         ManagerMenuStip strip = new ManagerMenuStip();
@@ -59,45 +60,52 @@ namespace ChapeauUI
         {
             PaymentService service = new PaymentService();
             DateTime date;
-            decimal amount;
+            decimal amount = 0;
+            string when = "";
             switch (cbIncome.SelectedValue)
             {
-                case Income.today:
+                case Income.Today:
                     date = DateTime.Today;
                     amount = service.Income(date, date);
-                    label1.Text = $"Today's Income: €{amount}";
+                    when = "Today's";
                     break;
-                case Income.yesterday:
+                case Income.Yesterday:
                     date = DateTime.Today.AddDays(-1);
                     amount = service.Income(date, date);
-                    label1.Text = $"Yesterday's Income: €{amount}";
+                    when = "Yesterday's";
                     break;
-                case Income.thisMonth:
+                case Income.ThisMonth:
                     date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     amount = service.Income(date, DateTime.Today);
-                    label1.Text = $"This Month's Income: €{amount}";
+                    when = "This month's";
                     break;
-                case Income.lastMonth:
+                case Income.LastMonth:
                     date = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 1);
                     amount = service.Income(date, new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1)));
-                    label1.Text = $"Last Month's Income: €{amount}";
+                    when = "Last month's";
                     break;
-                case Income.thisYear:
+                case Income.ThisYear:
                     date = new DateTime(DateTime.Today.Year, 1, 1);
                     amount = service.Income(date, DateTime.Today);
-                    label1.Text = $"This Year's Income: €{amount}";
+                    when = "This Year's";
                     break;
-                case Income.thisWeek:
+                case Income.ThisWeek:
                     date = DateTime.Today.AddDays(-7);
                     amount = service.Income(date, DateTime.Today);
-                    label1.Text = $"This Year's Income: €{amount}";
+                    when = "This week's";
                     break;
-                case Income.lastWeek:
+                case Income.LastWeek:
                     date = DateTime.Today.AddDays(-14);
                     amount = service.Income(date, DateTime.Today.AddDays(-8));
-                    label1.Text = $"This Year's Income: €{amount}";
+                    when = "Last week's";
+                    break;
+                case Income.LastYear:
+                    date = new DateTime(DateTime.Now.Year - 1, 1, 1);
+                    amount = service.Income(date, new DateTime(DateTime.Now.Year - 1, 12, 31));
+                    when = "Last Year's";
                     break;
             }
+            label1.Text = $"{when} Income: €{amount}";
         }
 
         private void cbIncome_SelectedIndexChanged(object sender, EventArgs e)
