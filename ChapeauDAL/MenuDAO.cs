@@ -16,7 +16,7 @@ namespace ChapeauDAL
         {
             List<MenuItem> menuItems = new List<MenuItem>();
 
-        string query = "SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable ORDER BY CASE WHEN @sort ='ID' THEN menuItemID WHEN @sort = 'VatCategory' THEN vat_category WHEN @sort = 'Price' THEN price WHEN @sort = 'CourseType' THEN course_type WHEN @sort = 'Quantity' THEN quantity END ASC"; // TODO manage parameter
+            string query = "SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable ORDER BY CASE WHEN @sort ='ID' THEN menuItemID WHEN @sort = 'VatCategory' THEN vat_category WHEN @sort = 'Price' THEN price WHEN @sort = 'CourseType' THEN course_type WHEN @sort = 'Quantity' THEN quantity END ASC"; // TODO manage parameter
 
             SqlParameter[] sqlParameter =
             {
