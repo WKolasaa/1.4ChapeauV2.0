@@ -34,7 +34,7 @@ namespace OrderTable
         //LISTS
         private List<MenuItem> GetMenu()
         {
-            List<MenuItem> menuList = MenuService.GetMenu(Sort.menuItemID.ToString());
+            List<MenuItem> menuList = MenuService.GetMenu(Sort.ID.ToString());
             return menuList;
         }
 

@@ -5,7 +5,15 @@ namespace ChapeauUI
 {
     public enum Income
     {
-        Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear
+        Today,
+        Yesterday,
+        ThisWeek,
+        LastWeek,
+        ThisMonth,
+        LastMonth,
+        ThisYear,
+        LastYear,
+        Custom
     }
 
     public partial class ManagerMainView : Form
@@ -62,6 +70,8 @@ namespace ChapeauUI
             DateTime date;
             decimal amount = 0;
             string when = "";
+            if((Income)cbIncome.SelectedItem != Income.Custom)
+                pnCustom.Hide();
             switch (cbIncome.SelectedValue)
             {
                 case Income.Today:
@@ -81,7 +91,9 @@ namespace ChapeauUI
                     break;
                 case Income.LastMonth:
                     date = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 1);
-                    amount = service.Income(date, new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1)));
+                    amount = service.Income(date,
+                        new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1,
+                            DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1)));
                     when = "Last month's";
                     break;
                 case Income.ThisYear:
@@ -104,11 +116,32 @@ namespace ChapeauUI
                     amount = service.Income(date, new DateTime(DateTime.Now.Year - 1, 12, 31));
                     when = "Last Year's";
                     break;
+                case Income.Custom:
+                    pnCustom.Show();
+                    date = dtStart.Value;
+                    DateTime end = dtEnd.Value;
+                    amount = service.Income(date, end);
+                    when = "Custom's";
+                    break;
+                default:
+                    label1.Text = "select valid value!";
+                    return;
             }
+
             label1.Text = $"{when} Income: €{amount}";
         }
 
         private void cbIncome_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowIncome();
+        }
+
+        private void dtStart_ValueChanged(object sender, EventArgs e)
+        {
+            ShowIncome();
+        }
+
+        private void dtEnd_ValueChanged(object sender, EventArgs e)
         {
             ShowIncome();
         }

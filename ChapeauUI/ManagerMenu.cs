@@ -5,7 +5,7 @@ namespace ChapeauUI
 {
     public enum Sort
     {
-        menuItemID, description, price, vat_category, course_type, quantity
+        ID, Price, VatCategory, CourseType, Quantity
     }
 
     public partial class ManagerMenu : Form

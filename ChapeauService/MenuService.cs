@@ -12,6 +12,7 @@ namespace ChapeauService
     public class MenuService
     {
         private MenuDAO menudb;
+
         public MenuService()
         {
             menudb = new MenuDAO();
@@ -35,9 +36,15 @@ namespace ChapeauService
         {
             menudb.UpdateMenu(menu);
         }
+
         public List<MenuItem> GetMenuByCategory(int category)
         {
             return menudb.GetMenuItemByCategory(category);
+        }
+
+        public void MenuItemOrdered(MenuItem item)
+        {
+            menudb.MenuItemOrdered(item);
         }
     }
 }
