@@ -16,12 +16,9 @@ namespace ChapeauDAL
         {
             List<MenuItem> menuItems = new List<MenuItem>();
 
-            string query = $"SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable ORDER BY {sort} ASC"; // TODO manage hardcoded value
+            string query = "SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable ORDER BY CASE WHEN @sort ='ID' THEN menuItemID WHEN @sort = 'VatCategory' THEN vat_category WHEN @sort = 'Price' THEN price WHEN @sort = 'CourseType' THEN course_type WHEN @sort = 'Quantity' THEN quantity WHEN @sort = 'Description' THEN CONVERT(varchar(4000), description) END ASC"; // TODO manage parameter
 
-            SqlParameter[] sqlParameter =
-            {
-                new SqlParameter("@sort", sort)
-            };
+            SqlParameter sqlParameter = new SqlParameter("@sort", sort);
 
             DataTable dataTable = ExecuteSelectQuery(query, sqlParameter);
             menuItems = ReadMenuItems(dataTable);
@@ -55,10 +52,7 @@ namespace ChapeauDAL
         {
             string query = "SELECT menuItemID, description, price, course_type, vat_category, quantity FROM MenuItemTable WHERE course_type = @course_type";
 
-            SqlParameter[] sqlParameters = 
-            {
-               new SqlParameter("course_type", category)
-            };
+            SqlParameter sqlParameters = new SqlParameter("course_type", category);
 
             return ReadMenuItems(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -82,6 +76,7 @@ namespace ChapeauDAL
         public void UpdateMenu(MenuItem menu)
         {
             string query = "UPDATE MenuItemTable SET description = @description, price = @price, vat_category = @vat_category, course_type = @course_type, quantity = @quantity WHERE menuItemID = @itemID";
+
             SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID),
@@ -98,9 +93,23 @@ namespace ChapeauDAL
         public void DeleteMenuItem(MenuItem menu)
         {
             string query = "DELETE FROM MenuItemTable WHERE menuItemID = @itemID";
+
             SqlParameter[] parameter =
             {
                 new SqlParameter("@itemID", menu.MenuItemID)
+            };
+
+            ExecuteEditQuery(query, parameter);
+        }
+
+        public void MenuItemOrdered(MenuItem item)
+        {
+            string query = "UPDATE MenuItemTable SET quantity = @quantity WHERE menuItemID = @itemID";
+
+            SqlParameter[] parameter =
+            {
+                new SqlParameter("@quantity", item.Quantity),
+                new SqlParameter("itemID", item.MenuItemID)
             };
 
             ExecuteEditQuery(query, parameter);

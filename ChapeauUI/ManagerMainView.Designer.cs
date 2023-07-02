@@ -41,8 +41,14 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             cbIncome = new ComboBox();
+            dtStart = new DateTimePicker();
+            dtEnd = new DateTimePicker();
+            label2 = new Label();
+            label3 = new Label();
+            pnCustom = new Panel();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnCustom.SuspendLayout();
             SuspendLayout();
             // 
             // btManagerEmployees
@@ -160,11 +166,59 @@
             cbIncome.TabIndex = 17;
             cbIncome.SelectedIndexChanged += cbIncome_SelectedIndexChanged;
             // 
+            // dtStart
+            // 
+            dtStart.Location = new Point(2, 24);
+            dtStart.Name = "dtStart";
+            dtStart.Size = new Size(200, 23);
+            dtStart.TabIndex = 18;
+            dtStart.ValueChanged += dtStart_ValueChanged;
+            // 
+            // dtEnd
+            // 
+            dtEnd.Location = new Point(4, 84);
+            dtEnd.Name = "dtEnd";
+            dtEnd.Size = new Size(200, 23);
+            dtEnd.TabIndex = 19;
+            dtEnd.ValueChanged += dtEnd_ValueChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(2, 2);
+            label2.Name = "label2";
+            label2.Size = new Size(92, 21);
+            label2.TabIndex = 20;
+            label2.Text = "Start date: ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(3, 60);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 21);
+            label3.TabIndex = 21;
+            label3.Text = "End date:";
+            // 
+            // pnCustom
+            // 
+            pnCustom.Controls.Add(label2);
+            pnCustom.Controls.Add(dtEnd);
+            pnCustom.Controls.Add(label3);
+            pnCustom.Controls.Add(dtStart);
+            pnCustom.Location = new Point(3, 143);
+            pnCustom.Name = "pnCustom";
+            pnCustom.Size = new Size(237, 119);
+            pnCustom.TabIndex = 22;
+            // 
             // ManagerMainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pnCustom);
             Controls.Add(cbIncome);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -180,6 +234,8 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnCustom.ResumeLayout(false);
+            pnCustom.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -198,5 +254,10 @@
         private PictureBox pictureBox1;
         private Label label1;
         private ComboBox cbIncome;
+        private DateTimePicker dtStart;
+        private DateTimePicker dtEnd;
+        private Label label2;
+        private Label label3;
+        private Panel pnCustom;
     }
 }
