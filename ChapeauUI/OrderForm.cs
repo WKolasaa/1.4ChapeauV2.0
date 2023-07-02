@@ -77,34 +77,59 @@ namespace OrderTable
 
         //BUTTONS 
 
+        //private void btnLunch_Click(object sender, EventArgs e)
+        //{
+        //    List<MenuItem> lunchItems = new List<MenuItem>();
+        //    for (int i = (int)ItemCategory.StartersLunch; i <= (int)ItemCategory.DesertLunch; i++)
+        //    {
+        //        lunchItems.AddRange(MenuService.GetMenuByCategory(i));
+        //    }
+        //    DisplayMenuItems(lunchItems);
+        //}
+
+        //private void btnDinner_Click(object sender, EventArgs e)
+        //{
+        //    List<MenuItem> dinnerItems = new List<MenuItem>();
+        //    for (int i = (int)ItemCategory.StartersDiner; i <= (int)ItemCategory.DesertDiner; i++)
+        //    {
+        //        dinnerItems.AddRange(MenuService.GetMenuByCategory(i));
+        //    }
+        //    DisplayMenuItems(dinnerItems);
+        //}
+
+        //private void btnDrinks_Click(object sender, EventArgs e)
+        //{
+        //    List<MenuItem> drinks = new List<MenuItem>();
+        //    for (int i = (int)ItemCategory.SoftDrinks; i <= (int)ItemCategory.CoffeTea; i++)
+        //    {
+        //        drinks.AddRange(MenuService.GetMenuByCategory(i));
+        //    }
+        //    DisplayMenuItems(drinks);
+        //}
+
+        private void GetMenuItemsByCategory(ItemCategory startCategory, ItemCategory endCategory)
+        {
+            List<MenuItem> menuItems = new List<MenuItem>();
+            for (int i = (int)startCategory; i <= (int)endCategory; i++)
+            {
+                menuItems.AddRange(MenuService.GetMenuByCategory(i));
+            }
+            DisplayMenuItems(menuItems);
+        }
+
         private void btnLunch_Click(object sender, EventArgs e)
         {
-            List<MenuItem> lunchItems = new List<MenuItem>();
-            for (int i = (int)ItemCategory.StartersLunch; i <= (int)ItemCategory.DesertLunch; i++)
-            {
-                lunchItems.AddRange(MenuService.GetMenuByCategory(i));
-            }
-            DisplayMenuItems(lunchItems);
+            GetMenuItemsByCategory(ItemCategory.StartersLunch, ItemCategory.DesertLunch);
         }
 
         private void btnDinner_Click(object sender, EventArgs e)
         {
-            List<MenuItem> dinnerItems = new List<MenuItem>();
-            for (int i = (int)ItemCategory.StartersDiner; i <= (int)ItemCategory.DesertDiner; i++)
-            {
-                dinnerItems.AddRange(MenuService.GetMenuByCategory(i));
-            }
-            DisplayMenuItems(dinnerItems);
+            GetMenuItemsByCategory(ItemCategory.StartersDiner, ItemCategory.DesertDiner);
         }
 
         private void btnDrinks_Click(object sender, EventArgs e)
         {
-            List<MenuItem> drinks = new List<MenuItem>();
-            for (int i = (int)ItemCategory.SoftDrinks; i <= (int)ItemCategory.CoffeTea; i++)
-            {
-                drinks.AddRange(MenuService.GetMenuByCategory(i));
-            }
-            DisplayMenuItems(drinks);
+            GetMenuItemsByCategory(ItemCategory.SoftDrinks, ItemCategory.CoffeTea);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
