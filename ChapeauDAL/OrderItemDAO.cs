@@ -94,14 +94,44 @@ namespace ChapeauDAL
             return ReadOrderStatus(drinkDataTable);
         }
 
-        public List<OrderItem> GetAllOrderItems(int category)
+        public List<OrderItem> GetTodaysOrderItems(DateTime todaysDate, int category) // add category
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE CAST(TimePlaced AS DATE) = @timePlaced AND Category = @category";
+            SqlParameter spCategory = new SqlParameter("@category", category);
+            SqlParameter spTimePlaced = new SqlParameter("@timePlaced", todaysDate.Date);
+            return ReadOrderItems(ExecuteSelectQuery(query, spTimePlaced, spCategory));
+        }
+
+        public List<OrderItem> GetOrderItemsByCategory(int category)
         {
             string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = @category";
             SqlParameter sp = new SqlParameter("@category", category);
             return ReadOrderItems(ExecuteSelectQuery(query, sp));
         }
 
-       
+        public List<OrderItem> GetOrderItemsByStatusAndCategory(int category)
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = @category AND OrderStatus = @orderStatus";
+            SqlParameter sp = new SqlParameter("@category", category);
+            return ReadOrderItems(ExecuteSelectQuery(query, sp));
+        }
+
+        public List<OrderItem> GetOrdersWithCategoryWithoutStatusLower(int category, OrderStatus status)
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = @category AND OrderStatus < @orderStatus";
+            SqlParameter spCategory = new SqlParameter("@category", category);
+            SqlParameter spStatus = new SqlParameter("@orderStatus", (int)status);
+            return ReadOrderItems(ExecuteSelectQuery(query, spCategory, spStatus));
+        }
+
+        public List<OrderItem> GetOrdersWithCategoryWithoutStatusHigher(int category, OrderStatus status)
+        {
+            string query = "SELECT OrderItemID, PricePerItem, tableNumber, itemName, Quantity, vat_category, Comments, Category, OrderStatus, TimePlaced FROM OrderItems WHERE Category = @category AND OrderStatus > @orderStatus";
+            SqlParameter spCategory = new SqlParameter("@category", category);
+            SqlParameter spStatus = new SqlParameter("@orderStatus", (int)status);
+            return ReadOrderItems(ExecuteSelectQuery(query, spCategory, spStatus));
+        }
+
         public List<OrderItem> ReadOrderItems(DataTable dataTable)
         {
             List<OrderItem> items = new List<OrderItem>();

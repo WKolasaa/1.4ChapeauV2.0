@@ -43,10 +43,24 @@ namespace ChapeauService
             return orderitemdao.GetDrinkStatusByTableId(tableId);
         }
 
-
-        public List<OrderItem> GetAllOrderItems(int category)
+        public List<OrderItem> GetTodaysOrdersItems(DateTime todaysDate, int category)
         {
-            return orderitemdao.GetAllOrderItems(category);
+            return orderitemdao.GetTodaysOrderItems(todaysDate, category);
+        }
+
+        public List<OrderItem> GetOrdersWithCategoryWithoutStatusLower(int category, OrderStatus status)
+        {
+            return orderitemdao.GetOrdersWithCategoryWithoutStatusLower(category, status);
+        }
+
+        public List<OrderItem> GetOrdersWithCategoryWithoutStatusHigher(int category, OrderStatus status)
+        {
+            return orderitemdao.GetOrdersWithCategoryWithoutStatusHigher(category, status);
+        }
+
+        public List<OrderItem> GetOrderItemsByCategory(int category)
+        {
+            return orderitemdao.GetOrderItemsByCategory(category);
         }
 
         public List<OrderItem> GetOrderStatusByTable(int taleId)
