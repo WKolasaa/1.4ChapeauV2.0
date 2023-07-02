@@ -12,15 +12,24 @@ namespace ChapeauModel
     {
         public string Feedback { get; set; }
         public int TableNumber { get; set; }
-       // public int PaymentMethodID { get; set; }
         public int PaymentHistoryID { get; set; }
-        public decimal Tips { get; set; }
+        public decimal Tip { get; set; }
         public decimal TotalAmount { get; set; }
-        public List<PaymentMethod> PaymentMethods;
-        public PaymentMethod PaymentMethod { get; set; }
 
-        public DateTime Datetime { get; set; } 
+        public List<PaymentMethod> PaymentMethods;
+        public DateTime Datetime { get; set; }
+
+        public Payment() { }
+        
+        public Payment(int tableNumber,decimal totalAmount,decimal tip,string feedback,List<PaymentMethod> paymentMethods,DateTime dateTime)
+        {
+            this.TableNumber = tableNumber;
+            this.PaymentMethods = paymentMethods;
+            this.Feedback = feedback;
+            this.Tip = tip;
+            this.TotalAmount = totalAmount;
+            this.Datetime = dateTime;
+        }
     }
-    
 }
 

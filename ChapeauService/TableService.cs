@@ -60,7 +60,9 @@ namespace ChapeauService
         {
             try
             {
+                //tableDAO.FreeItemsTable(tableID);
                 Table table = GetTableById(tableID);
+          
                 if (table != null)
                 {
                     table.TableStatus = status;
@@ -69,7 +71,6 @@ namespace ChapeauService
             }
             catch (Exception ex)
             {
-                
                 throw new Exception($"An error occurred while freeing table with ID {tableID}.", ex);
             }
         }

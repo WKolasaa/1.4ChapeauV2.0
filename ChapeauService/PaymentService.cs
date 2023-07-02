@@ -6,39 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ChapeauService
 {
     public class PaymentService
     {
         PaymentDao PaymentDao;
-
+        private const decimal HighVAT = 0.21m;//for the alcoholic
+        private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
         public PaymentService()
         {
             PaymentDao = new PaymentDao();
         }
 
-        public void StorePaymentHistory(Payment payment)
+        public int StorePaymentHistory(Payment payment)
         {
-             PaymentDao.AddPaymentHistory(payment);
+           int paymentHistoryID= PaymentDao.AddPaymentHistory(payment);
+            return paymentHistoryID;
         }
 
-        public List<Payment> GetPaymentHistory()
-        {
-            List<Payment> payments = PaymentDao.GetPaymentHistory();
-            
-            return payments;
-        }
 
-        public List<Payment> GetLastPaymentHistory()
-        {
-            List<Payment> payments = PaymentDao.GetLastPaymentHistory();
-
-            return payments;
-        }
-        public void DeleteBill(int tableNumber)
-        {
-            PaymentDao.DeleteBill(tableNumber);
-        }
+       
         public bool GetVATStatus(OrderItem item)
         {
             return PaymentDao.GetVATStatus(item);
@@ -50,16 +38,10 @@ namespace ChapeauService
             return items;
         }
 
-        public List<Payment> GetPaymentHistoryByID(int paymentHistoryId)
+        public Payment GetPaymentHistoryByID(int paymentHistoryId)
         { 
-        List<Payment> paymentHistory=PaymentDao.GetPaymentHistoryByID(paymentHistoryId);
-            return paymentHistory;
-        }
-
-        public List<OrderItem> GetAllItem()
-        {
-            List<OrderItem> items = PaymentDao.GetAllItems();
-            return items;
+        Payment payment=PaymentDao.GetPaymentHistoryByID(paymentHistoryId);
+            return payment;
         }
 
         public decimal TodayIncome()
@@ -67,5 +49,58 @@ namespace ChapeauService
             return PaymentDao.TodaysIncome();
         }
 
+        public decimal CalculateTotalPriceWithoutVAT(int tableNumber)
+        {
+            List<OrderItem> items = GetItemsByTableNumber(tableNumber);
+            decimal totalAmount = 0;
+
+            foreach (OrderItem item in items)
+            {
+                decimal totalItemPrice = item.PricePerItem * item.Quantity;
+                totalAmount += totalItemPrice;
+            }
+
+            return totalAmount;
+        }
+
+        public decimal VATPerItem(OrderItem item)
+        {
+            PaymentService paymentService = new PaymentService();
+            bool isAlcoholic = paymentService.GetVATStatus(item);
+            decimal vatRate;
+
+            if (isAlcoholic)
+            {
+                vatRate = HighVAT;
+            }
+            else
+            {
+                vatRate = LowVAT;
+            }
+            decimal vatPerItem = item.PricePerItem * vatRate * item.Quantity;
+            return vatPerItem;
+        }
+
+        public decimal TotalVat(int tableNumber)
+        {
+            List<OrderItem> items = GetItemsByTableNumber(tableNumber);
+
+            decimal totalVat = 0;
+            foreach (OrderItem item in items)
+            {
+                decimal vatPerItem = VATPerItem(item);
+                totalVat += vatPerItem;
+            }
+            return totalVat;
+        }
+
+        public decimal TotalAmountIncludeVAT(int tableNumber)
+        {
+            decimal totalVAT = TotalVat(tableNumber);
+            decimal totalPriceWithoutVat= CalculateTotalPriceWithoutVAT(tableNumber);
+            decimal sum=totalVAT + totalPriceWithoutVat;
+
+            return sum;
+        }
     }
 }
