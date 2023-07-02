@@ -14,35 +14,26 @@ namespace ChapeauUI
 {
     public partial class DisplayBill : Form
     {
-        private Payment payment;
-        private const decimal HighVAT = 0.21m;//for the alcoholic
-        private const decimal LowVAT = 0.06m;//for the nonAlcoholic and Food
-
-
+       private int tableNumber;
         public DisplayBill(int tableNumber)
         {
-            payment = new Payment();
+            //payment = new Payment();
+            this.tableNumber = tableNumber; 
             InitializeComponent();
             this.CenterToScreen();
-
-
-            payment.TableNumber = tableNumber;
-            lblTableNumber.Text = $"TABLE {payment.TableNumber}";
-
             DisplaypaymentDetails();
-
         }
 
         private List<OrderItem> GetItemByTableNumber(int tableNumber)
         {
             PaymentService paymentService = new PaymentService();
-            List<OrderItem> items = paymentService.GetItemsByTableNumber(payment.TableNumber);
+            List<OrderItem> items = paymentService.GetItemsByTableNumber(tableNumber);
             return items;
         }
 
         private List<OrderItem> GetBill()
         {
-            List<OrderItem> itemsInsideBill = GetItemByTableNumber(payment.TableNumber);
+            List<OrderItem> itemsInsideBill = GetItemByTableNumber(tableNumber);
             return itemsInsideBill;
         }
 
@@ -54,7 +45,6 @@ namespace ChapeauUI
             ListViewBill.Columns.Add("Comment", 200);
             ListViewBill.Columns.Add("Price", 130);
             ListViewBill.Columns.Add("VatAmount", 200);
-
 
             foreach (OrderItem item in orderItems)
             {
@@ -87,73 +77,45 @@ namespace ChapeauUI
         {
             decimal TotalPriceExcludeVat = TotalPriceWithoutVAT();
             lblAmountExcludeVAT.Text = TotalPriceExcludeVat.ToString("€ 0.00");
-
+            lblTableNumber.Text = $"TABLE {tableNumber}";
             decimal TotalVAT = TotalVat();
             lblTotalVAT.Text = TotalVAT.ToString("€ 0.00");
-
-            payment.TotalAmount = TotalAmountIncludeVAT();
-            lblResultPriceWithVAT.Text = payment.TotalAmount.ToString("€ 0.00");
+            decimal totalAmount = TotalAmountIncludeVAT(tableNumber);
+            lblResultPriceWithVAT.Text = totalAmount.ToString("€ 0.00");
         }
 
         private decimal TotalPriceWithoutVAT()
         {
-            List<OrderItem> totalPriceItems = GetItemByTableNumber(payment.TableNumber);
-            decimal totalAmount = 0;
-
-            foreach (OrderItem item in totalPriceItems)
-            {
-                decimal totalItemPrice = item.PricePerItem * item.Quantity;
-                totalAmount += totalItemPrice;
-            }
+            PaymentService paymentService = new PaymentService();
+            decimal totalAmount = paymentService.CalculateTotalPriceWithoutVAT(tableNumber);
             return totalAmount;
         }
 
         private decimal TotalVat()
         {
-
-            List<OrderItem> items = GetItemByTableNumber(payment.TableNumber);
-            decimal totalVat = 0;
-            foreach (OrderItem item in items)
-            {
-                decimal vatPerItem = VATPerItem(item);
-                totalVat += vatPerItem;
-            }
-            return totalVat;
+            PaymentService paymentService = new PaymentService();
+            decimal totalVAT = paymentService.TotalVat(tableNumber);
+            return totalVAT;
         }
 
+        private decimal TotalAmountIncludeVAT(int tableNumber)
+        {
+            PaymentService paymentService = new PaymentService();
+            decimal AmountIncludeVAT = paymentService.TotalAmountIncludeVAT(tableNumber);
+            return AmountIncludeVAT;
+        }
 
         private decimal VATPerItem(OrderItem item)
         {
             PaymentService paymentService = new PaymentService();
-            bool isAlcoholic = paymentService.GetVATStatus(item);
-            decimal vatRate;
-
-            if (isAlcoholic)
-            {
-                vatRate = HighVAT;
-            }
-            else
-            {
-                vatRate = LowVAT;
-            }
-            // decimal vatRate = isAlcoholic ? HighVAT : LowVAT;
-
-
-            decimal vatPerItem = item.PricePerItem * vatRate * item.Quantity;
-
-
+            decimal vatPerItem = paymentService.VATPerItem(item);
             return vatPerItem;
-        }
-
-        private decimal TotalAmountIncludeVAT()
-        {
-            return TotalVat() + TotalPriceWithoutVAT();
         }
 
         private void btnProceedToPayment_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(payment);
+            DisplayPaymentMethod paymentMethod = new DisplayPaymentMethod(tableNumber);
             paymentMethod.ShowDialog();
             this.Close();
         }

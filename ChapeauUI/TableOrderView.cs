@@ -95,15 +95,19 @@ namespace ChapeauUI
 
             foreach (OrderItem item in itemsList)
             {
-                ListViewItem listItem = new ListViewItem(item.ItemName);
-                listItem.SubItems.Add(item.Quantity.ToString());
-                listItem.SubItems.Add(item.PricePerItem.ToString());
-                listItem.SubItems.Add(item.Status.ToString());
-                listItem.SubItems.Add(item.Comment.ToString());
-                listItem.SubItems.Add($"{DateTime.Now.Subtract(item.TimePlaced).Duration()}");
-                listItem.Tag = item;
+                if (item.Status != OrderStatus.Served)
+                {
+                    ListViewItem listItem = new ListViewItem(item.ItemName);
+                    listItem.SubItems.Add(item.Quantity.ToString());
+                    listItem.SubItems.Add(item.PricePerItem.ToString());
+                    listItem.SubItems.Add(item.Status.ToString());
+                    listItem.SubItems.Add(item.Comment.ToString());
+                    listItem.SubItems.Add($"{DateTime.Now.Subtract(item.TimePlaced).Duration()}");
+                    listItem.Tag = item;
 
-                listViewOrders.Items.Add(listItem);
+
+                    listViewOrders.Items.Add(listItem);
+                }
             }
 
             listViewOrders.View = View.Details;

@@ -16,7 +16,7 @@ namespace ChapeauDAL
 {
     public class PaymentDao : BaseDao
     {
-        public void AddPaymentHistory(Payment payment)
+        public int AddPaymentHistory(Payment payment)
         {
             conn.Open();
 
@@ -31,42 +31,43 @@ namespace ChapeauDAL
 
             // Preventing SQL injections
             command.Parameters.AddWithValue("@TotalAmount", payment.TotalAmount);
-            command.Parameters.AddWithValue("@Tip", payment.Tips);
+            command.Parameters.AddWithValue("@Tip", payment.Tip);
             command.Parameters.AddWithValue("@Feedback", payment.Feedback);
             command.Parameters.AddWithValue("@TableNumber", payment.TableNumber);
             command.Parameters.AddWithValue("@PaymentMethods", paymentMethodsString);
             command.Parameters.AddWithValue("@PaymentData", payment.Datetime);
 
 
-            command.ExecuteNonQuery();//SQL commands that don't return any result set
+            payment.PaymentHistoryID = Convert.ToInt32(command.ExecuteScalar());
+            //SQL commands that don't return any result set
 
             conn.Close();
+            return payment.PaymentHistoryID;
         }
 
-        public List<Payment> GetPaymentHistory()
+        /*public List<Payment> GetPaymentHistory()
         {
             string query = "SELECT paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods,PaymentData " +
                            "FROM PaymentHistory";
-            SqlParameter[] sqlParameters = new SqlParameter[0];// executed does not require any additional parameters.
-            return ReadPaymentHistory(ExecuteSelectQuery(query, sqlParameters));
+            //SqlParameter[] sqlParameters = new SqlParameter[0];// executed does not require any additional parameters.
+            return ReadPaymentHistory(ExecuteSelectQuery(query));
         }
 
-        public List<Payment> GetLastPaymentHistory()
+        public Payment GetLastPaymentHistory()
         {
             string query = "SELECT TOP 1 paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
                            "FROM PaymentHistory " +
                            "ORDER BY paymentHistoryID DESC"; // Select only the top (highest) paymentHistoryID
 
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+          //  SqlParameter[] sqlParameters = new SqlParameter[0];
+            DataTable dataTable = ExecuteSelectQuery(query);
 
-            return ReadPaymentHistory(dataTable);
-        }
+            return ReadPaymentHistory(dataTable).FirstOrDefault();//to retrieve the first element of a sequence;
+        }*/
 
-        public List<Payment> GetPaymentHistoryByID(int paymentHistoryId)
+        public Payment GetPaymentHistoryByID(int paymentHistoryId)
         {
-            List<Payment> paymentList = new List<Payment>();
-
+            Payment payment = new Payment();
             conn.Open();
 
             SqlCommand command = new SqlCommand(
@@ -79,10 +80,9 @@ namespace ChapeauDAL
 
             while (reader.Read())
             {
-                Payment payment = new Payment();
                 payment.PaymentHistoryID = reader.GetInt32(0);
                 payment.TotalAmount = reader.GetDecimal(1);
-                payment.Tips = reader.GetDecimal(2);
+                payment.Tip = reader.GetDecimal(2);
                 payment.Feedback = reader.GetString(3);
                 payment.TableNumber = reader.GetInt32(4);
                 // Assuming PaymentMethods is stored as a string in the database
@@ -91,15 +91,11 @@ namespace ChapeauDAL
                   .Select(method => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), method))//=> separates the parameter 
                   .ToList<PaymentMethod>();
 
-                payment.Datetime = reader.GetDateTime(6);//
-
-                paymentList.Add(payment); // Add the payment to the list
-
+                payment.Datetime = reader.GetDateTime(6);
             }
             conn.Close();
-            return paymentList;
+            return payment;
         }
-
 
         public bool GetVATStatus(OrderItem item)
         {
@@ -119,12 +115,7 @@ namespace ChapeauDAL
             return item.VatCategory;
         }
 
-        public List<OrderItem> GetAllItems()
-        {
-            string query = "SELECT ItemName, Quantity, PricePerItem,tableNumber,vat_category,Comments FROM OrderItems";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadOrderItems(ExecuteSelectQuery(query, sqlParameters));
-        }
+      
 
 
         public List<OrderItem> GetItemsByTableNumber(int tableNumber)
@@ -157,19 +148,8 @@ namespace ChapeauDAL
             return items;
         }
 
-        public void DeleteBill(int tableNumber)
-        {
-            string query = "DELETE FROM orderItems WHERE tableNumber=@tableNumber";
 
-            SqlParameter[] parameter =
-            {
-                new SqlParameter("@tableNumber", tableNumber)
-            };
-
-            ExecuteEditQuery(query, parameter);
-        }
-
-        private List<Payment> ReadPaymentHistory(DataTable dataTable)
+      /*  private List<Payment> ReadPaymentHistory(DataTable dataTable)
         {
             List<Payment> payments = new List<Payment>();
 
@@ -180,7 +160,7 @@ namespace ChapeauDAL
                 {
                     PaymentHistoryID = (int)dr["paymentHistoryID"],
                     TotalAmount = (decimal)dr["TotalAmount"],
-                    Tips = (decimal)dr["Tip"],
+                    Tip = (decimal)dr["Tip"],
                     Feedback = dr["Feedback"].ToString(),
                     TableNumber = (int)dr["TableNumber"],
                     PaymentMethods = new List<PaymentMethod>(),
@@ -220,7 +200,7 @@ namespace ChapeauDAL
             }
             return items;
 
-        }
+        }*/
 
         public DataTable Income(DateTime startDate, DateTime endDate) // Manager part to display today's income 
         {

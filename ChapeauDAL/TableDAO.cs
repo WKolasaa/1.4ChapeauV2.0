@@ -78,6 +78,17 @@ namespace ChapeauDAL
 
             return tables;
         }
+        public void FreeItemsTable(int tableNumber)
+        {
+            string query = "DELETE FROM orderItems WHERE tableNumber=@tableNumber";
+
+            SqlParameter[] parameter =
+            {
+                new SqlParameter("@tableNumber", tableNumber)
+            };
+
+            ExecuteEditQuery(query, parameter);
+        }
     }
 
 

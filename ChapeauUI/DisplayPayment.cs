@@ -20,24 +20,13 @@ namespace ChapeauUI
             InitializeComponent();
             this.CenterToScreen();
             this.payment = payment;
-
-            // Call the method to retrieve the payment history from the database
-            List<Payment> paymentHistory = GetPaymentHistory();
-            // Display the payment history in the ListView
-            DisplayPaymentHistory(paymentHistory);
+            DisplayPaymentHistory(payment);
         }
 
-        private List<Payment> GetPaymentHistory()
-        {
-            PaymentService paymentService = new PaymentService();
-            paymentService.StorePaymentHistory(payment);// insert
-            // Retrieve the payment history from the service layer
-            List<Payment> paymentHistory = paymentService.GetLastPaymentHistory();
-            return paymentHistory;
-        }
+       
 
 
-        private void DisplayPaymentHistory(List<Payment> payments)
+        private void DisplayPaymentHistory(Payment payment)
         {
             listViewPaymentHistory.Clear();
             // set column name
@@ -48,11 +37,10 @@ namespace ChapeauUI
             listViewPaymentHistory.Columns.Add("TableNumber", 200);
             listViewPaymentHistory.Columns.Add("PaymentMethods", 200);
 
-            foreach (Payment payment in payments)
-            {
+            
                 ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString());
                 listView.SubItems.Add(payment.TotalAmount.ToString("0.00"));
-                listView.SubItems.Add(payment.Tips.ToString());
+                listView.SubItems.Add(payment.Tip.ToString());
                 listView.SubItems.Add(payment.Feedback);
                 listView.SubItems.Add(payment.TableNumber.ToString());
 
@@ -61,7 +49,7 @@ namespace ChapeauUI
 
                 listView.Tag = payment;
                 listViewPaymentHistory.Items.Add(listView);
-            }
+            
 
             // Set column widths and other properties of the ListView
             listViewPaymentHistory.Columns[0].Width = 70;
@@ -73,26 +61,20 @@ namespace ChapeauUI
             listViewPaymentHistory.View = View.Details;
         }
 
-
-        private void btnPaymentHistory_Click(object sender, EventArgs e)
+        private void btnPaymentHistory_Click_1(object sender, EventArgs e)
         {
             int paymentHistoryID = int.Parse(txtPaymentHistoryID.Text);
             PaymentService service = new PaymentService();
-            List<Payment> paymentHistory = service.GetPaymentHistoryByID(paymentHistoryID);
+            Payment paymentHistory = service.GetPaymentHistoryByID(paymentHistoryID);
             DisplayPaymentHistory(paymentHistory);
         }
 
-        private void btnTableView_Click(object sender, EventArgs e)
+        
+
+        private void btnTableView_Click_1(object sender, EventArgs e)
         {
-
-            PaymentService service = new PaymentService();
-            service.DeleteBill(payment.TableNumber);// check\
-
-            TableService tableService = new TableService();
-            tableService.FreeTable(payment.TableNumber, TableStatus.Free);
-
             this.Hide();
-            TableOverview tablesOverView = new TableOverview();// problem!?
+            TableOverview tablesOverView = new TableOverview();
             tablesOverView.ShowDialog();
             this.Close();
         }
