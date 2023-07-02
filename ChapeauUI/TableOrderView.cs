@@ -95,8 +95,8 @@ namespace ChapeauUI
 
             foreach (OrderItem item in itemsList)
             {
-                if (item.Status != OrderStatus.Served)
-                {
+                //if (item.Status != OrderStatus.Served)
+                //{
                     ListViewItem listItem = new ListViewItem(item.ItemName);
                     listItem.SubItems.Add(item.Quantity.ToString());
                     listItem.SubItems.Add(item.PricePerItem.ToString());
@@ -107,7 +107,7 @@ namespace ChapeauUI
 
 
                     listViewOrders.Items.Add(listItem);
-                }
+//                }
             }
 
             listViewOrders.View = View.Details;
@@ -232,7 +232,8 @@ namespace ChapeauUI
             return true;
         }
 
-       
+      
+        
     }
 
 }
