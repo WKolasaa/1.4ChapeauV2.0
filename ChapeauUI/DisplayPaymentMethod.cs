@@ -21,7 +21,6 @@ namespace ChapeauUI
 {
     public partial class DisplayPaymentMethod : Form
     {
-       // private Payment payment;
         private List<ComboBox> paymentMethodList; // List to store the selected payment methods
         private List<TextBox> amountTextBoxList; // List to store the entered amounts
         private List<PaymentMethod> PaymentMethods;
@@ -30,7 +29,7 @@ namespace ChapeauUI
         private decimal tip;
         private DateTime dateTime;
         private int tableNumber;
-        private string Feedback;
+        private string feedback;
         private decimal totalAmount;
 
         public DisplayPaymentMethod(int tableNumber)
@@ -79,7 +78,6 @@ namespace ChapeauUI
                 lblSplitQuestion.Hide();
                 btnSubmitAll.Show();
                 numericUpDownNumberOfPeople.Visible = false;
-                numberOfPeople = 1;
                 btnSetNumber.Hide();
                 btnNextPerson.Hide();
                 pnlPersonControls.Controls.Clear();
@@ -96,11 +94,6 @@ namespace ChapeauUI
         {
             numberOfPeople = (int)numericUpDownNumberOfPeople.Value;
             btnNextPerson.Show();
-            //   if (CollectivePayment())
-            // {
-            //   btnNextPerson.Show();
-            //}
-
             pnlPersonControls.Controls.Clear();
 
             int labelX = 10; // Represents the X coordinate for the labels
@@ -269,10 +262,9 @@ namespace ChapeauUI
         private void btnSubmitAll_Click(object sender, EventArgs e)
         {
             PaymentService paymentService = new PaymentService();
-            Feedback = txtFeedback.Text;
+            feedback = txtFeedback.Text;
             decimal totalAmountPaid = CalculateTotalAmountPaid();
             totalAmount = paymentService.TotalAmountIncludeVAT(tableNumber);
-            totalAmountPaid += tip;
             decimal change = totalAmountPaid - totalAmount;
 
             if (change >= 0)
@@ -284,21 +276,18 @@ namespace ChapeauUI
             else
             {
                 MessageBox.Show("Insufficient amount paid.");
-                tip = 0;// check if you removed it will be fine or not 
                 this.Close();
                 DisplayBill displayBill = new DisplayBill(tableNumber);
                 displayBill.ShowDialog();
             }
         }
 
-        private void btnPay_Click(object sender, EventArgs e)//btnPAY
+        private void btnPay_Click(object sender, EventArgs e)
         {
-            Payment payment = new Payment(tableNumber, totalAmount, tip, Feedback, PaymentMethods, dateTime);
+            Payment payment = new Payment(tableNumber, totalAmount, tip, feedback, PaymentMethods, dateTime);
             PaymentService paymentService = new PaymentService();
-            int paymentHistoryID=paymentService.StorePaymentHistory(payment);
-            payment.PaymentHistoryID = paymentHistoryID;
-
-
+            payment.PaymentHistoryID = paymentService.StorePaymentHistory(payment);
+    
             TableService tableService = new TableService();
             tableService.FreeTable(tableNumber,TableStatus.Free);
 

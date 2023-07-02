@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,23 +18,15 @@ namespace ChapeauUI
        private int tableNumber;
         public DisplayBill(int tableNumber)
         {
-            //payment = new Payment();
             this.tableNumber = tableNumber; 
             InitializeComponent();
             this.CenterToScreen();
-            DisplaypaymentDetails();
-        }
-
-        private List<OrderItem> GetItemByTableNumber(int tableNumber)
-        {
-            PaymentService paymentService = new PaymentService();
-            List<OrderItem> items = paymentService.GetItemsByTableNumber(tableNumber);
-            return items;
         }
 
         private List<OrderItem> GetBill()
         {
-            List<OrderItem> itemsInsideBill = GetItemByTableNumber(tableNumber);
+            PaymentService paymentService = new PaymentService();
+            List<OrderItem> itemsInsideBill = paymentService.GetItemsByTableNumber(tableNumber);
             return itemsInsideBill;
         }
 
@@ -72,37 +65,21 @@ namespace ChapeauUI
         {
             List<OrderItem> orderItems = GetBill();
             DisplayBillItems(orderItems);
+            DisplaypaymentDetails();
         }
         private void DisplaypaymentDetails()
         {
-            decimal TotalPriceExcludeVat = TotalPriceWithoutVAT();
-            lblAmountExcludeVAT.Text = TotalPriceExcludeVat.ToString("€ 0.00");
             lblTableNumber.Text = $"TABLE {tableNumber}";
-            decimal TotalVAT = TotalVat();
+            PaymentService paymentService = new PaymentService();
+
+            decimal TotalPriceExcludeVat = paymentService.CalculateTotalPriceWithoutVAT(tableNumber);
+            lblAmountExcludeVAT.Text = TotalPriceExcludeVat.ToString("€ 0.00");
+
+            decimal TotalVAT = paymentService.TotalVat(tableNumber);
             lblTotalVAT.Text = TotalVAT.ToString("€ 0.00");
-            decimal totalAmount = TotalAmountIncludeVAT(tableNumber);
+
+            decimal totalAmount = TotalPriceExcludeVat + TotalVAT;
             lblResultPriceWithVAT.Text = totalAmount.ToString("€ 0.00");
-        }
-
-        private decimal TotalPriceWithoutVAT()
-        {
-            PaymentService paymentService = new PaymentService();
-            decimal totalAmount = paymentService.CalculateTotalPriceWithoutVAT(tableNumber);
-            return totalAmount;
-        }
-
-        private decimal TotalVat()
-        {
-            PaymentService paymentService = new PaymentService();
-            decimal totalVAT = paymentService.TotalVat(tableNumber);
-            return totalVAT;
-        }
-
-        private decimal TotalAmountIncludeVAT(int tableNumber)
-        {
-            PaymentService paymentService = new PaymentService();
-            decimal AmountIncludeVAT = paymentService.TotalAmountIncludeVAT(tableNumber);
-            return AmountIncludeVAT;
         }
 
         private decimal VATPerItem(OrderItem item)

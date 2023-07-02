@@ -14,22 +14,16 @@ namespace ChapeauUI
 {
     public partial class DisplayPayment : Form
     {
-        private Payment payment;
         public DisplayPayment(Payment payment)
         {
             InitializeComponent();
             this.CenterToScreen();
-            this.payment = payment;
             DisplayPaymentHistory(payment);
         }
-
-       
-
 
         private void DisplayPaymentHistory(Payment payment)
         {
             listViewPaymentHistory.Clear();
-            // set column name
             listViewPaymentHistory.Columns.Add("ID", 70);
             listViewPaymentHistory.Columns.Add("TotalAmount", 175);
             listViewPaymentHistory.Columns.Add("Tip", 100);
@@ -37,20 +31,18 @@ namespace ChapeauUI
             listViewPaymentHistory.Columns.Add("TableNumber", 200);
             listViewPaymentHistory.Columns.Add("PaymentMethods", 200);
 
+            ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString());
+            listView.SubItems.Add(payment.TotalAmount.ToString("0.00"));
+            listView.SubItems.Add(payment.Tip.ToString());
+            listView.SubItems.Add(payment.Feedback);
+            listView.SubItems.Add(payment.TableNumber.ToString());
+
+            string paymentMethodsString = string.Join(", ", payment.PaymentMethods);
+            listView.SubItems.Add(paymentMethodsString);
+
+            listView.Tag = payment;
+            listViewPaymentHistory.Items.Add(listView);
             
-                ListViewItem listView = new ListViewItem(payment.PaymentHistoryID.ToString());
-                listView.SubItems.Add(payment.TotalAmount.ToString("0.00"));
-                listView.SubItems.Add(payment.Tip.ToString());
-                listView.SubItems.Add(payment.Feedback);
-                listView.SubItems.Add(payment.TableNumber.ToString());
-
-                string paymentMethodsString = string.Join(", ", payment.PaymentMethods);
-                listView.SubItems.Add(paymentMethodsString);
-
-                listView.Tag = payment;
-                listViewPaymentHistory.Items.Add(listView);
-            
-
             // Set column widths and other properties of the ListView
             listViewPaymentHistory.Columns[0].Width = 70;
             listViewPaymentHistory.Columns[1].Width = 175;
@@ -68,8 +60,6 @@ namespace ChapeauUI
             Payment paymentHistory = service.GetPaymentHistoryByID(paymentHistoryID);
             DisplayPaymentHistory(paymentHistory);
         }
-
-        
 
         private void btnTableView_Click_1(object sender, EventArgs e)
         {

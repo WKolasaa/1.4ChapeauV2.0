@@ -61,7 +61,7 @@ namespace ChapeauService
             try
             {
                 //tableDAO.FreeItemsTable(tableID);
-                Table table = GetTableById(tableID);
+                Table table = GetTableById(tableID); //without deleting the items
           
                 if (table != null)
                 {

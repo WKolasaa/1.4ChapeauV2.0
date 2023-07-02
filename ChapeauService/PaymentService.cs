@@ -22,17 +22,9 @@ namespace ChapeauService
 
         public int StorePaymentHistory(Payment payment)
         {
-           int paymentHistoryID= PaymentDao.AddPaymentHistory(payment);
+           int paymentHistoryID= PaymentDao.StorePaymentHistory(payment);
             return paymentHistoryID;
         }
-
-
-       
-        public bool GetVATStatus(OrderItem item)
-        {
-            return PaymentDao.GetVATStatus(item);
-        }
-
         public List<OrderItem> GetItemsByTableNumber(int tableNumber)
         {
             List<OrderItem> items = PaymentDao.GetItemsByTableNumber(tableNumber);
@@ -45,7 +37,7 @@ namespace ChapeauService
             return payment;
         }
 
-        public decimal Income(DateTime startDate, DateTime endDate)
+        public decimal Income(DateTime startDate, DateTime endDate)// manager 
         {
             DataTable table = PaymentDao.Income(startDate, endDate);
 
@@ -61,7 +53,7 @@ namespace ChapeauService
 
         public decimal CalculateTotalPriceWithoutVAT(int tableNumber)
         {
-            List<OrderItem> items = GetItemsByTableNumber(tableNumber);
+            List<OrderItem> items =PaymentDao.GetItemsByTableNumber(tableNumber);
             decimal totalAmount = 0;
 
             foreach (OrderItem item in items)
@@ -75,8 +67,7 @@ namespace ChapeauService
 
         public decimal VATPerItem(OrderItem item)
         {
-            PaymentService paymentService = new PaymentService();
-            bool isAlcoholic = paymentService.GetVATStatus(item);
+            bool isAlcoholic = PaymentDao.GetVATStatus(item);
             decimal vatRate;
 
             if (isAlcoholic)
@@ -93,7 +84,7 @@ namespace ChapeauService
 
         public decimal TotalVat(int tableNumber)
         {
-            List<OrderItem> items = GetItemsByTableNumber(tableNumber);
+            List<OrderItem> items =PaymentDao.GetItemsByTableNumber(tableNumber);
 
             decimal totalVat = 0;
             foreach (OrderItem item in items)
@@ -106,11 +97,7 @@ namespace ChapeauService
 
         public decimal TotalAmountIncludeVAT(int tableNumber)
         {
-            decimal totalVAT = TotalVat(tableNumber);
-            decimal totalPriceWithoutVat= CalculateTotalPriceWithoutVAT(tableNumber);
-            decimal sum=totalVAT + totalPriceWithoutVat;
-
-            return sum;
+            return TotalVat(tableNumber)+ CalculateTotalPriceWithoutVAT(tableNumber);
         }
     }
 }
