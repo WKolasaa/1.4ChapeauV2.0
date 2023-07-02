@@ -186,6 +186,7 @@
             this.BillBtn.TabIndex = 2;
             this.BillBtn.Text = "Bill";
             this.BillBtn.UseVisualStyleBackColor = false;
+            this.BillBtn.Click += new System.EventHandler(this.BillBtn_Click_1);
             // 
             // AddOrderbtn
             // 
@@ -198,6 +199,7 @@
             this.AddOrderbtn.TabIndex = 3;
             this.AddOrderbtn.Text = "Add Order";
             this.AddOrderbtn.UseVisualStyleBackColor = false;
+            this.AddOrderbtn.Click += new System.EventHandler(this.AddOrderbtn_Click_1);
             // 
             // FreeTableBtn
             // 

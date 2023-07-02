@@ -16,7 +16,7 @@ namespace ChapeauDAL
 {
     public class PaymentDao : BaseDao
     {
-        public int AddPaymentHistory(Payment payment)
+        public int StorePaymentHistory(Payment payment)
         {
             conn.Open();
 
@@ -44,26 +44,6 @@ namespace ChapeauDAL
             conn.Close();
             return payment.PaymentHistoryID;
         }
-
-        /*public List<Payment> GetPaymentHistory()
-        {
-            string query = "SELECT paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods,PaymentData " +
-                           "FROM PaymentHistory";
-            //SqlParameter[] sqlParameters = new SqlParameter[0];// executed does not require any additional parameters.
-            return ReadPaymentHistory(ExecuteSelectQuery(query));
-        }
-
-        public Payment GetLastPaymentHistory()
-        {
-            string query = "SELECT TOP 1 paymentHistoryID, TotalAmount, Tip, Feedback, TableNumber, PaymentMethods " +
-                           "FROM PaymentHistory " +
-                           "ORDER BY paymentHistoryID DESC"; // Select only the top (highest) paymentHistoryID
-
-          //  SqlParameter[] sqlParameters = new SqlParameter[0];
-            DataTable dataTable = ExecuteSelectQuery(query);
-
-            return ReadPaymentHistory(dataTable).FirstOrDefault();//to retrieve the first element of a sequence;
-        }*/
 
         public Payment GetPaymentHistoryByID(int paymentHistoryId)
         {
@@ -112,11 +92,9 @@ namespace ChapeauDAL
                     item.VatCategory = reader.GetBoolean(0);// 0 means the first column 
                 }
             }
+            conn.Close();
             return item.VatCategory;
         }
-
-      
-
 
         public List<OrderItem> GetItemsByTableNumber(int tableNumber)
         {
@@ -147,60 +125,6 @@ namespace ChapeauDAL
             conn.Close();
             return items;
         }
-
-
-      /*  private List<Payment> ReadPaymentHistory(DataTable dataTable)
-        {
-            List<Payment> payments = new List<Payment>();
-
-            foreach (DataRow dr in dataTable.Rows)
-            {
-
-                Payment payment = new Payment()
-                {
-                    PaymentHistoryID = (int)dr["paymentHistoryID"],
-                    TotalAmount = (decimal)dr["TotalAmount"],
-                    Tip = (decimal)dr["Tip"],
-                    Feedback = dr["Feedback"].ToString(),
-                    TableNumber = (int)dr["TableNumber"],
-                    PaymentMethods = new List<PaymentMethod>(),
-                    //Datetime = (DateTime)dr["Datetime"],
-                };
-                string paymentMethodsString = dr["PaymentMethods"].ToString();
-                List<string> paymentMethods = paymentMethodsString.Split(',').ToList();
-
-                foreach (string method in paymentMethods)
-                {
-                    if (Enum.TryParse(method, out PaymentMethod paymentMethod))
-                    {
-                        payment.PaymentMethods.Add(paymentMethod);
-                    }
-                }
-
-                payments.Add(payment);
-            }
-            return payments;
-        }
-
-        private List<OrderItem> ReadOrderItems(DataTable dataTable)
-        {
-            List<OrderItem> items = new List<OrderItem>();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                OrderItem item = new OrderItem()
-                {
-                    PricePerItem = (decimal)dr["PricePerItem"],
-                    TableNumber = (int)dr["tableNumber"],
-                    ItemName = dr["itemName"].ToString(),
-                    Quantity = (int)dr["Quantity"],
-                    VatCategory = (bool)dr["vat_category"],
-                    Comment = dr["Comments"].ToString(),
-                };
-                items.Add(item);
-            }
-            return items;
-
-        }*/
 
         public DataTable Income(DateTime startDate, DateTime endDate) // Manager part to display today's income 
         {

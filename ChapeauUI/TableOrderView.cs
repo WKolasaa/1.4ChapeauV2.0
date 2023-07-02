@@ -95,19 +95,18 @@ namespace ChapeauUI
 
             foreach (OrderItem item in itemsList)
             {
-                //if (item.Status != OrderStatus.Served)
-                //{
-                    ListViewItem listItem = new ListViewItem(item.ItemName);
-                    listItem.SubItems.Add(item.Quantity.ToString());
-                    listItem.SubItems.Add(item.PricePerItem.ToString());
-                    listItem.SubItems.Add(item.Status.ToString());
-                    listItem.SubItems.Add(item.Comment.ToString());
-                    listItem.SubItems.Add($"{DateTime.Now.Subtract(item.TimePlaced).Duration()}");
-                    listItem.Tag = item;
+                
+                ListViewItem listItem = new ListViewItem(item.ItemName);
+                listItem.SubItems.Add(item.Quantity.ToString());
+                listItem.SubItems.Add(item.PricePerItem.ToString());
+                listItem.SubItems.Add(item.Status.ToString());
+                listItem.SubItems.Add(item.Comment.ToString());
+                listItem.SubItems.Add($"{DateTime.Now.Subtract(item.TimePlaced).Duration()}");
+                listItem.Tag = item;
 
 
-                    listViewOrders.Items.Add(listItem);
-//                }
+                listViewOrders.Items.Add(listItem);
+        
             }
 
             listViewOrders.View = View.Details;
@@ -232,9 +231,32 @@ namespace ChapeauUI
             return true;
         }
 
-      
-        
-    }
+        private void AddOrderbtn_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        private void BillBtn_Click_1(object sender, EventArgs e)
+        {
+            // Check if any orders are not served before generating the bill
+            bool allOrdersReady = CheckAllOrdersServed();
+
+            if (allOrdersReady)
+            {
+
+                // Show the DisplayBill form, hide the current form
+                this.Hide();
+                DisplayBill display = new DisplayBill(table.TableId);
+                display.ShowDialog();
+                this.Close();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Orders are not served. Please wait for all orders to be served before generating the bill.", "Orders Not Served", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
 }
 
