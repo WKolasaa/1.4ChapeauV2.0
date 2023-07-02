@@ -53,6 +53,7 @@
             btnViewOngoingOrders = new Button();
             btnViewPastOrders = new Button();
             lblTime = new Label();
+            btnOrdersOfToday = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHeader.SuspendLayout();
             panelHeader2.SuspendLayout();
@@ -229,7 +230,7 @@
             // 
             btnViewAllOrders.Location = new Point(39, 160);
             btnViewAllOrders.Name = "btnViewAllOrders";
-            btnViewAllOrders.Size = new Size(157, 30);
+            btnViewAllOrders.Size = new Size(120, 30);
             btnViewAllOrders.TabIndex = 10;
             btnViewAllOrders.Text = "View All Orders";
             btnViewAllOrders.UseVisualStyleBackColor = true;
@@ -237,9 +238,9 @@
             // 
             // btnViewOngoingOrders
             // 
-            btnViewOngoingOrders.Location = new Point(238, 160);
+            btnViewOngoingOrders.Location = new Point(182, 160);
             btnViewOngoingOrders.Name = "btnViewOngoingOrders";
-            btnViewOngoingOrders.Size = new Size(157, 30);
+            btnViewOngoingOrders.Size = new Size(120, 30);
             btnViewOngoingOrders.TabIndex = 11;
             btnViewOngoingOrders.Text = "View Ongoing Orders";
             btnViewOngoingOrders.UseVisualStyleBackColor = true;
@@ -247,9 +248,9 @@
             // 
             // btnViewPastOrders
             // 
-            btnViewPastOrders.Location = new Point(444, 160);
+            btnViewPastOrders.Location = new Point(481, 160);
             btnViewPastOrders.Name = "btnViewPastOrders";
-            btnViewPastOrders.Size = new Size(157, 30);
+            btnViewPastOrders.Size = new Size(120, 30);
             btnViewPastOrders.TabIndex = 12;
             btnViewPastOrders.Text = "View Past Orders";
             btnViewPastOrders.UseVisualStyleBackColor = true;
@@ -264,12 +265,24 @@
             lblTime.Size = new Size(0, 30);
             lblTime.TabIndex = 13;
             // 
+            // btnOrdersOfToday
+            // 
+            btnOrdersOfToday.BackColor = Color.White;
+            btnOrdersOfToday.Location = new Point(331, 160);
+            btnOrdersOfToday.Name = "btnOrdersOfToday";
+            btnOrdersOfToday.Size = new Size(120, 30);
+            btnOrdersOfToday.TabIndex = 14;
+            btnOrdersOfToday.Text = "Orders Of Today";
+            btnOrdersOfToday.UseVisualStyleBackColor = false;
+            btnOrdersOfToday.Click += btnOrdersOfToday_Click;
+            // 
             // KitchenAndBarUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1117, 592);
+            Controls.Add(btnOrdersOfToday);
             Controls.Add(lblTime);
             Controls.Add(btnViewPastOrders);
             Controls.Add(btnViewOngoingOrders);
@@ -324,5 +337,6 @@
         private Button btnViewOngoingOrders;
         private Button btnViewPastOrders;
         private Label lblTime;
+        private Button btnOrdersOfToday;
     }
 }

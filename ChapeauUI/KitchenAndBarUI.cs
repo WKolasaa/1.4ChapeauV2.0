@@ -16,6 +16,8 @@ namespace ChapeauUI
     {
         private Employee employee;
         private List<OrderItem> orderedItems;
+        private Button selectedButton;
+        private int category;
 
         Timer timer = new Timer();
         OrderItemService orderItemService = new OrderItemService();
@@ -28,25 +30,41 @@ namespace ChapeauUI
             btnLogout.Text = $"{employee.Name}";
 
             // Set the initial background color of the view buttons
-            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192); //this part makes the viewallorders button orange so you can see what orderItems there are
-            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
-            btnViewAllOrders.BackColor = Color.FromArgb(255, 128, 0);
+            SetInitialButtonColors();
 
             // Load the orders and start the timer
             LoadOrders();
 
+            StartTimer();
+        }
+
+        private void StartTimer()
+        {
             timer.Interval = 100;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
         }
 
+        private void SetInitialButtonColors()
+        {
+            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192); //this part makes the viewallorders button orange so you can see what orderItems there are
+            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewAllOrders.BackColor = Color.FromArgb(255, 128, 0);
+            btnOrdersOfToday.BackColor = Color.FromArgb(255, 224, 192);
+        }
+
         private void LoadOrders()
         {
             // Retrieve all the ordered items
-            orderedItems = GetAllItems();
+            orderedItems = GetOrderItemsByEmployee();
+            FillInListView(orderedItems);
+        }
+
+        private void FillInListView(List<OrderItem> orderItems)
+        {
             orderesListView.Items.Clear();
 
-            foreach (OrderItem orderItem in orderedItems)// adds all the order items into the listview
+            foreach (OrderItem orderItem in orderItems)// adds all the order items into the listview
             {
                 ListViewItem item = new ListViewItem($"{orderItem.TableNumber}");
                 // Calculate the elapsed time since the order was placed
@@ -61,11 +79,10 @@ namespace ChapeauUI
 
                 orderesListView.Items.Add(item);
             }
-
             orderesListView.View = View.Details;
         }
 
-        private List<OrderItem> GetAllItems()
+        private List<OrderItem> GetOrderItemsByEmployee()
         {
             List<OrderItem> orderedItems = new List<OrderItem>();
 
@@ -74,16 +91,16 @@ namespace ChapeauUI
                 // Check the role of the logged-in employee
                 if (employee.EmployeeType == EmployeeType.Chef)
                 {
-                    // Retrieve all the food items
-                    orderedItems = orderItemService.GetAllOrderItems(0);
+                    category = 0;
                     labelMenuBar.Text = "Kitchen Orders";
                 }
                 else if (employee.EmployeeType == EmployeeType.Bartender)
                 {
-                    // Retrieve all the drink items
-                    orderedItems = orderItemService.GetAllOrderItems(1);
+                    category = 1;
                     labelMenuBar.Text = "Bar Orders";
                 }
+                //Get the ordered items by category
+                orderedItems = orderItemService.GetOrderItemsByCategory(category);
             }
             catch (Exception)
             {
@@ -118,14 +135,15 @@ namespace ChapeauUI
         private void btnInPreparation_Click(object sender, EventArgs e)
         {
             // Change the status of the selected item to "In Preparation"
-            buttonClick(ChapeauModel.OrderStatus.Preparing);
+            ChangeOrderItemStatus(ChapeauModel.OrderStatus.Preparing);
             // Refresh the order list
             RefreshListView();
         }
+
         private void btnPrepared_Click(object sender, EventArgs e)
         {
             // Change the status of the selected item to "Prepared"
-            buttonClick(ChapeauModel.OrderStatus.Ready);
+            ChangeOrderItemStatus(ChapeauModel.OrderStatus.Ready);
             // Refresh the order list
             RefreshListView();
         }
@@ -140,13 +158,9 @@ namespace ChapeauUI
             {
                 btnViewOngoingOrders.PerformClick();
             }
-            else if (btnViewAllOrders.BackColor == Color.FromArgb(255, 128, 0))
-            {
-                btnViewAllOrders.PerformClick();
-            }
         }
 
-        public void buttonClick(OrderStatus changedStatus)
+        public void ChangeOrderItemStatus(OrderStatus changedStatus)
         {
             if (orderesListView.Items.Count > 0)
             {
@@ -178,6 +192,26 @@ namespace ChapeauUI
             }
         }
 
+        private void DetermineSelectedButton()
+        {
+            if (btnViewPastOrders.BackColor == Color.FromArgb(255, 128, 0))
+            {
+                selectedButton = btnViewPastOrders;
+            }
+            else if (btnViewOngoingOrders.BackColor == Color.FromArgb(255, 128, 0))
+            {
+                selectedButton = btnViewOngoingOrders;
+            }
+            else if (btnViewAllOrders.BackColor == Color.FromArgb(255, 128, 0))
+            {
+                selectedButton = btnViewAllOrders;
+            }
+            else
+            {
+                selectedButton = btnOrdersOfToday;
+            }
+        }
+
         void timer_Tick(object sender, EventArgs e)
         {
             // Counter to iterate through the list of ordered items
@@ -204,8 +238,8 @@ namespace ChapeauUI
                 TimeSpan elapsedTime = DateTime.Now - orderItem.TimePlaced;
 
 
-                // Check if the elapsed time is greater than 10 minutes
-                if (elapsedTime.TotalMinutes > 10)
+                // Check if the elapsed time is greater than 15 minutes
+                if (elapsedTime.TotalMinutes > 15)
                 {
                     // Change the item's foreground color to red
                     item.ForeColor = Color.Red;
@@ -216,110 +250,72 @@ namespace ChapeauUI
                     item.ForeColor = orderesListView.ForeColor;
                 }
 
-
                 // Update the time since ordered for each item
                 item.SubItems[4].Text = elapsedTime.ToString(@"mm'm'ss's'");
 
                 counter++;
             }
 
-            // Load orders if it is the first fetch
-            if (orderedItems == null)
-            {
-                LoadOrders();
-            }
-            else
-            {
-                // Fetch updated order items from the service
-                List<OrderItem> updatedItems = GetAllItems();
+            // Fetch updated order items from the service
+            List<OrderItem> updatedItems = GetOrderItemsByEmployee();
 
-                // Check if there is a change in the number of order items
-                if (updatedItems.Count != orderedItems.Count)
-                {
-                    LoadOrders();
-                }
+            DetermineSelectedButton();
+
+            // Check if there is a change in the number of order items
+            if (updatedItems.Count != orderedItems.Count)
+            {
+                selectedButton.PerformClick();
             }
+        }
+
+        private void ChangeButtonColor(Button button)
+        {
+            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnViewAllOrders.BackColor = Color.FromArgb(255, 224, 192);
+            btnOrdersOfToday.BackColor = Color.FromArgb(255, 224, 192);
+
+            button.BackColor = Color.FromArgb(255, 128, 0);
         }
 
         private void btnViewAllOrders_Click(object sender, EventArgs e)//changes the button color and loads orders
         {
-            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192);
-            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
-            btnViewAllOrders.BackColor = Color.FromArgb(255, 128, 0);
+            ChangeButtonColor(btnViewAllOrders);
 
             LoadOrders();
         }
 
-        private List<OrderItem> GetOrdersByStatus(OrderStatus status)//retrieves all oredered items with a specific status
-        {
-            List<OrderItem> orders = new List<OrderItem>();
-
-            foreach (OrderItem item in orderedItems)
-            {
-                if (item.Status == status)
-                {
-                    orders.Add(item);
-                }
-            }
-            return orders;
-        }
-
-        private List<OrderItem> GetOrdersWithoutStatus(OrderStatus status)//retrieves all oredered items without the ones that have a specific status
-        {
-            List<OrderItem> orders = new List<OrderItem>();
-
-            foreach (OrderItem item in orderedItems)
-            {
-                if (item.Status != status)
-                {
-                    orders.Add(item);
-                }
-            }
-            return orders;
-        }
-
-
         private void btnViewOngoingOrders_Click(object sender, EventArgs e)//changes the button color and reloads orders
-        {
-            btnViewPastOrders.BackColor = Color.FromArgb(255, 224, 192);
-            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 128, 0);
-            btnViewAllOrders.BackColor = Color.FromArgb(255, 224, 192);
+        {// chagnge to switch when i press to go to the service layer and then the dao layeR
+            ChangeButtonColor(btnViewOngoingOrders);
 
-            List<OrderItem> ongoingOrders = GetOrdersWithoutStatus(ChapeauModel.OrderStatus.Ready);
-            UpdateOrderListView(ongoingOrders);
+            List<OrderItem> ongoingOrders = orderItemService.GetOrdersWithCategoryWithoutStatusLower(category, ChapeauModel.OrderStatus.Ready);
+
+            FillInListView(ongoingOrders);
         }
 
         private void btnViewPastOrders_Click(object sender, EventArgs e)//changes button color and reloads orders
         {
-            btnViewPastOrders.BackColor = Color.FromArgb(255, 128, 0);
-            btnViewOngoingOrders.BackColor = Color.FromArgb(255, 224, 192);
-            btnViewAllOrders.BackColor = Color.FromArgb(255, 224, 192);
+            ChangeButtonColor(btnViewPastOrders);
 
-            List<OrderItem> pastOrders = GetOrdersByStatus(ChapeauModel.OrderStatus.Ready);
-            UpdateOrderListView(pastOrders);
+            List<OrderItem> pastOrders = orderItemService.GetOrdersWithCategoryWithoutStatusHigher(category, ChapeauModel.OrderStatus.Preparing);
+
+            FillInListView(pastOrders);
         }
 
-        private void UpdateOrderListView(List<OrderItem> orders)//update the listview with the specific orderitems
+        private void btnOrdersOfToday_Click(object sender, EventArgs e)
         {
-            orderesListView.Items.Clear();
+            ChangeButtonColor(btnOrdersOfToday);
 
-            foreach (OrderItem orderItem in orders)
-            {
-                ListViewItem item = new ListViewItem($"{orderItem.TableNumber}");
+            LoadOrdersOfTheDay();
+        }
 
-                TimeSpan timeSpan = DateTime.Now - orderItem.TimePlaced;
+        private void LoadOrdersOfTheDay()
+        {
+            DateTime todaysDate = DateTime.Today.Date;
+            List<OrderItem> todaysOrders = orderItemService.GetTodaysOrdersItems(todaysDate, category);
 
-                item.Tag = orderItem;
-                item.SubItems.Add($"{orderItem.ItemName}");
-                item.SubItems.Add($"{orderItem.Quantity}");
-                item.SubItems.Add($"{orderItem.Comment}");
-                item.SubItems.Add(timeSpan.ToString("%m'm'%s's'"));
-                item.SubItems.Add($"{orderItem.OrderItemID}");
-
-                orderesListView.Items.Add(item);
-            }
-
-            orderesListView.View = View.Details;
+            FillInListView(todaysOrders);
         }
     }
 }
