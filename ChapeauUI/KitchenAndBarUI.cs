@@ -170,7 +170,8 @@ namespace ChapeauUI
                 orderItemService.UpdateOrderItemState(orderItem, changedStatus);
 
                 listViewSelectedItem.Items.Clear();
-
+                
+                //update the status in the listview
                 orderItem.Status = (OrderStatus)changedStatus;
                 ListViewItem item2 = new ListViewItem($"{orderItem.OrderItemID}");
                 item2.SubItems.Add($"{orderItem.Status}");
@@ -286,7 +287,7 @@ namespace ChapeauUI
         }
 
         private void btnViewOngoingOrders_Click(object sender, EventArgs e)//changes the button color and reloads orders
-        {// chagnge to switch when i press to go to the service layer and then the dao layeR
+        {
             ChangeButtonColor(btnViewOngoingOrders);
 
             List<OrderItem> ongoingOrders = orderItemService.GetOrdersWithCategoryWithoutStatusLower(category, ChapeauModel.OrderStatus.Ready);
