@@ -95,7 +95,7 @@ namespace ChapeauUI
 
             foreach (OrderItem item in itemsList)
             {
-                
+
                 ListViewItem listItem = new ListViewItem(item.ItemName);
                 listItem.SubItems.Add(item.Quantity.ToString());
                 listItem.SubItems.Add(item.PricePerItem.ToString());
@@ -106,7 +106,7 @@ namespace ChapeauUI
 
 
                 listViewOrders.Items.Add(listItem);
-        
+
             }
 
             listViewOrders.View = View.Details;
@@ -136,9 +136,8 @@ namespace ChapeauUI
         {
             // Close the form when the Go Back button is clicked
             Close();
-
-
         }
+
         private void ReserveTableBtn_Click(object sender, EventArgs e)
         {
             table.TableStatus = TableStatus.Reserved;
@@ -196,6 +195,7 @@ namespace ChapeauUI
                 orderItem = (OrderItem)listView.Tag;
             }
         }
+
         private void BillBtn_Click(object sender, EventArgs e)
         {
             // Check if any orders are not served before generating the bill
@@ -233,7 +233,8 @@ namespace ChapeauUI
 
         private void AddOrderbtn_Click_1(object sender, EventArgs e)
         {
-
+            // Close the form when the Go Back button is clicked
+            Close();
         }
 
         private void BillBtn_Click_1(object sender, EventArgs e)

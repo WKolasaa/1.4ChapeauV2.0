@@ -17,13 +17,14 @@ namespace ChapeauModel
         public ItemCategory ItemType { get; set; }   
         public int Quantity { get; set; }
 
-        public MenuItem(int menuItemID, string description, double price, int contains, bool vAT_Category, ItemCategory itemType)
+        public MenuItem(int menuItemID, string description, double price, int contains, bool vAT_Category, ItemCategory itemType, int quantity)
         {
             MenuItemID = menuItemID;
             Description = description;
             Price = price;
             VAT_Category = vAT_Category;
             ItemType = itemType;
+            Quantity = quantity;
         }   
 
         public MenuItem() { }

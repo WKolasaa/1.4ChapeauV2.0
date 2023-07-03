@@ -14,6 +14,7 @@ public partial class ManagerMenuAddAndUpdate : Form
     public ManagerMenuAddAndUpdate()
     {
         PrepareForm("Add Menu Item");
+        radioButton1.Checked = true;
     }
 
     private void PrepareForm(string text)
@@ -32,9 +33,9 @@ public partial class ManagerMenuAddAndUpdate : Form
             return;
         }
 
-        if (double.Parse(txtAddMenuPrice.Text) < 0)
+        if (double.Parse(txtAddMenuPrice.Text) < 0 || int.Parse(txtQuantity.Text) < 0)
         {
-            MessageBox.Show("Value cannot be lover then 0!");
+            MessageBox.Show("Value cannot be lower then 0!");
             return;
         }
 
@@ -89,7 +90,7 @@ public partial class ManagerMenuAddAndUpdate : Form
     {
         MenuItem tempMenu = new MenuItem();
 
-        if (btAddMenu.Text == "Adjust Menu Item")
+        if (btAddMenu.Text == "Adjust Menu Item") 
             tempMenu.MenuItemID = int.Parse(txtAddMenuID.Text);
         tempMenu.Description = txtAddMenuDesciprion.Text;
         tempMenu.Price = double.Parse(txtAddMenuPrice.Text);
